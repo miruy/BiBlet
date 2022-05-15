@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yurim.www.repository.UserMapper">
+<mapper namespace="com.yurim.www.repository.UserDAO">
 
     <insert id="userSignup" parameterType="UserDTO">
-        insert into user
+        INSERT INTO user
             (name, id, pass, reg_date, email, origin_pic)
-        values
-            (#{name}, #{id}, #{pass}, now(), #{email}, #{origin_pic})
+        VALUES
+            (#{name}, #{id}, #{pass}, now(), #{email}, #{originPic})
     </insert>
 
+    <select id="userEmailChk" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM user WHERE email=#{email}
+    </select>
 
+    <select id="userIdChk" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM user WHERE id=#{id}
+    </select>
 </mapper>

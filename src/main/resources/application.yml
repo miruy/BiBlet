@@ -4,6 +4,9 @@ spring:
     url: jdbc:mariadb://kube.itseasy.site:31039/biblet?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
     username: miruy
     password: yurim2586
+  messages:
+    basename: message/message
+    encoding: UTF-8
   mvc:
     view:
       prefix: /views/

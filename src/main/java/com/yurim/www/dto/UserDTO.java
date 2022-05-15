@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,16 +18,10 @@ import java.time.LocalDateTime;
 @Alias("UserDTO")
 public class UserDTO {
     private Long userNo;
-
     private String name;
-
     private String id;
-
     private String pass;
-
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime regDate;
-    
     private String email;
     private String originPic;
     private String storedPic;
