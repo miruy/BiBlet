@@ -12,18 +12,18 @@
         <header class="navbar bg-base-100 p-0 fixed inset-x-0 top-0 z-50">
             <div class="navbar-start">
                 <ul class="flex items-center">
-                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]">Sign Up</a></li>
-                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]">Login</a></li>
-                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]">Notice</a></li>
+                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/signup">Sign Up</a></li>
+                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/login">Login</a></li>
+                    <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/notice">Notice</a></li>
                 </ul>
             </div>
             <div class="navbar-center">
-                <a href="#" class="normal-case text-xl border-0 hover:text-[1.5rem]">BiBlet</a>
+                <a href="/main" class="normal-case text-xl border-0 hover:text-[1.5rem]">BiBlet</a>
             </div>
             <div class="navbar-end">
-                <form class="mb-0 flex items-center">
-                    <input type="text" placeholder="Search" class="input input-ghost my-[1.2rem] h-[1.5rem]" />
-                    <button class="px-[1.3rem]">
+                <form action="/search" class="mb-0 flex items-center">
+                    <input type="text" name="query" id="query" value="${query}" placeholder="Search" class="input input-ghost my-[1.2rem] h-[1.5rem]" />
+                    <button class="px-[1.3rem]" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hover:h-6 hover:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </button>
                 </form>
