@@ -4,9 +4,9 @@
 
     <insert id="userSignup" parameterType="UserDTO">
         INSERT INTO user
-            (name, id, pass, reg_date, email, origin_pic)
+            (name, id, pass, reg_date, email, origin_pic, stored_pic, auth_key, auth_status)
         VALUES
-            (#{name}, #{id}, #{pass}, now(), #{email}, #{originPic})
+            (#{name}, #{id}, #{pass}, now(), #{email}, #{originPic}, #{storedPic}, #{authKey}, #{authStatus})
     </insert>
 
     <select id="userEmailChk" parameterType="String" resultType="int">

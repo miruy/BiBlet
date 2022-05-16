@@ -85,11 +85,4 @@ public class UserSignupController {
         userService.updateStatus(requestSignup.getEmail(), authKey);
         return "check/emailCheck";
     }
-
-    @ResponseBody
-    @PostMapping("/kakao")
-    public boolean kakaoLogin(@RequestBody RequestKakaoLogin requestKakaLogin) {
-        System.out.println(requestKakaLogin);
-        return true;
-    }
 }
