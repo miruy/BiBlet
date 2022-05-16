@@ -5,6 +5,11 @@
 <%@ include file="../common/header.jsp" %>
 
 <section class="container mx-auto">
+    <style type="text/css">
+        a{color: #778899;}
+        a:hover{color: black;}
+    </style>
+
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
         <div class="text-center mb-[0.7rem]">
             <h1 class="text-4xl font-bold">Sign Up</h1>
@@ -54,7 +59,7 @@
                     <button type="submit" class="btn btn-secondary">Sign Up</button>
                 </div>
                 <label class="text-center"><form:errors path="commonError"/></label>
-                <a href="/adimSignup" class="text-center hover:text-[1.2rem]">Administrator SignUp</a>
+                <a href="/adimSignup" class="text-center text-gray-300">Administrator SignUp</a>
             </form:form>
         </div>
     </div>

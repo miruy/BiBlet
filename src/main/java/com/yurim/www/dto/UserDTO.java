@@ -26,5 +26,5 @@ public class UserDTO {
     private String originPic;
     private String storedPic;
     private String authKey;
-    private String authStatus;
+    private int authStatus;
 }

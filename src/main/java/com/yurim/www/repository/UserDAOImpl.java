@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 @Repository
 @RequiredArgsConstructor
 public class UserDAOImpl implements UserDAO{
@@ -28,5 +30,23 @@ public class UserDAOImpl implements UserDAO{
         return idChkResult;
     }
 
+    @Override
+    public String selectKey(String email){
+        return sqlSessionTemplate.selectOne("selectKey", email);
+    }
 
+    @Override
+    public void updateKey(HashMap<String, String> map) {
+        sqlSessionTemplate.update("updateKey", map);
+    }
+
+    @Override
+    public void updateStatus(HashMap<String, String> map) {
+        sqlSessionTemplate.update("updateStatus", map);
+    }
+
+    @Override
+    public UserDTO selectUserInfoById(String id) {
+        return sqlSessionTemplate.selectOne("selectUserInfoById",id);
+    }
 }

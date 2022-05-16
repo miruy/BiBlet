@@ -5,20 +5,20 @@
         <%-- jqueryCDN --%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="/css/tailwind.output.css" />
-        <title>Sign Up</title>
+        <title>BiBlet</title>
     </head>
 
     <body class="flex flex-col min-h-screen">
         <header class="navbar bg-base-100 p-0 fixed inset-x-0 top-0 z-50">
             <div class="navbar-start">
                 <ul class="flex items-center">
+                    <a href="/main" class="normal-case text-xl border-0 hover:text-[1.5rem] mx-[1.3rem]">BiBlet</a>
                     <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/signup">Sign Up</a></li>
                     <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/login">Login</a></li>
                     <li class="mx-[1.3rem]"><a class="hover:text-[1.2rem]" href ="/notice">Notice</a></li>
                 </ul>
             </div>
             <div class="navbar-center">
-                <a href="/main" class="normal-case text-xl border-0 hover:text-[1.5rem]">BiBlet</a>
             </div>
             <div class="navbar-end">
                 <form action="/search" class="mb-0 flex items-center">
