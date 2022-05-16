@@ -66,7 +66,14 @@ public class UserLoginController {
             /**
              * 로그인 인증하고 인증 객체 반환
              */
-            authInfo = userService.authenticate(requestLogin);
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserNo(requestLogin.getUserNo());
+            userDTO.setId(requestLogin.getId());
+            userDTO.setPass(requestLogin.getPass());
+            userDTO.setName(requestLogin.getName());
+            userDTO.setAuthStatus(requestLogin.getAuthStatus());
+
+            authInfo = userService.authenticate(userDTO);
 
             /**
              * 로그인 인증된 객체 세션 테이블에 저장
@@ -90,10 +97,10 @@ public class UserLoginController {
             return "redirect:/";
 
         } catch (IdPasswordNotMatchingException e) {
-            errors.rejectValue("mem_pass", "IdPasswordNotMatching");
-            return "auth/login_error";
+            errors.rejectValue("pass", "IdPasswordNotMatching");
+            return "error/login_error";
         } catch (AuthstatusException e) {
-            return "auth/email_error";
+            return "error/email_error";
         }
     }
 }

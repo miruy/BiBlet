@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../common/header.jsp" %>
 
@@ -52,7 +53,7 @@
                 </div>
 
                 <div class="form-control mt-6">
-                    <button class="btn btn-primary">Kakao Login</button>
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary">Kakao Login</a>
                 </div>
 
                 <div class="form-control mt-1">
@@ -63,6 +64,58 @@
             </form:form>
         </div>
     </div>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript">
+
+        Kakao.init('e124f6da6ba825064e0e5ecf46e18d60');
+
+        function loginWithKakao() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                    Kakao.API.request({
+                        url: '/v2/user/me',
+                        success: function(res) {
+
+                            let properties = res.properties;
+                            let name = properties.nickname;
+                            let thumbnailImage = properties.thumbnail_image;
+                            let id = res.id;
+
+                            $.ajax({
+                                url: '<c:url value="/signup/kakao"/>',
+                                type: 'POST',
+                                data: JSON.stringify({
+                                    "name": name,
+                                    "id": id,
+                                    "thumbnailImage": thumbnailImage
+                                }),
+                                dataType: "json",
+                                contentType: 'application/json',
+                                success: function(data) {
+                                    console.log("성공")
+                                    console.log(data);
+
+                                }, error: function(){
+                                    console.log("에러" +
+                                        "");
+                                }
+                            })
+                        },
+                        fail: function(error) {
+                            alert(
+                                'login success, but failed to request user information: ' +
+                                JSON.stringify(error)
+                            )
+                        },
+                    })
+                },
+                fail: function(err) {
+                    alert(JSON.stringify(err))
+                },
+            })
+        }
+    </script>
 
     <script type="text/javascript">
         function fnChkByte(obj, maxByte, id) {

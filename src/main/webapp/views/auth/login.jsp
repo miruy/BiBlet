@@ -23,7 +23,6 @@
                         <span class="label-text">ID</span>
                     </label>
                     <form:input path="id" id="id" name="id" type="text" class="input input-bordered"/>
-                    <form:errors path="id" />
                 </div>
 
                 <div class="form-control">

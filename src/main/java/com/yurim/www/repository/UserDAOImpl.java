@@ -47,6 +47,6 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public UserDTO selectUserInfoById(String id) {
-        return sqlSessionTemplate.selectOne("selectUserInfoById",id);
+        return sqlSessionTemplate.selectOne("selectUserInfoById", id);
     }
 }

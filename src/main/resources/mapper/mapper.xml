@@ -21,6 +21,10 @@
         SELECT auth_key FROM user WHERE email=#{email}
     </select>
 
+    <select id="selectUserInfoById" parameterType="String" resultType="UserDTO">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
     <update id="updateKey" parameterType="HashMap">
         UPDATE user SET auth_key=#{authKey} WHERE email=#{email}
     </update>

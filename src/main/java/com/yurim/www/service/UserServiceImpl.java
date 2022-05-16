@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO authenticate(RequestLogin requestLogin) throws Exception {
-        UserDTO user = UserDAO.selectUserInfoById(requestLogin.getId());
+    public UserDTO authenticate(UserDTO userDTO) throws Exception {
+        UserDTO user = userDAO.selectUserInfoById(userDTO.getId());
 
         /**
          * 테이블에 사용자가 없을 때 예외처리
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService{
         /**
          * 패스워드가 같지 않다면 예외 처리
          */
-        if (!user.getPass().equals(requestLogin.getPass())) {
+        if (!user.getPass().equals(userDTO.getPass())) {
             throw new IdPasswordNotMatchingException();
         }
 

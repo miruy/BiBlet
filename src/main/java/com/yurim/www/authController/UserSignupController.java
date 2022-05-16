@@ -5,14 +5,12 @@ import com.yurim.www.exception.AlreadyExistEmailException;
 import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.service.MailSendService;
 import com.yurim.www.service.UserService;
+import com.yurim.www.vo.RequestKakaoLogin;
 import com.yurim.www.vo.RequestSignup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -67,7 +65,7 @@ public class UserSignupController {
              */
             userService.updateKey(signupUser.getEmail(), signupUser.getAuthKey());
 
-            return "auth/emailCheck";
+            return "check/signupCheck";
 
         }catch (AlreadyExistEmailException e){
             errors.rejectValue("commonError", "alreadyExistEmail");
@@ -85,6 +83,13 @@ public class UserSignupController {
     public String emailCheck(@ModelAttribute("requestSignup") RequestSignup requestSignup) {
         String authKey = userService.selectKey(requestSignup.getEmail());
         userService.updateStatus(requestSignup.getEmail(), authKey);
-        return "auth/emailCheck";
+        return "check/emailCheck";
+    }
+
+    @ResponseBody
+    @PostMapping("/kakao")
+    public boolean kakaoLogin(@RequestBody RequestKakaoLogin requestKakaLogin) {
+        System.out.println(requestKakaLogin);
+        return true;
     }
 }

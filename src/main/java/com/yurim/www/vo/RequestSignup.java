@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
 public class RequestSignup {
+    @Min(value = 2, message = "최소 2글자 이상이여야합니다.")
     @NotEmpty(message="필수 입력란 입니다.")
     private String name;
 
