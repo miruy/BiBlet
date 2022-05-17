@@ -25,6 +25,10 @@
         SELECT * FROM user WHERE id=#{id}
     </select>
 
+    <select id="findIdByEmail" parameterType="HashMap" resultType="String">
+        SELECT id FROM user WHERE email=#{email} AND pass=#{pass}
+    </select>
+
     <update id="updateKey" parameterType="HashMap">
         UPDATE user SET auth_key=#{authKey} WHERE email=#{email}
     </update>
@@ -32,4 +36,5 @@
     <update id="updateStatus" parameterType="HashMap">
         UPDATE user SET auth_status=1 WHERE auth_key=#{authKey} and email=#{email}
     </update>
+
 </mapper>

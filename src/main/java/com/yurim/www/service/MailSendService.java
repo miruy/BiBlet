@@ -1,6 +1,10 @@
 package com.yurim.www.service;
 
+import com.yurim.www.dto.UserDTO;
+import com.yurim.www.repository.UserDAO;
 import com.yurim.www.util.MailUtils;
+import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -8,7 +12,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class MailSendService {
+
+	private final UserDAO userDAO;
+
 	/**
 	 * 사용자 이메일 인증 폼 보내기
 	 */
@@ -18,7 +26,7 @@ public class MailSendService {
 		try {
 			MailUtils sendMail = new MailUtils();
 			sendMail.setSubject("회원가입 이메일 인증");
-			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<h2>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</h2>")
 					.append("<a href='http://localhost:8080/signup/emailCheck?email=").append(email)
 					.append("&authKey=").append(authKey).append("' target='_blank'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("dbflarla496695@gmail.com", "관리자");
@@ -31,6 +39,34 @@ public class MailSendService {
 		}
 
 		return authKey;
+	}
+
+	public boolean sendAuthMailForFindPass(String email, String id){
+
+		UserDTO user = userDAO.selectUserInfoById(id);
+
+		if(user == null){
+			return false;
+		}
+
+		System.out.println("비밀번호 찾기 이름 : "+user.getName());
+		System.out.println("비밀번호 찾기 비밀번호" + user.getPass());
+
+		try {
+			MailUtils sendMail = new MailUtils();
+			sendMail.setSubject("BiBlet 비밀번호 확인");
+			sendMail.setText(new StringBuffer().append("<h2>" + user.getName() + "님의 비밀번호가 확인되었습니다.</h2>")
+					.append("<h3>Password : " + user.getPass() + "</h3>")
+					.toString());
+			sendMail.setFrom("dbflarla496695@gmail.com", "관리자");
+			sendMail.setTo(email);
+			sendMail.send();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 //	/**

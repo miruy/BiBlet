@@ -6,8 +6,16 @@
 
 <section>
 
-    <div>이메일 인증에 성공했습니다.</div>
-    <div>로그인이 가능합니다.</div>
+    <div class="hero min-h-screen bg-cover" style="background-image: url('/images/signup_email_Check.jpg'); background-size: cover;">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-md">
+                <h1 class="mb-5 text-5xl font-bold" >이메일 인증에 성공했습니다.</h1>
+                <h1 class="mb-5">로그인이 가능합니다.</h1>
+                <button class="btn btn-secondary mt-3" type="button" onclick="location.href='/'">Start BiBlet</button>
+            </div>
+        </div>
+    </div>
 
 </section>
 

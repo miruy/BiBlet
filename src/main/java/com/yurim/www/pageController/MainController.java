@@ -21,8 +21,8 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/main")
-public class PageController {
+@RequestMapping("/")
+public class MainController {
 
     private final UserService userService;
 

@@ -14,4 +14,5 @@ public interface UserDAO {
     void updateStatus(HashMap<String,String> map);
     String selectKey(String email);
     UserDTO selectUserInfoById(String id);
+    String findIdByEmail(HashMap<String,String> map);
 }

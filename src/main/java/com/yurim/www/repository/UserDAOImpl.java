@@ -49,4 +49,9 @@ public class UserDAOImpl implements UserDAO{
     public UserDTO selectUserInfoById(String id) {
         return sqlSessionTemplate.selectOne("selectUserInfoById", id);
     }
+
+    @Override
+    public String findIdByEmail(HashMap<String, String> map) {
+        return sqlSessionTemplate.selectOne("findIdByEmail", map);
+    }
 }

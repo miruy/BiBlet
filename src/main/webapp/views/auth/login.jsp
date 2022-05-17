@@ -5,10 +5,6 @@
 <%@ include file="../common/header.jsp" %>
 
 <section class="container mx-auto">
-    <style type="text/css">
-        a{color: #778899;}
-        a:hover{color: black;}
-    </style>
 
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
         <div class="text-center mb-[0.7rem]">
@@ -34,7 +30,7 @@
                 </div>
 
                 <div class="form-control">
-                    <label class="cursor-pointer label">
+                    <label class="label cursor-pointer">
                         <span class="label-text">Remember me</span>
                         <input type="checkbox" id="rememberId" name="rememberId" class="checkbox checkbox-secondary">
                     </label>
@@ -43,8 +39,10 @@
                 <div class="form-control mt-1">
                     <button type="submit" class="btn btn-secondary">Login</button>
                 </div>
+                <a href="/adimSLogin" class="text-center">Administrator Login</a>
 
-                <a href="/adimSLogin" class="text-center text-gray-300">Administrator Login</a>
+                <a href="/login/findId" class="mt-3" >Forgot your id?</a>
+                <a href="/login/findPass" >Forgot your password?</a>
             </form:form>
         </div>
     </div>

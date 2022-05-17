@@ -7,10 +7,6 @@
 <%@ include file="../common/header.jsp" %>
 
 <section class="container mx-auto">
-    <style type="text/css">
-        a{color: #778899;}
-        a:hover{color: black;}
-    </style>
 
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
         <div class="text-center mb-[0.7rem]">

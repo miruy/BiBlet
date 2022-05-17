@@ -87,7 +87,14 @@ public class UserServiceImpl implements UserService{
         if (user.getAuthStatus() == 0) {
             throw new AuthstatusException();
         }
-
         return user;
+    }
+
+    @Override
+    public String findIdByEmail(String email, String pass){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("email", email);
+        map.put("pass", pass);
+        return userDAO.findIdByEmail(map);
     }
 }

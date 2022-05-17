@@ -3,6 +3,7 @@ package com.yurim.www.authController;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AuthstatusException;
 import com.yurim.www.exception.IdPasswordNotMatchingException;
+import com.yurim.www.service.MailSendService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestKakaoLogin;
 import com.yurim.www.vo.RequestLogin;
@@ -25,6 +26,7 @@ import java.util.UUID;
 public class UserLoginController {
 
     private final UserService userService;
+    private final MailSendService mailSendService;
 
     @GetMapping
     public String loginForm(RequestLogin requestLogin, HttpSession session, HttpServletRequest request,
@@ -108,7 +110,7 @@ public class UserLoginController {
     public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
                               Model model, HttpSession session, HttpServletResponse response) throws Exception {
 
-        UserDTO signupUser =new UserDTO();
+        UserDTO signupUser = new UserDTO();
         signupUser.setName(requestKakaoLogin.getName());
         signupUser.setId("kakao" + requestKakaoLogin.getId());
         signupUser.setPass(UUID.randomUUID().toString().replaceAll("-", ""));
@@ -133,5 +135,50 @@ public class UserLoginController {
         session.setAttribute("authInfo", authInfo);
 
         return true;
+    }
+
+    /**
+     * 아이디 찾기(회원)
+     */
+    @GetMapping("/findId")
+    public String findIdForm() {
+        return "common/findId";
+    }
+
+    @PostMapping("/findId")
+    public String findId(UserDTO userDTO, Model model, String email, String pass) throws Exception {
+
+        String foundId = userService.findIdByEmail(email, pass);
+
+        if (foundId == null) {
+            return "error/findId_error";
+        }
+
+        model.addAttribute("foundId", foundId);
+        return "common/foundId";
+
+    }
+
+    /**
+     * 비밀번호 찾기(회원)
+     */
+    @GetMapping("/findPass")
+    public String findPassForm() {
+        return "common/findPass";
+    }
+
+    @PostMapping("/findPass")
+    public String findPass(UserDTO userDTO, Model model, String email, String id) throws Exception {
+
+        if(email.equals("") || id.equals("")){
+            return "error/required_error";
+        }
+
+        boolean user = mailSendService.sendAuthMailForFindPass(email, id);
+
+        if (user == false) {
+            return "error/findPass_error";
+        }
+        return "common/foundPass";
     }
 }
