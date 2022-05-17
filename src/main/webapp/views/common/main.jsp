@@ -4,21 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="../common/header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <section class="container mx-auto">
 
     <div>
-        <a href="/MyPage">마이페이지</a>
-        <a href="/member/logout">로그아웃</a>
-        <a href="/member/findId">아이디 찾기</a>
+        <a href="/myPage">마이페이지</a>
+        <a href="/logout">로그아웃</a>
     </div>
-
-    <form action="/search">
-        <span>검색 </span>
-        <input type="text" name="query" id="query" value="${query}" placeholder="제목, 저자 또는 출판사 검색" size=30>
-        <button type="submit">검색</button>
-    </form>
 
     <c:if test="${!empty myID}">
         <p>
@@ -30,13 +23,11 @@
         </p>
         <span>${myID}이 찜한 도서</span>
     </c:if>
-
     <div id="myLike"></div>
 
     <br>
 
     <h2>최근 코멘트</h2>
-
     <table border=1>
         <c:if test="${!empty latestList}">
             <tr>
@@ -65,7 +56,6 @@
     <br>
 
     <h2>인기 도서</h2>
-
     <div id="popularList"></div>
 
     <br>

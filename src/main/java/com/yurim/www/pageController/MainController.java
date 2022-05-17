@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Enumeration;
 import java.util.UUID;
 
 @Controller
@@ -27,9 +28,20 @@ public class MainController {
     private final UserService userService;
 
     @GetMapping
-    public String mainForm() throws Exception {
-
+    public String mainForm(){
         return "common/main";
     }
 
+    @GetMapping("/search")
+    public String search(HttpSession session, HttpServletRequest request, Model model) {
+        Enumeration eHeader = request.getHeaderNames();
+        while (eHeader.hasMoreElements()) {
+            String request_Name = (String)eHeader.nextElement();
+            String request_Value = request.getHeader(request_Name);
+            System.out.println("request_Name : " + request_Name + " | request_Value : " + request_Value);
+        }
+
+//        model.addAttribute("query", query);
+        return "common/search";
+    }
 }

@@ -39,10 +39,10 @@
                 <div class="form-control mt-1">
                     <button type="submit" class="btn btn-secondary">Login</button>
                 </div>
-                <a href="/adimSLogin" class="text-center">Administrator Login</a>
+                <a href="/adimLogin" class="text-center">Administrator Login</a>
 
-                <a href="/login/findId" class="mt-3" >Forgot your id?</a>
-                <a href="/login/findPass" >Forgot your password?</a>
+                <a href="/findId" class="mt-3" >Forgot your id?</a>
+                <a href="/findPass" >Forgot your password?</a>
             </form:form>
         </div>
     </div>

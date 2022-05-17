@@ -22,13 +22,12 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/login")
 public class UserLoginController {
 
     private final UserService userService;
     private final MailSendService mailSendService;
 
-    @GetMapping
+    @GetMapping("/login")
     public String loginForm(RequestLogin requestLogin, HttpSession session, HttpServletRequest request,
                             @CookieValue(value = "REMEMBER", required = false) Cookie cookie) throws Exception {
 
@@ -46,7 +45,7 @@ public class UserLoginController {
         return "auth/login";
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public String login(@Valid RequestLogin requestLogin, Errors errors, Model model, HttpSession session,
                         HttpServletResponse response) throws Exception {
 
@@ -106,7 +105,7 @@ public class UserLoginController {
     }
 
     @ResponseBody
-    @PostMapping("/kakao")
+    @PostMapping("/login/kakao")
     public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
                               Model model, HttpSession session, HttpServletResponse response) throws Exception {
 
@@ -142,11 +141,15 @@ public class UserLoginController {
      */
     @GetMapping("/findId")
     public String findIdForm() {
-        return "common/findId";
+        return "user/findId";
     }
 
     @PostMapping("/findId")
     public String findId(UserDTO userDTO, Model model, String email, String pass) throws Exception {
+
+        if(email.equals("") || pass.equals("")){
+            return "error/required_error";
+        }
 
         String foundId = userService.findIdByEmail(email, pass);
 
@@ -155,7 +158,7 @@ public class UserLoginController {
         }
 
         model.addAttribute("foundId", foundId);
-        return "common/foundId";
+        return "user/foundId";
 
     }
 
@@ -164,7 +167,7 @@ public class UserLoginController {
      */
     @GetMapping("/findPass")
     public String findPassForm() {
-        return "common/findPass";
+        return "user/findPass";
     }
 
     @PostMapping("/findPass")
@@ -179,6 +182,12 @@ public class UserLoginController {
         if (user == false) {
             return "error/findPass_error";
         }
-        return "common/foundPass";
+        return "user/foundPass";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 }
