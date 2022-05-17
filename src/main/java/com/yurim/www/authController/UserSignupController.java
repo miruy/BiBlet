@@ -68,10 +68,10 @@ public class UserSignupController {
             return "check/signupCheck";
 
         }catch (AlreadyExistEmailException e){
-            errors.rejectValue("commonError", "alreadyExistEmail");
+            errors.rejectValue("email", "alreadyExistEmail");
             return "auth/signup";
         }catch(AlreadyExistIdException e) {
-            errors.rejectValue("commonError", "alreadyExistId");
+            errors.rejectValue("id", "alreadyExistId");
             return "auth/signup";
         }
     }

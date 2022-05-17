@@ -105,7 +105,7 @@ public class UserLoginController {
 
     @ResponseBody
     @PostMapping("/kakao")
-    public String kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
+    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
                               Model model, HttpSession session, HttpServletResponse response) throws Exception {
 
         UserDTO signupUser =new UserDTO();
@@ -119,20 +119,19 @@ public class UserLoginController {
 
         userService.userSignup(signupUser);
 
-
         UserDTO authInfo = null;
 
         authInfo = userService.authenticate(signupUser);
+
+        if (session != null && session.getAttribute("authInfo") != null) {
+            return false;
+        }
 
         /**
          * 로그인 인증된 객체 세션 테이블에 저장
          */
         session.setAttribute("authInfo", authInfo);
 
-        if (session != null && session.getAttribute("authInfo") != null) {
-            return "main";
-        }
-
-        return "main";
+        return true;
     }
 }

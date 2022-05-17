@@ -23,7 +23,7 @@
                         <span class="label-text">Name</span>
                     </label>
                     <form:input type="text" path="name" id="name" name="name" class="input input-bordered" />
-                    <form:errors path="name" />
+                    <label class="text-center"><form:errors path="name" /></label>
                 </div>
 
                 <div class="form-control">
@@ -31,7 +31,7 @@
                         <span class="label-text">ID</span>
                     </label>
                     <form:input type="text" path="id" id="id" name="id" class="input input-bordered"/>
-                    <form:errors path="id" />
+                    <label class="text-center"><form:errors path="id" /></label>
                 </div>
 
                 <div class="form-control">
@@ -39,7 +39,7 @@
                         <span class="label-text">Password</span>
                     </label>
                     <form:input type="password" path="pass" id="pass" name="pass" class="input input-bordered"/>
-                    <form:errors path="pass" />
+                    <label class="text-center"><form:errors path="pass" /></label>
                 </div>
 
                 <div class="form-control">
@@ -47,7 +47,7 @@
                         <span class="label-text">Email</span>
                     </label>
                     <form:input type="email" path="email" id="email" name="email" class="input input-bordered"/>
-                    <form:errors path="email" />
+                    <label class="text-center"><form:errors path="email" /></label>
                 </div>
 
                 <div class="form-control mt-6">
@@ -57,7 +57,6 @@
                 <div class="form-control mt-1">
                     <button type="submit" class="btn btn-secondary">Sign Up</button>
                 </div>
-                <label class="text-center"><form:errors path="commonError"/></label>
                 <a href="/adimSignup" class="text-center text-gray-300">Administrator SignUp</a>
             </form:form>
         </div>
@@ -93,11 +92,11 @@
                                 success: function(data) {
                                     console.log("성공")
                                     console.log(data);
-                                    location.reload();
+                                    window.location.replace('main')
 
                                 }, error: function(){
                                     console.log("에러");
-                                    location.reload();
+                                    window.location.replace('signup')
                                 }
                             })
                         },
@@ -115,38 +114,6 @@
             })
         }
     </script>
-
-<%--    <script type="text/javascript">--%>
-<%--        function fnChkByte(obj, maxByte, id) {--%>
-<%--            var str = obj.value;--%>
-<%--            var str_len = str.length;--%>
-<%--            var input = document.getElementById(id);--%>
-<%--            var rbyte = 0;--%>
-<%--            var rlen = 0;--%>
-<%--            var one_char = "";--%>
-<%--            var str2 = "";--%>
-<%--            for (var i = 0; i < str_len; i++) {--%>
-<%--                one_char = str.charAt(i);--%>
-<%--                if (escape(one_char).length > 4) {--%>
-<%--                    rbyte += 3; //한글3Byte--%>
-<%--                } else {--%>
-<%--                    rbyte++; //영문 등 나머지 1Byte--%>
-<%--                }--%>
-<%--                if (rbyte <= maxByte) {--%>
-<%--                    rlen = i + 1; //return할 문자열 갯수--%>
-<%--                }--%>
-<%--            }--%>
-<%--            if (rbyte > maxByte) {--%>
-<%--                // alert("한글 "+(maxByte/3)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");--%>
-<%--                alert("메세지는 최대 " + maxByte + "byte를 초과할 수 없습니다.")--%>
-<%--                str2 = str.substr(0, rlen); //문자열 자르기--%>
-<%--                obj.value = str2;--%>
-<%--                fnChkByte(obj, maxByte);--%>
-<%--            } else {--%>
-<%--                input.innerText = rbyte;--%>
-<%--            }--%>
-<%--        }--%>
-<%--    </script>--%>
 </section>
 
 <%@ include file="../common/footer.jsp" %>
