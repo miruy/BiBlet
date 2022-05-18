@@ -4,15 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 <section class="container mx-auto">
-
-    <div>
-        <a href="/myPage">마이페이지</a>
-        <a href="/logout">로그아웃</a>
-    </div>
-
     <c:if test="${!empty myID}">
         <p>
             <span>${myID}님 안녕하세요</span>
@@ -147,4 +141,4 @@
 
 </section>
 
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="common/footer.jsp" %>
