@@ -8,9 +8,6 @@ import org.apache.ibatis.type.Alias;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Alias("RequestCommentForDetail")
 public class RequestCommentForDetail {
 	private Long userNo;
 	private String id;

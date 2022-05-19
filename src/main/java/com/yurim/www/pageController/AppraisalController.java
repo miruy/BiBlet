@@ -1,5 +1,6 @@
 package com.yurim.www.pageController;
 
+import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.service.AppraisalService;
 import com.yurim.www.vo.RequestCommentForDetail;
 import com.yurim.www.vo.RequestLogin;
@@ -33,7 +34,7 @@ public class AppraisalController {
         int commentCount = appraisalService.commentCount(isbn);
 
         // 해당 도서의 대한 모든 평가 불러오기
-        List<RequestCommentForDetail> commentsByMembers = appraisalService.findAllComment(isbn);
+        List<AppraisalDTO> commentsByMembers = appraisalService.findAllComment(isbn);
 
         model.addAttribute("query", query);
         model.addAttribute("isbn", isbn);

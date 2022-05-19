@@ -7,7 +7,7 @@
 
 <section class="container mt-4">
 
-    <div class="flex flex-col bg-gray-50 px-4 lg:px-16 pb-16 rounded-xl mx-auto lg:mx-[10%] shadow-xl rounded">
+    <div class="flex flex-col bg-gray-50 px-4 lg:px-16 pb-16 rounded-xl mx-auto lg:mx-[10%] shadow-xl">
         <div class="flex flex-col xl:flex-row items-center justify-between">
             <div id="bookThumbnail"></div>
             <form:form method="POST" commandName="insertCmd" onsubmit="return bookSubmit()" class="px-4 space-y-4">
@@ -83,8 +83,8 @@
             </form:form>
         </div>
 
-        <div class="flex flex-col justify-center shadow-xl rounded bg-blue-50">
-            <div class="border-b-2 p-4 border-white"><span class="text-2xl font-bold text-gray-600">기본정보</span></div>
+        <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white">
+            <div class="p-4 border-b-2 border-blue-200"><span class="text-2xl font-bold text-gray-600">기본정보</span></div>
             <div id="authors" class="flex p-4 space-x-2">
                 <span class="text-xl font-semibold text-gray-600">저자 : </span>
             </div>
@@ -100,63 +100,56 @@
             <div id="isbn_content" class="flex p-4 space-x-2">
                 <span class="text-xl font-semibold text-gray-600">ISBN : </span>
             </div>
+
+
+            <div class="p-4 border-b-2 border-blue-200 flex">
+                <span class="text-2xl font-bold text-gray-600 lex flex-row">코멘트</span>
+                <div class="ml-2 mt-1 text-gray-600">
+                    <c:if test="${!empty commentCount}">
+                        Total : ${commentCount}
+                    </c:if>
+                </div>
+            </div>
+
+            <div class="carousel carousel-center p-4 space-x-2 w-pull bg-white">
+                <c:if test="${!empty commentsByMembers}">
+                    <c:forEach var="comment" items="${commentsByMembers}">
+                        <div class="carousel-item mt-3 rounded-lg bg-gray-100 w-80 h-72 flex flex-col">
+                            <div class="p-4 space-x-4">
+                                <div class="flex flex-row border-b-2 border-gray-300">
+                                    <div class="mr-2 text-gray-600">${comment.originPic}</div>
+                                    <div class="text-gray-600">${comment.id}</div>
+                                    <div class="ml-24 text-yellow-400" id="star${comment.appraisalNo}">
+                                        <c:if test="${comment.star==1 }">★☆☆☆☆</c:if>
+                                        <c:if test="${comment.star==2 }">★★☆☆☆</c:if>
+                                        <c:if test="${comment.star==3 }">★★★☆☆</c:if>
+                                        <c:if test="${comment.star==4 }">★★★★☆</c:if>
+                                        <c:if test="${comment.star==5 }">★★★★★</c:if>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-gray-600" id="content${comment.appraisalNo}">${comment.comment}</div>
+                                <div class="flex flex-row mt-28 justify-center">
+                                    <div>📅</div>
+                                    <div class="ml-2 text-gray-600" id="startDate${comment.appraisalNo}">
+                                            ${comment.startDate}
+                                    </div>
+                                    <div class="ml-3 text-gray-600" id="endDate${comment.appraisalNo}">
+                                            ${comment.endDate}
+                                    </div>
+                                </div>
+                                <div class="text-center text-gray-600">
+                                    <input class="btn btn-secondary my-2 my-sm-0" type="button" value="삭제"
+                                           onclick='deleteBtn(${comment.appraisalNo})'/>
+                                    <input class="btn btn-secondary my-2 my-sm-0" type='button' value='수정'
+                                           onclick='updateBtn(${comment.appraisalNo})'/>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            </div>
         </div>
     </div>
-
-    <c:if test="${!empty commentCount}">
-        평가 총 개수 : ${commentCount}
-    </c:if>
-
-
-    <table class="table table-hover" style="width: 100%;">
-        <thead>
-        <tr>
-            <th scope="col"><div style="padding-left:70px;">ID</div></th>
-            <th scope="col"><div style="padding-left:70px;">코멘트</div></th>
-            <th scope="col"><div style="padding-left:90px;">평가</div></th>
-            <th scope="col"><div style="padding-left:50px;">독서 시작 날짜</div></th>
-            <th scope="col"><div style="padding-left:40px;">독서 완료 날짜</div></th>
-            <th scope="col"><div style="padding-left:30px;">수정/삭제</div></th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:if test="${!empty commentsByMembers}">
-            <c:forEach var="comment" items="${commentsByMembers}">
-                <tr class="table-light">
-                    <th scope="row">
-                        <div style="padding-left:60px;">${comment.mem_id}</div>
-                    </th>
-                    <td><div id="content${comment.appraisal_num}" style="padding-left:60px;">${comment.book_comment}</div></td>
-                    <td>
-                        <div id="star${comment.appraisal_num}" style="padding-left:60px;">
-                            <c:if test="${comment.star==1 }">★☆☆☆☆</c:if>
-                            <c:if test="${comment.star==2 }">★★☆☆☆</c:if>
-                            <c:if test="${comment.star==3 }">★★★☆☆</c:if>
-                            <c:if test="${comment.star==4 }">★★★★☆</c:if>
-                            <c:if test="${comment.star==5 }">★★★★★</c:if>
-                        </div>
-                    </td>
-                    <td><div id="startDate${comment.appraisal_num}" style="padding-left:50px;">${comment.start_date}</div></td>
-                    <td><div id="endDate${comment.appraisal_num}" style="padding-left:40px;">${comment.end_date}</div></td>
-                    <td>
-                        <input class="btn btn-secondary my-2 my-sm-0" type="button" value="삭제" onclick='deleteBtn(${comment.appraisal_num})' />
-                        <input class="btn btn-secondary my-2 my-sm-0" type='button' value='수정' onclick='updateBtn(${comment.appraisal_num})' />
-
-                        <div style="float: right; ">
-                            <div id="pd${comment.appraisal_num}"></div>
-                            <div id="pu${comment.appraisal_num}"></div>
-                        </div>
-
-                    </td>
-                </tr>
-
-                <div id="u${comment.appraisal_num}"></div>
-
-            </c:forEach>
-        </c:if>
-        </tbody>
-    </table>
-
 
     <script>
 

@@ -12,6 +12,9 @@ import org.apache.ibatis.type.Alias;
 @NoArgsConstructor
 @Alias("AppraisalDTO")
 public class AppraisalDTO {
+    /**
+     * appraisal
+     */
     private Long appraisalNo;
     private int star;
     private String comment;
@@ -19,4 +22,13 @@ public class AppraisalDTO {
     private String endDate;
     private String coPrv;
     private Long statusNum;
+
+    /**
+     * + requestCommentForDetail
+     */
+    private Long userNo;
+    private String id;
+    private String originPic;
+    private String pass;
+    private String isbn;
 }
