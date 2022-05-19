@@ -10,21 +10,21 @@
     <div class="flex flex-col bg-gray-50 px-4 lg:px-16 pb-16 rounded-xl mx-auto lg:mx-[10%] shadow-xl">
         <div class="flex flex-col xl:flex-row items-center justify-between">
             <div id="bookThumbnail"></div>
-            <form:form method="POST" commandName="insertCmd" onsubmit="return bookSubmit()" class="px-4 space-y-4">
+            <form:form method="POST" modelAttribute="requestWriteComment" onsubmit="return bookSubmit()" class="px-4 space-y-4">
                 <div id="bookTitle" class="flex flex-col justify-center items-center mt-16 text-gray-600"></div>
                 <div class="flex space-x-4 ">
                     <div>
                         <span class="flex flex-col justify-center items-center mt-3 text-gray-600">평가하기</span>
                         <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5/>
+                            <input type="radio" id="5-star" name="star" value=5 />
                             <label for="5-star" class="star">&#9733;</label>
-                            <input type="radio" id="4-star" name="star" value=4/>
+                            <input type="radio" id="4-star" name="star" value=4 />
                             <label for="4-star" class="star">&#9733;</label>
-                            <input type="radio" id="3-star" name="star" value=3/>
+                            <input type="radio" id="3-star" name="star" value=3 />
                             <label for="3-star" class="star">&#9733;</label>
-                            <input type="radio" id="2-star" name="star" value=2/>
+                            <input type="radio" id="2-star" name="star" value=2 />
                             <label for="2-star" class="star">&#9733;</label>
-                            <input type="radio" id="1-star" name="star" value=1/>
+                            <input type="radio" id="1-star" name="star" value=1 />
                             <label for="1-star" class="star">&#9733;</label>
                         </div>
                     </div>

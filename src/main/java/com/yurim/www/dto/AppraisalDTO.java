@@ -21,7 +21,7 @@ public class AppraisalDTO {
     private String startDate;
     private String endDate;
     private String coPrv;
-    private Long statusNum;
+    private Long statusNo;
 
     /**
      * + requestCommentForDetail
@@ -31,4 +31,10 @@ public class AppraisalDTO {
     private String originPic;
     private String pass;
     private String isbn;
+
+    /**
+     * + requestWriteComment
+     */
+    private String query;
+    private int option;
 }

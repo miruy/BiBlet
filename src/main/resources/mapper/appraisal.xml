@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yurim.www.repository.AppraisalDAO">
 
+    <insert id="writeComment" parameterType="AppraisalDTO">
+        INSERT INTO appraisal(star, comment, start_date, end_date, co_prv, status_no)
+        VALUES(#{star}, #{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
+    </insert>
+
+    <insert id="insertStatus" parameterType="BookShelfDTO">
+        INSERT INTO bookshelf(status, user_no, isbn) VALUES(#{status}, #{userNo}, #{isbn})
+    </insert>
+
+    <select id="selectStatus" parameterType="BookShelfDTO" resultType="BookShelfDTO">
+        SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND bookshelf.status = 2
+    </select>
+
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">
         SELECT appraisal.appraisal_no,
                appraisal.star,
