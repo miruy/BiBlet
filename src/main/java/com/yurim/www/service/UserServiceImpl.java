@@ -6,7 +6,6 @@ import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.exception.AuthstatusException;
 import com.yurim.www.exception.IdPasswordNotMatchingException;
 import com.yurim.www.repository.UserDAO;
-import com.yurim.www.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

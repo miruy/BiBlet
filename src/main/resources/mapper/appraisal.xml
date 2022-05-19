@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yurim.www.repository.AppraisalDAO">
+
+
+    <!--	<insert id="insertBookShelf" parameterType="bookShelf">-->
+    <!--	INSERT INTO bookshelf(book_status_num, book_status, mem_num, isbn) VALUES(bookshelf_SEQ.nextval, #{book_status}, #{mem_num}, #{isbn})-->
+    <!--	</insert>-->
+    <!--	-->
+    <!--	<select id="selectBookShelf" parameterType="bookShelf" resultType="bookShelf">-->
+    <!--	SELECT * FROM bookshelf WHERE isbn=#{isbn} AND mem_num=#{mem_num} AND bookshelf.book_status = 2-->
+    <!--	</select>-->
+    <!--	-->
+    <!--	<insert id="writeComment" parameterType="appraisal">-->
+    <!--	INSERT INTO appraisal(appraisal_num, star, book_comment, start_date, end_date, co_prv, book_status_num)-->
+    <!--	 VALUES(appraisal_SEQ.nextval, #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv}, #{book_status_num})-->
+    <!--	</insert>-->
+
+    <select id="findAllComment" parameterType="String" resultType="RequestCommentForDetail">
+        SELECT appraisal.appraisal_no,
+               appraisal.star,
+               appraisal.comment,
+               appraisal.start_date,
+               appraisal.end_date,
+               appraisal.status_no,
+               user.id,
+               user.origin_pic,
+               user.pass
+        FROM bookshelf
+                 INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+                 INNER JOIN user ON bookshelf.user_no = user.user_no
+        WHERE bookshelf.isbn = #{isbn}
+          AND appraisal.co_prv = '공개'
+    </select>
+
+
+    <select id="commentCount" parameterType="String" resultType="int">
+        SELECT COUNT(comment)
+        FROM bookshelf
+                 INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+        WHERE bookshelf.isbn = #{isbn}
+          AND appraisal.co_prv = '공개'
+    </select>
+
+    <!--	<delete id="deleteComment" parameterType="deleteComment">-->
+    <!--	DELETE FROM bookshelf WHERE book_status_num=-->
+    <!--	(SELECT book_status_num FROM appraisal WHERE appraisal_num=#{appraisal_num}) -->
+    <!--	</delete>-->
+    <!--	-->
+    <!--	<update id="updateComment" parameterType="updateComment">-->
+    <!--	UPDATE appraisal SET-->
+    <!--	star=#{star}, book_comment=#{book_comment}, start_date=#{start_date}, end_date=#{end_date}, co_prv=#{co_prv}-->
+    <!--	WHERE appraisal_num=#{appraisal_num}-->
+    <!--	</update>-->
+    <!--	-->
+    <!--	<select id="getComment" parameterType="appraisal" resultType="comment">-->
+    <!--	SELECT -->
+    <!--	 appraisal.appraisal_num,-->
+    <!-- 	 appraisal.star,-->
+    <!-- 	 appraisal.book_comment,-->
+    <!-- 	 appraisal.start_date,-->
+    <!-- 	 appraisal.end_date,-->
+    <!-- 	 appraisal.co_prv,-->
+    <!-- 	 bookshelf.book_status,-->
+    <!-- 	 bookshelf.mem_num-->
+    <!--	FROM bookshelf-->
+    <!--	INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num-->
+    <!--	WHERE appraisal.appraisal_num=#{appraisal_num}-->
+    <!--	</select>-->
+    <!--	-->
+    <!--	-->
+    <!--	<select id="getMemPass" parameterType="Long" resultType="String">-->
+    <!--	SELECT -->
+    <!--	 member.mem_pass-->
+    <!--	FROM member-->
+    <!--	INNER JOIN bookshelf ON member.mem_num = bookshelf.mem_num-->
+    <!--	INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num-->
+    <!--	WHERE appraisal.appraisal_num=#{appraisal_num}-->
+    <!--	</select>-->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
