@@ -64,7 +64,7 @@ public class UserLoginController {
             }
 
             /**
-             * 로그인 인증하고 인증 객체 반환
+             * requestLogin 객체를 userDTO객체로 저장
              */
             UserDTO userDTO = new UserDTO();
             userDTO.setUserNo(requestLogin.getUserNo());

@@ -51,8 +51,8 @@ public class AppraisalController {
      */
     @PostMapping("/read/{isbn}")
     private String writeComment(@ModelAttribute("requestWriteComment") RequestWriteComment requestWriteComment,
-                                RequestLogin requestLogin, Model model, HttpSession session,
-                                HttpServletResponse response, Errors errors) throws UnsupportedEncodingException {
+                                RequestLogin requestLogin, Errors errors, Model model, HttpSession session,
+                                HttpServletResponse response) throws UnsupportedEncodingException {
 
         AppraisalDTO appraisal = new AppraisalDTO();
         BookShelfDTO bookShelf = new BookShelfDTO();
@@ -61,17 +61,21 @@ public class AppraisalController {
          * 에러시 반환
          */
         if (errors.hasErrors()) {
-            return "detail";
+            return "redirect:/";
         }
 
         /**
-         * session에서 데이터를 꺼내 UserDTO객체에 저장
+         * session에서 데이터를 꺼내 있는지 확인
          */
+        UserDTO authInfo = null;
         if (session == null || session.getAttribute("authInfo") == null) {
             return "redirect:/login";
         }
 
-        UserDTO authInfo = (UserDTO) session.getAttribute("authInfo");
+        /**
+         * 세션에 담긴 로그인 객체를 꺼내 userDTO객체로 저장
+         */
+        authInfo = (UserDTO) session.getAttribute("authInfo");
 
         /**
          * Long userNo로 변환
@@ -86,7 +90,7 @@ public class AppraisalController {
 
         appraisal.setStar(requestWriteComment.getStar());
         appraisal.setComment(requestWriteComment.getComment());
-        appraisal.setStartDate(requestWriteComment.getStardDate());
+        appraisal.setStartDate(requestWriteComment.getStartDate());
         appraisal.setEndDate(requestWriteComment.getEndDate());
         appraisal.setCoPrv(requestWriteComment.getCoPrv());
         appraisal.setStatusNo(bookShelf.getStatusNo());
@@ -94,5 +98,59 @@ public class AppraisalController {
         appraisalService.writeComment(appraisal);
 
         return "redirect:/read/" + requestWriteComment.getIsbn();
+    }
+
+    /**
+     * 독서 상태 등록
+     */
+    @ResponseBody
+    @PostMapping("/insertStatus", produces = "application/json; charset=UTF-8")
+    public String insertStatus(@RequestBody RequestWriteComment requestWriteComment,
+                               RequestLogin requestLogin, Errors errors,
+                               HttpSession session, HttpServletResponse response) {
+
+        BookShelfDTO bookShelf = new BookShelfDTO();
+
+        /**
+         * 에러시 반환
+         */
+        if (errors.hasErrors()) {
+            return "main";
+        }
+
+        /**
+         * session에서 데이터를 꺼내 있는지 확인
+         */
+        UserDTO authInfo = null;
+        if (session == null || session.getAttribute("authInfo") == null) {
+            return "login";
+        }
+
+        /**
+         * 세션에 담긴 로그인 객체를 꺼내 userDTO객체로 저장
+         */
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        /**
+         * Long userNo로 변환
+         */
+        Long userNo = authInfo.getUserNo();
+
+        bookShelf.setStatus(requestWriteComment.getOption());
+        bookShelf.setUserNo(userNo);
+        bookShelf.setIsbn(requestWriteComment.getIsbn());
+        bookShelf = appraisalService.insertStatus(bookShelf);
+
+        String statusMsg = null;
+        JSONObject jo=new JSONObject();
+
+        if(bookShelf.getStatus() == 0){
+            statusMsg = "해당 도서를 '찜' 으로 등록하였습니다.";
+        }else if(bookShelf.getStatus() == 1){
+            statusMsg = "해당 도서를 '보는 중' 으로 등록하였습니다.";
+        }
+
+        jo.put("statusMsg",statusMsg);
+        return jo.toString();
     }
 }

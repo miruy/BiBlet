@@ -8,7 +8,7 @@ import lombok.Setter;
 public class RequestWriteComment {
     private int star;
     private String comment;
-    private String stardDate;
+    private String startDate;
     private String endDate;
     private String coPrv;
     private String isbn;

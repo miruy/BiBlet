@@ -10,21 +10,22 @@
     <div class="flex flex-col bg-gray-50 px-4 lg:px-16 pb-16 rounded-xl mx-auto lg:mx-[10%] shadow-xl">
         <div class="flex flex-col xl:flex-row items-center justify-between">
             <div id="bookThumbnail"></div>
-            <form:form method="POST" modelAttribute="requestWriteComment" onsubmit="return bookSubmit()" class="px-4 space-y-4">
+            <form:form method="POST" modelAttribute="requestWriteComment" onsubmit="return bookSubmit()"
+                       class="px-4 space-y-4">
                 <div id="bookTitle" class="flex flex-col justify-center items-center mt-16 text-gray-600"></div>
                 <div class="flex space-x-4 ">
                     <div>
                         <span class="flex flex-col justify-center items-center mt-3 text-gray-600">평가하기</span>
                         <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5 />
+                            <input type="radio" id="5-star" name="star" value=5/>
                             <label for="5-star" class="star">&#9733;</label>
-                            <input type="radio" id="4-star" name="star" value=4 />
+                            <input type="radio" id="4-star" name="star" value=4/>
                             <label for="4-star" class="star">&#9733;</label>
-                            <input type="radio" id="3-star" name="star" value=3 />
+                            <input type="radio" id="3-star" name="star" value=3/>
                             <label for="3-star" class="star">&#9733;</label>
-                            <input type="radio" id="2-star" name="star" value=2 />
+                            <input type="radio" id="2-star" name="star" value=2/>
                             <label for="2-star" class="star">&#9733;</label>
-                            <input type="radio" id="1-star" name="star" value=1 />
+                            <input type="radio" id="1-star" name="star" value=1/>
                             <label for="1-star" class="star">&#9733;</label>
                         </div>
                     </div>
@@ -43,31 +44,32 @@
                             </button>
                         </div>
                         <div class="flex flex-nowrap mt-2 text-gray-600"><span>* 독서 완료 시에만 평가 작성이 가능합니다.</span></div>
+                        <div class="flex flex-nowrap mt-2 text-gray-600"><span>${statusMsg}</span></div>
                     </div>
                 </div>
                 <div class="flex flex-col p-2">
                     <h3 class="ml-4 mb-2 text-gray-600">코멘트</h3>
-                    <textarea class="textarea textarea-secondary" rows="5" id="book_comment" name="book_comment"
+                    <textarea class="textarea textarea-secondary" rows="5" id="comment" name="comment"
                               placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
                 </div>
                 <div class="flex flex-col justify-center items-center space-y-4">
                     <div class="space-y-2 text-gray-600">
                         <div>
                             <span>독서 시작 날짜 : </span>
-                            <input type="date" id="start_date" name="start_date"/>
+                            <input type="date" id="startDate" name="startDate"/>
                         </div>
                         <div>
                             <span>독서 완료 날짜 : </span>
-                            <input type="date" id="end_date" name="end_date"/>
+                            <input type="date" id="endDate" name="endDate"/>
                         </div>
                     </div>
                     <div class="text-gray-600">
                         <span> 공개 여부 :</span>
                         <span>공개 </span>
-                        <input class="checkbox checkbox-secondary mr-2" type="checkbox" id="co_prv" name="co_prv"
+                        <input class="checkbox checkbox-secondary mr-2" type="checkbox" id="coPrv" name="coPrv"
                                value="공개" onclick='checkOnlyOne(this)'/>
                         <span>비공개 </span>
-                        <input class="checkbox checkbox-secondary" type="checkbox" id="co_prv" name="co_prv" value="비공개"
+                        <input class="checkbox checkbox-secondary" type="checkbox" id="coPrv" name="coPrv" value="비공개"
                                onclick='checkOnlyOne(this)'/>
                         <input type="hidden" name="isbn" id="isbn" value="${isbn}"/>
                         <input type="hidden" name="query" id="query" value="${query}"/>
@@ -127,7 +129,8 @@
                                         <c:if test="${comment.star==5 }">★★★★★</c:if>
                                     </div>
                                 </div>
-                                <div class="mt-3 text-gray-600" id="content${comment.appraisalNo}">${comment.comment}</div>
+                                <div class="mt-3 text-gray-600"
+                                     id="content${comment.appraisalNo}">${comment.comment}</div>
                                 <div class="flex flex-row mt-28 justify-center">
                                     <div>📅</div>
                                     <div class="ml-2 text-gray-600" id="startDate${comment.appraisalNo}">
@@ -207,6 +210,31 @@
             }
 
             return submitFlag;
+        }
+
+        // 		# '찜', '보는 중' 등록
+        function insertStatus() {
+            let option = $("#option").val();
+            let isbn = $("#isbn").val();
+
+            $.ajax({
+                url: '<c:url value="/insertStatus"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "option": option,
+                    "isbn": isbn
+                }),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                   confirm(JSON.stringify(data));
+                }, error: function (data) {
+                    confirm(JSON.stringify(data));
+                }, fail: function (data){
+                    confirm(JSON.stringify(data));
+                }
+
+            });
         }
     </script>
 </section>
