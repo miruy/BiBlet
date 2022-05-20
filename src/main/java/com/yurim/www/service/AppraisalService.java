@@ -12,5 +12,6 @@ public interface AppraisalService {
     BookShelfDTO insertStatus(BookShelfDTO bookShelf); 	//독서 상태 삽입
     BookShelfDTO selectStatus(BookShelfDTO bookShelf);  //독서 상태 검색
     void writeComment(AppraisalDTO appraisal);	//평가 작성
+    void insertStar(AppraisalDTO appraisal);
 
 }

@@ -1,13 +1,14 @@
-package com.yurim.www.pageController;
+package com.yurim.www.Controller;
 
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
-import com.yurim.www.vo.RequestCommentForDetail;
 import com.yurim.www.vo.RequestLogin;
 import com.yurim.www.vo.RequestWriteComment;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -104,10 +105,10 @@ public class AppraisalController {
      * 독서 상태 등록
      */
     @ResponseBody
-    @PostMapping("/insertStatus", produces = "application/json; charset=UTF-8")
-    public String insertStatus(@RequestBody RequestWriteComment requestWriteComment,
-                               RequestLogin requestLogin, Errors errors,
-                               HttpSession session, HttpServletResponse response) {
+    @PostMapping(value = "/insertStatus", produces = "application/json; charset=UTF-8")
+    public ResponseEntity insertStatus(@RequestBody RequestWriteComment requestWriteComment,
+                                       Errors errors,
+                                       HttpSession session, HttpServletResponse response) {
 
         BookShelfDTO bookShelf = new BookShelfDTO();
 
@@ -115,7 +116,7 @@ public class AppraisalController {
          * 에러시 반환
          */
         if (errors.hasErrors()) {
-            return "main";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         /**
@@ -123,7 +124,7 @@ public class AppraisalController {
          */
         UserDTO authInfo = null;
         if (session == null || session.getAttribute("authInfo") == null) {
-            return "login";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         /**
@@ -142,7 +143,7 @@ public class AppraisalController {
         bookShelf = appraisalService.insertStatus(bookShelf);
 
         String statusMsg = null;
-        JSONObject jo=new JSONObject();
+//        JSONObject jo=new JSONObject();
 
         if(bookShelf.getStatus() == 0){
             statusMsg = "해당 도서를 '찜' 으로 등록하였습니다.";
@@ -150,7 +151,7 @@ public class AppraisalController {
             statusMsg = "해당 도서를 '보는 중' 으로 등록하였습니다.";
         }
 
-        jo.put("statusMsg",statusMsg);
-        return jo.toString();
+//        jo.put("statusMsg",statusMsg);
+        return ResponseEntity.ok(statusMsg);
     }
 }

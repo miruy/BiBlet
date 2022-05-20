@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yurim.www.repository.BookShelfDAO">
+
+    <insert id="insertUserNoAndIsbn" parameterType="BookShelfDTO">
+        INSERT INTO bookshelf(isbn, user_no) VALUES(#{isbn}, #{userNo})
+    </insert>
+
+    <select id="selectStatusNoForStar" parameterType="BookShelfDTO" resultType="BookShelfDTO">
+        SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
+    </select>
+</mapper>

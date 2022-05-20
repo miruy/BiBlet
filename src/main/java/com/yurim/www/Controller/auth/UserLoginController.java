@@ -1,4 +1,4 @@
-package com.yurim.www.authController;
+package com.yurim.www.Controller.auth;
 
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AuthstatusException;

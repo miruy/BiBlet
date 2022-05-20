@@ -45,5 +45,8 @@ public class AppraisalServiceImpl implements AppraisalService {
 		appraisalDAO.writeComment(appraisal);
 	}
 
-
+	@Override
+	public void insertStar(AppraisalDTO appraisal){
+		appraisalDAO.insertStar(appraisal);
+	}
 }

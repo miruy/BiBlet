@@ -1,4 +1,4 @@
-package com.yurim.www.pageController;
+package com.yurim.www.Controller;
 
 import com.yurim.www.service.UserService;
 import lombok.RequiredArgsConstructor;

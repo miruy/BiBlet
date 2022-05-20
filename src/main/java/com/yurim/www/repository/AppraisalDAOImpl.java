@@ -46,4 +46,8 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		sqlSessionTemplate.insert("writeComment", appraisal);
 	}
 
+	@Override
+	public void insertStar(AppraisalDTO appraisal){
+		sqlSessionTemplate.insert("insertStar", appraisal);
+	}
 }

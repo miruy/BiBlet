@@ -1,11 +1,10 @@
-package com.yurim.www.authController;
+package com.yurim.www.Controller.auth;
 
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AlreadyExistEmailException;
 import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.service.MailSendService;
 import com.yurim.www.service.UserService;
-import com.yurim.www.vo.RequestKakaoLogin;
 import com.yurim.www.vo.RequestSignup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

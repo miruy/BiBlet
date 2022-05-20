@@ -12,7 +12,7 @@
     </insert>
 
     <select id="selectStatus" parameterType="BookShelfDTO" resultType="BookShelfDTO">
-        SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND bookshelf.status = 2
+        SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
     </select>
 
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">
@@ -40,5 +40,9 @@
         WHERE bookshelf.isbn = #{isbn}
           AND appraisal.co_prv = '공개'
     </select>
+
+    <insert id="insertStar" parameterType="AppraisalDTO">
+        INSERT INTO appraisal(star, status_no) VALUES(#{star}, #{statusNo})
+    </insert>
 
 </mapper>
