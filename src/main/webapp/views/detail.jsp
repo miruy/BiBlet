@@ -16,7 +16,7 @@
                     <div class="mt-8">
                         <span id="starMsg" class="flex flex-col text-gray-600 items-center"></span>
                         <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"/>
+                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)" onMouseOut="starMouseOut()" onMou₩eOver="starMouseOver()"/>
                             <label for="5-star" class="star">&#9733;</label>
                             <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"/>
                             <label for="4-star" class="star">&#9733;</label>
@@ -190,8 +190,8 @@
                     $("#contents").append("<h5>" + msg.documents[0].contents + "...</h5>");		//줄거리
                     $("#isbn_content").append("<h5>" + msg.documents[0].isbn.slice(-13) + "</h5>");		//일련번호
                     $("#isbn").val(msg.documents[0].isbn.slice(-13));
-                });
-            
+                });₩
+
         })
 
         //       	# '독서 완료'시 평가 작성 가능
@@ -248,6 +248,7 @@
             });
         }
 
+
         // 평가 별 등록
         function insertStar(star) {
             let isbn = $("#isbn").val();
@@ -262,17 +263,18 @@
                     "star": star,
                     "isbn": isbn
                 }),
-                dataType: "json",
                 contentType: 'application/json',
                 success: function (data) {
-                    console.log(data);
-                    $("#starMsg").append("<span class='text-gray-600'>" + data + "'</span>");
+                    console.log("data : "+data);
+                    let starMsg = document.getElementById("starMsg");
+                    starMsg.innerHTML = data;
                 }, error: function (data) {
                     console.log(data);
                 }
 
             });
         }
+
     </script>
 </section>
 
