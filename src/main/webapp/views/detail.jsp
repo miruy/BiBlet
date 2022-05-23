@@ -14,18 +14,18 @@
                 <div class="flex flex-col items-center">
                     <div id="bookTitle" class="flex flex-col mt-10 text-gray-600"></div>
                     <div class="mt-8">
-                        <span id="starMsg" class="flex flex-col text-gray-600 items-center"></span>
+                        <span id="starMsg" class="flex flex-col text-gray-600 items-center">평가하기</span>
                         <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)" onMouseOut="starMouseOut()" onMou₩eOver="starMouseOver()"/>
-                            <label for="5-star" class="star">&#9733;</label>
-                            <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"/>
-                            <label for="4-star" class="star">&#9733;</label>
-                            <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"/>
-                            <label for="3-star" class="star">&#9733;</label>
-                            <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"/>
-                            <label for="2-star" class="star">&#9733;</label>
-                            <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)"/>
-                            <label for="1-star" class="star">&#9733;</label>
+                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
+                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)" onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
+                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요!')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
+                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
+                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
+                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                     $("#contents").append("<h5>" + msg.documents[0].contents + "...</h5>");		//줄거리
                     $("#isbn_content").append("<h5>" + msg.documents[0].isbn.slice(-13) + "</h5>");		//일련번호
                     $("#isbn").val(msg.documents[0].isbn.slice(-13));
-                });₩
+                });
 
         })
 
@@ -247,7 +247,16 @@
 
             });
         }
+        // 별 마우스 오버 starMsg
+        function mouseOver(a) {
+            let starMsg = document.getElementById("starMsg");
+            starMsg.innerHTML = a;
+        }
 
+        function mouseOff(a) {
+            let starMsg = document.getElementById("starMsg");
+            starMsg.innerHTML = a;
+        }
 
         // 평가 별 등록
         function insertStar(star) {
