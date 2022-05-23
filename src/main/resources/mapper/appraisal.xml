@@ -11,6 +11,10 @@
         INSERT INTO bookshelf(status, user_no, isbn) VALUES(#{status}, #{userNo}, #{isbn})
     </insert>
 
+    <insert id="insertStar" parameterType="AppraisalDTO">
+        INSERT INTO appraisal(star, status_no) VALUES(#{star}, #{statusNo})
+    </insert>
+
     <select id="selectStatus" parameterType="BookShelfDTO" resultType="BookShelfDTO">
         SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
     </select>
@@ -41,8 +45,16 @@
           AND appraisal.co_prv = '공개'
     </select>
 
-    <insert id="insertStar" parameterType="AppraisalDTO">
-        INSERT INTO appraisal(star, status_no) VALUES(#{star}, #{statusNo})
-    </insert>
+    <select id="starAVG" parameterType="String" resultType="int">
+        SELECT AVG(star) FROM appraisal
+        INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE isbn = #{isbn}
+    </select>
+
+    <select id="starCount" parameterType="String" resultType="Long">
+        SELECT COUNT(star) FROM appraisal
+        INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE isbn = #{isbn}
+    </select>
 
 </mapper>

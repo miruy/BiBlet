@@ -13,5 +13,7 @@ public interface AppraisalService {
     BookShelfDTO selectStatus(BookShelfDTO bookShelf);  //독서 상태 검색
     void writeComment(AppraisalDTO appraisal);	//평가 작성
     void insertStar(AppraisalDTO appraisal);
+    int starAVG(String isbn);
+    Long starCount(String isbn);
 
 }

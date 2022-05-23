@@ -49,4 +49,14 @@ public class AppraisalServiceImpl implements AppraisalService {
 	public void insertStar(AppraisalDTO appraisal){
 		appraisalDAO.insertStar(appraisal);
 	}
+
+	@Override
+	public int starAVG(String isbn){
+		return appraisalDAO.starAVG(isbn);
+	}
+
+	@Override
+	public Long starCount(String isbn){
+		return appraisalDAO.starCount(isbn);
+	}
 }

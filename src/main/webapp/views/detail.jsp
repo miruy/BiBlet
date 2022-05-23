@@ -8,52 +8,69 @@
 <section class="container">
 
 
-        <div class="bg-gray-100 pl-24 py-10">
-            <div class="flex flex-col xl:flex-row ">
-                <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
-                <div class="flex flex-col items-center">
-                    <div id="bookTitle" class="flex flex-col mt-10 text-gray-600"></div>
-                    <div class="mt-8">
-                        <span id="starMsg" class="flex flex-col text-gray-600 items-center">평가하기</span>
-                        <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')">&#9733;</label>
-                            <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)" onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요!')" onmouseout="mouseOff('평가하기')">&#9733;</label>
-                            <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
-                            <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
-                            <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
-                        </div>
+    <div class="bg-gray-100 pl-24 py-10">
+        <div class="flex flex-col xl:flex-row ">
+            <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
+            <div class="flex flex-col">
+                <div id="bookTitle" class="flex flex-col mt-10 text-gray-600"></div>
+                <div class="flex flex-row my-2">
+                    <div id="bookAuthor" class="text-gray-600 flex-row"></div>
+                    <div class="ml-2">
+                        <c:if test="${!empty starAVG}">
+                            평균 ★ ${starAVG} (${starCount}명)
+                        </c:if>
+                    </div>
+                </div>
+                <div class="mt-32">
+                    <span id="starMsg" class="flex flex-col text-gray-600 mx-[4.6rem]">평가하기</span>
+                    <div class="star-rating">
+                        <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
+                               onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
+                        <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                        <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
+                               onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
+                        <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                        <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
+                               onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
+                        <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                        <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
+                               onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
+                        <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
+                        <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)"
+                               onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
+                        <label for="1-star" class="star" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')">&#9733;</label>
                     </div>
                 </div>
             </div>
-
         </div>
-
-    <div class="flex flex-col bg-gray-200">
-        <div class="flex space-x-4 ">
-
-            <div>
-                <div class="flex flex-col justify-center items-center mb-2 text-gray-600">독서 상태</div>
-                <div class="flex flex-row justify-center items-center">
-                    <select id="option" name="option" onChange="bookStatus()"
-                            class="select select-secondary w-pull text-gray-600">
-                        <option disabled selected>=== 선택 ===</option>
-                        <option value=0>찜</option>
-                        <option value=1>보는 중</option>
-                        <option value=2>독서 완료</option>
-                    </select>
-                    <button class="btn btn-secondary ml-5 text-gray-600" id='insertStatus'
-                            onclick="insertStatus()">등록
-                    </button>
-                </div>
-                <div class="flex flex-nowrap mt-2 text-gray-600"><span>* 독서 완료 시에만 평가 작성이 가능합니다.</span></div>
-            </div>
-        </div>
+        <label class="swap swap-rotate">
+            <input type="checkbox" />
+            <svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">&#x2764;</svg>
+            <svg class="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>
+        </label>
     </div>
+
+<%--    <div class="flex flex-col bg-gray-200">--%>
+<%--        <div class="flex space-x-4 ">--%>
+
+<%--            <div>--%>
+<%--                <div class="flex flex-col justify-center items-center mb-2 text-gray-600">독서 상태</div>--%>
+<%--                <div class="flex flex-row justify-center items-center">--%>
+<%--                    <select id="option" name="option" onChange="bookStatus()"--%>
+<%--                            class="select select-secondary w-pull text-gray-600">--%>
+<%--                        <option disabled selected>=== 선택 ===</option>--%>
+<%--                        <option value=0>찜</option>--%>
+<%--                        <option value=1>보는 중</option>--%>
+<%--                        <option value=2>독서 완료</option>--%>
+<%--                    </select>--%>
+<%--                    <button class="btn btn-secondary ml-5 text-gray-600" id='insertStatus'--%>
+<%--                            onclick="insertStatus()">등록--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--                <div class="flex flex-nowrap mt-2 text-gray-600"><span>* 독서 완료 시에만 평가 작성이 가능합니다.</span></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
 
     <form:form method="POST" modelAttribute="requestWriteComment" onsubmit="return bookSubmit()"
@@ -183,7 +200,8 @@
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log(msg);
                     $("#bookThumbnail").append("<img class='h-[20rem] shadow-xl rounded' src='" + msg.documents[0].thumbnail + "'/>");		//표지
-                    $("#bookTitle").append("<div class='mb-28 flex flex-col'><span class='font-semibold text-2xl'>" + msg.documents[0].title + "</span><span class='text-xl'>" + msg.documents[0].authors + "</span></div>");
+                    $("#bookTitle").append("<div class='flex flex-col'><span class='font-semibold text-2xl'>" + msg.documents[0].title + "</span></div>");
+                    $("#bookAuthor").append("<span class='text-xl'>" + msg.documents[0].authors + "</span>");
                     $("#authors").append("<h5> " + msg.documents[0].authors + "</h5>");		//저자
                     $("#publisher").append("<h5>" + msg.documents[0].publisher + "</h5>");		//출판사
                     $("#datetime").append("<h5>" + msg.documents[0].datetime.slice(0, 10) + "</h5>");		//일련번호
@@ -247,6 +265,7 @@
 
             });
         }
+
         // 별 마우스 오버 starMsg
         function mouseOver(a) {
             let starMsg = document.getElementById("starMsg");
@@ -274,7 +293,7 @@
                 }),
                 contentType: 'application/json',
                 success: function (data) {
-                    console.log("data : "+data);
+                    console.log("data : " + data);
                     let starMsg = document.getElementById("starMsg");
                     starMsg.innerHTML = data;
                 }, error: function (data) {

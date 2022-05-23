@@ -50,4 +50,14 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public void insertStar(AppraisalDTO appraisal){
 		sqlSessionTemplate.insert("insertStar", appraisal);
 	}
+
+	@Override
+	public int starAVG(String isbn){
+		return sqlSessionTemplate.selectOne("starAVG", isbn);
+	}
+
+	@Override
+	public Long starCount(String isbn){
+		return sqlSessionTemplate.selectOne("starCount", isbn);
+	}
 }

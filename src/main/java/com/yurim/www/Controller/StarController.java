@@ -78,7 +78,6 @@ public class StarController {
         }else if(appraisal.getStar() == 5){
             starMsg = "최고예요!";
         }
-
         return ResponseEntity.ok(starMsg);
     }
 }

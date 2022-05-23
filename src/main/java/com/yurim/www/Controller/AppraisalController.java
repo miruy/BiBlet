@@ -36,13 +36,21 @@ public class AppraisalController {
         // 해당 도서의 대한 평가 개수
         int commentCount = appraisalService.commentCount(isbn);
 
-        // 해당 도서의 대한 모든 평가 불러오기
+        // 해당 도서의 대한 모든 평가
         List<AppraisalDTO> commentsByMembers = appraisalService.findAllComment(isbn);
+
+        // 해당 도서의 대한 별점평균
+        int starAVG = appraisalService.starAVG(isbn);
+
+        // 해당 도서의 대해 별점평가를 한 회원 수
+        Long starCount = appraisalService.starCount(isbn);
 
         model.addAttribute("query", query);
         model.addAttribute("isbn", isbn);
         model.addAttribute("commentCount", commentCount);
         model.addAttribute("commentsByMembers", commentsByMembers);
+        model.addAttribute("starAVG", starAVG);
+        model.addAttribute("starCount", starCount);
 
         return "detail";
     }
