@@ -42,6 +42,8 @@ public class AppraisalController {
         // 해당 도서의 대한 별점평균
         int starAVG = appraisalService.starAVG(isbn);
 
+        
+
         // 해당 도서의 대해 별점평가를 한 회원 수
         Long starCount = appraisalService.starCount(isbn);
 
