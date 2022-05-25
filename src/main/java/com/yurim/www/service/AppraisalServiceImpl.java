@@ -7,6 +7,7 @@ import com.yurim.www.vo.RequestCommentForDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -58,5 +59,14 @@ public class AppraisalServiceImpl implements AppraisalService {
 	@Override
 	public Long starCount(String isbn){
 		return appraisalDAO.starCount(isbn);
+	}
+
+	@Override
+	public Integer userStar(Long userNo, String isbn){
+		HashMap<String, String> map = new HashMap<>();
+		String userNoS = String.valueOf(userNo);
+		map.put("userNo", userNoS);
+		map.put("isbn", isbn);
+		return appraisalDAO.userStar(map);
 	}
 }

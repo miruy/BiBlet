@@ -5,6 +5,7 @@ import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.vo.RequestCommentForDetail;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface AppraisalDAO {
@@ -16,4 +17,5 @@ public interface AppraisalDAO {
 	void insertStar(AppraisalDTO appraisal);
 	Integer starAVG(String isbn);
 	Long starCount(String isbn);
+	Integer userStar(HashMap<String, String> map);
 }

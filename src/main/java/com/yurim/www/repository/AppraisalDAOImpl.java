@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -59,5 +60,10 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	@Override
 	public Long starCount(String isbn){
 		return sqlSessionTemplate.selectOne("starCount", isbn);
+	}
+
+	@Override
+	public Integer userStar(HashMap<String, String> map){
+		return sqlSessionTemplate.selectOne("userStar", map);
 	}
 }

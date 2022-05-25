@@ -15,5 +15,6 @@ public interface AppraisalService {
     void insertStar(AppraisalDTO appraisal);
     Integer starAVG(String isbn);
     Long starCount(String isbn);
+    Integer userStar(Long userNo, String isbn);
 
 }

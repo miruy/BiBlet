@@ -25,27 +25,46 @@
                 <div class="flex flex-row mt-24 space-x-20">
                     <div class="flex flex-col">
                         <span id="starMsg" class="text-gray-600 mx-[4.6rem] mr-4">평가하기</span>
+                        <span id="starMsg_m" class="text-gray-600 mx-[4.6rem] mr-4"></span>
                         <div class="star-rating">
+
+                            <c:if test="${userStar==1 }">
+                                <label for="1-star" class="star" onmouseover="mouseOver('싫어요')"
+                                       onmouseout="mouseOff('평가하기')">&#9733;</label>
+                                <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
+                                       onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
+                                <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
+                                       onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
+                                <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
+                                       onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
+                                <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
+                                       onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
+                            </c:if>
+                            <c:if test="${userStar==2 }">★★☆☆☆</c:if>
+                            <c:if test="${userStar==3 }">★★★☆☆</c:if>
+                            <c:if test="${userStar==4 }">★★★★☆</c:if>
+                            <c:if test="${userStar==5 }">★★★★★</c:if>
+
                             <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')"
-                                   onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"
+                                   >&#9733;</label>
                             <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')"
-                                   onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"
+                                   >&#9733;</label>
                             <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')"
-                                   onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"
+                                   >&#9733;</label>
                             <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')"
-                                   onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"
+                                  >&#9733;</label>
                             <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')"
-                                   onmouseout="mouseOff('평가하기')">&#9733;</label>
+                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"
+                                  >&#9733;</label>
                         </div>
                     </div>
                     <div class="flex flex-col">
@@ -215,12 +234,7 @@
                     $("#isbn").val(msg.documents[0].isbn.slice(-13));
                 });
 
-            // 독서 시작,완료 날짜 선택 시 오늘 날짜 이후 선택 제한
-            start_date.max = new Date().toISOString().split("T")[0];
-            end_date.max = new Date().toISOString().split("T")[0];
-
         })
-
 
         // 별 마우스 오버 starMsg
         function mouseOver(a) {
@@ -235,7 +249,8 @@
 
         // 평가 별 등록
         function insertStar(star) {
-            let isbn = $("#isbn").val();
+            let isbn = "${isbn}";
+            let starMsg_m = document.getElementById("starMsg_m");
 
             console.log(star);
             console.log(isbn);
@@ -249,11 +264,11 @@
                 }),
                 contentType: 'application/json',
                 success: function (data) {
+                    $("#starMsg").hide();
                     console.log("data : " + data);
-                    let starMsg = document.getElementById("starMsg");
-                    starMsg.innerHTML = data;
+                    starMsg_m.append(data);
                 }, error: function (data) {
-                    console.log(data);
+                    alert("로그인 후 이용 가능합니다.");
                 }
 
             });

@@ -57,4 +57,11 @@
         WHERE isbn = #{isbn}
     </select>
 
+    <select id="userStar" parameterType="HashMap" resultType="Integer">
+        SELECT star FROM appraisal
+        INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        INNER JOIN user ON user.user_no = bookshelf.user_no
+        WHERE bookshelf.isbn = #{isbn} AND user.user_no = #{userNo};
+    </select>
+
 </mapper>

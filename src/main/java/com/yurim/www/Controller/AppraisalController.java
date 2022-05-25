@@ -30,7 +30,7 @@ public class AppraisalController {
      */
     @GetMapping("/read/{isbn}")
     public String detail(RequestLogin requestLogin, Model model, HttpSession session,
-                                       HttpServletResponse response, Errors errors, @RequestParam(required = false) String query,
+                                       HttpServletResponse response, @RequestParam(required = false) String query,
                                        @PathVariable String isbn) {
 
         // 해당 도서의 대한 평가 개수
@@ -45,9 +45,6 @@ public class AppraisalController {
             starAVG = 0;
         }
 
-
-        
-
         // 해당 도서의 대해 별점평가를 한 회원 수
         Long starCount = appraisalService.starCount(isbn);
 
@@ -57,6 +54,15 @@ public class AppraisalController {
         model.addAttribute("commentsByMembers", commentsByMembers);
         model.addAttribute("starAVG", starAVG);
         model.addAttribute("starCount", starCount);
+
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        if(authInfo != null){
+            Long userNo = authInfo.getUserNo();
+            Integer userStar = appraisalService.userStar(userNo, isbn);
+            model.addAttribute("userStar", userStar);
+        }
 
         return "detail";
     }

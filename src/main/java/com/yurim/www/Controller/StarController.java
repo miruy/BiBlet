@@ -50,6 +50,9 @@ public class StarController {
          * 세션에 담긴 로그인 객체를 꺼내 userDTO객체로 저장
          */
         authInfo = (UserDTO) session.getAttribute("authInfo");
+        if(authInfo == null){
+            return ResponseEntity.ok("로그인 에러");
+        }
 
         /**
          * Long userNo로 변환
