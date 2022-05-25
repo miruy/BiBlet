@@ -52,7 +52,7 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	}
 
 	@Override
-	public int starAVG(String isbn){
+	public Integer starAVG(String isbn){
 		return sqlSessionTemplate.selectOne("starAVG", isbn);
 	}
 

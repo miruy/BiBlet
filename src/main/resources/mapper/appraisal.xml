@@ -45,7 +45,7 @@
           AND appraisal.co_prv = '공개'
     </select>
 
-    <select id="starAVG" parameterType="String" resultType="int">
+    <select id="starAVG" parameterType="String" resultType="Integer">
         SELECT AVG(star) FROM appraisal
         INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE isbn = #{isbn}

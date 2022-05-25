@@ -29,7 +29,7 @@ public class AppraisalController {
      * 도서 상세보기 - 해당 도서의 대한 모든 평가 추출
      */
     @GetMapping("/read/{isbn}")
-    public String bookDetailAndComment(RequestLogin requestLogin, Model model, HttpSession session,
+    public String detail(RequestLogin requestLogin, Model model, HttpSession session,
                                        HttpServletResponse response, Errors errors, @RequestParam(required = false) String query,
                                        @PathVariable String isbn) {
 
@@ -40,7 +40,11 @@ public class AppraisalController {
         List<AppraisalDTO> commentsByMembers = appraisalService.findAllComment(isbn);
 
         // 해당 도서의 대한 별점평균
-        int starAVG = appraisalService.starAVG(isbn);
+        Integer starAVG = appraisalService.starAVG(isbn);
+        if(starAVG == null){
+            starAVG = 0;
+        }
+
 
         
 

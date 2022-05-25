@@ -51,7 +51,7 @@ public class AppraisalServiceImpl implements AppraisalService {
 	}
 
 	@Override
-	public int starAVG(String isbn){
+	public Integer starAVG(String isbn){
 		return appraisalDAO.starAVG(isbn);
 	}
 
