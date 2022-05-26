@@ -22,7 +22,12 @@ public class BookShelfServiceImpl implements BookShelService{
     }
 
     @Override
-    public void insertWant(BookShelfDTO bookShelf){
-        bookShelfDAO.insertWant(bookShelf);
+    public void insertStatus(BookShelfDTO bookShelf){
+        bookShelfDAO.insertStatus(bookShelf);
+    }
+
+    @Override
+    public void deleteStatus(BookShelfDTO bookShelf){
+        bookShelfDAO.deleteStatus(bookShelf);
     }
 }

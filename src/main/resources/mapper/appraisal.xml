@@ -7,10 +7,6 @@
         VALUES(#{star}, #{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
     </insert>
 
-    <insert id="insertStatus" parameterType="BookShelfDTO">
-        INSERT INTO bookshelf(status, user_no, isbn) VALUES(#{status}, #{userNo}, #{isbn})
-    </insert>
-
     <insert id="insertStar" parameterType="AppraisalDTO">
         INSERT INTO appraisal(star, status_no) VALUES(#{star}, #{statusNo})
     </insert>

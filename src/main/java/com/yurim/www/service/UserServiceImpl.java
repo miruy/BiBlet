@@ -96,4 +96,9 @@ public class UserServiceImpl implements UserService{
         map.put("pass", pass);
         return userDAO.findIdByEmail(map);
     }
+
+    @Override
+    public UserDTO selectUserInfoById(String id){
+        return userDAO.selectUserInfoById(id);
+    }
 }

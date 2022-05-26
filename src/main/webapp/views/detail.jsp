@@ -6,8 +6,7 @@
 <%@ include file="common/header.jsp" %>
 
 <section class="container">
-
-
+<%--    ${sessionScope.id}--%>
     <div class="bg-white px-48 py-10">
         <div class="flex flex-col xl:flex-row ">
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
@@ -58,8 +57,8 @@
                         <span class="text-gray-600 ">읽고싶어요</span>
                         <label class="swap mt-2">
                             <input type="checkbox"/>
-                            <div class="swap-on text-3xl" onclick="insertWant()">&#x2714</div>
-                            <div class="swap-off text-4xl">&#x2795</div>
+                            <div id="insertWant" class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
+                            <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                         </label>
                     </div>
                     <div class="flex flex-col">
@@ -71,8 +70,8 @@
                         <span class="text-gray-600 mb-2">읽는중</span>
                         <label class="swap mt-2">
                             <input type="checkbox"/>
-                            <div class="swap-off text-3xl">&#x1F440</div>
-                            <div class="swap-on text-3xl">&#x1F4D6</div>
+                            <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
+                            <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                         </label>
                     </div>
                 </div>
@@ -239,11 +238,13 @@
 
         // 평가 별 등록
         function insertStar(star) {
+            let id = "${sessionScope.id}";
             let isbn = "${isbn}";
             let starMsg_m = document.getElementById("starMsg_m");
 
-            console.log(star);
-            console.log(isbn);
+            if(id.length == 0){
+                alert("로그인 후 이용가능합니다.")
+            }
 
             $.ajax({
                 url: '<c:url value="/star"/>',
@@ -258,29 +259,33 @@
                     console.log("data : " + data);
                     starMsg_m.append(data);
                 }, error: function (data) {
-                    alert("로그인 후 이용 가능합니다.");
+                    console.log("에러");
                 }
 
             });
         }
 
-        // 읽고싶어요 등록
-        function insertWant() {
+        // 읽고싶어요, 읽는중 등록
+        function insertStatus(status) {
+            let id = "${sessionScope.id}";
             let isbn = "${isbn}";
 
-            console.log(isbn);
+            if(id.length == 0){
+                alert("로그인 후 이용가능합니다.")
+            }
 
             $.ajax({
-                url: '<c:url value="/want"/>',
+                url: '<c:url value="/insert"/>',
                 type: 'POST',
                 data: JSON.stringify({
-                    "status": 0,
-                    "isbn": isbn
+                    "status": status,
+                    "isbn": isbn,
+                    "id": id
                 }),
                 contentType: 'application/json',
                 success: function (data) {
                     console.log("data : " + data);
-                    writeCommentBtn();
+                    $("#writeCommentBtn").show(writeCommentBtn());
                 }, error: function (data) {
                     console.log("에러");
                 }
@@ -288,12 +293,42 @@
             });
         }
 
+
+        // 코멘트 남기기 버튼 클릭 시 코멘트 작성 폼 보여짐
         function writeCommentBtn() {
             $("#writeCommentBtn").html(
                 '<div class="p-4 text-center">' +
                 '<label for="my-modal-3" class="btn modal-button w-96 bg-white border-white hover:bg-gray-200 hover:border-gray-200">코멘트 남기러가기</label>' +
                 '</div>'
             );
+        }
+
+        // 읽고싶어요, 읽는 중 중복 클릭 시 기존 상태 삭제
+        function deleteStatus(status){
+            let id = "${sessionScope.id}";
+            let isbn = "${isbn}";
+
+            if(id.length == 0){
+                alert("로그인 후 이용가능합니다.")
+            }
+
+            $.ajax({
+                url: '<c:url value="/delete"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "status": status,
+                    "isbn": isbn,
+                    "id": id
+                }),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log("data : " + data);
+                    $("#writeCommentBtn").hide();
+                }, error: function (data) {
+                    console.log("에러");
+                }
+
+            });
         }
 
         // 공개 여부 체크 시 둘 중 하나만 선택
@@ -307,36 +342,6 @@
         }
 
     </script>
-
-
-<%--    '<input type="checkbox" id="my-modal-3" class="modal-toggle"/>' +--%>
-<%--    '<div class="modal bg-opacity-60 bg-gray-300">' +--%>
-<%--    '<div class="modal-box relative space-y-2 h-5/6 w-11/12 max-w-3xl">' +--%>
-<%--        '<label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>' +--%>
-<%--        '<div id="title" class="text-gray-600 mb-3 text-center"></div>' +--%>
-<%--        '<textarea class="textarea textarea-secondary w-full text-gray-600" rows="12" id="comment" name="comment" placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>' +--%>
-<%--        '<div class="ml-56">' +--%>
-<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
-<%--                '<span> 독서 시작 날짜 : </span>' +--%>
-<%--                '<div><input type="date" id="startDate" name="startDate" class="text-gray-400"/></div>' +--%>
-<%--                '</div>' +--%>
-<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
-<%--                '<span> 독서 완료 날짜 : </span>' +--%>
-<%--                '<div><input type="date" id="endDate" name="endDate" class="text-gray-400"/></div>' +--%>
-<%--                '</div>' +--%>
-<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
-<%--                '<span> 공개 여부 :</span>' +--%>
-<%--                '<span>공개 </span>' +--%>
-<%--                '<input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv" value="공개" onclick="checkOnlyOne(this)"/>' +--%>
-<%--                '<span>비공개 </span>' +--%>
-<%--                '<input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv" value="비공개" onclick="checkOnlyOne(this)"/>' +--%>
-<%--                '</div>'+--%>
-<%--            '</div>' +--%>
-<%--        '<div class="modal-action justify-center items-center">' +--%>
-<%--            '<label for="my-modal-3" class="btn">저장</label>' +--%>
-<%--            '</div>'+--%>
-<%--        '</div>'+--%>
-<%--    '</div>'--%>
 
 </section>
 

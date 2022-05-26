@@ -23,7 +23,12 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	}
 
 	@Override
-	public void insertWant(BookShelfDTO bookShelf){
-		sqlSessionTemplate.insert("insertWant", bookShelf);
+	public void insertStatus(BookShelfDTO bookShelf){
+		sqlSessionTemplate.insert("insertStatus", bookShelf);
+	}
+
+	@Override
+	public void deleteStatus(BookShelfDTO bookShelf){
+		sqlSessionTemplate.delete("deleteStatus", bookShelf);
 	}
 }

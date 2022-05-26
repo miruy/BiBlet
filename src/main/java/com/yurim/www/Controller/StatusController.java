@@ -5,6 +5,7 @@ import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
 import com.yurim.www.service.BookShelService;
+import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestStar;
 import com.yurim.www.vo.RequestStatus;
 import lombok.RequiredArgsConstructor;
@@ -23,13 +24,13 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class StatusController {
     private final BookShelService bookShelService;
+    private final UserService userService;
 
     @ResponseBody
-    @PostMapping("/want")
-    public ResponseEntity insertStar(@RequestBody RequestStatus requestStatus, Errors errors,
+    @PostMapping("/insert")
+    public ResponseEntity insertStatus(@RequestBody RequestStatus requestStatus, Errors errors,
                                      HttpSession session, HttpServletResponse response) {
 
-        AppraisalDTO appraisal = new AppraisalDTO();
         BookShelfDTO bookShelf = new BookShelfDTO();
 
         /**
@@ -39,33 +40,37 @@ public class StatusController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        /**
-         * session에서 데이터를 꺼내 있는지 확인
-         */
-        UserDTO authInfo = null;
-        if (session == null || session.getAttribute("authInfo") == null) {
+        UserDTO user = userService.selectUserInfoById(requestStatus.getId());
+
+        bookShelf.setUserNo(user.getUserNo());
+        bookShelf.setIsbn(requestStatus.getIsbn());
+        bookShelf.setStatus(requestStatus.getStatus());
+        bookShelService.insertStatus(bookShelf);
+
+
+        return ResponseEntity.ok("등록 성공");
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public ResponseEntity deleteStatus(@RequestBody RequestStatus requestStatus, Errors errors,
+                                     HttpSession session, HttpServletResponse response) {
+
+        BookShelfDTO bookShelf = new BookShelfDTO();
+/**
+ * 에러시 반환
+ */
+        if (errors.hasErrors()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        /**
-         * 세션에 담긴 로그인 객체를 꺼내 userDTO객체로 저장
-         */
-        authInfo = (UserDTO) session.getAttribute("authInfo");
-        if(authInfo == null){
-            return ResponseEntity.ok("로그인 에러");
-        }
+        UserDTO user = userService.selectUserInfoById(requestStatus.getId());
 
-        /**
-         * Long userNo로 변환
-         */
-        Long userNo = authInfo.getUserNo();
-
-        bookShelf.setUserNo(userNo);
+        bookShelf.setUserNo(user.getUserNo());
         bookShelf.setIsbn(requestStatus.getIsbn());
         bookShelf.setStatus(requestStatus.getStatus());
-        bookShelService.insertWant(bookShelf);
+        bookShelService.deleteStatus(bookShelf);
 
-
-        return ResponseEntity.ok(1);
+        return ResponseEntity.ok("삭제 성공");
     }
 }

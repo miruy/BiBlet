@@ -6,12 +6,16 @@
         INSERT INTO bookshelf(isbn, user_no) VALUES(#{isbn}, #{userNo})
     </insert>
 
-    <insert id="insertWant" parameterType="BookShelfDTO">
+    <insert id="insertStatus" parameterType="BookShelfDTO">
         INSERT INTO bookshelf(status, isbn, user_no) VALUES(#{status}, #{isbn}, #{userNo})
     </insert>
 
     <select id="selectStatusNoForStar" parameterType="BookShelfDTO" resultType="BookShelfDTO">
         SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
     </select>
+
+    <delete id="deleteStatus" parameterType="BookShelfDTO">
+        DELETE FROM bookshelf WHERE user_no=#{userNo} AND isbn=#{isbn} AND status=#{status}
+    </delete>
 
 </mapper>
