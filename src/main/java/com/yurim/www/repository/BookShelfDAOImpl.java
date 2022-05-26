@@ -21,4 +21,9 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	public BookShelfDTO selectStatusNoForStar(BookShelfDTO bookShelf){
 		return sqlSessionTemplate.selectOne("selectStatusNoForStar", bookShelf);
 	}
+
+	@Override
+	public void insertWant(BookShelfDTO bookShelf){
+		sqlSessionTemplate.insert("insertWant", bookShelf);
+	}
 }

@@ -28,13 +28,6 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		return sqlSessionTemplate.selectOne("commentCount", isbn);
 	}
 
-	// 독서 상태 삽입 및 해당 독서 상태 바로 호출
-	@Override
-	public BookShelfDTO insertStatus(BookShelfDTO bookShelf) {
-		sqlSessionTemplate.insert("insertStatus", bookShelf);
-		return selectStatus(bookShelf);
-	}
-
 	// 독서 상태 호출
 	@Override
 	public BookShelfDTO selectStatus(BookShelfDTO bookShelf) {
@@ -66,4 +59,5 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public Integer userStar(HashMap<String, String> map){
 		return sqlSessionTemplate.selectOne("userStar", map);
 	}
+
 }

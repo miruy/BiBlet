@@ -27,51 +27,38 @@
                         <span id="starMsg" class="text-gray-600 mx-[4.6rem] mr-4">평가하기</span>
                         <span id="starMsg_m" class="text-gray-600 mx-[4.6rem] mr-4"></span>
                         <div class="star-rating">
-
-                            <c:if test="${userStar==1 }">
-                                <label for="1-star" class="star" onmouseover="mouseOver('싫어요')"
-                                       onmouseout="mouseOff('평가하기')">&#9733;</label>
-                                <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
-                                       onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
-                                <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
-                                       onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
-                                <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
-                                       onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
-                                <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
-                                       onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
-                            </c:if>
-                            <c:if test="${userStar==2 }">★★☆☆☆</c:if>
-                            <c:if test="${userStar==3 }">★★★☆☆</c:if>
-                            <c:if test="${userStar==4 }">★★★★☆</c:if>
-                            <c:if test="${userStar==5 }">★★★★★</c:if>
-
                             <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"
-                                   >&#9733;</label>
+                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')"
+                                   onmouseout="mouseOff('평가하기')"
+                            >&#9733;</label>
                             <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"
-                                   >&#9733;</label>
+                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')"
+                                   onmouseout="mouseOff('평가하기')"
+                            >&#9733;</label>
                             <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"
-                                   >&#9733;</label>
+                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')"
+                                   onmouseout="mouseOff('평가하기')"
+                            >&#9733;</label>
                             <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"
-                                  >&#9733;</label>
+                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')"
+                                   onmouseout="mouseOff('평가하기')"
+                            >&#9733;</label>
                             <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)"
                                    onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"
-                                  >&#9733;</label>
+                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')"
+                                   onmouseout="mouseOff('평가하기')"
+                            >&#9733;</label>
                         </div>
                     </div>
                     <div class="flex flex-col">
                         <span class="text-gray-600 ">읽고싶어요</span>
                         <label class="swap mt-2">
                             <input type="checkbox"/>
-                            <div class="swap-on text-3xl">&#x2714</div>
+                            <div class="swap-on text-3xl" onclick="insertWant()">&#x2714</div>
                             <div class="swap-off text-4xl">&#x2795</div>
                         </label>
                     </div>
@@ -92,7 +79,6 @@
             </div>
         </div>
     </div>
-
 
     <input type="checkbox" id="my-modal-3" class="modal-toggle"/>
     <div class="modal bg-opacity-60 bg-gray-300">
@@ -117,10 +103,12 @@
                 <div class="flex flex-row text-gray-600 space-x-2">
                     <span> 공개 여부 :</span>
                     <span>공개 </span>
-                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv"
+                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv"
+                           name="coPrv"
                            value="공개" onclick='checkOnlyOne(this)'/>
                     <span>비공개 </span>
-                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv"
+                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv"
+                           name="coPrv"
                            value="비공개"
                            onclick='checkOnlyOne(this)'/>
                 </div>
@@ -131,7 +119,10 @@
         </div>
     </div>
 
-    <div class="bg-gray-100 pl-24 pr-24 py-16">
+    <div class="bg-gray-100 pl-24 pr-24 pt-8 pb-8">
+
+        <div id="writeCommentBtn" class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4"></div>
+
         <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white py-2">
             <div class="p-4 pr-8">
                 <div class="p-4"><span class="text-2xl font-bold text-gray-600">기본정보</span></div>
@@ -233,7 +224,6 @@
                     $("#isbn_content").append("<h5>" + msg.documents[0].isbn.slice(-13) + "</h5>");		//일련번호
                     $("#isbn").val(msg.documents[0].isbn.slice(-13));
                 });
-
         })
 
         // 별 마우스 오버 starMsg
@@ -274,7 +264,39 @@
             });
         }
 
-        //공개 여부 체크 시 둘 중 하나만 선택
+        // 읽고싶어요 등록
+        function insertWant() {
+            let isbn = "${isbn}";
+
+            console.log(isbn);
+
+            $.ajax({
+                url: '<c:url value="/want"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "status": 0,
+                    "isbn": isbn
+                }),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log("data : " + data);
+                    writeCommentBtn();
+                }, error: function (data) {
+                    console.log("에러");
+                }
+
+            });
+        }
+
+        function writeCommentBtn() {
+            $("#writeCommentBtn").html(
+                '<div class="p-4 text-center">' +
+                '<label for="my-modal-3" class="btn modal-button w-96 bg-white border-white hover:bg-gray-200 hover:border-gray-200">코멘트 남기러가기</label>' +
+                '</div>'
+            );
+        }
+
+        // 공개 여부 체크 시 둘 중 하나만 선택
         function checkOnlyOne(chk) {
             let obj = document.getElementsByName("coPrv");
             for (var i = 0; i < obj.length; i++) {
@@ -285,6 +307,37 @@
         }
 
     </script>
+
+
+<%--    '<input type="checkbox" id="my-modal-3" class="modal-toggle"/>' +--%>
+<%--    '<div class="modal bg-opacity-60 bg-gray-300">' +--%>
+<%--    '<div class="modal-box relative space-y-2 h-5/6 w-11/12 max-w-3xl">' +--%>
+<%--        '<label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>' +--%>
+<%--        '<div id="title" class="text-gray-600 mb-3 text-center"></div>' +--%>
+<%--        '<textarea class="textarea textarea-secondary w-full text-gray-600" rows="12" id="comment" name="comment" placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>' +--%>
+<%--        '<div class="ml-56">' +--%>
+<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
+<%--                '<span> 독서 시작 날짜 : </span>' +--%>
+<%--                '<div><input type="date" id="startDate" name="startDate" class="text-gray-400"/></div>' +--%>
+<%--                '</div>' +--%>
+<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
+<%--                '<span> 독서 완료 날짜 : </span>' +--%>
+<%--                '<div><input type="date" id="endDate" name="endDate" class="text-gray-400"/></div>' +--%>
+<%--                '</div>' +--%>
+<%--            '<div class="flex flex-row text-gray-600 space-x-2">' +--%>
+<%--                '<span> 공개 여부 :</span>' +--%>
+<%--                '<span>공개 </span>' +--%>
+<%--                '<input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv" value="공개" onclick="checkOnlyOne(this)"/>' +--%>
+<%--                '<span>비공개 </span>' +--%>
+<%--                '<input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv" name="coPrv" value="비공개" onclick="checkOnlyOne(this)"/>' +--%>
+<%--                '</div>'+--%>
+<%--            '</div>' +--%>
+<%--        '<div class="modal-action justify-center items-center">' +--%>
+<%--            '<label for="my-modal-3" class="btn">저장</label>' +--%>
+<%--            '</div>'+--%>
+<%--        '</div>'+--%>
+<%--    '</div>'--%>
+
 </section>
 
 <%@ include file="common/footer.jsp" %>

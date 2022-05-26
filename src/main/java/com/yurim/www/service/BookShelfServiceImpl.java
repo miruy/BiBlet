@@ -20,4 +20,9 @@ public class BookShelfServiceImpl implements BookShelService{
     public BookShelfDTO selectStatusNoForStar(BookShelfDTO bookShelf){
         return bookShelfDAO.selectStatusNoForStar(bookShelf);
     }
+
+    @Override
+    public void insertWant(BookShelfDTO bookShelf){
+        bookShelfDAO.insertWant(bookShelf);
+    }
 }
