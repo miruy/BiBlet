@@ -8,4 +8,5 @@ import lombok.Setter;
 public class RequestStar {
     private String isbn;
     private int star;
+    private String id;
 }

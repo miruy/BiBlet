@@ -4,15 +4,15 @@
 
     <insert id="writeComment" parameterType="AppraisalDTO">
         INSERT INTO appraisal(star, comment, start_date, end_date, co_prv, status_no)
-        VALUES(#{star}, #{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
+        VALUES (#{star}, #{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
     </insert>
 
     <insert id="insertStar" parameterType="AppraisalDTO">
-        INSERT INTO appraisal(star, status_no) VALUES(#{star}, #{statusNo})
+        INSERT INTO appraisal(star, status_no) VALUES (#{star}, #{statusNo})
     </insert>
 
     <select id="selectStatus" parameterType="BookShelfDTO" resultType="BookShelfDTO">
-        SELECT * FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
+        SELECT * FROM bookshelf WHERE isbn = #{isbn} AND user_no = #{userNo}
     </select>
 
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">
@@ -42,22 +42,23 @@
     </select>
 
     <select id="starAVG" parameterType="String" resultType="Integer">
-        SELECT AVG(star) FROM appraisal
-        INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        SELECT AVG(star)
+        FROM appraisal
+                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE isbn = #{isbn}
     </select>
 
     <select id="starCount" parameterType="String" resultType="Long">
-        SELECT COUNT(star) FROM appraisal
-        INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        SELECT COUNT(star)
+        FROM appraisal
+                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE isbn = #{isbn}
     </select>
 
     <select id="userStar" parameterType="HashMap" resultType="Integer">
         SELECT star FROM appraisal
         INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
-        INNER JOIN user ON user.user_no = bookshelf.user_no
-        WHERE bookshelf.isbn = #{isbn} AND user.user_no = #{userNo};
+        WHERE isbn = #{isbn} AND user_no = #{userNo};
     </select>
 
 </mapper>

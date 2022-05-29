@@ -26,3 +26,23 @@
 .star-rating label:hover, .star-rating label:hover ~ label {
 	color: #fc0;
 }
+
+.star-group :checked ~ label {
+	color: gold;
+}
+
+.s1:hover ~ label {
+	color: gold;
+}
+.s2:hover ~ label {
+	color: gold;
+}
+.s3:hover ~ label {
+	color: gold;
+}
+.s4:hover ~ label {
+	color: gold;
+}
+.s5:hover ~ label {
+	color: gold;
+}

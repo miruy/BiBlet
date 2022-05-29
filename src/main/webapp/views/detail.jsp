@@ -6,7 +6,7 @@
 <%@ include file="common/header.jsp" %>
 
 <section class="container">
-<%--    ${sessionScope.id}--%>
+    <%--    ${sessionScope.id}--%>
     <div class="bg-white px-48 py-10">
         <div class="flex flex-col xl:flex-row ">
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
@@ -22,42 +22,71 @@
                 </div>
 
                 <div class="flex flex-row mt-24 space-x-20">
-                    <div class="flex flex-col">
-                        <span id="starMsg" class="text-gray-600 mx-[4.6rem] mr-4">평가하기</span>
-                        <span id="starMsg_m" class="text-gray-600 mx-[4.6rem] mr-4"></span>
-                        <div class="star-rating">
-                            <input type="radio" id="5-star" name="star" value=5 onClick="insertStar(this.value)"
-                                   onmouseover="mouseOver('최고예요!')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="5-star" class="star" onmouseover="mouseOver('최고예요!')"
-                                   onmouseout="mouseOff('평가하기')"
-                            >&#9733;</label>
-                            <input type="radio" id="4-star" name="star" value=4 onClick="insertStar(this.value)"
-                                   onmouseover="mouseOver('재미있어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="4-star" class="star" onmouseover="mouseOver('재미있어요')"
-                                   onmouseout="mouseOff('평가하기')"
-                            >&#9733;</label>
-                            <input type="radio" id="3-star" name="star" value=3 onClick="insertStar(this.value)"
-                                   onmouseover="mouseOver('보통이에요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="3-star" class="star" onmouseover="mouseOver('보통이에요')"
-                                   onmouseout="mouseOff('평가하기')"
-                            >&#9733;</label>
-                            <input type="radio" id="2-star" name="star" value=2 onClick="insertStar(this.value)"
-                                   onmouseover="mouseOver('재미없어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="2-star" class="star" onmouseover="mouseOver('재미없어요')"
-                                   onmouseout="mouseOff('평가하기')"
-                            >&#9733;</label>
-                            <input type="radio" id="1-star" name="star" value=1 onClick="insertStar(this.value)"
-                                   onmouseover="mouseOver('싫어요')" onmouseout="mouseOff('평가하기')"/>
-                            <label for="1-star" class="star" onmouseover="mouseOver('싫어요')"
-                                   onmouseout="mouseOff('평가하기')"
-                            >&#9733;</label>
+
+                    <%--회원이 아닌 상태에서 보여지는 스타--%>
+                    <c:if test="${empty authInfo}">
+                        <div class="flex flex-col items-center justify-center">
+                            <span id="starMsgF" class="text-gray-600">평가하기</span>
+                            <div class="star-group flex text-5xl flex-row-reverse">
+                                <input type="radio" id="star-1" value=5 name="s" class="hidden"/>
+                                <label for="star-1" class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer">&#9733;</label>
+                                <input type="radio" id="star-2" value=4 name="s" class="hidden"/>
+                                <label for="star-2" class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer">&#9733;</label>
+                                <input type="radio" id="star-3" value=3 name="s" class="hidden"/>
+                                <label for="star-3" class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer">&#9733;</label>
+                                <input type="radio" id="star-4" value=2 name="s" class="hidden" />
+                                <label for="star-4" class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer">&#9733;</label>
+                                <input type="radio" id="star-5" value=1 name="s" class="hidden" checked/>
+                                <label for="star-5" class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer">&#9733;</label>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+
+                    <c:if test="${!empty authInfo}">
+                        <%-- 회원인 상태에서 보여지는 스타--%>
+                        <div class="flex flex-col">
+                            <span id="starMsgT" class="text-gray-600 mx-[4.6rem] mr-4">평가하기</span>
+                            <span id="starMsgT_s" class="text-gray-600 mx-[4.6rem] mr-4"></span>
+                            <div id="starT" class="star-rating">
+                                <input type="radio" id="5-starT" name="star" value=5
+                                       onClick="insertStar(this.value)"
+                                       onmouseover="mouseOverT('최고예요!')" onmouseout="mouseOffT('평가하기')"/>
+                                <label for="5-starT" class="star" onmouseover="mouseOverT('최고예요!')"
+                                       onmouseout="mouseOffT('평가하기')"
+                                >&#9733;</label>
+                                <input type="radio" id="4-starT" name="star" value=4
+                                       onClick="insertStar(this.value)"
+                                       onmouseover="mouseOverT('재미있어요')" onmouseout="mouseOffT('평가하기')"/>
+                                <label for="4-starT" class="star" onmouseover="mouseOverT('재미있어요')"
+                                       onmouseout="mouseOffT('평가하기')"
+                                >&#9733;</label>
+                                <input type="radio" id="3-starT" name="star" value=3
+                                       onClick="insertStar(this.value)"
+                                       onmouseover="mouseOverT('보통이에요')" onmouseout="mouseOffT('평가하기')"/>
+                                <label for="3-starT" class="star" onmouseover="mouseOverT('보통이에요')"
+                                       onmouseout="mouseOffT('평가하기')"
+                                >&#9733;</label>
+                                <input type="radio" id="2-starT" name="star" value=2
+                                       onClick="insertStar(this.value)"
+                                       onmouseover="mouseOverT('재미없어요')" onmouseout="mouseOffT('평가하기')"/>
+                                <label for="2-starT" class="star" onmouseover="mouseOverT('재미없어요')"
+                                       onmouseout="mouseOffT('평가하기')"
+                                >&#9733;</label>
+                                <input type="radio" id="1-starT" name="star" value=1
+                                       onClick="insertStar(this.value)"
+                                       onmouseover="mouseOverT('싫어요')" onmouseout="mouseOffT('평가하기')"/>
+                                <label for="1-starT" class="star" onmouseover="mouseOverT('싫어요')"
+                                       onmouseout="mouseOffT('평가하기')"
+                                >&#9733;</label>
+                            </div>
+                        </div>
+                    </c:if>
+
                     <div class="flex flex-col">
                         <span class="text-gray-600 ">읽고싶어요</span>
                         <label class="swap mt-2">
                             <input type="checkbox"/>
-                            <div id="insertWant" class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
+                            <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                             <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                         </label>
                     </div>
@@ -74,6 +103,7 @@
                             <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                         </label>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -225,54 +255,73 @@
                 });
         })
 
-        // 별 마우스 오버 starMsg
+        // 별 마우스 오버 starMsgT
+        function mouseOverT(a) {
+            let starMsg = document.getElementById("starMsgT");
+            starMsg.innerHTML = a;
+        }
+
+        function mouseOffT(a) {
+            let starMsg = document.getElementById("starMsgT");
+            starMsg.innerHTML = a;
+        }
+
+        // 별전 평가 재등록
+        function starT() {
+            <c:if test="${!empty userStar}">
+                <c:if test="${userStar == 1}">
+                    document.querySelector("#1-starT input[type=radio]").setAttribute('checked' , true);
+                </c:if>
+            </c:if>
+        }
+
+
+        // 별 마우스 오버 starMsgF
         function mouseOver(a) {
-            let starMsg = document.getElementById("starMsg");
+            let starMsg = document.getElementById("starMsgF");
             starMsg.innerHTML = a;
         }
 
         function mouseOff(a) {
-            let starMsg = document.getElementById("starMsg");
+            let starMsg = document.getElementById("starMsgF");
             starMsg.innerHTML = a;
         }
 
-        // 평가 별 등록
+        // 별점 평가 등록
         function insertStar(star) {
             let id = "${sessionScope.id}";
+            console.log(id)
             let isbn = "${isbn}";
-            let starMsg_m = document.getElementById("starMsg_m");
-
-            if(id.length == 0){
-                alert("로그인 후 이용가능합니다.")
-            }
+            console.log(isbn)
+            let starMsgF_s = document.getElementById("starMsgF_s");
+            console.log(starMsgF_s)
 
             $.ajax({
                 url: '<c:url value="/star"/>',
                 type: 'POST',
                 data: JSON.stringify({
                     "star": star,
-                    "isbn": isbn
+                    "isbn": isbn,
+                    "id": id
                 }),
                 contentType: 'application/json',
-                success: function (data) {
-                    $("#starMsg").hide();
-                    console.log("data : " + data);
-                    starMsg_m.append(data);
-                }, error: function (data) {
+                success: function (map) {
+                    console.log("map.star : " + map.star);
+                    console.log("map.starMsg : " + map.starMsg);
+                    $("#starMsgF").hide();
+                    starMsgF_s.append(map.starMsg);
+                }, error: function (starMsg) {
                     console.log("에러");
                 }
 
             });
         }
 
+
         // 읽고싶어요, 읽는중 등록
         function insertStatus(status) {
             let id = "${sessionScope.id}";
             let isbn = "${isbn}";
-
-            if(id.length == 0){
-                alert("로그인 후 이용가능합니다.")
-            }
 
             $.ajax({
                 url: '<c:url value="/insert"/>',
@@ -304,11 +353,11 @@
         }
 
         // 읽고싶어요, 읽는 중 중복 클릭 시 기존 상태 삭제
-        function deleteStatus(status){
+        function deleteStatus(status) {
             let id = "${sessionScope.id}";
             let isbn = "${isbn}";
 
-            if(id.length == 0){
+            if (id.length == 0) {
                 alert("로그인 후 이용가능합니다.")
             }
 
