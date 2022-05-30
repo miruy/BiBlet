@@ -62,10 +62,24 @@ public class AppraisalController {
             Long userNo = authInfo.getUserNo();
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
+            String userStarMsg = null;
+            if (userStar == 1) {
+                userStarMsg = "싫어요";
+            } else if (userStar == 2) {
+                userStarMsg = "재미없어요";
+            } else if (userStar == 3) {
+                userStarMsg = "보통이에요";
+            } else if (userStar == 4) {
+                userStarMsg = "재미있어요";
+            } else if (userStar == 5) {
+                userStarMsg = "최고예요!";
+            }
+
             // 뷰에서 세션에 담긴 로그인 객체 사용하기 위함 (JSTL태그를 이용하여 SessionScope.id로 사용가능)
             session.setAttribute("id", authInfo.getId());
 
             model.addAttribute("userStar", userStar);
+            model.addAttribute("userStarMsg", userStarMsg);
         }
 
         return "detail";

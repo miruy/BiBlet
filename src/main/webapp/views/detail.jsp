@@ -59,6 +59,9 @@
                         <div class="flex flex-col items-center justify-center">
                             <span id="starMsgL" class="text-gray-600">평가하기</span>
                             <span id="starMsgL_s"></span>
+                            <c:if test="${!empty userStarMsg}">
+                                <span class="text-gray-600">${userStarMsg}</span>
+                            </c:if>
                             <div class="star-group flex text-5xl flex-row-reverse mt-2">
                                 <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 5}">checked="checked"</c:if>/>
                                 <label for="star1" class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
@@ -269,6 +272,13 @@
                 });
         })
 
+        $(document).ready(function(){
+            <c:if test="${!empty userStarMsg}">
+                $("#starMsgL").hide();
+            </c:if>
+        });
+
+
         // 별 마우스 오버 starMsgUL
         function mouseOverUL(a) {
             let starMsg = document.getElementById("starMsgUL");
@@ -290,15 +300,7 @@
             let starMsg = document.getElementById("starMsgL");
             starMsg.innerHTML = a;
         }
-
-        // 별점 뿌려주기
-        <%--function star() {--%>
-        <%--    <c:if test="${!empty userStar}">--%>
-        <%--        <c:if test="${userStar == 1}">--%>
-        <%--            document.querySelector("#1-starT input[type=radio]").setAttribute('checked' , true);--%>
-        <%--        </c:if>--%>
-        <%--    </c:if>--%>
-        <%--}--%>
+        
 
 
         // 별점 평가 등록
