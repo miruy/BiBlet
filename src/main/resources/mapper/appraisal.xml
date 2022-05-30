@@ -7,13 +7,17 @@
         VALUES (#{star}, #{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
     </insert>
 
-    <insert id="insertStar" parameterType="AppraisalDTO">
-        INSERT INTO appraisal(star, status_no) VALUES (#{star}, #{statusNo})
+    <insert id="insertDefaultStar" parameterType="Long">
+        INSERT INTO appraisal (star, status_no) values (0, #{statusNo});
     </insert>
 
-    <select id="selectStatus" parameterType="BookShelfDTO" resultType="BookShelfDTO">
-        SELECT * FROM bookshelf WHERE isbn = #{isbn} AND user_no = #{userNo}
-    </select>
+    <update id="updateStar" parameterType="AppraisalDTO">
+        UPDATE appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN user ON user.user_no = bookshelf.user_no
+            SET star=#{star}
+        WHERE isbn=#{isbn} AND id=#{id};
+    </update>
 
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">
         SELECT appraisal.appraisal_no,

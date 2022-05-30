@@ -18,7 +18,7 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	}
 
 	@Override
-	public BookShelfDTO selectStatusNoForStar(BookShelfDTO bookShelf){
+	public Long selectStatusNoForStar(BookShelfDTO bookShelf){
 		return sqlSessionTemplate.selectOne("selectStatusNoForStar", bookShelf);
 	}
 

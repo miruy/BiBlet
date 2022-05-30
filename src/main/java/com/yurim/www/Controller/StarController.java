@@ -27,8 +27,8 @@ public class StarController {
     private final BookShelService bookShelService;
 
     @ResponseBody
-    @PostMapping("/star")
-    public ResponseEntity<?> insertStar(@RequestBody RequestStar requestStar, Errors errors,
+    @PostMapping("/update")
+    public ResponseEntity<?> updateStar(@RequestBody RequestStar requestStar, Errors errors,
                                      HttpSession session, HttpServletResponse response) {
 
         BookShelfDTO bookShelf = new BookShelfDTO();
@@ -41,17 +41,11 @@ public class StarController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        UserDTO user = userService.selectUserInfoById(requestStar.getId());
-
-        bookShelf.setUserNo(user.getUserNo());
-        bookShelf.setIsbn(requestStar.getIsbn());
-        bookShelService.insertUserNoAndIsbn(bookShelf);
-
-        bookShelf = bookShelService.selectStatusNoForStar(bookShelf);
-
         appraisal.setStar(requestStar.getStar());
-        appraisal.setStatusNo(bookShelf.getStatusNo());
-        appraisalService.insertStar(appraisal);
+        appraisal.setIsbn(requestStar.getIsbn());
+        appraisal.setId(requestStar.getId());
+
+        appraisalService.updateStar(appraisal);
 
         String starMsg = null;
         if (appraisal.getStar() == 1) {
@@ -74,4 +68,26 @@ public class StarController {
 
         return ResponseEntity.ok(map);
     }
+
+//    @ResponseBody
+//    @PostMapping("/delete")
+//    public ResponseEntity<?> deleteStar(@RequestBody RequestStar requestStar, Errors errors,
+//                                        HttpSession session, HttpServletResponse response) {
+//
+//        BookShelfDTO bookShelf = new BookShelfDTO();
+//        AppraisalDTO appraisal = new AppraisalDTO();
+//
+//        /**
+//         * 에러시 반환
+//         */
+//        if (errors.hasErrors()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//
+//        UserDTO user = userService.selectUserInfoById(requestStar.getId());
+//
+//
+//
+//        return ResponseEntity.ok(map);
+//    }
 }

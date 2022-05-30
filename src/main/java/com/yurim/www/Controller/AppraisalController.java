@@ -4,6 +4,8 @@ import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
+import com.yurim.www.service.BookShelService;
+import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestLogin;
 import com.yurim.www.vo.RequestWriteComment;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import java.util.List;
 public class AppraisalController {
 
     private final AppraisalService appraisalService;
+    private final BookShelService bookShelService;
 
     /**
      * 도서 상세보기 - 해당 도서의 대한 모든 평가 추출
@@ -59,27 +62,42 @@ public class AppraisalController {
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if(authInfo != null){
+
             Long userNo = authInfo.getUserNo();
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
-            String userStarMsg = null;
-            if (userStar == 1) {
-                userStarMsg = "싫어요";
-            } else if (userStar == 2) {
-                userStarMsg = "재미없어요";
-            } else if (userStar == 3) {
-                userStarMsg = "보통이에요";
-            } else if (userStar == 4) {
-                userStarMsg = "재미있어요";
-            } else if (userStar == 5) {
-                userStarMsg = "최고예요!";
+            if(userStar == null){
+                BookShelfDTO bookShelf = new BookShelfDTO();
+
+                bookShelf.setUserNo(userNo);
+                bookShelf.setIsbn(isbn);
+
+                bookShelService.insertUserNoAndIsbn(bookShelf);
+
+                Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
+
+                appraisalService.insertDefaultStar(statusNo);
+
+            }else if(userStar != null){
+                String userStarMsg = null;
+                if (userStar == 1) {
+                    userStarMsg = "싫어요";
+                } else if (userStar == 2) {
+                    userStarMsg = "재미없어요";
+                } else if (userStar == 3) {
+                    userStarMsg = "보통이에요";
+                } else if (userStar == 4) {
+                    userStarMsg = "재미있어요";
+                } else if (userStar == 5) {
+                    userStarMsg = "최고예요!";
+                }
+
+                // 뷰에서 세션에 담긴 로그인 객체 사용하기 위함 (JSTL태그를 이용하여 SessionScope.id로 사용가능)
+                session.setAttribute("id", authInfo.getId());
+
+                model.addAttribute("userStar", userStar);
+                model.addAttribute("userStarMsg", userStarMsg);
             }
-
-            // 뷰에서 세션에 담긴 로그인 객체 사용하기 위함 (JSTL태그를 이용하여 SessionScope.id로 사용가능)
-            session.setAttribute("id", authInfo.getId());
-
-            model.addAttribute("userStar", userStar);
-            model.addAttribute("userStarMsg", userStarMsg);
         }
 
         return "detail";

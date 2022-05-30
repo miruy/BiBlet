@@ -27,11 +27,6 @@ public class AppraisalServiceImpl implements AppraisalService {
 		return appraisalDAO.commentCount(isbn);
 	}
 
-	// 독서 상태 호출
-	public BookShelfDTO selectStatus(BookShelfDTO bookShelf) {
-		return appraisalDAO.selectStatus(bookShelf);
-	}
-
 	// 평가 작성
 	@Override
 	public void writeComment(AppraisalDTO appraisal) {
@@ -39,8 +34,12 @@ public class AppraisalServiceImpl implements AppraisalService {
 	}
 
 	@Override
-	public void insertStar(AppraisalDTO appraisal){
-		appraisalDAO.insertStar(appraisal);
+	public void insertDefaultStar(Long statusNo){
+		appraisalDAO.insertDefaultStar(statusNo);
+	}
+	@Override
+	public void updateStar(AppraisalDTO appraisal){
+		appraisalDAO.updateStar(appraisal);
 	}
 
 	@Override

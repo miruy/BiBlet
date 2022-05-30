@@ -14,8 +14,11 @@
                 <div class="flex flex-col">
                     <div id="bookAuthor" class="text-gray-500 flex-row mt-2"></div>
                     <div class="text-l mt-2">
-                        <c:if test="${!empty starAVG}">
+                        <c:if test="${starAVG ne 0}">
                             평균 ★ ${starAVG} (${starCount}명)
+                        </c:if>
+                        <c:if test="${starAVG eq 0}">
+                            평균 ★ ${starAVG} (0명)
                         </c:if>
                     </div>
                 </div>
@@ -57,21 +60,23 @@
                     <c:if test="${!empty authInfo}">
 <%--                         회원인 상태에서 보여지는 스타--%>
                         <div class="flex flex-col items-center justify-center">
-                            <span id="starMsgL" class="text-gray-600">평가하기</span>
-                            <span id="starMsgL_s"></span>
-                            <c:if test="${!empty userStarMsg}">
-                                <span class="text-gray-600">${userStarMsg}</span>
+                            <c:if test="${empty userStarMsg}">
+                                <span id="starMsgL" class="text-gray-600">평가하기</span>
                             </c:if>
+                            <c:if test="${!empty userStarMsg}">
+                                <span id="userStarMsg" class="text-gray-600">${userStarMsg}</span>
+                            </c:if>
+<%--                            <span id="saveStarMsg" class="text-gray-600"></span>--%>
                             <div class="star-group flex text-5xl flex-row-reverse mt-2">
-                                <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 5}">checked="checked"</c:if>/>
+                                <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 5}">checked="checked"</c:if>/>
                                 <label for="star1" class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star2" value=4 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 4}">checked="checked"</c:if>/>
+                                <input type="radio" id="star2" value=4 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 4}">checked="checked"</c:if>/>
                                 <label for="star2" class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star3" value=3 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 3}">checked="checked"</c:if>/>
+                                <input type="radio" id="star3" value=3 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 3}">checked="checked"</c:if>/>
                                 <label for="star3" class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star4" value=2 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 2}">checked="checked"</c:if>/>
+                                <input type="radio" id="star4" value=2 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 2}">checked="checked"</c:if>/>
                                 <label for="star4" class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star5" value=1 name="star" class="hidden" onclick="insertStar(value)" onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 1}">checked="checked"</c:if>/>
+                                <input type="radio" id="star5" value=1 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 1}">checked="checked"</c:if>/>
                                 <label for="star5" class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                             </div>
                         </div>
@@ -80,8 +85,8 @@
                             <span class="text-gray-600">읽고싶어요</span>
                             <label class="swap mt-2">
                                 <input type="checkbox"/>
-                                <div class="swap-on text-3xl">&#x2714</div>
-                                <div class="swap-off text-4xl">&#x2795</div>
+                                <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
+                                <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
                         </div>
                         <div class="flex flex-col">
@@ -93,34 +98,11 @@
                             <span class="text-gray-600 mb-2">읽는중</span>
                             <label class="swap mt-2">
                                 <input type="checkbox"/>
-                                <div class="swap-on text-3xl">&#x1F4D6</div>
-                                <div class="swap-off text-3xl">&#x1F440</div>
+                                <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
+                                <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                             </label>
                         </div>
                     </c:if>
-
-<%--                    <div class="flex flex-col">--%>
-<%--                        <span class="text-gray-600">읽고싶어요</span>--%>
-<%--                        <label class="swap mt-2">--%>
-<%--                            <input type="checkbox"/>--%>
-<%--                            <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>--%>
-<%--                            <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                    <div class="flex flex-col">--%>
-<%--                        <span class="text-gray-600 mb-2 ml-2">코멘트</span>--%>
-<%--                        <label for="my-modal-3"--%>
-<%--                               class="btn modal-button bg-white border-white hover:bg-white hover:border-white text-3xl">&#x270F</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="flex flex-col">--%>
-<%--                        <span class="text-gray-600 mb-2">읽는중</span>--%>
-<%--                        <label class="swap mt-2">--%>
-<%--                            <input type="checkbox"/>--%>
-<%--                            <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>--%>
-<%--                            <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-
                 </div>
             </div>
         </div>
@@ -274,7 +256,7 @@
 
         $(document).ready(function(){
             <c:if test="${!empty userStarMsg}">
-                $("#starMsgL").hide();
+                $("#starMsgL_s").hide();
             </c:if>
         });
 
@@ -300,18 +282,17 @@
             let starMsg = document.getElementById("starMsgL");
             starMsg.innerHTML = a;
         }
-        
-
 
         // 별점 평가 등록
-        function insertStar(star) {
+        function updateStar(star) {
+            let userStar = "${userStar}";
             let id = "${sessionScope.id}";
             console.log(id)
             let isbn = "${isbn}";
             console.log(isbn)
 
             $.ajax({
-                url: '<c:url value="/star"/>',
+                url: '<c:url value="/update"/>',
                 type: 'POST',
                 data: JSON.stringify({
                     "star": star,
@@ -322,10 +303,33 @@
                 success: function (map) {
                     console.log("map.star : " + map.star);
                     console.log("map.starMsg : " + map.starMsg);
-                    $("#starMsgL").hide();
-                    $("#starMsgL_s").append("<span class='text-gray-600'>" + map.starMsg + "</span>");
+                    document.getElementById("userStarMsg").innerHTML = map.starMsg;
                 }, error: function (map) {
                     console.log("에러");
+                }
+
+            });
+        }
+
+        //자신의 별점 중복클릭 시 별점 삭제
+        function deleteStar() {
+            let id = "${sessionScope.id}";
+            console.log(id)
+            let isbn = "${isbn}";
+            console.log(isbn)
+
+            $.ajax({
+                url: '<c:url value="/delete"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "isbn": isbn,
+                    "id": id
+                }),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data)
+                }, error: function (data) {
+                    console.log(data)
                 }
 
             });
@@ -370,10 +374,6 @@
         function deleteStatus(status) {
             let id = "${sessionScope.id}";
             let isbn = "${isbn}";
-
-            if (id.length == 0) {
-                alert("로그인 후 이용가능합니다.")
-            }
 
             $.ajax({
                 url: '<c:url value="/delete"/>',

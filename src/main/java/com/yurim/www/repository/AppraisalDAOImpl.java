@@ -28,12 +28,6 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		return sqlSessionTemplate.selectOne("commentCount", isbn);
 	}
 
-	// 독서 상태 호출
-	@Override
-	public BookShelfDTO selectStatus(BookShelfDTO bookShelf) {
-		return sqlSessionTemplate.selectOne("selectStatus", bookShelf);
-	}
-
 	// 평가 작성
 	@Override
 	public void writeComment(AppraisalDTO appraisal) {
@@ -41,8 +35,12 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	}
 
 	@Override
-	public void insertStar(AppraisalDTO appraisal){
-		sqlSessionTemplate.insert("insertStar", appraisal);
+	public void insertDefaultStar(Long statusNo){
+		sqlSessionTemplate.insert("insertDefaultStar", statusNo);
+	}
+	@Override
+	public void updateStar(AppraisalDTO appraisal){
+		sqlSessionTemplate.update("updateStar", appraisal);
 	}
 
 	@Override
