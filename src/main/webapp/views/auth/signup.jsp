@@ -47,11 +47,11 @@
                 </div>
 
                 <div class="form-control mt-6">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary">Kakao Login</a>
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary text-gray-600 hover:text-black">Kakao Login</a>
                 </div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary">Sign Up</button>
+                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-black">Sign Up</button>
                 </div>
                 <a href="/adimSignup" class="text-center text-gray-300">Administrator SignUp</a>
             </form:form>
@@ -88,7 +88,7 @@
                                 success: function(data) {
                                     console.log("성공")
                                     console.log(data);
-                                    window.location.replace('main')
+                                    window.location.replace('/')
 
                                 }, error: function(){
                                     console.log("에러");

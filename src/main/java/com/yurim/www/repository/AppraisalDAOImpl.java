@@ -35,15 +35,6 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	}
 
 	@Override
-	public void insertDefaultStar(Long statusNo){
-		sqlSessionTemplate.insert("insertDefaultStar", statusNo);
-	}
-	@Override
-	public void updateStar(AppraisalDTO appraisal){
-		sqlSessionTemplate.update("updateStar", appraisal);
-	}
-
-	@Override
 	public Integer starAVG(String isbn){
 		return sqlSessionTemplate.selectOne("starAVG", isbn);
 	}
@@ -58,4 +49,18 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		return sqlSessionTemplate.selectOne("userStar", map);
 	}
 
+	@Override
+	public void insertStar(HashMap<String, Long> map){
+		sqlSessionTemplate.insert("insertStar", map);
+	}
+
+	@Override
+	public void updateStar(AppraisalDTO appraisal){
+		sqlSessionTemplate.update("updateStar", appraisal);
+	}
+
+	@Override
+	public int deleteStar(HashMap<String, String> map){
+		return sqlSessionTemplate.delete("deleteStar", map);
+	}
 }

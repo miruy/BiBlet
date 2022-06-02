@@ -2390,6 +2390,11 @@ body[dir="rtl"] .checkbox:checked,
   color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .hover\:text-opacity-80:hover {
   --tw-text-opacity: 0.8;
 }

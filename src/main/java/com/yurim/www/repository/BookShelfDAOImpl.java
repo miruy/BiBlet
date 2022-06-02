@@ -18,8 +18,8 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	}
 
 	@Override
-	public Long selectStatusNoForStar(BookShelfDTO bookShelf){
-		return sqlSessionTemplate.selectOne("selectStatusNoForStar", bookShelf);
+	public Long selectStatusNo(BookShelfDTO bookShelf){
+		return sqlSessionTemplate.selectOne("selectStatusNo", bookShelf);
 	}
 
 	@Override
@@ -31,4 +31,5 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	public void deleteStatus(BookShelfDTO bookShelf){
 		sqlSessionTemplate.delete("deleteStatus", bookShelf);
 	}
+
 }

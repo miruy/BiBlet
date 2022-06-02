@@ -13,51 +13,70 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AppraisalServiceImpl implements AppraisalService {
 
-	private final AppraisalDAO appraisalDAO;
+    private final AppraisalDAO appraisalDAO;
 
-	// 해당 도서의 대한 모든 평가 호출
-	@Override
-	public List<AppraisalDTO> findAllComment(String isbn) {
-		return appraisalDAO.findAllComment(isbn);
-	}
+    // 해당 도서의 대한 모든 평가 호출
+    @Override
+    public List<AppraisalDTO> findAllComment(String isbn) {
+        return appraisalDAO.findAllComment(isbn);
+    }
 
-	// 해당 도서의 대한 평가 개수 호출
-	@Override
-	public int commentCount(String isbn) {
-		return appraisalDAO.commentCount(isbn);
-	}
+    // 해당 도서의 대한 평가 개수 호출
+    @Override
+    public int commentCount(String isbn) {
+        return appraisalDAO.commentCount(isbn);
+    }
 
-	// 평가 작성
-	@Override
-	public void writeComment(AppraisalDTO appraisal) {
-		appraisalDAO.writeComment(appraisal);
-	}
+    // 평가 작성
+    @Override
+    public void writeComment(AppraisalDTO appraisal) {
+        appraisalDAO.writeComment(appraisal);
+    }
 
-	@Override
-	public void insertDefaultStar(Long statusNo){
-		appraisalDAO.insertDefaultStar(statusNo);
-	}
-	@Override
-	public void updateStar(AppraisalDTO appraisal){
-		appraisalDAO.updateStar(appraisal);
-	}
+    @Override
+    public Integer starAVG(String isbn) {
+        return appraisalDAO.starAVG(isbn);
+    }
 
-	@Override
-	public Integer starAVG(String isbn){
-		return appraisalDAO.starAVG(isbn);
-	}
+    @Override
+    public Long starCount(String isbn) {
+        return appraisalDAO.starCount(isbn);
+    }
 
-	@Override
-	public Long starCount(String isbn){
-		return appraisalDAO.starCount(isbn);
-	}
+    @Override
+    public Integer userStar(Long userNo, String isbn) {
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+        return appraisalDAO.userStar(map);
+    }
 
-	@Override
-	public Integer userStar(Long userNo, String isbn){
-		HashMap<String, String> map = new HashMap<>();
-		String userNoS = String.valueOf(userNo);
-		map.put("userNo", userNoS);
-		map.put("isbn", isbn);
-		return appraisalDAO.userStar(map);
-	}
+    @Override
+    public void insertStar(Long statusNo, int star) {
+        HashMap<String, Long> map = new HashMap<>();
+        Long starL = (long) star;
+        map.put("statusNo", statusNo);
+        map.put("star", starL);
+        appraisalDAO.insertStar(map);
+    }
+
+    @Override
+    public void updateStar(AppraisalDTO appraisal) {
+        appraisalDAO.updateStar(appraisal);
+    }
+
+    @Override
+    public int deleteStar(Long userNo, String isbn, int star) {
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+        String starS = String.valueOf(star);
+
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+        map.put("star", starS);
+
+        return appraisalDAO.deleteStar(map);
+    }
+
 }

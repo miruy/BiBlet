@@ -10,7 +10,7 @@
         INSERT INTO bookshelf(status, isbn, user_no) VALUES(#{status}, #{isbn}, #{userNo})
     </insert>
 
-    <select id="selectStatusNoForStar" parameterType="BookShelfDTO" resultType="Long">
+    <select id="selectStatusNo" parameterType="BookShelfDTO" resultType="Long">
         SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
     </select>
 

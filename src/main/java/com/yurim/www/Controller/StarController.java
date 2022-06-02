@@ -27,7 +27,7 @@ public class StarController {
     private final BookShelService bookShelService;
 
     @ResponseBody
-    @PostMapping("/update")
+    @PostMapping("/star")
     public ResponseEntity<?> updateStar(@RequestBody RequestStar requestStar, Errors errors,
                                      HttpSession session, HttpServletResponse response) {
 
@@ -41,26 +41,54 @@ public class StarController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        appraisal.setStar(requestStar.getStar());
-        appraisal.setIsbn(requestStar.getIsbn());
-        appraisal.setId(requestStar.getId());
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        appraisalService.updateStar(appraisal);
+        Long userNo = authInfo.getUserNo();
+        Integer userStar = appraisalService.userStar(userNo, requestStar.getIsbn());
+
+        if(userStar == null){
+
+            bookShelf.setUserNo(userNo);
+            bookShelf.setIsbn(requestStar.getIsbn());
+
+            bookShelService.insertUserNoAndIsbn(bookShelf);
+
+            Long statusNo = bookShelService.selectStatusNo(bookShelf);
+
+            appraisalService.insertStar(statusNo, requestStar.getStar());
+
+        }else if(userStar == requestStar.getStar()){
+
+           int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
+            System.out.println("result" + result);
+            return ResponseEntity.ok(result);
+
+        }else if(userStar != null && userStar != requestStar.getStar()){
+
+            appraisal.setStar(requestStar.getStar());
+            appraisal.setIsbn(requestStar.getIsbn());
+            appraisal.setId(requestStar.getId());
+
+            appraisalService.updateStar(appraisal);
+
+        }
+
 
         String starMsg = null;
-        if (appraisal.getStar() == 1) {
+        if (requestStar.getStar() == 1) {
             starMsg = "싫어요";
-        } else if (appraisal.getStar() == 2) {
+        } else if (requestStar.getStar() == 2) {
             starMsg = "재미없어요";
-        } else if (appraisal.getStar() == 3) {
+        } else if (requestStar.getStar() == 3) {
             starMsg = "보통이에요";
-        } else if (appraisal.getStar() == 4) {
+        } else if (requestStar.getStar() == 4) {
             starMsg = "재미있어요";
-        } else if (appraisal.getStar() == 5) {
+        } else if (requestStar.getStar() == 5) {
             starMsg = "최고예요!";
         }
 
-        int star = appraisal.getStar();
+        int star = requestStar.getStar();
 
         HashMap<Object, Object> map = new HashMap<>();
         map.put("starMsg", starMsg);

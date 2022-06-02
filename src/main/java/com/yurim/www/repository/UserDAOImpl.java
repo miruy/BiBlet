@@ -54,4 +54,5 @@ public class UserDAOImpl implements UserDAO{
     public String findIdByEmail(HashMap<String, String> map) {
         return sqlSessionTemplate.selectOne("findIdByEmail", map);
     }
+
 }

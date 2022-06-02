@@ -25,59 +25,101 @@
 
                 <div class="flex flex-row mt-24 space-x-16">
 
-                    <%--회원이 아닌 상태에서 보여지는 스타--%>
+                    <%--비로그인 시 선택 불가능--%>
                     <c:if test="${empty authInfo}">
                         <div class="flex flex-col items-center justify-center">
                             <span id="starMsgUL" class="text-gray-600 mb-2">평가하기</span>
                             <div class="star-group flex text-5xl flex-row-reverse">
-                                <input type="radio" id="star-1" class="hidden" onclick="alert('로그인 후 이용가능합니다.')" onmouseover="mouseOverUL('최고예요!')" onmouseout="mouseOffUL('평가하기')"/>
-                                <label for="star-1" class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onclick="alert('로그인 후 이용가능합니다.')" onmouseover="mouseOverUL('최고예요!')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star-2" class="hidden" onmouseover="mouseOverUL('재미있어요')" onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
-                                <label for="star-2" class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverUL('재미있어요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star-3" class="hidden" onmouseover="mouseOverUL('보통이에요')" onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
-                                <label for="star-3" class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverUL('보통이에요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star-4" class="hidden" onmouseover="mouseOverUL('재미없어요')" onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
-                                <label for="star-4" class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverUL('재미없어요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star-5" class="hidden" onmouseover="mouseOverUL('싫어요')" onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
-                                <label for="star-5" class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverUL('싫어요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star-1" class="hidden" onclick="alert('로그인 후 이용가능합니다.')"
+                                       onmouseover="mouseOverUL('최고예요!')" onmouseout="mouseOffUL('평가하기')"/>
+                                <label for="star-1"
+                                       class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseover="mouseOverUL('최고예요!')"
+                                       onmouseout="mouseOffUL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star-2" class="hidden" onmouseover="mouseOverUL('재미있어요')"
+                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                <label for="star-2"
+                                       class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverUL('재미있어요')"
+                                       onmouseout="mouseOffUL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star-3" class="hidden" onmouseover="mouseOverUL('보통이에요')"
+                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                <label for="star-3"
+                                       class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverUL('보통이에요')"
+                                       onmouseout="mouseOffUL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star-4" class="hidden" onmouseover="mouseOverUL('재미없어요')"
+                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                <label for="star-4"
+                                       class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverUL('재미없어요')"
+                                       onmouseout="mouseOffUL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star-5" class="hidden" onmouseover="mouseOverUL('싫어요')"
+                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                <label for="star-5"
+                                       class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverUL('싫어요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
                             </div>
                         </div>
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
-                            <div class="text-4xl cursor-pointer mt-3 text-center" onclick="alert('로그인 후 이용가능합니다.')">&#x2795</div>
+                            <div class="text-4xl cursor-pointer mt-3 text-center" onclick="alert('로그인 후 이용가능합니다.')">
+                                &#x2795
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">코멘트</span>
-                            <div class="text-3xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">&#x270F</div>
+                            <div class="text-3xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">
+                                &#x270F
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽는중</span>
-                            <div class="text-4xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">&#x1F440</div>
+                            <div class="text-4xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">
+                                &#x1F440
+                            </div>
                         </div>
                     </c:if>
 
                     <c:if test="${!empty authInfo}">
-<%--                         회원인 상태에서 보여지는 스타--%>
+                        <%--로그인 시 선택 가능--%>
                         <div class="flex flex-col items-center justify-center">
-                            <c:if test="${empty userStarMsg}">
-                                <span id="starMsgL" class="text-gray-600">평가하기</span>
-                            </c:if>
-                            <c:if test="${!empty userStarMsg}">
-                                <span id="userStarMsg" class="text-gray-600">${userStarMsg}</span>
-                            </c:if>
-<%--                            <span id="saveStarMsg" class="text-gray-600"></span>--%>
+                                <%--                            <c:if test="${empty userStarMsg}">--%>
+                            <span id="starMsgL" class="text-gray-600"></span>
+                                <%--                            </c:if>--%>
+                            <span id="userStarMsg" class="text-gray-600">${userStarMsg}</span>
                             <div class="star-group flex text-5xl flex-row-reverse mt-2">
-                                <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 5}">checked="checked"</c:if>/>
-                                <label for="star1" class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star2" value=4 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 4}">checked="checked"</c:if>/>
-                                <label for="star2" class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star3" value=3 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 3}">checked="checked"</c:if>/>
-                                <label for="star3" class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star4" value=2 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 2}">checked="checked"</c:if>/>
-                                <label for="star4" class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
-                                <input type="radio" id="star5" value=1 name="star" class="hidden" onclick="updateStar(value)" onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')" <c:if test="${userStar == 1}">checked="checked"</c:if>/>
-                                <label for="star5" class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer" onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="star(value)"
+                                       onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')"
+                                       <c:if test="${userStar == 5}">checked="checked"</c:if>/>
+                                <label for="star1"
+                                       class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star2" value=4 name="star" class="hidden" onclick="star(value)"
+                                       onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')"
+                                       <c:if test="${userStar == 4}">checked="checked"</c:if>/>
+                                <label for="star2"
+                                       class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star3" value=3 name="star" class="hidden" onclick="star(value)"
+                                       onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')"
+                                       <c:if test="${userStar == 3}">checked="checked"</c:if>/>
+                                <label for="star3"
+                                       class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star4" value=2 name="star" class="hidden" onclick="star(value)"
+                                       onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')"
+                                       <c:if test="${userStar == 2}">checked="checked"</c:if>/>
+                                <label for="star4"
+                                       class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
+                                <input type="radio" id="star5" value=1 name="star" class="hidden" onclick="star(value)"
+                                       onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')"
+                                       <c:if test="${userStar == 1}">checked="checked"</c:if>/>
+                                <label for="star5"
+                                       class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
+                                       onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                             </div>
                         </div>
 
@@ -108,42 +150,45 @@
         </div>
     </div>
 
+    <%--코멘트 작성 폼--%>
     <input type="checkbox" id="my-modal-3" class="modal-toggle"/>
     <div class="modal bg-opacity-60 bg-gray-300">
         <div class="modal-box relative space-y-2 h-5/6 w-11/12 max-w-3xl">
-            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <div id="title" class="text-gray-600 mb-3 text-center"></div>
-            <textarea class="textarea textarea-secondary w-full text-gray-600" rows="12" id="comment" name="comment"
-                      placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
-            <div class="ml-56">
-                <div class="flex flex-row text-gray-600 space-x-2">
-                    <span> 독서 시작 날짜 : </span>
-                    <div>
-                        <input type="date" id="startDate" name="startDate" class="text-gray-400"/>
+            <form:form modelAttribute="requestWriteComment">
+                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <div id="title" class="text-gray-600 mb-3 text-center"></div>
+                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="12" id="comment" name="comment"
+                          placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
+                <div class="ml-56">
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 시작 날짜 : </span>
+                        <div>
+                            <input type="date" id="startDate" name="startDate" class="text-gray-400"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 완료 날짜 : </span>
+                        <div>
+                            <input type="date" id="endDate" name="endDate" class="text-gray-400"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 공개 여부 :</span>
+                        <span>공개 </span>
+                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY"
+                               name="coPrv"
+                               value="공개" onclick='checkOnlyOne(this)'/>
+                        <span>비공개 </span>
+                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN"
+                               name="coPrv"
+                               value="비공개"
+                               onclick='checkOnlyOne(this)'/>
                     </div>
                 </div>
-                <div class="flex flex-row text-gray-600 space-x-2">
-                    <span> 독서 완료 날짜 : </span>
-                    <div>
-                        <input type="date" id="endDate" name="endDate" class="text-gray-400"/>
-                    </div>
+                <div class="modal-action justify-center items-center">
+                    <input type="submit" for="my-modal-3" class="btn" value="저장"/>
                 </div>
-                <div class="flex flex-row text-gray-600 space-x-2">
-                    <span> 공개 여부 :</span>
-                    <span>공개 </span>
-                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv"
-                           name="coPrv"
-                           value="공개" onclick='checkOnlyOne(this)'/>
-                    <span>비공개 </span>
-                    <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrv"
-                           name="coPrv"
-                           value="비공개"
-                           onclick='checkOnlyOne(this)'/>
-                </div>
-            </div>
-            <div class="modal-action justify-center items-center">
-                <label for="my-modal-3" class="btn">저장</label>
-            </div>
+            </form:form>
         </div>
     </div>
 
@@ -254,9 +299,11 @@
                 });
         })
 
-        $(document).ready(function(){
+        $(document).ready(function () {
+            $("#starMsgL").append("평가하기");
+
             <c:if test="${!empty userStarMsg}">
-                $("#starMsgL_s").hide();
+            $("#starMsgL").hide();
             </c:if>
         });
 
@@ -283,16 +330,15 @@
             starMsg.innerHTML = a;
         }
 
-        // 별점 평가 등록
-        function updateStar(star) {
-            let userStar = "${userStar}";
+        // 별점 평가 등록, 수정, 삭제
+        function star(star) {
             let id = "${sessionScope.id}";
             console.log(id)
             let isbn = "${isbn}";
             console.log(isbn)
 
             $.ajax({
-                url: '<c:url value="/update"/>',
+                url: '<c:url value="/star"/>',
                 type: 'POST',
                 data: JSON.stringify({
                     "star": star,
@@ -300,10 +346,16 @@
                     "id": id
                 }),
                 contentType: 'application/json',
-                success: function (map) {
-                    console.log("map.star : " + map.star);
-                    console.log("map.starMsg : " + map.starMsg);
-                    document.getElementById("userStarMsg").innerHTML = map.starMsg;
+                success: function (data) {
+                    if (data == 2) {
+                        document.getElementById("userStarMsg").innerHTML = "평가하기";
+                        $("input:radio[name='star']").prop('checked', false);
+                    } else if (data.star != null) {
+                        console.log("data.star : " + data.star);
+                        console.log("data.starMsg : " + data.starMsg);
+                        $("#starMsgL").hide();
+                        document.getElementById("userStarMsg").innerHTML = data.starMsg;
+                    }
                 }, error: function (map) {
                     console.log("에러");
                 }

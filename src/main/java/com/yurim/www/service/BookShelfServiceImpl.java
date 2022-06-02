@@ -17,8 +17,8 @@ public class BookShelfServiceImpl implements BookShelService{
     }
 
     @Override
-    public Long selectStatusNoForStar(BookShelfDTO bookShelf){
-        return bookShelfDAO.selectStatusNoForStar(bookShelf);
+    public Long selectStatusNo(BookShelfDTO bookShelf){
+        return bookShelfDAO.selectStatusNo(bookShelf);
     }
 
     @Override

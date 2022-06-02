@@ -67,16 +67,9 @@ public class AppraisalController {
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
             if(userStar == null){
-                BookShelfDTO bookShelf = new BookShelfDTO();
+                userStar = 0;
 
-                bookShelf.setUserNo(userNo);
-                bookShelf.setIsbn(isbn);
-
-                bookShelService.insertUserNoAndIsbn(bookShelf);
-
-                Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
-
-                appraisalService.insertDefaultStar(statusNo);
+                model.addAttribute("userStar", userStar);
 
             }else if(userStar != null){
                 String userStarMsg = null;
@@ -103,57 +96,43 @@ public class AppraisalController {
         return "detail";
     }
 
-//    /**
-//     * 평가 등록
-//     */
-//    @PostMapping("/read/{isbn}")
-//    private String writeComment(@ModelAttribute("requestWriteComment") RequestWriteComment requestWriteComment,
-//                                RequestLogin requestLogin, Errors errors, Model model, HttpSession session,
-//                                HttpServletResponse response) throws UnsupportedEncodingException {
-//
-//        AppraisalDTO appraisal = new AppraisalDTO();
-//        BookShelfDTO bookShelf = new BookShelfDTO();
-//
-//        /**
-//         * 에러시 반환
-//         */
-//        if (errors.hasErrors()) {
-//            return "redirect:/";
-//        }
-//
-//        /**
-//         * session에서 데이터를 꺼내 있는지 확인
-//         */
-//        UserDTO authInfo = null;
-//        if (session == null || session.getAttribute("authInfo") == null) {
-//            return "redirect:/login";
-//        }
-//
-//        /**
-//         * 세션에 담긴 로그인 객체를 꺼내 userDTO객체로 저장
-//         */
-//        authInfo = (UserDTO) session.getAttribute("authInfo");
-//
-//        /**
-//         * Long userNo로 변환
-//         */
-//        Long userNo = authInfo.getUserNo();
-//
-//        bookShelf.setStatus(requestWriteComment.getOption());
-//        bookShelf.setUserNo(userNo);
-//        bookShelf.setIsbn(requestWriteComment.getIsbn());
-//
-//        bookShelf = appraisalService.insertStatus(bookShelf);
-//
-//        appraisal.setStar(requestWriteComment.getStar());
-//        appraisal.setComment(requestWriteComment.getComment());
-//        appraisal.setStartDate(requestWriteComment.getStartDate());
-//        appraisal.setEndDate(requestWriteComment.getEndDate());
-//        appraisal.setCoPrv(requestWriteComment.getCoPrv());
-//        appraisal.setStatusNo(bookShelf.getStatusNo());
-//
-//        appraisalService.writeComment(appraisal);
-//
-//        return "redirect:/read/" + requestWriteComment.getIsbn();
-//    }
+    /**
+     * 평가 등록
+     */
+    @PostMapping("/read/{isbn}")
+    private String writeComment(@ModelAttribute("requestWriteComment") RequestWriteComment requestWriteComment,
+                                Errors errors, @PathVariable String isbn,
+                                Model model, HttpSession session,
+                                HttpServletResponse response) throws UnsupportedEncodingException {
+
+        AppraisalDTO appraisal = new AppraisalDTO();
+        BookShelfDTO bookShelf = new BookShelfDTO();
+
+        if (errors.hasErrors()) {
+            return "redirect:/";
+        }
+
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        /**
+         * Long userNo로 변환
+         */
+        Long userNo = authInfo.getUserNo();
+
+        bookShelf.setUserNo(userNo);
+        bookShelf.setIsbn(isbn);
+
+        Long statusNo = bookShelService.selectStatusNo(bookShelf);
+
+        appraisal.setComment(requestWriteComment.getComment());
+        appraisal.setStartDate(requestWriteComment.getStartDate());
+        appraisal.setEndDate(requestWriteComment.getEndDate());
+        appraisal.setCoPrv(requestWriteComment.getCoPrv());
+        appraisal.setStatusNo(statusNo);
+
+        appraisalService.writeComment(appraisal);
+
+        return "redirect:/read/" + isbn;
+    }
 }

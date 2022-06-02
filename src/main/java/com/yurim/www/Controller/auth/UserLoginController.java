@@ -104,38 +104,6 @@ public class UserLoginController {
         }
     }
 
-    @ResponseBody
-    @PostMapping("/login/kakao")
-    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
-                              Model model, HttpSession session, HttpServletResponse response) throws Exception {
-
-        UserDTO signupUser = new UserDTO();
-        signupUser.setName(requestKakaoLogin.getName());
-        signupUser.setId("kakao" + requestKakaoLogin.getId());
-        signupUser.setPass(UUID.randomUUID().toString().replaceAll("-", ""));
-        signupUser.setStoredPic(requestKakaoLogin.getThumbnailImage());
-        signupUser.setAuthStatus(1);
-        signupUser.setAuthKey(UUID.randomUUID().toString().replaceAll("-", ""));
-        signupUser.setEmail(UUID.randomUUID().toString().replaceAll("-", ""));
-
-        userService.userSignup(signupUser);
-
-        UserDTO authInfo = null;
-
-        authInfo = userService.authenticate(signupUser);
-
-        if (session != null && session.getAttribute("authInfo") != null) {
-            return false;
-        }
-
-        /**
-         * 로그인 인증된 객체 세션 테이블에 저장
-         */
-        session.setAttribute("authInfo", authInfo);
-
-        return true;
-    }
-
     /**
      * 아이디 찾기(회원)
      */
@@ -147,7 +115,7 @@ public class UserLoginController {
     @PostMapping("/findId")
     public String findId(UserDTO userDTO, Model model, String email, String pass) throws Exception {
 
-        if(email.equals("") || pass.equals("")){
+        if (email.equals("") || pass.equals("")) {
             return "error/required_error";
         }
 
@@ -173,7 +141,7 @@ public class UserLoginController {
     @PostMapping("/findPass")
     public String findPass(UserDTO userDTO, Model model, String email, String id) throws Exception {
 
-        if(email.equals("") || id.equals("")){
+        if (email.equals("") || id.equals("")) {
             return "error/required_error";
         }
 

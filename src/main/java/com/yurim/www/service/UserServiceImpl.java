@@ -101,4 +101,11 @@ public class UserServiceImpl implements UserService{
     public UserDTO selectUserInfoById(String id){
         return userDAO.selectUserInfoById(id);
     }
+
+
+    @Override
+    public UserDTO kakaoAuthenticate(UserDTO userDTO){
+        UserDTO user = userDAO.selectUserInfoById(userDTO.getId());
+        return user;
+    }
 }
