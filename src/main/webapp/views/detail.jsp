@@ -126,7 +126,7 @@
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
                             <label class="swap mt-2">
-                                <input name="want" type="checkbox"/>
+                                <input name="want" type="checkbox" <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                                 <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
@@ -139,7 +139,7 @@
                         <div class="flex flex-col">
                             <span class="text-gray-600 mb-2">읽는중</span>
                             <label class="swap mt-2">
-                                <input name="read"  type="checkbox"/>
+                                <input name="read"  type="checkbox" <c:if test="${userStatus == 1}">checked="checked"</c:if>/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
                                 <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                             </label>
@@ -305,6 +305,10 @@
             <c:if test="${!empty userStarMsg}">
             $("#starMsgL").hide();
             </c:if>
+
+            <c:if test="${!empty userStatus}">
+            $("#writeCommentBtn").show(writeCommentBtn());
+            </c:if>
         });
 
 
@@ -332,8 +336,6 @@
 
         // 별점 평가 등록, 수정, 삭제
         function star(star) {
-            let id = "${sessionScope.id}";
-            console.log(id)
             let isbn = "${isbn}";
             console.log(isbn)
 
@@ -342,8 +344,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                     "star": star,
-                    "isbn": isbn,
-                    "id": id
+                    "isbn": isbn
                 }),
                 contentType: 'application/json',
                 success: function (data) {
@@ -366,7 +367,6 @@
 
         // 읽고싶어요, 읽는중 등록 또는 수정
         function insertStatus(status) {
-            let id = "${sessionScope.id}";
             let isbn = "${isbn}";
 
             $.ajax({
@@ -374,8 +374,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                     "status": status,
-                    "isbn": isbn,
-                    "id": id
+                    "isbn": isbn
                 }),
                 contentType: 'application/json',
                 success: function (data) {
@@ -408,7 +407,6 @@
 
         // 읽고싶어요, 읽는 중 중복 클릭 시 기존 상태 삭제
         function deleteStatus(status) {
-            let id = "${sessionScope.id}";
             let isbn = "${isbn}";
 
             $.ajax({
@@ -416,8 +414,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                     "status": status,
-                    "isbn": isbn,
-                    "id": id
+                    "isbn": isbn
                 }),
                 contentType: 'application/json',
                 success: function (data) {

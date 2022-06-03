@@ -14,13 +14,13 @@ public class BookShelfServiceImpl implements BookShelService{
     private final BookShelfDAO bookShelfDAO;
 
     @Override
-    public void insertUserNoAndIsbn(BookShelfDTO bookShelf){
-       bookShelfDAO.insertUserNoAndIsbn(bookShelf);
+    public void insertBookShelfForStar(BookShelfDTO bookShelf){
+       bookShelfDAO.insertBookShelfForStar(bookShelf);
     }
 
     @Override
-    public Long selectStatusNo(BookShelfDTO bookShelf){
-        return bookShelfDAO.selectStatusNo(bookShelf);
+    public Long selectStatusNoForStar(BookShelfDTO bookShelf){
+        return bookShelfDAO.selectStatusNoForStar(bookShelf);
     }
 
     @Override

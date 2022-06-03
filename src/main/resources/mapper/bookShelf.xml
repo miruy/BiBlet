@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yurim.www.repository.BookShelfDAO">
 
-    <insert id="insertUserNoAndIsbn" parameterType="BookShelfDTO">
-        INSERT INTO bookshelf(isbn, user_no) VALUES(#{isbn}, #{userNo})
+    <insert id="insertBookShelfForStar" parameterType="BookShelfDTO">
+        INSERT INTO bookshelf(isbn, status, user_no) VALUES(#{isbn}, #{status}, #{userNo})
     </insert>
 
     <insert id="insertStatus" parameterType="BookShelfDTO">
@@ -11,18 +11,18 @@
     </insert>
 
     <select id="selectStatus" parameterType="HashMap" resultType="Integer">
-        SELECT status FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
+        SELECT status FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status=0 OR status=1
     </select>
 
     <delete id="deleteStatus" parameterType="BookShelfDTO">
         DELETE FROM bookshelf WHERE user_no=#{userNo} AND isbn=#{isbn} AND status=#{status}
     </delete>
 
-    <select id="selectStatusNo" parameterType="BookShelfDTO" resultType="Long">
-        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
+    <select id="selectStatusNoForStar" parameterType="BookShelfDTO" resultType="Long">
+        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status=2
     </select>
 
     <update id="updateStatus" parameterType="bookShelfDTO">
-        UPDATE bookshelf SET status=#{status} WHERE isbn=#{isbn} AND user_no=#{userNo};
+        UPDATE bookshelf SET status=#{status} WHERE isbn=#{isbn} AND user_no=#{userNo} AND status=#{beforeStatus}
     </update>
 </mapper>

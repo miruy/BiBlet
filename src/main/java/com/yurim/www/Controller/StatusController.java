@@ -51,10 +51,16 @@ public class StatusController {
         Integer result = bookShelService.selectStatus(requestStatus.getIsbn(), userNo);
 
         if(result == null){
+
             bookShelService.insertStatus(bookShelf);
-        }else if(result != null){
+
+        }else if(result != requestStatus.getStatus()){
+
+            bookShelf.setBeforeStatus(result);
             bookShelService.updateStatus(bookShelf);
+
         }
+
         return ResponseEntity.ok(requestStatus.getStatus());
     }
 

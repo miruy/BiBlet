@@ -51,10 +51,11 @@ public class StarController {
 
             bookShelf.setUserNo(userNo);
             bookShelf.setIsbn(requestStar.getIsbn());
+            bookShelf.setStatus(2);
 
-            bookShelService.insertUserNoAndIsbn(bookShelf);
+            bookShelService.insertBookShelfForStar(bookShelf);
 
-            Long statusNo = bookShelService.selectStatusNo(bookShelf);
+            Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
 
             appraisalService.insertStar(statusNo, requestStar.getStar());
 
@@ -63,11 +64,11 @@ public class StarController {
            int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
             return ResponseEntity.ok(result);
 
-        }else if(userStar != null && userStar != requestStar.getStar()){
+        }else if(userStar != requestStar.getStar()){
 
             appraisal.setStar(requestStar.getStar());
             appraisal.setIsbn(requestStar.getIsbn());
-            appraisal.setId(requestStar.getId());
+            appraisal.setUserNo(userNo);
 
             appraisalService.updateStar(appraisal);
 

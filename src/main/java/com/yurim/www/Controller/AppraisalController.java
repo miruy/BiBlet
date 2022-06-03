@@ -33,8 +33,8 @@ public class AppraisalController {
      */
     @GetMapping("/read/{isbn}")
     public String detail(RequestLogin requestLogin, Model model, HttpSession session,
-                                       HttpServletResponse response, @RequestParam(required = false) String query,
-                                       @PathVariable String isbn) {
+                         HttpServletResponse response, @RequestParam(required = false) String query,
+                         @PathVariable String isbn) {
 
         // 해당 도서의 대한 평가 개수
         int commentCount = appraisalService.commentCount(isbn);
@@ -44,7 +44,7 @@ public class AppraisalController {
 
         // 해당 도서의 대한 별점평균
         Integer starAVG = appraisalService.starAVG(isbn);
-        if(starAVG == null){
+        if (starAVG == null) {
             starAVG = 0;
         }
 
@@ -61,17 +61,18 @@ public class AppraisalController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if(authInfo != null){
+        if (authInfo != null) {
 
             Long userNo = authInfo.getUserNo();
+
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
-            if(userStar == null){
+            if (userStar == null) {
                 userStar = 0;
 
                 model.addAttribute("userStar", userStar);
 
-            }else if(userStar != null){
+            } else if (userStar != null) {
                 String userStarMsg = null;
                 if (userStar == 1) {
                     userStarMsg = "싫어요";
@@ -85,11 +86,14 @@ public class AppraisalController {
                     userStarMsg = "최고예요!";
                 }
 
-                // 뷰에서 세션에 담긴 로그인 객체 사용하기 위함 (JSTL태그를 이용하여 SessionScope.id로 사용가능)
-//                session.setAttribute("id", authInfo.getId());
-
                 model.addAttribute("userStar", userStar);
                 model.addAttribute("userStarMsg", userStarMsg);
+            }
+
+            Integer userStatus = bookShelService.selectStatus(isbn, userNo);
+
+            if (userStatus != null) {
+                model.addAttribute("userStatus", userStatus);
             }
         }
 
@@ -123,13 +127,13 @@ public class AppraisalController {
         bookShelf.setUserNo(userNo);
         bookShelf.setIsbn(isbn);
 
-        Long statusNo = bookShelService.selectStatusNo(bookShelf);
+//        Long statusNo = bookShelService.selectStatusNo(bookShelf);
 
         appraisal.setComment(requestWriteComment.getComment());
         appraisal.setStartDate(requestWriteComment.getStartDate());
         appraisal.setEndDate(requestWriteComment.getEndDate());
         appraisal.setCoPrv(requestWriteComment.getCoPrv());
-        appraisal.setStatusNo(statusNo);
+//        appraisal.setStatusNo(statusNo);
 
         appraisalService.writeComment(appraisal);
 

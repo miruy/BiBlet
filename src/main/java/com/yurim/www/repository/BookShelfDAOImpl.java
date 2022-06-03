@@ -15,13 +15,13 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	private final SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public void insertUserNoAndIsbn(BookShelfDTO bookShelf){
-		sqlSessionTemplate.insert("insertUserNoAndIsbn", bookShelf);
+	public void insertBookShelfForStar(BookShelfDTO bookShelf){
+		sqlSessionTemplate.insert("insertBookShelfForStar", bookShelf);
 	}
 
 	@Override
-	public Long selectStatusNo(BookShelfDTO bookShelf){
-		return sqlSessionTemplate.selectOne("selectStatusNo", bookShelf);
+	public Long selectStatusNoForStar(BookShelfDTO bookShelf){
+		return sqlSessionTemplate.selectOne("selectStatusNoForStar", bookShelf);
 	}
 
 	@Override
