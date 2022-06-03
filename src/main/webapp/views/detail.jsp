@@ -126,20 +126,45 @@
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
                             <label class="swap mt-2">
-                                <input name="want" type="checkbox" <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
+                                <input name="want" type="checkbox"
+                                       <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                                 <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-gray-600 mb-2 ml-2">코멘트</span>
-                            <label for="my-modal-3"
-                                   class="btn modal-button bg-white border-white hover:bg-white hover:border-white text-3xl">&#x270F</label>
-                        </div>
+
+                        <c:if test="${!empty userStatusNo}">
+                            <div class="flex flex-col">
+                                <span class="text-gray-600 mb-2 ml-2">코멘트</span>
+                                <div class="dropdown">
+                                    <div tabindex="0"
+                                         class="btn m-1 bg-white border-white hover:bg-white hover:border-white text-3xl">
+                                        &#x270F
+                                    </div>
+                                    <ul tabindex="0"
+                                        class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
+                                        <li><a class="text-gray-600 hover:text-black justify-center items-center">코멘트
+                                            수정</a></li>
+                                        <li><a class="text-gray-600 hover:text-black justify-center items-center">코멘트
+                                            삭제</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${empty userStatusNo}">
+                            <div class="flex flex-col">
+                                <span class="text-gray-600 mb-2 ml-2">코멘트</span>
+                                <label for="my-modal-3"
+                                       class="btn modal-button bg-white border-white hover:bg-white hover:border-white text-3xl">&#x270F</label>
+                            </div>
+                        </c:if>
+
                         <div class="flex flex-col">
                             <span class="text-gray-600 mb-2">읽는중</span>
                             <label class="swap mt-2">
-                                <input name="read"  type="checkbox" <c:if test="${userStatus == 1}">checked="checked"</c:if>/>
+                                <input name="read" type="checkbox"
+                                       <c:if test="${userStatus == 1}">checked="checked"</c:if>/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
                                 <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                             </label>
@@ -153,13 +178,14 @@
     <%--코멘트 작성 폼--%>
     <input type="checkbox" id="my-modal-3" class="modal-toggle"/>
     <div class="modal bg-opacity-60 bg-gray-300">
-        <div class="modal-box relative space-y-2 h-5/6 w-11/12 max-w-3xl">
+        <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
             <form:form modelAttribute="requestWriteComment">
-                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <label for="my-modal-3"
+                       class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
                 <div id="title" class="text-gray-600 mb-3 text-center"></div>
-                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="12" id="comment" name="comment"
+                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="10" id="comment" name="comment"
                           placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
-                <div class="ml-56">
+                <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
                         <span> 독서 시작 날짜 : </span>
                         <div>
@@ -186,7 +212,8 @@
                     </div>
                 </div>
                 <div class="modal-action justify-center items-center">
-                    <input type="submit" for="my-modal-3" class="btn" value="저장"/>
+                    <input type="submit" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
+                           value="저장"/>
                 </div>
             </form:form>
         </div>
@@ -194,7 +221,9 @@
 
     <div class="bg-gray-100 pl-24 pr-24 pt-8 pb-8">
 
+
         <div id="writeCommentBtn" class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4"></div>
+        <div id="myComment" class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4"></div>
 
         <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white py-2">
             <div class="p-4 pr-8">
@@ -255,12 +284,6 @@
                                                 ${comment.endDate}
                                         </div>
                                     </div>
-                                    <div class="text-center text-gray-600">
-                                        <input class="btn btn-secondary my-2 my-sm-0 mr-2" type="button" value="삭제"
-                                               onclick='deleteBtn(${comment.appraisalNo})'/>
-                                        <input class="btn btn-secondary my-2 my-sm-0 mr-2" type='button' value='수정'
-                                               onclick='updateBtn(${comment.appraisalNo})'/>
-                                    </div>
                                 </div>
                             </c:forEach>
                         </c:if>
@@ -302,12 +325,26 @@
         $(document).ready(function () {
             $("#starMsgL").append("평가하기");
 
+            //로그인한 회원이 별점을 남겼다면
             <c:if test="${!empty userStarMsg}">
             $("#starMsgL").hide();
             </c:if>
 
+            //로그인한 회원이 읽고싶어요 / 읽는 중을 체크했다면
             <c:if test="${!empty userStatus}">
             $("#writeCommentBtn").show(writeCommentBtn());
+            </c:if>
+
+            //로그인한 회원이 코멘트를 남겼다면
+            <c:if test="${!empty userStatusNo}">
+                <c:forEach var="myComment" items="${myComment}">
+                    <c:if test="${!empty myComment.originPic}">
+                    $("#writeCommentBtn").hide();
+                    $("#myComment").show(
+                        myComment("${myComment.originPic}","${myComment.id}","${myComment.comment}")
+                    );
+                    </c:if>
+                </c:forEach>
             </c:if>
         });
 
@@ -379,13 +416,13 @@
                 contentType: 'application/json',
                 success: function (data) {
                     console.log("data : " + data);
-                    if(data == 0){
+                    if (data == 0) {
                         $("#writeCommentBtn").show(writeCommentBtn());
                         $("input[name=read]").prop("checked", false);
-                    }else if(data == 1){
+                    } else if (data == 1) {
                         $("#writeCommentBtn").show(writeCommentBtn());
                         $("input[name=want]").prop("checked", false);
-                    }else if(data == 2){
+                    } else if (data == 2) {
                         $("#writeCommentBtn").hide(writeCommentBtn());
                     }
                 }, error: function (data) {
@@ -437,6 +474,24 @@
             }
         }
 
+        function myComment(pic, id, comment) {
+
+            console.log(pic);
+            console.log(id);
+            console.log(comment);
+
+            $("#myComment").html(
+                '<div class="p-4 text-center flex flex-row space-x-4 justify-center items-center">' +
+                    '<span class="text-gray-600">' + pic + '</span>' +
+                    '<span class="text-gray-600 text-xl">' + id + '</span>' +
+                    '<span class="text-gray-600">' + comment + '</span>' +
+                    '<div class="pl-24 flex flex-row">'+
+                        '<div class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</div>'+
+                        '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
+                    '</div>'+
+                '</div>'
+            );
+        }
     </script>
 
 </section>

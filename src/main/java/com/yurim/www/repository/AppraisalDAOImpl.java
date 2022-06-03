@@ -63,4 +63,9 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public int deleteStar(HashMap<String, String> map){
 		return sqlSessionTemplate.delete("deleteStar", map);
 	}
+
+	@Override
+	public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf){
+		return sqlSessionTemplate.selectList("selectMyComment", bookShelf);
+	}
 }

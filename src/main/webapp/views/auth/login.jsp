@@ -36,13 +36,14 @@
                     </label>
                 </div>
 
-                <div class="form-control mt-6">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary text-gray-600 hover:text-black">Kakao Login</a>
+                <div class="form-control mt-1">
+                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Login</button>
                 </div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-black">Login</button>
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-accent text-gray-600 hover:text-black">Kakao Login</a>
                 </div>
+
                 <a href="/adimLogin" class="text-center">Administrator Login</a>
 
                 <a href="/findId" class="mt-3" >Forgot your id?</a>

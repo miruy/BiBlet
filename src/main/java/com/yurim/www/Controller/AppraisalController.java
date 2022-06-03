@@ -4,13 +4,10 @@ import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
-import com.yurim.www.service.BookShelService;
-import com.yurim.www.service.UserService;
+import com.yurim.www.service.BookShelfService;
 import com.yurim.www.vo.RequestLogin;
 import com.yurim.www.vo.RequestWriteComment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,7 +23,7 @@ import java.util.List;
 public class AppraisalController {
 
     private final AppraisalService appraisalService;
-    private final BookShelService bookShelService;
+    private final BookShelfService bookShelfService;
 
     /**
      * 도서 상세보기 - 해당 도서의 대한 모든 평가 추출
@@ -35,6 +32,8 @@ public class AppraisalController {
     public String detail(RequestLogin requestLogin, Model model, HttpSession session,
                          HttpServletResponse response, @RequestParam(required = false) String query,
                          @PathVariable String isbn) {
+
+        BookShelfDTO bookShelf = new BookShelfDTO();
 
         // 해당 도서의 대한 평가 개수
         int commentCount = appraisalService.commentCount(isbn);
@@ -61,10 +60,12 @@ public class AppraisalController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
+        //회원 로그인 시
         if (authInfo != null) {
 
             Long userNo = authInfo.getUserNo();
 
+            // 회원이 평가한 별점 뿌리기
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
             if (userStar == null) {
@@ -90,11 +91,26 @@ public class AppraisalController {
                 model.addAttribute("userStarMsg", userStarMsg);
             }
 
-            Integer userStatus = bookShelService.selectStatus(isbn, userNo);
+            //회원의 읽고싶어요, 읽는 중 뿌리기
+            Integer userStatus = bookShelfService.selectStatus(isbn, userNo);
 
             if (userStatus != null) {
                 model.addAttribute("userStatus", userStatus);
             }
+
+            //회원의 코멘트 뿌리기
+            bookShelf.setUserNo(userNo);
+            bookShelf.setIsbn(isbn);
+
+            Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
+
+            if(statusNo != null){
+                List<AppraisalDTO> myComment = appraisalService.selectMyComment(bookShelf);
+
+                model.addAttribute("myComment", myComment);
+                model.addAttribute("userStatusNo", statusNo);
+            }
+
         }
 
         return "detail";
@@ -127,15 +143,24 @@ public class AppraisalController {
         bookShelf.setUserNo(userNo);
         bookShelf.setIsbn(isbn);
 
-//        Long statusNo = bookShelService.selectStatusNo(bookShelf);
+        Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
 
-        appraisal.setComment(requestWriteComment.getComment());
-        appraisal.setStartDate(requestWriteComment.getStartDate());
-        appraisal.setEndDate(requestWriteComment.getEndDate());
-        appraisal.setCoPrv(requestWriteComment.getCoPrv());
-//        appraisal.setStatusNo(statusNo);
+        if(statusNo == null){
+            bookShelf.setStatus(3);
+            bookShelfService.insertStatus(bookShelf);
 
-        appraisalService.writeComment(appraisal);
+            Long statusNo2 = bookShelfService.selectStatusNoForComment(bookShelf);
+
+            appraisal.setComment(requestWriteComment.getComment());
+            appraisal.setStartDate(requestWriteComment.getStartDate());
+            appraisal.setEndDate(requestWriteComment.getEndDate());
+            appraisal.setCoPrv(requestWriteComment.getCoPrv());
+            appraisal.setStatusNo(statusNo2);
+
+            appraisalService.writeComment(appraisal);
+        } else if (statusNo != null) {
+//            비밀번호 확인 후 수정
+        }
 
         return "redirect:/read/" + isbn;
     }

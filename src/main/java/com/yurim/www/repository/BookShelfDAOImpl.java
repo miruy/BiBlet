@@ -1,5 +1,6 @@
 package com.yurim.www.repository;
 
+import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +14,6 @@ import java.util.HashMap;
 public class BookShelfDAOImpl implements BookShelfDAO {
 
 	private final SqlSessionTemplate sqlSessionTemplate;
-
-	@Override
-	public void insertBookShelfForStar(BookShelfDTO bookShelf){
-		sqlSessionTemplate.insert("insertBookShelfForStar", bookShelf);
-	}
 
 	@Override
 	public Long selectStatusNoForStar(BookShelfDTO bookShelf){
@@ -42,5 +38,9 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	@Override
 	public void updateStatus(BookShelfDTO bookShelf){
 		sqlSessionTemplate.update("updateStatus", bookShelf);
+	}
+	@Override
+	public Long selectStatusNoForComment(BookShelfDTO bookShelf) {
+		return sqlSessionTemplate.selectOne("selectStatusNoForComment", bookShelf);
 	}
 }

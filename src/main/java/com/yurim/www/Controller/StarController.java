@@ -4,7 +4,7 @@ import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
-import com.yurim.www.service.BookShelService;
+import com.yurim.www.service.BookShelfService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestStar;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class StarController {
 
     private final AppraisalService appraisalService;
     private final UserService userService;
-    private final BookShelService bookShelService;
+    private final BookShelfService bookShelService;
 
     @ResponseBody
     @PostMapping("/star")
@@ -53,7 +53,7 @@ public class StarController {
             bookShelf.setIsbn(requestStar.getIsbn());
             bookShelf.setStatus(2);
 
-            bookShelService.insertBookShelfForStar(bookShelf);
+            bookShelService.insertStatus(bookShelf);
 
             Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
 

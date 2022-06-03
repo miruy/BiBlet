@@ -46,13 +46,14 @@
                     <label class="text-center"><form:errors path="email" /></label>
                 </div>
 
-                <div class="form-control mt-6">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary text-gray-600 hover:text-black">Kakao Login</a>
-                </div>
-
                 <div class="form-control mt-1">
                     <button type="submit" class="btn btn-secondary text-gray-600 hover:text-black">Sign Up</button>
                 </div>
+
+                <div class="form-control mt-1">
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary text-gray-600 hover:text-black">Kakao Login</a>
+                </div>
+
                 <a href="/adimSignup" class="text-center text-gray-300">Administrator SignUp</a>
             </form:form>
         </div>

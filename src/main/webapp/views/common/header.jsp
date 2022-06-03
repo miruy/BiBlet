@@ -5,7 +5,7 @@
 <%
     UserDTO authInfo = (UserDTO) request.getSession().getAttribute("authInfo");
 %>
-<html data-theme="blueTheme">
+<html data-theme="purpleTheme">
     <head>
         <%-- jqueryCDN --%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -14,9 +14,9 @@
         <title>BiBlet</title>
             <style type="text/css">
                 a{color: #4b5563;}
-                a:hover{color: #2563eb;}
+                a:hover{color: #7e22ce;}
                 svg{color: #4b5563;}
-                svg:hover{color: #2563eb;}
+                svg:hover{color: #7e22ce;}
                 #searchBook:hover{transform: scale(1.1);}
             </style>
     </head>
@@ -41,7 +41,7 @@
             </div>
             <div class="navbar-end">
                 <form action="/search" class="mb-0 flex items-center">
-                    <input type="text" name="query" id="query" value="${query}" placeholder="Search" class="input input-ghost my-[1.2rem] h-[1.5rem]" />
+                    <input type="text" name="query" id="query" value="${query}" placeholder="Search" class="input border-purple-700 my-[1.2rem] h-[1.5rem]" />
                     <button class="px-[1.3rem]" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </button>

@@ -9,14 +9,9 @@ import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
-public class BookShelfServiceImpl implements BookShelService{
+public class BookShelfServiceImpl implements BookShelfService {
 
     private final BookShelfDAO bookShelfDAO;
-
-    @Override
-    public void insertBookShelfForStar(BookShelfDTO bookShelf){
-       bookShelfDAO.insertBookShelfForStar(bookShelf);
-    }
 
     @Override
     public Long selectStatusNoForStar(BookShelfDTO bookShelf){
@@ -47,5 +42,10 @@ public class BookShelfServiceImpl implements BookShelService{
     @Override
     public void updateStatus(BookShelfDTO bookShelf){
         bookShelfDAO.updateStatus(bookShelf);
+    }
+
+    @Override
+    public Long selectStatusNoForComment(BookShelfDTO bookShelf){
+        return bookShelfDAO.selectStatusNoForComment(bookShelf);
     }
 }

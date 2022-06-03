@@ -1,12 +1,9 @@
 package com.yurim.www.Controller;
 
-import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
-import com.yurim.www.service.AppraisalService;
-import com.yurim.www.service.BookShelService;
+import com.yurim.www.service.BookShelfService;
 import com.yurim.www.service.UserService;
-import com.yurim.www.vo.RequestStar;
 import com.yurim.www.vo.RequestStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor
 public class StatusController {
-    private final BookShelService bookShelService;
+    private final BookShelfService bookShelService;
     private final UserService userService;
 
     @ResponseBody

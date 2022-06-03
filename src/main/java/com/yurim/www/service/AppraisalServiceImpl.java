@@ -79,4 +79,8 @@ public class AppraisalServiceImpl implements AppraisalService {
         return appraisalDAO.deleteStar(map);
     }
 
+    @Override
+    public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf){
+        return appraisalDAO.selectMyComment(bookShelf);
+    }
 }

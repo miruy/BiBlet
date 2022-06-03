@@ -70,4 +70,15 @@
             INNER JOIN user ON user.user_no = bookshelf.user_no
         WHERE user.user_no=#{userNo} AND bookshelf.isbn=#{isbn} AND star=#{star}
     </delete>
+
+    <select id="selectMyComment" parameterType="BookShelfDTO" resultType="AppraisalDTO">
+        SELECT
+            appraisal.comment,
+            user.id,
+            user.origin_pic
+        FROM bookshelf
+            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN user ON bookshelf.user_no = user.user_no
+        WHERE bookshelf.isbn=#{isbn} AND appraisal.co_prv='공개' AND user.user_no=#{userNo}
+    </select>
 </mapper>
