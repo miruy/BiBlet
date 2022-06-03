@@ -10,12 +10,19 @@
         INSERT INTO bookshelf(status, isbn, user_no) VALUES(#{status}, #{isbn}, #{userNo})
     </insert>
 
-    <select id="selectStatusNo" parameterType="BookShelfDTO" resultType="Long">
-        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
+    <select id="selectStatus" parameterType="HashMap" resultType="Integer">
+        SELECT status FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
     </select>
 
     <delete id="deleteStatus" parameterType="BookShelfDTO">
         DELETE FROM bookshelf WHERE user_no=#{userNo} AND isbn=#{isbn} AND status=#{status}
     </delete>
 
+    <select id="selectStatusNo" parameterType="BookShelfDTO" resultType="Long">
+        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status IS NULL
+    </select>
+
+    <update id="updateStatus" parameterType="bookShelfDTO">
+        UPDATE bookshelf SET status=#{status} WHERE isbn=#{isbn} AND user_no=#{userNo};
+    </update>
 </mapper>

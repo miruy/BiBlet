@@ -33,7 +33,7 @@
         UPDATE user SET auth_key=#{authKey} WHERE email=#{email}
     </update>
 
-    <update id="updateStatus" parameterType="HashMap">
+    <update id="updateAuthStatus" parameterType="HashMap">
         UPDATE user SET auth_status=1 WHERE auth_key=#{authKey} and email=#{email}
     </update>
 

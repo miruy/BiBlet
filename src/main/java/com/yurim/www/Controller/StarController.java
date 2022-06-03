@@ -61,7 +61,6 @@ public class StarController {
         }else if(userStar == requestStar.getStar()){
 
            int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
-            System.out.println("result" + result);
             return ResponseEntity.ok(result);
 
         }else if(userStar != null && userStar != requestStar.getStar()){
@@ -96,26 +95,4 @@ public class StarController {
 
         return ResponseEntity.ok(map);
     }
-
-//    @ResponseBody
-//    @PostMapping("/delete")
-//    public ResponseEntity<?> deleteStar(@RequestBody RequestStar requestStar, Errors errors,
-//                                        HttpSession session, HttpServletResponse response) {
-//
-//        BookShelfDTO bookShelf = new BookShelfDTO();
-//        AppraisalDTO appraisal = new AppraisalDTO();
-//
-//        /**
-//         * 에러시 반환
-//         */
-//        if (errors.hasErrors()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//
-//        UserDTO user = userService.selectUserInfoById(requestStar.getId());
-//
-//
-//
-//        return ResponseEntity.ok(map);
-//    }
 }

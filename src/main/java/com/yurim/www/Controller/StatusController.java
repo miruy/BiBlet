@@ -27,7 +27,7 @@ public class StatusController {
     private final UserService userService;
 
     @ResponseBody
-    @PostMapping("/insert")
+    @PostMapping("/insertOrUpdate")
     public ResponseEntity insertStatus(@RequestBody RequestStatus requestStatus, Errors errors,
                                      HttpSession session, HttpServletResponse response) {
 
@@ -40,15 +40,22 @@ public class StatusController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        UserDTO user = userService.selectUserInfoById(requestStatus.getId());
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+        Long userNo = authInfo.getUserNo();
 
-        bookShelf.setUserNo(user.getUserNo());
+        bookShelf.setUserNo(userNo);
         bookShelf.setIsbn(requestStatus.getIsbn());
         bookShelf.setStatus(requestStatus.getStatus());
-        bookShelService.insertStatus(bookShelf);
 
+        Integer result = bookShelService.selectStatus(requestStatus.getIsbn(), userNo);
 
-        return ResponseEntity.ok("등록 성공");
+        if(result == null){
+            bookShelService.insertStatus(bookShelf);
+        }else if(result != null){
+            bookShelService.updateStatus(bookShelf);
+        }
+        return ResponseEntity.ok(requestStatus.getStatus());
     }
 
     @ResponseBody
@@ -64,13 +71,15 @@ public class StatusController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        UserDTO user = userService.selectUserInfoById(requestStatus.getId());
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+        Long userNo = authInfo.getUserNo();
 
-        bookShelf.setUserNo(user.getUserNo());
+        bookShelf.setUserNo(userNo);
         bookShelf.setIsbn(requestStatus.getIsbn());
         bookShelf.setStatus(requestStatus.getStatus());
         bookShelService.deleteStatus(bookShelf);
 
-        return ResponseEntity.ok("삭제 성공");
+        return ResponseEntity.ok(2);
     }
 }

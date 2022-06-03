@@ -81,7 +81,7 @@ public class UserSignupController {
     @GetMapping("/emailCheck")
     public String emailCheck(@ModelAttribute("requestSignup") RequestSignup requestSignup) {
         String authKey = userService.selectKey(requestSignup.getEmail());
-        userService.updateStatus(requestSignup.getEmail(), authKey);
+        userService.updateAuthStatus(requestSignup.getEmail(), authKey);
         return "check/emailCheck";
     }
 }

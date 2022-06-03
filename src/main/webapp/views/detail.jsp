@@ -126,7 +126,7 @@
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
                             <label class="swap mt-2">
-                                <input type="checkbox"/>
+                                <input name="want" type="checkbox"/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                                 <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
@@ -139,7 +139,7 @@
                         <div class="flex flex-col">
                             <span class="text-gray-600 mb-2">읽는중</span>
                             <label class="swap mt-2">
-                                <input type="checkbox"/>
+                                <input name="read"  type="checkbox"/>
                                 <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
                                 <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
                             </label>
@@ -363,38 +363,14 @@
             });
         }
 
-        //자신의 별점 중복클릭 시 별점 삭제
-        function deleteStar() {
-            let id = "${sessionScope.id}";
-            console.log(id)
-            let isbn = "${isbn}";
-            console.log(isbn)
 
-            $.ajax({
-                url: '<c:url value="/delete"/>',
-                type: 'POST',
-                data: JSON.stringify({
-                    "isbn": isbn,
-                    "id": id
-                }),
-                contentType: 'application/json',
-                success: function (data) {
-                    console.log(data)
-                }, error: function (data) {
-                    console.log(data)
-                }
-
-            });
-        }
-
-
-        // 읽고싶어요, 읽는중 등록
+        // 읽고싶어요, 읽는중 등록 또는 수정
         function insertStatus(status) {
             let id = "${sessionScope.id}";
             let isbn = "${isbn}";
 
             $.ajax({
-                url: '<c:url value="/insert"/>',
+                url: '<c:url value="/insertOrUpdate"/>',
                 type: 'POST',
                 data: JSON.stringify({
                     "status": status,
@@ -404,7 +380,15 @@
                 contentType: 'application/json',
                 success: function (data) {
                     console.log("data : " + data);
-                    $("#writeCommentBtn").show(writeCommentBtn());
+                    if(data == 0){
+                        $("#writeCommentBtn").show(writeCommentBtn());
+                        $("input[name=read]").prop("checked", false);
+                    }else if(data == 1){
+                        $("#writeCommentBtn").show(writeCommentBtn());
+                        $("input[name=want]").prop("checked", false);
+                    }else if(data == 2){
+                        $("#writeCommentBtn").hide(writeCommentBtn());
+                    }
                 }, error: function (data) {
                     console.log("에러");
                 }

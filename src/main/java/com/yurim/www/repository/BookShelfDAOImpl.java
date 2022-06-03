@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 @Repository
 @RequiredArgsConstructor
 public class BookShelfDAOImpl implements BookShelfDAO {
@@ -32,4 +34,13 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 		sqlSessionTemplate.delete("deleteStatus", bookShelf);
 	}
 
+	@Override
+	public Integer selectStatus(HashMap<String, String> map){
+		return sqlSessionTemplate.selectOne("selectStatus", map);
+	}
+
+	@Override
+	public void updateStatus(BookShelfDTO bookShelf){
+		sqlSessionTemplate.update("updateStatus", bookShelf);
+	}
 }

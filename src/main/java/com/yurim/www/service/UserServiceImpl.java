@@ -55,11 +55,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateStatus(String email, String authKey) {
+    public void updateAuthStatus(String email, String authKey) {
         HashMap<String, String> map = new HashMap<>();
         map.put("email", email);
         map.put("authKey", authKey);
-        userDAO.updateStatus(map);
+        userDAO.updateAuthStatus(map);
     }
 
     @Override

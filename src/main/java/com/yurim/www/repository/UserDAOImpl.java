@@ -41,8 +41,8 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public void updateStatus(HashMap<String, String> map) {
-        sqlSessionTemplate.update("updateStatus", map);
+    public void updateAuthStatus(HashMap<String, String> map) {
+        sqlSessionTemplate.update("updateAuthStatus", map);
     }
 
     @Override

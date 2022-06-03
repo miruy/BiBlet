@@ -86,7 +86,7 @@ public class AppraisalController {
                 }
 
                 // 뷰에서 세션에 담긴 로그인 객체 사용하기 위함 (JSTL태그를 이용하여 SessionScope.id로 사용가능)
-                session.setAttribute("id", authInfo.getId());
+//                session.setAttribute("id", authInfo.getId());
 
                 model.addAttribute("userStar", userStar);
                 model.addAttribute("userStarMsg", userStarMsg);

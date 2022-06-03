@@ -5,6 +5,8 @@ import com.yurim.www.repository.BookShelfDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 public class BookShelfServiceImpl implements BookShelService{
@@ -29,5 +31,21 @@ public class BookShelfServiceImpl implements BookShelService{
     @Override
     public void deleteStatus(BookShelfDTO bookShelf){
         bookShelfDAO.deleteStatus(bookShelf);
+    }
+
+    @Override
+    public Integer selectStatus(String isbn, Long userNo){
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+
+        return bookShelfDAO.selectStatus(map);
+    }
+
+    @Override
+    public void updateStatus(BookShelfDTO bookShelf){
+        bookShelfDAO.updateStatus(bookShelf);
     }
 }
