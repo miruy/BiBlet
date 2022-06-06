@@ -47,11 +47,11 @@
                 </div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-black">Sign Up</button>
+                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Sign Up</button>
                 </div>
 
                 <div class="form-control mt-1">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-primary text-gray-600 hover:text-black">Kakao Login</a>
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-accent text-gray-600 hover:text-black">Kakao Login</a>
                 </div>
 
                 <a href="/adimSignup" class="text-center text-gray-300">Administrator SignUp</a>

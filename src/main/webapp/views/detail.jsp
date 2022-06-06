@@ -143,9 +143,9 @@
                                     </div>
                                     <ul tabindex="0"
                                         class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
-                                        <li><a class="text-gray-600 hover:text-black justify-center items-center">코멘트
+                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
                                             수정</a></li>
-                                        <li><a class="text-gray-600 hover:text-black justify-center items-center">코멘트
+                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
                                             삭제</a></li>
                                     </ul>
                                 </div>
