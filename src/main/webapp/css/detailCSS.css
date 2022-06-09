@@ -19,3 +19,15 @@
 .s5:hover ~ label {
 	color: gold;
 }
+
+.content {
+	border: none;
+}
+
+.content:focus {
+	outline: none;
+}
+
+.content {
+	resize: none;
+}

@@ -128,7 +128,7 @@
                             <label class="swap mt-2">
                                 <input name="want" type="checkbox"
                                        <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
-                                <div id="wantIcon" class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
+                                <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                                 <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
                         </div>
@@ -181,7 +181,7 @@
                 <label for="my-modal-3"
                        class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
                 <div id="title" class="text-gray-600 mb-3 text-center"></div>
-                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="10" id="comment" name="comment"
+                <textarea class="content w-full text-gray-600" rows="13" id="comment" name="comment"
                           placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
                 <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
@@ -210,7 +210,7 @@
                     </div>
                 </div>
                 <div class="modal-action justify-center items-center">
-                    <input type="submit" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
+                    <input type="submit" id="submit1" onsubmit="return false" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
                            value="저장"/>
                 </div>
             </form:form>
@@ -219,46 +219,48 @@
 
     <%--코멘트 수정 폼--%>
     <input type="checkbox" id="modifyComment" class="modal-toggle"/>
-    <div class="modal bg-opacity-60 bg-gray-300">
-        <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
-            <form:form modelAttribute="requestWriteComment">
-                <label for="my-modal-3"
-                       class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
-                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="10" id="comment" name="comment"
-                          placeholder="수정수정"></textarea>
-                <div class="ml-56 mt-2">
-                    <div class="flex flex-row text-gray-600 space-x-2">
-                        <span> 독서 시작 날짜 : </span>
-                        <div>
-                            <input type="date" id="startDate" name="startDate" class="text-gray-400"/>
+    <c:forEach var="myComment" items="${myComment}">
+        <div class="modal bg-opacity-60 bg-gray-300">
+            <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
+                <form:form modelAttribute="requestModifyComment">
+                    <label for="modifyComment"
+                           class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
+                    <textarea class="content w-full text-gray-600 mt-6" rows="14" id="comment_m" name="comment"
+                              placeholder="${myComment.comment}"></textarea>
+                    <div class="ml-56 mt-2">
+                        <div class="flex flex-row text-gray-600 space-x-2">
+                            <span> 독서 시작 날짜 : </span>
+                            <div>
+                                <input type="date" id="startDate_m" name="startDate" class="text-gray-400"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-row text-gray-600 space-x-2">
+                            <span> 독서 완료 날짜 : </span>
+                            <div>
+                                <input type="date" id="endDate_m" name="endDate" class="text-gray-400"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-row text-gray-600 space-x-2">
+                            <span> 공개 여부 :</span>
+                            <span>공개 </span>
+                            <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY_m"
+                                   name="coPrv"
+                                   value="공개" onclick='checkOnlyOne(this)'/>
+                            <span>비공개 </span>
+                            <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN_m"
+                                   name="coPrv"
+                                   value="비공개"
+                                   onclick='checkOnlyOne(this)'/>
                         </div>
                     </div>
-                    <div class="flex flex-row text-gray-600 space-x-2">
-                        <span> 독서 완료 날짜 : </span>
-                        <div>
-                            <input type="date" id="endDate" name="endDate" class="text-gray-400"/>
-                        </div>
+                    <div class="modal-action justify-center items-center">
+                        <input type="submit" for="modifyComment" class="btn btn-secondary text-gray-600 hover:text-white"
+                               value="저장"/>
                     </div>
-                    <div class="flex flex-row text-gray-600 space-x-2">
-                        <span> 공개 여부 :</span>
-                        <span>공개 </span>
-                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY"
-                               name="coPrv"
-                               value="공개" onclick='checkOnlyOne(this)'/>
-                        <span>비공개 </span>
-                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN"
-                               name="coPrv"
-                               value="비공개"
-                               onclick='checkOnlyOne(this)'/>
-                    </div>
-                </div>
-                <div class="modal-action justify-center items-center">
-                    <input type="submit" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
-                           value="저장"/>
-                </div>
-            </form:form>
+                </form:form>
+            </div>
         </div>
-    </div>
+    </c:forEach>
 
     <div class="bg-gray-100 pl-24 pr-24 pt-8 pb-8">
 
@@ -387,7 +389,36 @@
                     </c:if>
                 </c:forEach>
             </c:if>
+
+
         });
+
+        $("#submit1").click(function(){
+            let date = new Date();
+            let startDate = document.getElementById("startDate").value;
+            let endDate = document.getElementById("endDate").value;
+
+            function getFormatDate(date){
+                var year = date.getFullYear();              //yyyy
+                var month = (1 + date.getMonth());          //M
+                month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+                var day = date.getDate();                   //d
+                day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+                return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+            }
+
+            let maxDate = getFormatDate(date);
+
+            if (startDate > maxDate) {
+                alert("[독서 시작 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                return false;
+            }else if(endDate > maxDate){
+                alert("[독서 완료 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                return false;
+            }
+        });
+
+
 
 
         // 별 마우스 오버 starMsgUL
@@ -537,8 +568,8 @@
                     '<span class="text-gray-600">' + comment + '</span>' +
                     '<span class="text-gray-600">' + startDate + '</span>' +
                     '<span class="text-gray-600">' + endDate + '</span>' +
-                    '<div class="pl-24 flex flex-row">'+
-                        '<div class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</div>'+
+                    '<label class="pl-24 flex flex-row">'+
+                        '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>'+
                         '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
                     '</div>'+
                 '</div>'
