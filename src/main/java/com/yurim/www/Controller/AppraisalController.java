@@ -6,8 +6,12 @@ import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
 import com.yurim.www.service.BookShelfService;
 import com.yurim.www.vo.RequestLogin;
+import com.yurim.www.vo.RequestStatus;
+import com.yurim.www.vo.RequestUpdateComment;
 import com.yurim.www.vo.RequestWriteComment;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -104,7 +108,7 @@ public class AppraisalController {
 
             Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
 
-            if(statusNo != null){
+            if (statusNo != null) {
                 List<AppraisalDTO> myComment = appraisalService.selectMyComment(bookShelf);
 
                 model.addAttribute("myComment", myComment);
@@ -145,7 +149,7 @@ public class AppraisalController {
 
         Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
 
-        if(statusNo == null){
+        if (statusNo == null) {
             bookShelf.setStatus(3);
             bookShelfService.insertStatus(bookShelf);
 
@@ -158,10 +162,42 @@ public class AppraisalController {
             appraisal.setStatusNo(statusNo2);
 
             appraisalService.writeComment(appraisal);
-        } else if (statusNo != null) {
-//            비밀번호 확인 후 수정
         }
 
         return "redirect:/read/" + isbn;
     }
+
+    // 평가 수정
+    @ResponseBody
+    @PostMapping("/updateComment")
+    private ResponseEntity updateComment(@RequestBody RequestUpdateComment requestUpdateComment, Errors errors,
+                                         HttpSession session, HttpServletResponse response) {
+
+        AppraisalDTO appraisal = new AppraisalDTO();
+
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        /**
+         * Long userNo로 변환
+         */
+        Long userNo = authInfo.getUserNo();
+
+        appraisal.setComment(requestUpdateComment.getComment());
+        appraisal.setStartDate(requestUpdateComment.getStartDate());
+        appraisal.setEndDate(requestUpdateComment.getEndDate());
+        appraisal.setCoPrv(requestUpdateComment.getCoPrv());
+
+        appraisal.setIsbn(requestUpdateComment.getIsbn());
+        appraisal.setUserNo(userNo);
+
+        appraisalService.updateComment(appraisal);
+
+        return ResponseEntity.ok("코멘트 수정 성공");
+    }
+
 }

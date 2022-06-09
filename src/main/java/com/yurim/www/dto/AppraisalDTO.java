@@ -24,17 +24,11 @@ public class AppraisalDTO {
     private Long statusNo;
 
     /**
-     * + requestCommentForDetail
+     * + requestCommentForDetail / requestWriteComment
      */
     private Long userNo;
     private String id;
     private String originPic;
     private String pass;
     private String isbn;
-
-    /**
-     * + requestWriteComment
-     */
-    private String query;
-    private int option;
 }

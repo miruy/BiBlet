@@ -222,7 +222,6 @@
     <c:forEach var="myComment" items="${myComment}">
         <div class="modal bg-opacity-60 bg-gray-300">
             <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
-                <form:form modelAttribute="requestModifyComment">
                     <label for="modifyComment"
                            class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
                     <textarea class="content w-full text-gray-600 mt-6" rows="14" id="comment_m" name="comment"
@@ -243,21 +242,19 @@
                         <div class="flex flex-row text-gray-600 space-x-2">
                             <span> 공개 여부 :</span>
                             <span>공개 </span>
-                            <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY_m"
+                            <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY_m"
                                    name="coPrv"
                                    value="공개" onclick='checkOnlyOne(this)'/>
                             <span>비공개 </span>
-                            <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN_m"
+                            <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN_m"
                                    name="coPrv"
                                    value="비공개"
                                    onclick='checkOnlyOne(this)'/>
                         </div>
                     </div>
                     <div class="modal-action justify-center items-center">
-                        <input type="submit" for="modifyComment" class="btn btn-secondary text-gray-600 hover:text-white"
-                               value="저장"/>
+                        <button id="submit2" class="btn btn-secondary text-gray-600 hover:text-white" >저장</button>
                     </div>
-                </form:form>
             </div>
         </div>
     </c:forEach>
@@ -391,8 +388,9 @@
             </c:if>
 
 
-        });
+        }); //reload 끝
 
+        // 코멘트 작성 시 오늘 날짜 이후 선택 제한
         $("#submit1").click(function(){
             let date = new Date();
             let startDate = document.getElementById("startDate").value;
@@ -418,6 +416,66 @@
             }
         });
 
+        // 코멘트 수정 시 오늘 날짜 이후 선택 제한
+        $("#submit2").click(function(){
+            let date = new Date();
+            let startDate = document.getElementById("startDate_m").value;
+            let endDate = document.getElementById("endDate_m").value;
+
+            function getFormatDate(date){
+                var year = date.getFullYear();              //yyyy
+                var month = (1 + date.getMonth());          //M
+                month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+                var day = date.getDate();                   //d
+                day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+                return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+            }
+
+            let maxDate = getFormatDate(date);
+
+            if (startDate > maxDate) {
+                alert("[독서 시작 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                return false;
+            }else if(endDate > maxDate){
+                alert("[독서 완료 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                return false;
+            }
+
+            //코멘트 수정
+            updateComment()
+        });
+
+        // 코멘트 수정
+        function updateComment() {
+            let isbn = "${isbn}";
+            let startDate_m = $("#startDate_m").val();
+            let endDate_m = $("#endDate_m").val();
+            let comment_m = $("#comment_m").val();
+            let coPrv_m = $(".coPrvM").val();
+
+            console.log(isbn);
+            console.log(comment_m);
+
+            $.ajax({
+                url: '<c:url value="/updateComment"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "comment": comment_m,
+                    "startDate": startDate_m,
+                    "endDate": endDate_m,
+                    "coPrv": coPrv_m,
+                    "isbn": isbn
+                }),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    location.reload();
+                }, error: function (map) {
+                    console.log("에러");
+                }
+
+            });
+        }
 
 
 
@@ -575,6 +633,7 @@
                 '</div>'
             );
         }
+
     </script>
 
 </section>

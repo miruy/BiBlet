@@ -80,7 +80,12 @@ public class AppraisalServiceImpl implements AppraisalService {
     }
 
     @Override
-    public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf){
+    public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf) {
         return appraisalDAO.selectMyComment(bookShelf);
+    }
+
+    @Override
+    public void updateComment(AppraisalDTO appraisal) {
+        appraisalDAO.updateComment(appraisal);
     }
 }

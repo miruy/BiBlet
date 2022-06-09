@@ -19,4 +19,5 @@ public interface AppraisalService {
     void updateStar(AppraisalDTO appraisal);
     int deleteStar(Long userNo, String isbn, int star);
     List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf);
+    void updateComment(AppraisalDTO appraisal);
 }

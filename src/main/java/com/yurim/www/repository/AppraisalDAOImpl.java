@@ -68,4 +68,9 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf){
 		return sqlSessionTemplate.selectList("selectMyComment", bookShelf);
 	}
+
+	@Override
+	public void updateComment(AppraisalDTO appraisal){
+		sqlSessionTemplate.update("updateComment", appraisal);
+	}
 }
