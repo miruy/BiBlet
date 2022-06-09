@@ -74,6 +74,8 @@
     <select id="selectMyComment" parameterType="BookShelfDTO" resultType="AppraisalDTO">
         SELECT
             appraisal.comment,
+            appraisal.start_date,
+            appraisal.end_date,
             user.id,
             user.origin_pic
         FROM bookshelf

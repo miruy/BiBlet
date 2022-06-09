@@ -128,7 +128,7 @@
                             <label class="swap mt-2">
                                 <input name="want" type="checkbox"
                                        <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
-                                <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
+                                <div id="wantIcon" class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
                                 <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
                             </label>
                         </div>
@@ -143,10 +143,8 @@
                                     </div>
                                     <ul tabindex="0"
                                         class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
-                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
-                                            수정</a></li>
-                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
-                                            삭제</a></li>
+                                        <li><label for="modifyComment" class="text-gray-600 hover:text-white justify-center items-center">코멘트 수정</label></li>
+                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트 삭제</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -185,6 +183,49 @@
                 <div id="title" class="text-gray-600 mb-3 text-center"></div>
                 <textarea class="textarea textarea-secondary w-full text-gray-600" rows="10" id="comment" name="comment"
                           placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
+                <div class="ml-56 mt-2">
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 시작 날짜 : </span>
+                        <div>
+                            <input type="date" id="startDate" name="startDate" class="text-gray-400"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 완료 날짜 : </span>
+                        <div>
+                            <input type="date" id="endDate" name="endDate" class="text-gray-400"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 공개 여부 :</span>
+                        <span>공개 </span>
+                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY"
+                               name="coPrv"
+                               value="공개" onclick='checkOnlyOne(this)'/>
+                        <span>비공개 </span>
+                        <input class="checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN"
+                               name="coPrv"
+                               value="비공개"
+                               onclick='checkOnlyOne(this)'/>
+                    </div>
+                </div>
+                <div class="modal-action justify-center items-center">
+                    <input type="submit" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
+                           value="저장"/>
+                </div>
+            </form:form>
+        </div>
+    </div>
+
+    <%--코멘트 수정 폼--%>
+    <input type="checkbox" id="modifyComment" class="modal-toggle"/>
+    <div class="modal bg-opacity-60 bg-gray-300">
+        <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
+            <form:form modelAttribute="requestWriteComment">
+                <label for="my-modal-3"
+                       class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
+                <textarea class="textarea textarea-secondary w-full text-gray-600" rows="10" id="comment" name="comment"
+                          placeholder="수정수정"></textarea>
                 <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
                         <span> 독서 시작 날짜 : </span>
@@ -341,7 +382,7 @@
                     <c:if test="${!empty myComment.originPic}">
                     $("#writeCommentBtn").hide();
                     $("#myComment").show(
-                        myComment("${myComment.originPic}","${myComment.id}","${myComment.comment}")
+                        myComment("${myComment.originPic}","${myComment.startDate}","${myComment.endDate}","${myComment.id}","${myComment.comment}")
                     );
                     </c:if>
                 </c:forEach>
@@ -404,6 +445,7 @@
 
         // 읽고싶어요, 읽는중 등록 또는 수정
         function insertStatus(status) {
+            let userStatusNo = "${userStatusNo}";
             let isbn = "${isbn}";
 
             $.ajax({
@@ -416,6 +458,12 @@
                 contentType: 'application/json',
                 success: function (data) {
                     console.log("data : " + data);
+
+                    if(userStatusNo.length != 0){
+                        $("#writeCommentBtn").off(writeCommentBtn());
+                        return;
+                    }
+
                     if (data == 0) {
                         $("#writeCommentBtn").show(writeCommentBtn());
                         $("input[name=read]").prop("checked", false);
@@ -474,17 +522,21 @@
             }
         }
 
-        function myComment(pic, id, comment) {
+        function myComment(pic, startDate, endDate, id, comment) {
 
             console.log(pic);
             console.log(id);
             console.log(comment);
+            console.log(startDate);
+            console.log(endDate);
 
             $("#myComment").html(
                 '<div class="p-4 text-center flex flex-row space-x-4 justify-center items-center">' +
                     '<span class="text-gray-600">' + pic + '</span>' +
                     '<span class="text-gray-600 text-xl">' + id + '</span>' +
                     '<span class="text-gray-600">' + comment + '</span>' +
+                    '<span class="text-gray-600">' + startDate + '</span>' +
+                    '<span class="text-gray-600">' + endDate + '</span>' +
                     '<div class="pl-24 flex flex-row">'+
                         '<div class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</div>'+
                         '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
