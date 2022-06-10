@@ -31,35 +31,32 @@
             color: #7e22ce;
         }
 
-        #searchBook:hover {
-            transform: scale(1.1);
-        }
     </style>
 </head>
 
 <body class="flex flex-col min-h-screen">
-<header class="navbar bg-base-100 p-0 fixed inset-x-0 top-0 z-50">
+<header class="navbar bg-base-100 fixed inset-x-0 top-0 z-50 px-8">
     <div class="navbar-start">
         <ul class="flex items-center">
-            <a href="/" class="normal-case text-xl border-0 hover:text-[1.5rem] mx-[1.3rem]">BiBlet</a>
+            <a href="/" class="text-gray-800"><biblet class="normal-case text-2xl border-0 mx-[1.3rem]">BiBlet</biblet></a>
             <c:if test="${empty authInfo}">
-                <li class="mx-[1.3rem]"><a href="/signup">Sign Up</a></li>
-                <li class="mx-[1.3rem]"><a href="/login">Login</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/signup">Sign Up</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/login">Login</a></li>
             </c:if>
             <c:if test="${!empty authInfo}">
-                <li class="mx-[1.3rem]"><a href="/myPage">마이페이지</a></li>
-                <li class="mx-[1.3rem]"><a href="/logout">로그아웃</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/myPage">마이페이지</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/logout">로그아웃</a></li>
             </c:if>
-            <li class="mx-[1.3rem]"><a href="/notice">Notice</a></li>
+            <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/notice">Notice</a></li>
         </ul>
     </div>
     <div class="navbar-center">
     </div>
     <div class="navbar-end">
         <form action="/search" class="mb-0 flex items-center">
-            <input type="text" name="query" id="query" value="${query}" placeholder="Search"
+            <input type="text" name="query" id="query" value="${query}" placeholder="search"
                    class="input border-purple-700 my-[1.2rem] h-[1.5rem]"/>
-            <button class="px-[1.3rem]" type="submit">
+            <button class="px-[1.3rem] text-gray-800 text-xl" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

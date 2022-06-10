@@ -2380,10 +2380,6 @@ body[dir="rtl"] .checkbox:checked,
   flex-shrink: 0;
 }
 
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -2529,10 +2525,6 @@ body[dir="rtl"] .checkbox:checked,
   padding: 1rem;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .px-48 {
   padding-left: 12rem;
   padding-right: 12rem;
@@ -2551,6 +2543,11 @@ body[dir="rtl"] .checkbox:checked,
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .px-\[1\.3rem\] {
@@ -2627,14 +2624,14 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 1.75rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {
@@ -2667,6 +2664,11 @@ body[dir="rtl"] .checkbox:checked,
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .text-yellow-400 {
@@ -2702,6 +2704,54 @@ body[dir="rtl"] .checkbox:checked,
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+@font-face {
+  font-family: 'LeferiPoint-WhiteObliqueA';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OTWelcomeRA';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LeferiPoint-BlackObliqueA';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff') format('woff');
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
+/* 태그 명 - output은 수정 X */
+
+header {
+  font-family: LeferiPoint-WhiteObliqueA;
+}
+
+body {
+  font-family: OTWelcomeRA;
+}
+
+footer {
+  font-family: LeferiPoint-WhiteObliqueA;
+}
+
+biblet{
+  font-family: LeferiPoint-BlackObliqueA;
+}
+
 .hover\:border-white:hover {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -2720,10 +2770,6 @@ body[dir="rtl"] .checkbox:checked,
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.hover\:text-\[1\.5rem\]:hover {
-  font-size: 1.5rem;
 }
 
 .hover\:text-yellow-400:hover {

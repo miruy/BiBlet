@@ -270,21 +270,21 @@
 
         <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white py-2">
             <div class="p-4 pr-8">
-                <div class="p-4"><span class="text-2xl font-bold text-gray-600">기본정보</span></div>
+                <div class="p-4"><span class="text-2xl font-bold text-gray-800">기본정보</span></div>
                 <div id="authors" class="flex pl-4 pb-2 space-x-2">
-                    <span class="text-xl font-semibold text-gray-600">저자 : </span>
+                    <span class="text-xl font-semibold text-gray-800">저자 : </span>
                 </div>
                 <div id="publisher" class="flex pl-4 pb-2 space-x-2">
-                    <span class="text-xl font-semibold text-gray-600">출판사 : </span>
+                    <span class="text-xl font-semibold text-gray-800">출판사 : </span>
                 </div>
                 <div id="datetime" class="flex pl-4 pb-2 space-x-2">
-                    <span class="text-xl font-semibold text-gray-600">제작년도 : </span>
+                    <span class="text-xl font-semibold text-gray-800">제작년도 : </span>
                 </div>
                 <div id="contents" class="flex flex-col pl-4 pb-2 space-x-2">
-                    <span class="text-xl font-semibold mb-2 text-gray-600">줄거리</span>
+                    <span class="text-xl font-semibold mb-2 text-gray-800">줄거리</span>
                 </div>
                 <div id="isbn_content" class="flex pl-4 pb-2 space-x-2">
-                    <span class="text-xl font-semibold text-gray-600">ISBN : </span>
+                    <span class="text-xl font-semibold text-gray-800">ISBN : </span>
                 </div>
             </div>
 
@@ -292,7 +292,7 @@
 
             <div class="p-4">
                 <div class="flex flex-row">
-                    <span class="p-4 text-2xl font-bold text-gray-600 flex flex-row">코멘트</span>
+                    <span class="p-4 text-2xl font-bold text-gray-800 flex flex-row">코멘트</span>
                     <div class="pt-5 text-gray-600">
                         <c:if test="${!empty commentCount}">
                             Total : ${commentCount}
@@ -310,18 +310,18 @@
 
                                         <c:set var="idSub" value="${fn:substring(comment.id,0,5)}" />
                                             <c:if test="${idSub ne 'kakao'}">
-                                                <div class="text-gray-600">${comment.id}</div>
+                                                <div class="text-gray-600 text-sm">${comment.id}</div>
                                             </c:if>
 
                                             <c:if test="${idSub eq 'kakao'}">
-                                                <div class="text-gray-600">${comment.name}</div>
+                                                <div class="text-gray-600 text-sm">${comment.name}</div>
                                             </c:if>
 
                                         <div id="star${comment.id}"></div>
                                     </div>
 
                                     <div class="border-b-2 border-gray-300 py-2">
-                                        <textarea class="text-gray-600 box-content w-64 resize-none" rows="7"
+                                        <textarea class="text-gray-800 box-content w-64 resize-none" rows="7"
                                                   id="content${comment.appraisalNo}"
                                                  disabled>${comment.comment}</textarea>
                                     </div>
