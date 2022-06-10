@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="common/header.jsp" %>
 
@@ -308,7 +309,16 @@
                                 <div class="p-4 space-x-4">
                                     <div class="flex flex-row border-b-2 border-gray-300 mt-2">
                                         <div class="ml-4 mr-2 text-gray-600">${comment.originPic}</div>
-                                        <div class="text-gray-600">${comment.id}</div>
+
+                                        <c:set var="idSub" value="${fn:substring(comment.id,0,5)}" />
+                                            <c:if test="${idSub ne 'kakao'}">
+                                                <div class="text-gray-600">${comment.id}</div>
+                                            </c:if>
+
+                                            <c:if test="${idSub eq 'kakao'}">
+                                                <div class="text-gray-600">${comment.name}</div>
+                                            </c:if>
+
                                         <div id="star${comment.id}"></div>
                                     </div>
 
@@ -414,6 +424,8 @@
             </c:forEach>
             </c:if>
 
+
+
         }); //reload 끝
 
         //회원 id와 별점을 묶어서 코멘트창에 표시
@@ -433,9 +445,7 @@
             }
 
             $("#star" + id).html(
-                '<div class="ml-16 text-yellow-400">' +
-                starForComment +
-                '</div>'
+                '<div class="ml-16 text-yellow-400">' + starForComment + '</div>'
             );
         }
 
@@ -646,7 +656,6 @@
                 }, error: function (data) {
                     console.log("에러");
                 }
-
             });
         }
 
@@ -661,6 +670,9 @@
         }
 
         function myComment(pic, startDate, endDate, id, comment) {
+            let kakaoName = "";
+            let idSub = id.substring(0,5);
+            console.log(idSub);
 
             console.log(pic);
             console.log(id);
@@ -668,10 +680,55 @@
             console.log(startDate);
             console.log(endDate);
 
+            if(idSub == "kakao"){
+
+                $.ajax({
+                    url: '<c:url value="/requestKakaoName"/>',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        "id": id
+                    }),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log("data : " + data);
+                        kakaoName = data;
+
+                        //카카오 로그인 시 나의 코멘트(name 표시)
+                        $("#myComment").html(
+                            '<div class="flex flex-row justify-center items-center text-center space-x-4">'+
+                                '<span class="text-gray-600">' + pic + '</span>' +
+                                '<span class="text-gray-600 text-sm">' + kakaoName + '</span>' +
+                                '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="2" disabled>' + comment + '</textarea>'+
+                                '<div class="flex flex-row space-x-4">'+
+                                    '<div class="flex flex-col">'+
+                                        '<div class="text-gray-400 text-xs">독서시작날짜</div>' +
+                                        '<div class="text-gray-600">'+ startDate + '</div>'+
+                                    '</div>'+
+                                    '<div class="flex flex-col pr-2">'+
+                                        '<div class="text-gray-400 text-xs">독서완료날짜</div>' +
+                                        '<div class="text-gray-600">'+ endDate + '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<label class="flex flex-row">' +
+                                    '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' +  '</label>' +
+                                '</label>' +
+                                '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
+                            '</div>'
+                        );
+
+                    }, error: function (data) {
+                        console.log("에러");
+                    }
+                });
+            }
+
+            //일반 로그인 시 나의 코멘트(id 표시)
             $("#myComment").html(
                 '<div class="flex flex-row justify-center items-center text-center space-x-4">'+
                     '<span class="text-gray-600">' + pic + '</span>' +
-                    '<span class="text-gray-600 text-sm">' + id + '</span>' +
+                        ''+
+                        '<span class="text-gray-600 text-sm">' + id + '</span>' +
+                        ''+
                     '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="2" disabled>' +
                          comment +
                     '</textarea>'+

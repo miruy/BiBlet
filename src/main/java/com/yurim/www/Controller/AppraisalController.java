@@ -5,10 +5,7 @@ import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
 import com.yurim.www.service.BookShelfService;
-import com.yurim.www.vo.RequestLogin;
-import com.yurim.www.vo.RequestStatus;
-import com.yurim.www.vo.RequestUpdateComment;
-import com.yurim.www.vo.RequestWriteComment;
+import com.yurim.www.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -202,6 +199,20 @@ public class AppraisalController {
         appraisalService.updateComment(appraisal);
 
         return ResponseEntity.ok("코멘트 수정 성공");
+    }
+
+    //kakao로그인 시 id 대신 name 가져오기
+    @ResponseBody
+    @PostMapping("/requestKakaoName")
+    private ResponseEntity requestKakaoName(@RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
+                                            HttpSession session, HttpServletResponse response) {
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        String kakaoName = appraisalService.selectKakaoNameById(requestKakaoLogin.getId());
+
+        return ResponseEntity.ok(kakaoName);
     }
 
 }

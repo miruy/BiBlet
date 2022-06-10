@@ -21,4 +21,5 @@ public interface AppraisalDAO {
 	List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf);
 	void updateComment(AppraisalDTO appraisal);
 	List<AppraisalDTO> findAllStar(String isbn);
+	String selectKakaoNameById(String id);
 }

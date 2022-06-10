@@ -78,4 +78,9 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public List<AppraisalDTO> findAllStar(String isbn){
 		return sqlSessionTemplate.selectList("findAllStar", isbn);
 	}
+
+	@Override
+	public String selectKakaoNameById(String id){
+		return sqlSessionTemplate.selectOne("selectKakaoNameById", id);
+	}
 }

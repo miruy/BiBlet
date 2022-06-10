@@ -14,6 +14,7 @@
                appraisal.end_date,
                appraisal.status_no,
                user.id,
+               user.name,
                user.origin_pic,
                user.pass
         FROM bookshelf
@@ -97,5 +98,9 @@
                  INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no
         WHERE bookshelf.isbn = #{isbn}
+    </select>
+
+    <select id="selectKakaoNameById" parameterType="String" resultType="String">
+        SELECT name FROM user WHERE id = #{id}
     </select>
 </mapper>

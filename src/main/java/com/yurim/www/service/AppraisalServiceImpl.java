@@ -93,4 +93,9 @@ public class AppraisalServiceImpl implements AppraisalService {
     public List<AppraisalDTO> findAllStar(String isbn){
         return appraisalDAO.findAllStar(isbn);
     }
+
+    @Override
+    public String selectKakaoNameById(String id){
+        return appraisalDAO.selectKakaoNameById(id);
+    }
 }

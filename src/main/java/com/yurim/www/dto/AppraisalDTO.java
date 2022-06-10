@@ -31,4 +31,5 @@ public class AppraisalDTO {
     private String originPic;
     private String pass;
     private String isbn;
+    private String name;
 }
