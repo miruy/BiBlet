@@ -98,4 +98,15 @@ public class AppraisalServiceImpl implements AppraisalService {
     public String selectKakaoNameById(String id){
         return appraisalDAO.selectKakaoNameById(id);
     }
+
+    @Override
+    public void deleteComment(Long userNo, String isbn){
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+
+        appraisalDAO.deleteComment(map);
+    }
 }

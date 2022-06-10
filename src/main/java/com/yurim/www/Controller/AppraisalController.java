@@ -215,4 +215,27 @@ public class AppraisalController {
         return ResponseEntity.ok(kakaoName);
     }
 
+    //평가 삭제
+    @ResponseBody
+    @PostMapping("/deleteComment")
+    private ResponseEntity deleteComment(@RequestBody RequestDeleteComment requestDeleteComment, Errors errors,
+                                         HttpSession session, HttpServletResponse response) {
+
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        /**
+         * Long userNo로 변환
+         */
+        Long userNo = authInfo.getUserNo();
+
+        appraisalService.deleteComment(userNo, requestDeleteComment.getIsbn());
+
+        return ResponseEntity.ok("코멘트 삭제 성공");
+    }
+
 }

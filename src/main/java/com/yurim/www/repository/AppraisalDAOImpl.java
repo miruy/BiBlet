@@ -83,4 +83,9 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public String selectKakaoNameById(String id){
 		return sqlSessionTemplate.selectOne("selectKakaoNameById", id);
 	}
+
+	@Override
+	public void deleteComment(HashMap<String, String> map){
+		sqlSessionTemplate.delete("deleteComment", map);
+	}
 }

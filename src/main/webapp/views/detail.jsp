@@ -145,10 +145,8 @@
                                     <ul tabindex="0"
                                         class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
                                         <li><label for="modifyComment"
-                                                   class="text-gray-600 hover:text-white justify-center items-center">코멘트
-                                            수정</label></li>
-                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
-                                            삭제</a></li>
+                                                   class="text-gray-600 hover:text-white justify-center items-center">코멘트 수정</label></li>
+                                        <li><a class="text-gray-600 hover:text-white justify-center items-center" onclick="deleteComment()">코멘트 삭제</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -468,10 +466,13 @@
             let maxDate = getFormatDate(date);
 
             if (startDate > maxDate) {
-                alert("[독서 시작 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                alert("날짜 선택이 잘못되었습니다.");
                 return false;
             } else if (endDate > maxDate) {
-                alert("[독서 완료 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
+                alert("날짜 선택이 잘못되었습니다.");
+                return false;
+            } else if(startDate > endDate){
+                alert("날짜 선택이 잘못되었습니다.");
                 return false;
             }
         });
@@ -698,7 +699,7 @@
                             '<div class="flex flex-row justify-center items-center text-center space-x-4">'+
                                 '<span class="text-gray-600">' + pic + '</span>' +
                                 '<span class="text-gray-600 text-sm">' + kakaoName + '</span>' +
-                                '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="2" disabled>' + comment + '</textarea>'+
+                                '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>' + comment + '</textarea>'+
                                 '<div class="flex flex-row space-x-4">'+
                                     '<div class="flex flex-col">'+
                                         '<div class="text-gray-400 text-xs">독서시작날짜</div>' +
@@ -712,7 +713,7 @@
                                 '<label class="flex flex-row">' +
                                     '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' +  '</label>' +
                                 '</label>' +
-                                '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
+                                '<div class="text-gray-400 hover:text-black" onclick="deleteComment()"><div>&#x1F5D1</div>삭제' + '</div>'+
                             '</div>'
                         );
 
@@ -729,7 +730,7 @@
                         ''+
                         '<span class="text-gray-600 text-sm">' + id + '</span>' +
                         ''+
-                    '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="2" disabled>' +
+                    '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>' +
                          comment +
                     '</textarea>'+
                     '<div class="flex flex-row space-x-4">'+
@@ -745,11 +746,31 @@
                     '<label class="flex flex-row">' +
                         '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>' +
                     '</label>' +
-                    '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
+                    '<div class="text-gray-400 hover:text-black" onclick="deleteComment()"><div>&#x1F5D1</div>삭제' + '</div>'+
                 '</div>'
             );
         }
 
+        function deleteComment() {
+            let isbn = "${isbn}";
+
+            if (confirm("코멘트를 삭제하시겠습니까?")) {
+                $.ajax({
+                    url: '<c:url value="/deleteComment"/>',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        "isbn": isbn
+                    }),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log("data : " + data);
+                        location.reload();
+                    }, error: function (data) {
+                        console.log("에러");
+                    }
+                });
+            }
+        }
     </script>
 
 </section>

@@ -22,4 +22,5 @@ public interface AppraisalService {
     void updateComment(AppraisalDTO appraisal);
     List<AppraisalDTO> findAllStar(String isbn);
     String selectKakaoNameById(String id);
+    void deleteComment(Long userNo, String isbn);
 }

@@ -103,4 +103,11 @@
     <select id="selectKakaoNameById" parameterType="String" resultType="String">
         SELECT name FROM user WHERE id = #{id}
     </select>
+
+    <delete id="deleteComment" parameterType="HashMap">
+        DELETE appraisal, bookshelf FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN user ON user.user_no = bookshelf.user_no
+        WHERE user.user_no=#{userNo} AND bookshelf.isbn=#{isbn} AND bookshelf.status=3
+    </delete>
 </mapper>
