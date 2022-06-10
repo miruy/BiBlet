@@ -88,4 +88,9 @@ public class AppraisalServiceImpl implements AppraisalService {
     public void updateComment(AppraisalDTO appraisal) {
         appraisalDAO.updateComment(appraisal);
     }
+
+    @Override
+    public List<AppraisalDTO> findAllStar(String isbn){
+        return appraisalDAO.findAllStar(isbn);
+    }
 }

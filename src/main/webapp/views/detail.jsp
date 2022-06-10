@@ -143,8 +143,11 @@
                                     </div>
                                     <ul tabindex="0"
                                         class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
-                                        <li><label for="modifyComment" class="text-gray-600 hover:text-white justify-center items-center">코멘트 수정</label></li>
-                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트 삭제</a></li>
+                                        <li><label for="modifyComment"
+                                                   class="text-gray-600 hover:text-white justify-center items-center">코멘트
+                                            수정</label></li>
+                                        <li><a class="text-gray-600 hover:text-white justify-center items-center">코멘트
+                                            삭제</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -210,7 +213,8 @@
                     </div>
                 </div>
                 <div class="modal-action justify-center items-center">
-                    <input type="submit" id="submit1" onsubmit="return false" for="my-modal-3" class="btn btn-secondary text-gray-600 hover:text-white"
+                    <input type="submit" id="submit1" onsubmit="return false" for="my-modal-3"
+                           class="btn btn-secondary text-gray-600 hover:text-white"
                            value="저장"/>
                 </div>
             </form:form>
@@ -222,39 +226,39 @@
     <c:forEach var="myComment" items="${myComment}">
         <div class="modal bg-opacity-60 bg-gray-300">
             <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
-                    <label for="modifyComment"
-                           class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
-                    <textarea class="content w-full text-gray-600 mt-6" rows="14" id="comment_m" name="comment"
-                              placeholder="${myComment.comment}"></textarea>
-                    <div class="ml-56 mt-2">
-                        <div class="flex flex-row text-gray-600 space-x-2">
-                            <span> 독서 시작 날짜 : </span>
-                            <div>
-                                <input type="date" id="startDate_m" name="startDate" class="text-gray-400"/>
-                            </div>
-                        </div>
-                        <div class="flex flex-row text-gray-600 space-x-2">
-                            <span> 독서 완료 날짜 : </span>
-                            <div>
-                                <input type="date" id="endDate_m" name="endDate" class="text-gray-400"/>
-                            </div>
-                        </div>
-                        <div class="flex flex-row text-gray-600 space-x-2">
-                            <span> 공개 여부 :</span>
-                            <span>공개 </span>
-                            <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY_m"
-                                   name="coPrv"
-                                   value="공개" onclick='checkOnlyOne(this)'/>
-                            <span>비공개 </span>
-                            <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN_m"
-                                   name="coPrv"
-                                   value="비공개"
-                                   onclick='checkOnlyOne(this)'/>
+                <label for="modifyComment"
+                       class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
+                <textarea class="content w-full text-gray-600 mt-6" rows="14" id="comment_m" name="comment"
+                          placeholder="${myComment.comment}"></textarea>
+                <div class="ml-56 mt-2">
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 시작 날짜 : </span>
+                        <div>
+                            <input type="date" id="startDate_m" name="startDate" class="text-gray-400"/>
                         </div>
                     </div>
-                    <div class="modal-action justify-center items-center">
-                        <button id="submit2" class="btn btn-secondary text-gray-600 hover:text-white" >저장</button>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 독서 완료 날짜 : </span>
+                        <div>
+                            <input type="date" id="endDate_m" name="endDate" class="text-gray-400"/>
+                        </div>
                     </div>
+                    <div class="flex flex-row text-gray-600 space-x-2">
+                        <span> 공개 여부 :</span>
+                        <span>공개 </span>
+                        <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvY_m"
+                               name="coPrv"
+                               value="공개" onclick='checkOnlyOne(this)'/>
+                        <span>비공개 </span>
+                        <input class="coPrvM checkbox checkbox-secondary checkbox-sm mt-1" type="checkbox" id="coPrvN_m"
+                               name="coPrv"
+                               value="비공개"
+                               onclick='checkOnlyOne(this)'/>
+                    </div>
+                </div>
+                <div class="modal-action justify-center items-center">
+                    <button id="submit2" class="btn btn-secondary text-gray-600 hover:text-white">저장</button>
+                </div>
             </div>
         </div>
     </c:forEach>
@@ -298,36 +302,36 @@
                 </div>
 
                 <div class="carousel carousel-center pl-4 pb-4 space-x-2 w-pull bg-white ">
-                    <div class="carousel-item rounded-lg bg-gray-100 w-80 h-72 flex flex-col">
-                        <c:if test="${!empty commentsByMembers}">
-                            <c:forEach var="comment" items="${commentsByMembers}">
+                    <c:if test="${!empty commentsByMembers}">
+                        <c:forEach var="comment" items="${commentsByMembers}">
+                            <div class="carousel-item rounded-lg bg-gray-100 w-80 h-72 flex flex-col">
                                 <div class="p-4 space-x-4">
-                                    <div class="flex flex-row border-b-2 border-gray-300">
-                                        <div class="mr-2 text-gray-600">${comment.originPic}</div>
+                                    <div class="flex flex-row border-b-2 border-gray-300 mt-2">
+                                        <div class="ml-4 mr-2 text-gray-600">${comment.originPic}</div>
                                         <div class="text-gray-600">${comment.id}</div>
-                                        <div class="ml-24 text-yellow-400" id="star${comment.appraisalNo}">
-                                            <c:if test="${comment.star==1 }">★☆☆☆☆</c:if>
-                                            <c:if test="${comment.star==2 }">★★☆☆☆</c:if>
-                                            <c:if test="${comment.star==3 }">★★★☆☆</c:if>
-                                            <c:if test="${comment.star==4 }">★★★★☆</c:if>
-                                            <c:if test="${comment.star==5 }">★★★★★</c:if>
-                                        </div>
+                                        <div id="star${comment.id}"></div>
                                     </div>
-                                    <div class="mt-3 text-gray-600"
-                                         id="content${comment.appraisalNo}">${comment.comment}</div>
-                                    <div class="flex flex-row mt-28 px-5">
+
+                                    <div class="border-b-2 border-gray-300 py-2">
+                                        <textarea class="text-gray-600 box-content w-64 resize-none" rows="7"
+                                                  id="content${comment.appraisalNo}"
+                                                  placeholder="" disabled>${comment.comment}</textarea>
+                                    </div>
+
+                                    <div class="flex flex-row px-2 py-2">
                                         <div>&#x1F4C6</div>
-                                        <div class="ml-2 text-gray-600" id="startDate${comment.appraisalNo}">
+                                        <div class="ml-2 pr-2 text-gray-600" id="startDate${comment.appraisalNo}">
                                                 ${comment.startDate}
                                         </div>
+                                        ~
                                         <div class="ml-3 text-gray-600" id="endDate${comment.appraisalNo}">
                                                 ${comment.endDate}
                                         </div>
                                     </div>
                                 </div>
-                            </c:forEach>
-                        </c:if>
-                    </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -377,32 +381,78 @@
 
             //로그인한 회원이 코멘트를 남겼다면
             <c:if test="${!empty userStatusNo}">
-                <c:forEach var="myComment" items="${myComment}">
-                    <c:if test="${!empty myComment.originPic}">
-                    $("#writeCommentBtn").hide();
-                    $("#myComment").show(
-                        myComment("${myComment.originPic}","${myComment.startDate}","${myComment.endDate}","${myComment.id}","${myComment.comment}")
-                    );
-                    </c:if>
-                </c:forEach>
+            <c:forEach var="myComment" items="${myComment}">
+            <c:if test="${!empty myComment.originPic}">
+            $("#writeCommentBtn").hide();
+            $("#myComment").show(
+                myComment("${myComment.originPic}", "${myComment.startDate}", "${myComment.endDate}", "${myComment.id}", "${myComment.comment}")
+            );
+            </c:if>
+            </c:forEach>
             </c:if>
 
 
+            //해당 도서의 모든 코멘트의 정보 묶어서 표시하기
+            <c:if test="${!empty starByMembers}">
+            <c:forEach var="starByMembers" items="${starByMembers}">
+            <c:if test="${starByMembers.star==1 }">
+            var star = 1;
+            </c:if>
+            <c:if test="${starByMembers.star==2 }">
+            var star = 2;
+            </c:if>
+            <c:if test="${starByMembers.star==3 }">
+            var star = 3;
+            </c:if>
+            <c:if test="${starByMembers.star==4 }">
+            var star = 4;
+            </c:if>
+            <c:if test="${starByMembers.star==5 }">
+            var star = 5;
+            </c:if>
+            allComment("${starByMembers.id}", star);
+            </c:forEach>
+            </c:if>
+
         }); //reload 끝
 
+        //회원 id와 별점을 묶어서 코멘트창에 표시
+        function allComment(id, star) {
+            let starForComment = '';
+
+            if (star == 1) {
+                starForComment = '★☆☆☆☆';
+            } else if (star == 2) {
+                starForComment = '★★☆☆☆';
+            } else if (star == 3) {
+                starForComment = '★★★☆☆';
+            } else if (star == 4) {
+                starForComment = '★★★★☆';
+            } else if (star == 5) {
+                starForComment = '★★★★★';
+            }
+
+            $("#star" + id).html(
+                '<div class="ml-16 text-yellow-400">' +
+                starForComment +
+                '</div>'
+            );
+        }
+
+
         // 코멘트 작성 시 오늘 날짜 이후 선택 제한
-        $("#submit1").click(function(){
+        $("#submit1").click(function () {
             let date = new Date();
             let startDate = document.getElementById("startDate").value;
             let endDate = document.getElementById("endDate").value;
 
-            function getFormatDate(date){
+            function getFormatDate(date) {
                 var year = date.getFullYear();              //yyyy
                 var month = (1 + date.getMonth());          //M
                 month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
                 var day = date.getDate();                   //d
                 day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
-                return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+                return year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
             }
 
             let maxDate = getFormatDate(date);
@@ -410,25 +460,25 @@
             if (startDate > maxDate) {
                 alert("[독서 시작 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
                 return false;
-            }else if(endDate > maxDate){
+            } else if (endDate > maxDate) {
                 alert("[독서 완료 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
                 return false;
             }
         });
 
         // 코멘트 수정 시 오늘 날짜 이후 선택 제한
-        $("#submit2").click(function(){
+        $("#submit2").click(function () {
             let date = new Date();
             let startDate = document.getElementById("startDate_m").value;
             let endDate = document.getElementById("endDate_m").value;
 
-            function getFormatDate(date){
+            function getFormatDate(date) {
                 var year = date.getFullYear();              //yyyy
                 var month = (1 + date.getMonth());          //M
                 month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
                 var day = date.getDate();                   //d
                 day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
-                return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+                return year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
             }
 
             let maxDate = getFormatDate(date);
@@ -436,7 +486,7 @@
             if (startDate > maxDate) {
                 alert("[독서 시작 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
                 return false;
-            }else if(endDate > maxDate){
+            } else if (endDate > maxDate) {
                 alert("[독서 완료 날짜] 오늘 이후의 날짜는 선택할 수 없습니다");
                 return false;
             }
@@ -476,7 +526,6 @@
 
             });
         }
-
 
 
         // 별 마우스 오버 starMsgUL
@@ -548,7 +597,7 @@
                 success: function (data) {
                     console.log("data : " + data);
 
-                    if(userStatusNo.length != 0){
+                    if (userStatusNo.length != 0) {
                         $("#writeCommentBtn").off(writeCommentBtn());
                         return;
                     }
@@ -621,15 +670,15 @@
 
             $("#myComment").html(
                 '<div class="p-4 text-center flex flex-row space-x-4 justify-center items-center">' +
-                    '<span class="text-gray-600">' + pic + '</span>' +
-                    '<span class="text-gray-600 text-xl">' + id + '</span>' +
-                    '<span class="text-gray-600">' + comment + '</span>' +
-                    '<span class="text-gray-600">' + startDate + '</span>' +
-                    '<span class="text-gray-600">' + endDate + '</span>' +
-                    '<label class="pl-24 flex flex-row">'+
-                        '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>'+
-                        '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
-                    '</div>'+
+                '<span class="text-gray-600">' + pic + '</span>' +
+                '<span class="text-gray-600 text-xl">' + id + '</span>' +
+                '<span class="text-gray-600">' + comment + '</span>' +
+                '<span class="text-gray-600">' + startDate + '</span>' +
+                '<span class="text-gray-600">' + endDate + '</span>' +
+                '<label class="pl-24 flex flex-row">' +
+                '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>' +
+                '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>' +
+                '</div>' +
                 '</div>'
             );
         }

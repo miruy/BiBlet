@@ -73,4 +73,9 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public void updateComment(AppraisalDTO appraisal){
 		sqlSessionTemplate.update("updateComment", appraisal);
 	}
+
+	@Override
+	public List<AppraisalDTO> findAllStar(String isbn){
+		return sqlSessionTemplate.selectList("findAllStar", isbn);
+	}
 }

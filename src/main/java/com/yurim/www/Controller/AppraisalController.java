@@ -45,6 +45,9 @@ public class AppraisalController {
         // 해당 도서의 대한 모든 평가
         List<AppraisalDTO> commentsByMembers = appraisalService.findAllComment(isbn);
 
+        // 해당 도서의 대한 모든 별점(회원 코멘트에 묶어 표시)
+        List<AppraisalDTO> starByMembers = appraisalService.findAllStar(isbn);
+
         // 해당 도서의 대한 별점평균
         Integer starAVG = appraisalService.starAVG(isbn);
         if (starAVG == null) {
@@ -60,6 +63,7 @@ public class AppraisalController {
         model.addAttribute("commentsByMembers", commentsByMembers);
         model.addAttribute("starAVG", starAVG);
         model.addAttribute("starCount", starCount);
+        model.addAttribute("starByMembers", starByMembers);
 
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
