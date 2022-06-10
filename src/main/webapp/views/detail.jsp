@@ -228,7 +228,7 @@
             <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
                 <label for="modifyComment"
                        class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
-                <textarea class="content w-full text-gray-600 mt-6" rows="14" id="comment_m" name="comment"
+                <textarea class="content w-full p-8 text-gray-600 mt-6" rows="12" id="comment_m" name="comment"
                           placeholder="${myComment.comment}"></textarea>
                 <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
@@ -315,7 +315,7 @@
                                     <div class="border-b-2 border-gray-300 py-2">
                                         <textarea class="text-gray-600 box-content w-64 resize-none" rows="7"
                                                   id="content${comment.appraisalNo}"
-                                                  placeholder="" disabled>${comment.comment}</textarea>
+                                                 disabled>${comment.comment}</textarea>
                                     </div>
 
                                     <div class="flex flex-row px-2 py-2">
@@ -669,16 +669,26 @@
             console.log(endDate);
 
             $("#myComment").html(
-                '<div class="p-4 text-center flex flex-row space-x-4 justify-center items-center">' +
-                '<span class="text-gray-600">' + pic + '</span>' +
-                '<span class="text-gray-600 text-xl">' + id + '</span>' +
-                '<span class="text-gray-600">' + comment + '</span>' +
-                '<span class="text-gray-600">' + startDate + '</span>' +
-                '<span class="text-gray-600">' + endDate + '</span>' +
-                '<label class="pl-24 flex flex-row">' +
-                '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>' +
-                '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>' +
-                '</div>' +
+                '<div class="flex flex-row justify-center items-center text-center space-x-4">'+
+                    '<span class="text-gray-600">' + pic + '</span>' +
+                    '<span class="text-gray-600 text-sm">' + id + '</span>' +
+                    '<textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="2" disabled>' +
+                         comment +
+                    '</textarea>'+
+                    '<div class="flex flex-row space-x-4">'+
+                        '<div class="flex flex-col">'+
+                            '<div class="text-gray-400 text-xs">독서시작날짜</div>' +
+                            '<div class="text-gray-600">'+ startDate + '</div>'+
+                        '</div>'+
+                        '<div class="flex flex-col pr-2">'+
+                            '<div class="text-gray-400 text-xs">독서완료날짜</div>' +
+                            '<div class="text-gray-600">'+ endDate + '</div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<label class="flex flex-row">' +
+                        '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>' +
+                    '</label>' +
+                    '<div class="text-gray-400 hover:text-black"><div>&#x1F5D1</div>삭제' + '</div>'+
                 '</div>'
             );
         }
