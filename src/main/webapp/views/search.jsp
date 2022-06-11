@@ -13,7 +13,7 @@
             <div class="flex flex-col items-center mt-6" id="searchBooks"></div>
         </div>
     </div>
-    <button id="more_btn"class="btn btn-wide items-center w-full">More</button>
+    <div id="more_btn"class="text-center w-full py-4 bg-white hover:bg-gray-100">더보기</div>
 
 
 

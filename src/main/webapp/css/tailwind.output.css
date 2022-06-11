@@ -2067,10 +2067,6 @@ body[dir="rtl"] .checkbox:checked,
   font-size: 0.875rem;
 }
 
-.btn-wide {
-  width: 16rem;
-}
-
 .btn-square:where(.btn-sm) {
   height: 2rem;
   width: 2rem;
@@ -2555,6 +2551,11 @@ body[dir="rtl"] .checkbox:checked,
   padding-right: 1.3rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .pl-24 {
   padding-left: 6rem;
 }
@@ -2770,6 +2771,11 @@ biblet{
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .hover\:text-yellow-400:hover {

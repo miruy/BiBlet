@@ -21,31 +21,190 @@
 
     <br>
 
-    <h2>최근 코멘트</h2>
-    <table border=1>
-        <c:if test="${!empty latestList}">
-            <tr>
-                <th>제목</th>
-                <th>회원</th>
-                <th>별점</th>
-                <th>평가</th>
-            </tr>
-            <c:forEach var="list" items="${latestList}">
-                <tr>
-                    <td id="bookName${list.isbn}"></td>
-                    <td>
-                        <c:if test="${list.star==1 }">★☆☆☆☆</c:if>
-                        <c:if test="${list.star==2 }">★★☆☆☆</c:if>
-                        <c:if test="${list.star==3 }">★★★☆☆</c:if>
-                        <c:if test="${list.star==4 }">★★★★☆</c:if>
-                        <c:if test="${list.star==5 }">★★★★★</c:if>
-                    </td>
-                    <td>${list.book_comment}</td>
-                    <td>${list.mem_id}</td>
+    <div class="flex flex-col justify-center bg-white pl-24 pr-24">
+        <span class="text-xl mb-4">최근 코멘트</span>
+
+
+        <div class="overflow-x-auto w-full">
+            <table class="table w-full">
+                <!-- head -->
+                <thead>
+                <tr class="text-xl text-center">
+                    <th>이름 / ID</th>
+                    <th>도서</th>
+                    <th>코멘트</th>
+                    <th>평가</th>
                 </tr>
-            </c:forEach>
-        </c:if>
-    </table>
+                </thead>
+                <tbody>
+                <!-- row 1 -->
+                <tr>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-bold">Hart Hagerty</div>
+                                <div class="text-sm opacity-50">United States</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        Zemlak, Daniel and Leannon
+                        <br>
+                        <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                    </td>
+                    <td>Purple</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 2 -->
+                <tr>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-bold">Brice Swyre</div>
+                                <div class="text-sm opacity-50">China</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        Carroll Group
+                        <br>
+                        <span class="badge badge-ghost badge-sm">Tax Accountant</span>
+                    </td>
+                    <td>Red</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 3 -->
+                <tr>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-bold">Marjy Ferencz</div>
+                                <div class="text-sm opacity-50">Russia</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        Rowe-Schoen
+                        <br>
+                        <span class="badge badge-ghost badge-sm">Office Assistant I</span>
+                    </td>
+                    <td>Crimson</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 4 -->
+                <tr>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-bold">Yancy Tear</div>
+                                <div class="text-sm opacity-50">Brazil</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        Wyman-Ledner
+                        <br>
+                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                    </td>
+                    <td>Indigo</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 5 -->
+                <tr>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-bold">Yancy Tear</div>
+                                <div class="text-sm opacity-50">Brazil</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        Wyman-Ledner
+                        <br>
+                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                    </td>
+                    <td>Indigo</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                </tbody>
+                <!-- foot -->
+                <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Job</th>
+                    <th>Favorite Color</th>
+                    <th></th>
+                </tr>
+                </tfoot>
+
+            </table>
+        </div>
+        # Compact table
+        NAME	JOB
+
+
+
+            <c:if test="${!empty latestList}">
+                <tr>
+                    <th>제목</th>
+                    <th>회원</th>
+                    <th>별점</th>
+                    <th>평가</th>
+                </tr>
+                <c:forEach var="list" items="${latestList}">
+                    <tr>
+                        <td id="bookName${list.isbn}"></td>
+                        <td>
+                            <c:if test="${list.star==1 }">★☆☆☆☆</c:if>
+                            <c:if test="${list.star==2 }">★★☆☆☆</c:if>
+                            <c:if test="${list.star==3 }">★★★☆☆</c:if>
+                            <c:if test="${list.star==4 }">★★★★☆</c:if>
+                            <c:if test="${list.star==5 }">★★★★★</c:if>
+                        </td>
+                        <td>${list.book_comment}</td>
+                        <td>${list.mem_id}</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+
+    </div>
 
     <br>
 

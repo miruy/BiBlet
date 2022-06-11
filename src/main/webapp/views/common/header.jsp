@@ -54,7 +54,7 @@
     </div>
     <div class="navbar-end">
         <form action="/search" class="mb-0 flex items-center">
-            <input type="text" name="query" id="query" value="${query}" placeholder="search"
+            <input type="text" name="query" id="query" value="${query}" placeholder="검색"
                    class="input border-purple-700 my-[1.2rem] h-[1.5rem]"/>
             <button class="px-[1.3rem] text-gray-800 text-xl" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
