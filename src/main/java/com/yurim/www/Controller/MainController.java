@@ -18,31 +18,31 @@ public class MainController {
     private final UserService userService;
 
     @GetMapping
-    public String main(Errors errors, Model model, HttpSession session, HttpServletResponse response){
+    public String main(){
 
-        if (errors.hasErrors()) {
-            return "auth/login";
-        }
-
-        model.addAttribute("popularList", mainService.popularList());
-        model.addAttribute("latestList", mainService.latestComment());
-        model.addAttribute("allCommentCount", mainService.allCommentCount());
-
-        if (session == null || session.getAttribute("authInfo") == null) {
-            return "common/main";
-        } else {
-
-            MemberVO authInfo = (MemberVO) session.getAttribute("authInfo");
-
-            Long mem_num = authInfo.getMem_num();
-
-            session.setAttribute("myID", authInfo.getMem_id());
-
-            model.addAttribute("myCommentCount", mainService.memCommentCount(mem_num));
-            model.addAttribute("myBookInfo", mainService.myBookInfo(mem_num));
-
-            return "common/main";
-        }
+//        if (errors.hasErrors()) {
+//            return "auth/login";
+//        }
+//
+//        model.addAttribute("popularList", mainService.popularList());
+//        model.addAttribute("latestList", mainService.latestComment());
+//        model.addAttribute("allCommentCount", mainService.allCommentCount());
+//
+//        if (session == null || session.getAttribute("authInfo") == null) {
+//            return "common/main";
+//        } else {
+//
+//            MemberVO authInfo = (MemberVO) session.getAttribute("authInfo");
+//
+//            Long mem_num = authInfo.getMem_num();
+//
+//            session.setAttribute("myID", authInfo.getMem_id());
+//
+//            model.addAttribute("myCommentCount", mainService.memCommentCount(mem_num));
+//            model.addAttribute("myBookInfo", mainService.myBookInfo(mem_num));
+//
+//            return "common/main";
+//        }
 
         return "main";
     }
