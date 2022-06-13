@@ -1,5 +1,6 @@
 package com.yurim.www.Controller;
 
+import com.yurim.www.service.MainService;
 import com.yurim.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,20 @@ import javax.servlet.http.HttpSession;
 public class MainController {
 
     private final UserService userService;
+    private final MainService mainService;
 
     @GetMapping
-    public String main(){
+    public String main(Model model){
 
-//        if (errors.hasErrors()) {
-//            return "auth/login";
-//        }
-//
-//        model.addAttribute("popularList", mainService.popularList());
-//        model.addAttribute("latestList", mainService.latestComment());
-//        model.addAttribute("allCommentCount", mainService.allCommentCount());
-//
+        // 별점 평균 순 (인기 도서 TOP10)
+        // 읽고싶어요 순 (이런 책은 어떠세요?)
+        // 최근 코멘트 순 (최근 코멘트)
+
+        model.addAttribute("popularList_1to5", mainService.popularList_1to5());
+        model.addAttribute("popularList_6to10", mainService.popularList_6to10());
+        model.addAttribute("latestComments", mainService.latestComments());
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
+
 //        if (session == null || session.getAttribute("authInfo") == null) {
 //            return "common/main";
 //        } else {

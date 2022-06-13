@@ -3,7 +3,6 @@ package com.yurim.www.repository;
 
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
-import com.yurim.www.vo.RequestCommentForDetail;
 
 import java.util.HashMap;
 import java.util.List;

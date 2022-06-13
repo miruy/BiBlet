@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yurim.www.repository.MainDAO">
+
+    <select id="popularList_1to5" resultType="String">
+        SELECT isbn FROM bookshelf
+            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 0,5;
+    </select>
+
+    <select id="popularList_6to10" resultType="String">
+        SELECT isbn FROM bookshelf
+                             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 5,5;
+    </select>
+
+    <select id="latestComments" resultType="AppraisalDTO">
+        SELECT bookshelf.isbn,
+               appraisal.star,
+               appraisal.comment,
+               user.id,
+               user.name
+        FROM appraisal
+                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+                 INNER JOIN user ON bookshelf.user_no = user.user_no
+        WHERE appraisal.co_prv = '공개' ORDER BY appraisal.appraisal_no DESC limit 5
+    </select>
+
+    <select id="totalCommentCount" resultType="Long">
+        SELECT COUNT(appraisal_no) FROM appraisal
+    </select>
+
+</mapper>
