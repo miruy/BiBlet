@@ -35,3 +35,54 @@
 input[type=password]{
 	font-family:'맑은 고딕', 'malgun gothic', '돋움', Dotum, sans-serif;
 }
+
+figure.snip1368 {
+	font-family: 'Roboto', Arial, sans-serif;
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+	min-width: 230px;
+	max-width: 315px;
+	width: 100%;
+	color: #ffffff;
+	line-height: 1.4em;
+}
+figure.snip1368 * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+figure.snip1368 h3 {
+	position: absolute;
+	top: 0%;
+	width: 100%;
+	background-color: #212121;
+	z-index: 1;
+	text-align: right;
+	padding: 15px 25px 0px;
+	margin: 0;
+	font-weight: 300;
+	font-size: 1.3em;
+	-webkit-transform: translateY(-200%);
+	transform: translateY(-200%);
+}
+figure.snip1368 h3:before {
+	position: absolute;
+	content: '';
+	top: 100%;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 315px 55px 0;
+	border-color: transparent #212121 transparent transparent;
+}
+
+
+figure.snip1368:hover h3,
+figure.snip1368.hover h3 {
+	-webkit-transform: translateY(0%);
+	transform: translateY(0%);
+}

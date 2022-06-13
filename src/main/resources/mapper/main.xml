@@ -5,12 +5,12 @@
     <select id="popularList_1to5" resultType="String">
         SELECT isbn FROM bookshelf
             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
-        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 0,5;
+        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 0,10;
     </select>
 
     <select id="popularList_6to10" resultType="String">
         SELECT isbn FROM bookshelf
-                             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
         GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 5,5;
     </select>
 

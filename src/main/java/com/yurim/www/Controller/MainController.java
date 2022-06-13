@@ -28,6 +28,7 @@ public class MainController {
 
         model.addAttribute("popularList_1to5", mainService.popularList_1to5());
         model.addAttribute("popularList_6to10", mainService.popularList_6to10());
+
         model.addAttribute("latestComments", mainService.latestComments());
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 

@@ -21,32 +21,163 @@
 
 
     <div class="flex flex-col justify-center bg-white px-32 py-8">
+
+        <figure class="snip1368">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample30.jpg" alt="sample30"/>
+            <h3>1위</h3>
+        </figure>
+
+
         <div class="flex flex-col">
             <span class="text-xl mb-4">인기 도서 TOP10</span>
-            <div class="">
-                <div class="carousel">
-                    <div id="1to5" class="carousel-item relative">
-                        <div id="popularList_1to5" class="flex flex-row space-x-4"></div>
-                        <div class="absolute flex justify-between transform -translate-y-1/2 left-1 right-1 top-1/2">
-                            <a href="#6to10"
-                               class="btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</a>
-                            <a href="#6to10"
-                               class="btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❯</a>
+
+
+            <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
+                <div class="w-full relative flex items-center justify-center">
+                    <button aria-label="slide backward" class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" id="prev">
+                        <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+                        <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 1</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                                <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
+                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
+                                    <div class="flex h-full items-end pb-6">
+                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="6to10" class="carousel-item relative">
-                        <div id="popularList_6to10" class="flex flex-row space-x-4"></div>
-                        <div class="absolute flex justify-between transform -translate-y-1/2 left-1 right-1 top-1/2">
-                            <a href="#1to5"
-                               class="btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</a>
-                            <a href="#1to5"
-                               class="btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❯</a>
-                        </div>
-                    </div>
+                    <button aria-label="slide forward" class="absolute z-30 right-0 mr-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
+                        <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </div>
 
+
+
+
+
+
+
+
+            <div id="popularList" class="relative w-full">
+                <div id="popularBook__detail" class="flex w-full space-x-4 overflow-hidden"></div>
+                <button class="absolute top-[45%] -left-4 z-0 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</button>
+                <button class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❯</button>
+            </div>
+
+            <template id="template__detail__link">
+                <a href='{detail__link}' class="list-none flex flex-shrink-0">
+                    <img class='h-72 w-48' src='{book_thumbnail}'/>
+                </a>
+            </template>
+        </div>
 
 
         <span class="text-xl mb-4">최근 코멘트</span>
@@ -244,6 +375,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
+
+        /* Demo purposes only */
+        $(".hover").mouseleave(
+            function () {
+                $(this).removeClass("hover");
+            }
+        );
+
         $(document).ready(function () {
 
             // 최근평가 isbn for문으로 담기
@@ -253,44 +392,56 @@
             </c:forEach>
             </c:if>
 
-            // 인기 도서 불러오기
-            <c:if test="${!empty popularList_1to5}">
-            <c:forEach var="popularList_1to5" items="${popularList_1to5}">
-            popularList_1to5(${popularList_1to5})
-            </c:forEach>
-            </c:if>
-
-            // 인기 도서 불러오기
-            <c:if test="${!empty popularList_6to10}">
-            <c:forEach var="popularList_6to10" items="${popularList_6to10}">
-            popularList_6to10(${popularList_6to10})
-            </c:forEach>
-            </c:if>
-
             // 로그인한 회원의 도서 정보
             <c:if test="${!empty myBookInfo}">
             <c:forEach var="myBookInfo" items="${myBookInfo}">
             myBookInfo(${myBookInfo.isbn})
             </c:forEach>
             </c:if>
+
+            $("#1to5Btn").click(function () {
+                $("#1to5Btn").hide();
+            });
         });
 
 
-        function popularList_1to5(isbn) {
+        function popularList() {
 
-            $.ajax({	//카카오 검색요청 / [요청]
-                method: "GET",
-                traditional: true,
-                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                url: "https://dapi.kakao.com/v3/search/book?target=isbn",
-                data: {query: isbn},
-                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+            const isbns = ${popularList_1to5};
+            console.log(isbns);
+
+            isbns.map(isbn => {
+                $.ajax({	//카카오 검색요청 / [요청]
+                    method: "GET",
+                    traditional: true,
+                    async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                    url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                    data: {query: isbn},
+                    headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+                })
+                    .done(function (data) {	//검색 결과 담기 / [응답]
+                        const book = data.documents[0];
+                        const isbn = book.isbn.slice(-13);
+                        const thumbnailLink = book.thumbnail;
+
+                        console.log("isnb : " + isbn);
+
+                        const result = $("#template__detail__link").html()
+                            .replace("{detail__link}", "/read/" + isbn)
+                            .replace("{book_thumbnail}", thumbnailLink);
+
+                        $("#popularBook__detail").append(result);
+
+                        // $("#popularList_1to5").append("<a href='/read/" + book.documents[0].isbn.slice(-13) + "'><img class='h-72 w-48' src='" + book.documents[0].thumbnail + "'/></a>");
+                    });
             })
-                .done(function (msg) {	//검색 결과 담기 / [응답]
-                    console.log(msg);
-                    $("#popularList_1to5").append("<img class='h-72 w-48' src='" + msg.documents[0].thumbnail + "'/>");	//표지
-                });
         }
+
+        popularList();
+
+        // $("#popularList_1to5").append("<figure class='snip1368'><a href='/read/" + msg.documents[0].isbn.slice(-13) + "'>" +
+        //     "<img class='h-72 w-48' style='-webkit-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.4s ease; transition: all 0.4s ease;'" +
+        //     " src='" + msg.documents[0].thumbnail + "'/></a></figure>");
 
         function popularList_6to10(isbn) {
 
@@ -304,9 +455,11 @@
             })
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log(msg);
-                    $("#popularList_6to10").append("<img class='h-72 w-48' src='" + msg.documents[0].thumbnail + "'/>");	//표지
+                    $("#popularList_6to10").append("<a href='/read/" + msg.documents[0].isbn.slice(-13) + "'><img class='h-72 w-48' src='" + msg.documents[0].thumbnail + "'/>");
                 });
+
         }
+
 
         // '찜' 도서 목록 불러오기
         function myBookInfo(isbn) {
