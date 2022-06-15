@@ -5,8 +5,8 @@ import com.yurim.www.dto.AppraisalDTO;
 import java.util.List;
 
 public interface MainService {
-    List<String> popularList_1to5();
-    List<String> popularList_6to10();
+    List<String> popularList();
+    List<String> recommendList();
     List<AppraisalDTO> latestComments();
     Long totalCommentCount();
 }

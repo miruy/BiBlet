@@ -83,6 +83,6 @@ figure.snip1368 h3:before {
 
 figure.snip1368:hover h3,
 figure.snip1368.hover h3 {
-	-webkit-transform: translateY(0%);
+	: translateY(0%);
 	transform: translateY(0%);
 }

@@ -2,16 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yurim.www.repository.MainDAO">
 
-    <select id="popularList_1to5" resultType="String">
+    <select id="popularList" resultType="String">
         SELECT isbn FROM bookshelf
             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
-        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 0,10;
+        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 0,10
     </select>
 
-    <select id="popularList_6to10" resultType="String">
-        SELECT isbn FROM bookshelf
-            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
-        GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC limit 5,5;
+    <select id="recommendList" resultType="String">
+        SELECT isbn FROM bookshelf WHERE bookshelf.status = 0
+        GROUP BY bookshelf.isbn ORDER BY SUM(bookshelf.status = 0) DESC limit 0,10
     </select>
 
     <select id="latestComments" resultType="AppraisalDTO">

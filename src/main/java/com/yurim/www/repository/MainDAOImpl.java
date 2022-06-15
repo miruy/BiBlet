@@ -15,13 +15,13 @@ public class MainDAOImpl implements MainDAO {
 
 	// 인기 도서 리스트
 	@Override
-	public List<String> popularList_1to5() {
-		return sqlSessionTemplate.selectList("popularList_1to5");
+	public List<String> popularList() {
+		return sqlSessionTemplate.selectList("popularList");
 	}
 
 	@Override
-	public List<String> popularList_6to10() {
-		return sqlSessionTemplate.selectList("popularList_6to10");
+	public List<String> recommendList() {
+		return sqlSessionTemplate.selectList("recommendList");
 	}
 
 	// 최근 코멘트

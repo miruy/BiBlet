@@ -26,8 +26,8 @@ public class MainController {
         // 읽고싶어요 순 (이런 책은 어떠세요?)
         // 최근 코멘트 순 (최근 코멘트)
 
-        model.addAttribute("popularList_1to5", mainService.popularList_1to5());
-        model.addAttribute("popularList_6to10", mainService.popularList_6to10());
+        model.addAttribute("popularList", mainService.popularList());
+        model.addAttribute("recommendList", mainService.recommendList());
 
         model.addAttribute("latestComments", mainService.latestComments());
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
