@@ -5,6 +5,7 @@ import com.yurim.www.repository.MainDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -26,6 +27,15 @@ public class MainServiceImpl implements MainService {
     @Override
     public List<AppraisalDTO> latestComments() {
         return mainDAO.latestComments();
+    }
+
+    @Override
+    public List<Integer> latestStar(Long userNo, String isbn){
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+        return mainDAO.latestStar(map);
     }
 
     @Override

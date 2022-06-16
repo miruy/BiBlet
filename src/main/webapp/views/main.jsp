@@ -69,192 +69,58 @@
             </template>
         </div>
 
-        <span class="text-xl mb-4">최근 코멘트</span>
+        <div class="flex flex-col mb-20">
+            <span class="text-xl mb-4">최근 코멘트</span>
+            <div class="overflow-x-auto w-full">
+                <c:if test="${!empty latestComments}">
+                    <table class="table w-full">
+                        <thead>
+                        <tr class="text-xl text-center">
+                            <th>이름 / ID</th>
+                            <th>도서</th>
+                            <th>코멘트</th>
+                            <th>평가</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="latestComment" items="${latestComments}">
+                            <tr>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>${latestComment.storedPic}</div>
+                                        <div>
+                                            <div class="font-bold">${latestComment.id}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="justify-center items-center text-center">
 
+                                        <span id="bookName${latestComment.isbn}" class="w-40"></span>
 
-        <div class="overflow-x-auto w-full">
-            <table class="table w-full">
-                <!-- head -->
-                <thead>
-                <tr class="text-xl text-center">
-                    <th>이름 / ID</th>
-                    <th>도서</th>
-                    <th>코멘트</th>
-                    <th>평가</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- row 1 -->
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="/tailwind-css-component-profile-2@56w.png"
-                                         alt="Avatar Tailwind CSS Component"/>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Hart Hagerty</div>
-                                <div class="text-sm opacity-50">United States</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Zemlak, Daniel and Leannon
-                        <br>
-                        <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                    </td>
-                    <td>Purple</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="/tailwind-css-component-profile-3@56w.png"
-                                         alt="Avatar Tailwind CSS Component"/>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Brice Swyre</div>
-                                <div class="text-sm opacity-50">China</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Carroll Group
-                        <br>
-                        <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-                    </td>
-                    <td>Red</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="/tailwind-css-component-profile-4@56w.png"
-                                         alt="Avatar Tailwind CSS Component"/>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Marjy Ferencz</div>
-                                <div class="text-sm opacity-50">Russia</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Rowe-Schoen
-                        <br>
-                        <span class="badge badge-ghost badge-sm">Office Assistant I</span>
-                    </td>
-                    <td>Crimson</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 4 -->
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="/tailwind-css-component-profile-5@56w.png"
-                                         alt="Avatar Tailwind CSS Component"/>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Yancy Tear</div>
-                                <div class="text-sm opacity-50">Brazil</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Wyman-Ledner
-                        <br>
-                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                    </td>
-                    <td>Indigo</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 5 -->
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="/tailwind-css-component-profile-5@56w.png"
-                                         alt="Avatar Tailwind CSS Component"/>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Yancy Tear</div>
-                                <div class="text-sm opacity-50">Brazil</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Wyman-Ledner
-                        <br>
-                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                    </td>
-                    <td>Indigo</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                </tbody>
-                <!-- foot -->
-                <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                </tr>
-                </tfoot>
-
-            </table>
+                                </td>
+                                <td class="justify-center items-center text-center">
+                                    <c:if test="${latestComment.comment.length() > 20}">
+                                        <textarea rows="2" disabled>${latestComment.comment}</textarea>
+                                    </c:if>
+                                    <c:if test="${latestComment.comment.length() <= 20}">
+                                        ${latestComment.comment}
+                                    </c:if>
+                                </td>
+                                <td class="justify-center items-center text-center text-yellow-400">
+                                    <c:if test="${latestStar==0}">☆☆☆☆☆</c:if>
+                                    <c:if test="${latestStar==1}">★☆☆☆☆</c:if>
+                                    <c:if test="${latestStar==2}">★★☆☆☆</c:if>
+                                    <c:if test="${latestStar==3}">★★★☆☆</c:if>
+                                    <c:if test="${latestStar==4}">★★★★☆</c:if>
+                                    <c:if test="${latestStar==5}">★★★★★</c:if>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </c:if>
+            </div>
         </div>
-        # Compact table
-        NAME JOB
-
-
-        <c:if test="${!empty latestList}">
-            <tr>
-                <th>제목</th>
-                <th>회원</th>
-                <th>별점</th>
-                <th>평가</th>
-            </tr>
-            <c:forEach var="list" items="${latestList}">
-                <tr>
-                    <td id="bookName${list.isbn}"></td>
-                    <td>
-                        <c:if test="${list.star==1 }">★☆☆☆☆</c:if>
-                        <c:if test="${list.star==2 }">★★☆☆☆</c:if>
-                        <c:if test="${list.star==3 }">★★★☆☆</c:if>
-                        <c:if test="${list.star==4 }">★★★★☆</c:if>
-                        <c:if test="${list.star==5 }">★★★★★</c:if>
-                    </td>
-                    <td>${list.book_comment}</td>
-                    <td>${list.mem_id}</td>
-                </tr>
-            </c:forEach>
-        </c:if>
-
-    </div>
 
 
     <c:if test="${!empty allCommentCount}">
@@ -272,25 +138,6 @@
         );
 
 
-
-
-        $(document).ready(function () {
-
-            // 최근평가 isbn for문으로 담기
-            <c:if test="${!empty latestList}">
-            <c:forEach var="latestList" items="${latestList}">
-            latestList(${latestList.isbn})
-            </c:forEach>
-            </c:if>
-
-            // 로그인한 회원의 도서 정보
-            <c:if test="${!empty myBookInfo}">
-            <c:forEach var="myBookInfo" items="${myBookInfo}">
-            myBookInfo(${myBookInfo.isbn})
-            </c:forEach>
-            </c:if>
-
-        });
 
         // 인기도서 top10
         let defaultTransform = 0;
@@ -399,6 +246,43 @@
         recommendList();
 
 
+        $(document).ready(function () {
+
+            // 최근 코멘트
+            <c:if test="${!empty latestComments}">
+            <c:forEach var="latestComment" items="${latestComments}">
+            latestComments(${latestComment.isbn})
+            </c:forEach>
+            </c:if>
+
+            // 로그인한 회원의 도서 정보
+            <c:if test="${!empty myBookInfo}">
+            <c:forEach var="myBookInfo" items="${myBookInfo}">
+            myBookInfo(${myBookInfo.isbn})
+            </c:forEach>
+            </c:if>
+
+        });
+
+
+        // 최근 평가 도서 불러오기(1개)
+        function latestComments(isbn) {
+            console.log(isbn);
+            $.ajax({	//카카오 검색요청 / [요청]
+                method: "GET",
+                traditional: true,
+                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                data: {query: isbn},
+                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+            })
+                .done(function (msg) {	//검색 결과 담기 / [응답]
+                    console.log("title : " + msg.documents[0].title);
+                    $("#bookName" + isbn).append(msg.documents[0].title);	//표지
+                });
+        }
+
+
         // '찜' 도서 목록 불러오기
         function myBookInfo(isbn) {
 
@@ -417,22 +301,7 @@
                 });
         }
 
-        // 최근 평가 도서 불러오기(1개)
-        function latestList(isbn) {
-            console.log(isbn);
-            $.ajax({	//카카오 검색요청 / [요청]
-                method: "GET",
-                traditional: true,
-                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                url: "https://dapi.kakao.com/v3/search/book?target=isbn",
-                data: {query: isbn},
-                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
-            })
-                .done(function (msg) {	//검색 결과 담기 / [응답]
-                    console.log(msg);
-                    $("#bookName" + isbn).append(msg.documents[0].title);	//표지
-                });
-        }
+
     </script>
 
 </section>

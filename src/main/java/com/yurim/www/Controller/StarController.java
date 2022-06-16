@@ -46,9 +46,11 @@ public class StarController {
 
         Long userNo = authInfo.getUserNo();
         Integer userStar = appraisalService.userStar(userNo, requestStar.getIsbn());
+        Integer userStatus = bookShelService.userStatus(userNo, requestStar.getIsbn());
 
-        if(userStar == null){
-
+        // 별점을 누른 후 해당 위치로 이동 됨
+        // status == null : 0,1,2,3 중 아무 평가도 하지 않았다면
+        if (userStatus == null) {
             bookShelf.setUserNo(userNo);
             bookShelf.setIsbn(requestStar.getIsbn());
             bookShelf.setStatus(2);
@@ -57,23 +59,40 @@ public class StarController {
 
             Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
 
-            appraisalService.insertStar(statusNo, requestStar.getStar());
+            appraisalService.insertStar(statusNo, requestStar.getStar(), userNo, requestStar.getIsbn());
 
-        }else if(userStar == requestStar.getStar()){
+        // status != null : 0,1,2,3 중 하나라도 평가를 했다면
+        }else if(userStatus!= null){
 
-           int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
-            return ResponseEntity.ok(result);
+            if(userStar == null){
 
-        }else if(userStar != requestStar.getStar()){
+                if (userStatus == 0 || userStatus == 1 || userStatus == 3){
+                    appraisal.setStar(requestStar.getStar());
+                    appraisal.setIsbn(requestStar.getIsbn());
+                    appraisal.setUserNo(userNo);
 
-            appraisal.setStar(requestStar.getStar());
-            appraisal.setIsbn(requestStar.getIsbn());
-            appraisal.setUserNo(userNo);
+                    appraisalService.updateStar(appraisal);
 
-            appraisalService.updateStar(appraisal);
+                }
+
+            }else if(userStar == requestStar.getStar()){
+
+                int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
+                return ResponseEntity.ok(result);
+
+            }else if(userStar != requestStar.getStar()){
+
+                if (userStatus == 0 || userStatus == 1 || userStatus == 3){
+                    appraisal.setStar(requestStar.getStar());
+                    appraisal.setIsbn(requestStar.getIsbn());
+                    appraisal.setUserNo(userNo);
+
+                    appraisalService.updateStar(appraisal);
+                }
+
+            }
 
         }
-
 
         String starMsg = null;
         if (requestStar.getStar() == 1) {

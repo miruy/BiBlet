@@ -43,4 +43,9 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	public Long selectStatusNoForComment(BookShelfDTO bookShelf) {
 		return sqlSessionTemplate.selectOne("selectStatusNoForComment", bookShelf);
 	}
+
+	@Override
+	public Integer userStatus(HashMap<String, String> map){
+		return sqlSessionTemplate.selectOne("userStatus", map);
+	}
 }

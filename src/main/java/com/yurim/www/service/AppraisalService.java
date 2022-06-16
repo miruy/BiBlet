@@ -15,7 +15,7 @@ public interface AppraisalService {
     Long starCount(String isbn);
     Integer userStar(Long userNo, String isbn);
 
-    void insertStar(Long statusNo, int star);
+    void insertStar(Long statusNo, int star, Long userNo, String isbn);
     void updateStar(AppraisalDTO appraisal);
     int deleteStar(Long userNo, String isbn, int star);
     List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf);

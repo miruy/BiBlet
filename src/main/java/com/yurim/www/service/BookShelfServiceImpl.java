@@ -48,4 +48,15 @@ public class BookShelfServiceImpl implements BookShelfService {
     public Long selectStatusNoForComment(BookShelfDTO bookShelf){
         return bookShelfDAO.selectStatusNoForComment(bookShelf);
     }
+
+    @Override
+    public Integer userStatus(Long userNo, String isbn){
+        HashMap<String, String> map = new HashMap<>();
+        String userNoS = String.valueOf(userNo);
+
+        map.put("userNo", userNoS);
+        map.put("isbn", isbn);
+
+        return bookShelfDAO.userStatus(map);
+    }
 }

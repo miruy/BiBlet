@@ -18,11 +18,19 @@
                appraisal.star,
                appraisal.comment,
                user.id,
-               user.name
+               user.name,
+               user.user_no,
+               user.stored_pic
         FROM appraisal
                  INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no
         WHERE appraisal.co_prv = '공개' ORDER BY appraisal.appraisal_no DESC limit 5
+    </select>
+
+    <select id="latestStar" parameterType="HashMap" resultType="Integer">
+        SELECT star FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE isbn = #{isbn} AND user_no = #{userNo}
     </select>
 
     <select id="totalCommentCount" resultType="Long">

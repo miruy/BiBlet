@@ -403,6 +403,9 @@
             //해당 도서의 모든 코멘트의 정보 묶어서 표시하기
             <c:if test="${!empty starByMembers}">
             <c:forEach var="starByMembers" items="${starByMembers}">
+            <c:if test="${starByMembers.star==0 }">
+            var star = 0;
+            </c:if>
             <c:if test="${starByMembers.star==1 }">
             var star = 1;
             </c:if>
@@ -430,7 +433,9 @@
         function allComment(id, star) {
             let starForComment = '';
 
-            if (star == 1) {
+            if (star == 0) {
+                starForComment = '☆☆☆☆☆';
+            } else if (star == 1) {
                 starForComment = '★☆☆☆☆';
             } else if (star == 2) {
                 starForComment = '★★☆☆☆';
@@ -578,7 +583,7 @@
                     if (data == 2) {
                         document.getElementById("userStarMsg").innerHTML = "평가하기";
                         $("input:radio[name='star']").prop('checked', false);
-                    } else if (data.star != null) {
+                    }else if (data.star != null) {
                         console.log("data.star : " + data.star);
                         console.log("data.starMsg : " + data.starMsg);
                         $("#starMsgL").hide();

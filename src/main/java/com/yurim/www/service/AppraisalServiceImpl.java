@@ -53,11 +53,14 @@ public class AppraisalServiceImpl implements AppraisalService {
     }
 
     @Override
-    public void insertStar(Long statusNo, int star) {
+    public void insertStar(Long statusNo, int star, Long userNo, String isbn) {
         HashMap<String, Long> map = new HashMap<>();
         Long starL = (long) star;
+        Long isbnL = Long.parseLong(isbn);
         map.put("statusNo", statusNo);
         map.put("star", starL);
+        map.put("userNo", userNo);
+        map.put("isbn", isbnL);
         appraisalDAO.insertStar(map);
     }
 

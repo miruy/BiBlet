@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -28,6 +29,11 @@ public class MainDAOImpl implements MainDAO {
 	@Override
 	public List<AppraisalDTO> latestComments() {
 		return sqlSessionTemplate.selectList("latestComments");
+	}
+
+	@Override
+	public List<Integer> latestStar(HashMap<String, String> map){
+		return sqlSessionTemplate.selectList("latestStar", map);
 	}
 
 	// 모든 평가 불러오기
