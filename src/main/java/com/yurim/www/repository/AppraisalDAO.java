@@ -16,7 +16,7 @@ public interface AppraisalDAO {
 	Integer userStar(HashMap<String, String> map);
 	void insertStar(HashMap<String, Long> map);
 	void updateStar(AppraisalDTO appraisal);
-	int deleteStar(HashMap<String, String> map);
+	void deleteStar(HashMap<String, String> map);
 	List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf);
 	void updateComment(AppraisalDTO appraisal);
 	List<AppraisalDTO> findAllStar(String isbn);

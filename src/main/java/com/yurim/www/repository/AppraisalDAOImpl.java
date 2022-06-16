@@ -59,8 +59,8 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	}
 
 	@Override
-	public int deleteStar(HashMap<String, String> map){
-		return sqlSessionTemplate.delete("deleteStar", map);
+	public void deleteStar(HashMap<String, String> map){
+		sqlSessionTemplate.delete("deleteStar", map);
 	}
 
 	@Override

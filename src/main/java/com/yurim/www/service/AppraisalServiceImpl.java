@@ -70,7 +70,7 @@ public class AppraisalServiceImpl implements AppraisalService {
     }
 
     @Override
-    public int deleteStar(Long userNo, String isbn, int star) {
+    public void deleteStar(Long userNo, String isbn, int star) {
         HashMap<String, String> map = new HashMap<>();
         String userNoS = String.valueOf(userNo);
         String starS = String.valueOf(star);
@@ -79,7 +79,7 @@ public class AppraisalServiceImpl implements AppraisalService {
         map.put("isbn", isbn);
         map.put("star", starS);
 
-        return appraisalDAO.deleteStar(map);
+        appraisalDAO.deleteStar(map);
     }
 
     @Override

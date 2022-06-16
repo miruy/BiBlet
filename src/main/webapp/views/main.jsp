@@ -32,7 +32,7 @@
             <span class="text-xl mb-4">인기 도서 TOP10</span>
 
             <div class="w-full relative flex items-center justify-center">
-                <button id="prev" aria-label="slide backward" class="absolute top-[45%] z-50 -left-4 z-0 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</button>
+                <button id="prev" aria-label="slide backward" class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</button>
 
                 <div id="popularList" class="relative w-full overflow-x-hidden overflow-y-hidden">
                     <div id="popularBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
@@ -86,7 +86,7 @@
                         <c:forEach var="latestComment" items="${latestComments}">
                             <tr>
                                 <td>
-                                    <div class="flex items-center space-x-3">
+                                    <div class="flex justify-center items-center text-center space-x-3">
                                         <div>${latestComment.storedPic}</div>
                                         <div>
                                             <div class="font-bold">${latestComment.id}</div>
@@ -94,9 +94,7 @@
                                     </div>
                                 </td>
                                 <td class="justify-center items-center text-center">
-
-                                        <span id="bookName${latestComment.isbn}" class="w-40"></span>
-
+                                    <span id="bookName${latestComment.isbn}" class="w-40"></span>
                                 </td>
                                 <td class="justify-center items-center text-center">
                                     <c:if test="${latestComment.comment.length() > 20}">
@@ -107,12 +105,12 @@
                                     </c:if>
                                 </td>
                                 <td class="justify-center items-center text-center text-yellow-400">
-                                    <c:if test="${latestStar==0}">☆☆☆☆☆</c:if>
-                                    <c:if test="${latestStar==1}">★☆☆☆☆</c:if>
-                                    <c:if test="${latestStar==2}">★★☆☆☆</c:if>
-                                    <c:if test="${latestStar==3}">★★★☆☆</c:if>
-                                    <c:if test="${latestStar==4}">★★★★☆</c:if>
-                                    <c:if test="${latestStar==5}">★★★★★</c:if>
+                                    <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>
+                                    <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>
+                                    <c:if test="${latestComment.star==2}">★★☆☆☆</c:if>
+                                    <c:if test="${latestComment.star==3}">★★★☆☆</c:if>
+                                    <c:if test="${latestComment.star==4}">★★★★☆</c:if>
+                                    <c:if test="${latestComment.star==5}">★★★★★</c:if>
                                 </td>
                             </tr>
                         </c:forEach>

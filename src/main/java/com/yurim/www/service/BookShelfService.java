@@ -8,7 +8,9 @@ public interface BookShelfService {
     void deleteStatus(BookShelfDTO bookShelf);
     Integer selectStatus(String isbn, Long userNo);
     void updateStatus(BookShelfDTO bookShelf);
+    Integer selectStatusForComment(BookShelfDTO bookShelf);
     Long selectStatusNoForComment(BookShelfDTO bookShelf);
+    Long selectStatusNoForWriteComment(BookShelfDTO bookShelf);
 
     Integer userStatus(Long userNo, String isbn);
 }

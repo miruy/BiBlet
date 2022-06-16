@@ -40,8 +40,18 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 		sqlSessionTemplate.update("updateStatus", bookShelf);
 	}
 	@Override
+	public Integer selectStatusForComment(BookShelfDTO bookShelf) {
+		return sqlSessionTemplate.selectOne("selectStatusForComment", bookShelf);
+	}
+
+	@Override
 	public Long selectStatusNoForComment(BookShelfDTO bookShelf) {
 		return sqlSessionTemplate.selectOne("selectStatusNoForComment", bookShelf);
+	}
+
+	@Override
+	public Long selectStatusNoForWriteComment(BookShelfDTO bookShelf){
+		return sqlSessionTemplate.selectOne("selectStatusNoForWriteComment", bookShelf);
 	}
 
 	@Override

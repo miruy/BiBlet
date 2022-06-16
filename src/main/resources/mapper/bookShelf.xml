@@ -23,7 +23,7 @@
     </update>
 
     <select id="selectStatusNoForComment" parameterType="BookShelfDTO" resultType="Long">
-        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status=3
+        SELECT status_no FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status = 2
     </select>
 
     <select id="userStatus" parameterType="HashMap" resultType="Integer">

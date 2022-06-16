@@ -15,7 +15,9 @@ public interface BookShelfDAO {
 
     void updateStatus(BookShelfDTO bookShelf);
 
+    Integer selectStatusForComment(BookShelfDTO bookShelf);
     Long selectStatusNoForComment(BookShelfDTO bookShelf);
+    Long selectStatusNoForWriteComment(BookShelfDTO bookShelf);
 
     Integer userStatus(HashMap<String, String> map);
 }

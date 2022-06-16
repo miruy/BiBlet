@@ -29,7 +29,7 @@ public class StarController {
     @ResponseBody
     @PostMapping("/star")
     public ResponseEntity<?> updateStar(@RequestBody RequestStar requestStar, Errors errors,
-                                     HttpSession session, HttpServletResponse response) {
+                                        HttpSession session, HttpServletResponse response) {
 
         BookShelfDTO bookShelf = new BookShelfDTO();
         AppraisalDTO appraisal = new AppraisalDTO();
@@ -48,9 +48,9 @@ public class StarController {
         Integer userStar = appraisalService.userStar(userNo, requestStar.getIsbn());
         Integer userStatus = bookShelService.userStatus(userNo, requestStar.getIsbn());
 
-        // 별점을 누른 후 해당 위치로 이동 됨
-        // status == null : 0,1,2,3 중 아무 평가도 하지 않았다면
-        if (userStatus == null) {
+        // 별점 포함 아무런 독서 상태가 등록되어 있지 않거나 별점 없이 읽고싶어요(0), 읽는 중(1)만 작성된 상태
+        if (userStatus == null || userStatus == 0 || userStatus == 1) {
+            //insert
             bookShelf.setUserNo(userNo);
             bookShelf.setIsbn(requestStar.getIsbn());
             bookShelf.setStatus(2);
@@ -60,38 +60,27 @@ public class StarController {
             Long statusNo = bookShelService.selectStatusNoForStar(bookShelf);
 
             appraisalService.insertStar(statusNo, requestStar.getStar(), userNo, requestStar.getIsbn());
+        }
 
-        // status != null : 0,1,2,3 중 하나라도 평가를 했다면
-        }else if(userStatus!= null){
+        // 별점 없이 코멘트만 작성된 상태
+        else if (userStatus == 2) {
 
-            if(userStar == null){
+            if (userStar == null || userStar != requestStar.getStar()) {
+                //update
+                appraisal.setStar(requestStar.getStar());
+                appraisal.setIsbn(requestStar.getIsbn());
+                appraisal.setUserNo(userNo);
 
-                if (userStatus == 0 || userStatus == 1 || userStatus == 3){
-                    appraisal.setStar(requestStar.getStar());
-                    appraisal.setIsbn(requestStar.getIsbn());
-                    appraisal.setUserNo(userNo);
-
-                    appraisalService.updateStar(appraisal);
-
-                }
-
-            }else if(userStar == requestStar.getStar()){
-
-                int result =  appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
-                return ResponseEntity.ok(result);
-
-            }else if(userStar != requestStar.getStar()){
-
-                if (userStatus == 0 || userStatus == 1 || userStatus == 3){
-                    appraisal.setStar(requestStar.getStar());
-                    appraisal.setIsbn(requestStar.getIsbn());
-                    appraisal.setUserNo(userNo);
-
-                    appraisalService.updateStar(appraisal);
-                }
-
+                appraisalService.updateStar(appraisal);
             }
 
+
+            if (userStar == requestStar.getStar()) {
+                //delete(별 점수만 지워야됨)
+                appraisalService.deleteStar(userNo, requestStar.getIsbn(), requestStar.getStar());
+                return ResponseEntity.ok(1);
+
+            }
         }
 
         String starMsg = null;
@@ -115,4 +104,5 @@ public class StarController {
 
         return ResponseEntity.ok(map);
     }
+
 }

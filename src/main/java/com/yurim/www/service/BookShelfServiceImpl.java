@@ -45,8 +45,18 @@ public class BookShelfServiceImpl implements BookShelfService {
     }
 
     @Override
+    public Integer selectStatusForComment(BookShelfDTO bookShelf){
+        return bookShelfDAO.selectStatusForComment(bookShelf);
+    }
+
+    @Override
     public Long selectStatusNoForComment(BookShelfDTO bookShelf){
         return bookShelfDAO.selectStatusNoForComment(bookShelf);
+    }
+
+    @Override
+    public Long selectStatusNoForWriteComment(BookShelfDTO bookShelf){
+        return bookShelfDAO.selectStatusNoForWriteComment(bookShelf);
     }
 
     @Override

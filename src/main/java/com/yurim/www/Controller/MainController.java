@@ -37,19 +37,19 @@ public class MainController {
         List<AppraisalDTO> latestComments = mainService.latestComments();
         model.addAttribute("latestComments", latestComments);
 
-        // 해당 isbn의 대한 회원의 별점 가져오기 띠로 별점 가져와서 뿌려야 할듯
-
-        AppraisalDTO latestComment = null;
-        for(AppraisalDTO str : latestComments) {
-            latestComment = str;
-            System.out.println(latestComment.getIsbn());
-            System.out.println(latestComment.getUserNo());
-
-            List<Integer> latestStars = mainService.latestStar(latestComment.getUserNo(), latestComment.getIsbn());
-            System.out.println("latestStar : " + latestStars);
-
-
-            }
+//        // 해당 isbn의 대한 회원의 별점 가져오기 띠로 별점 가져와서 뿌려야 할듯
+//
+//        AppraisalDTO latestComment = null;
+//        for(AppraisalDTO str : latestComments) {
+//            latestComment = str;
+//            System.out.println(latestComment.getIsbn());
+//            System.out.println(latestComment.getUserNo());
+//
+//            List<Integer> latestStars = mainService.latestStar(latestComment.getUserNo(), latestComment.getIsbn());
+//            System.out.println("latestStar : " + latestStars);
+//
+//
+//            }
 
 
 

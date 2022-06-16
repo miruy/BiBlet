@@ -150,8 +150,13 @@ public class AppraisalController {
 
         Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
 
+
+        // 별점 포함 독서상태가 없는 상태
         if (statusNo == null) {
-            bookShelf.setStatus(3);
+
+            bookShelf.setUserNo(userNo);
+            bookShelf.setIsbn(isbn);
+            bookShelf.setStatus(2);
             bookShelfService.insertStatus(bookShelf);
 
             Long statusNo2 = bookShelfService.selectStatusNoForComment(bookShelf);
@@ -163,6 +168,17 @@ public class AppraisalController {
             appraisal.setStatusNo(statusNo2);
 
             appraisalService.writeComment(appraisal);
+
+        // 해당 도서의 대한 별점만 있는 상태
+        }else if(statusNo != null){
+            //update
+            appraisal.setComment(requestWriteComment.getComment());
+            appraisal.setStartDate(requestWriteComment.getStartDate());
+            appraisal.setEndDate(requestWriteComment.getEndDate());
+            appraisal.setCoPrv(requestWriteComment.getCoPrv());
+            appraisal.setUserNo(userNo);
+            appraisal.setIsbn(isbn);
+            appraisalService.updateComment(appraisal);
         }
 
         return "redirect:/read/" + isbn;
