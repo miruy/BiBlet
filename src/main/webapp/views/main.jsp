@@ -22,23 +22,29 @@
 
     <div class="flex flex-col justify-center bg-white px-32 py-8">
 
-<%--        <figure class="snip1368">--%>
-<%--            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample30.jpg" alt="sample30"/>--%>
-<%--            <h3>1위</h3>--%>
-<%--        </figure>--%>
+        <%--        <figure class="snip1368">--%>
+        <%--            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample30.jpg" alt="sample30"/>--%>
+        <%--            <h3>1위</h3>--%>
+        <%--        </figure>--%>
 
 
         <div class="flex flex-col mb-20">
             <span class="text-xl mb-4">인기 도서 TOP10</span>
 
             <div class="w-full relative flex items-center justify-center">
-                <button id="prev" aria-label="slide backward" class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</button>
+                <button id="prev" aria-label="slide backward"
+                        class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                    ❮
+                </button>
 
                 <div id="popularList" class="relative w-full overflow-x-hidden overflow-y-hidden">
                     <div id="popularBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                 </div>
 
-                <button id="next" aria-label="slide forward" class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❯</button>
+                <button id="next" aria-label="slide forward"
+                        class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                    ❯
+                </button>
             </div>
 
             <template id="template__detail__link">
@@ -53,13 +59,19 @@
             <span class="text-xl mb-4">이런 책은 어떠세요?</span>
 
             <div class="w-full relative flex items-center justify-center">
-                <button id="prev2" aria-label="slide backward" class="absolute top-[45%] z-50 -left-4 z-0 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❮</button>
+                <button id="prev2" aria-label="slide backward"
+                        class="absolute top-[45%] -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                    ❮
+                </button>
 
                 <div id="recommendList" class="relative w-full overflow-x-hidden overflow-y-hidden">
                     <div id="recommendBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                 </div>
 
-                <button id="next2" aria-label="slide forward" class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">❯</button>
+                <button id="next2" aria-label="slide forward"
+                        class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                    ❯
+                </button>
             </div>
 
             <template id="template__recommendDetail__link">
@@ -119,11 +131,8 @@
                 </c:if>
             </div>
         </div>
+    </div>
 
-
-    <c:if test="${!empty allCommentCount}">
-        <h2>지금 까지 총 ${allCommentCount}개의 평가가 쌓였어요!</h2>
-    </c:if>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -136,15 +145,16 @@
         );
 
 
-
         // 인기도서 top10
         let defaultTransform = 0;
+
         function goNext() {
             defaultTransform = defaultTransform - 398;
             var slider = document.getElementById("popularBook__detail");
             if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.7) defaultTransform = 0;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
+
         next.addEventListener("click", goNext);
 
         function goPrev() {
@@ -153,6 +163,7 @@
             else defaultTransform = defaultTransform + 398;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
+
         prev.addEventListener("click", goPrev);
 
 
@@ -189,17 +200,16 @@
         popularList();
 
 
-
-
-
         // 추천도서 10(이런 책은 어떠세요?)
         let defaultTransform2 = 0;
+
         function goNext2() {
             defaultTransform2 = defaultTransform2 - 398;
             var slider = document.getElementById("recommendBook__detail");
             if (Math.abs(defaultTransform2) >= slider.scrollWidth / 1.7) defaultTransform2 = 0;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
         }
+
         next2.addEventListener("click", goNext2);
 
         function goPrev2() {
@@ -208,6 +218,7 @@
             else defaultTransform2 = defaultTransform2 + 398;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
         }
+
         prev2.addEventListener("click", goPrev2);
 
 
@@ -276,7 +287,7 @@
             })
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log("title : " + msg.documents[0].title);
-                    $("#bookName" + isbn).append(msg.documents[0].title);	//표지
+                    $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");	//표지
                 });
         }
 

@@ -37,33 +37,35 @@
 <body class="flex flex-col min-h-screen">
 <header class="navbar bg-base-100 fixed inset-x-0 top-0 z-50 px-8">
     <div class="navbar-start">
+        <div class="flex items-center space-x-4">
+            <a href="/" class="text-gray-800"><header_biblet class="normal-case text-2xl border-0 mx-[1.3rem]">BiBlet</header_biblet></a>
+
+            <form action="/search" class="mb-0 flex items-center">
+                <input type="text" name="query" id="query" value="${query}" placeholder="검색"
+                       class="input border-purple-700 my-[1.2rem] h-[1.5rem]"/>
+                <button class="px-[1.3rem] text-gray-800 text-xl" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-end">
         <ul class="flex items-center">
-            <a href="/" class="text-gray-800"><biblet class="normal-case text-2xl border-0 mx-[1.3rem]">BiBlet</biblet></a>
+            <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/notice">Notice</a></li>
             <c:if test="${empty authInfo}">
-                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/signup">Sign Up</a></li>
                 <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/login">Login</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/signup">Sign Up</a></li>
             </c:if>
             <c:if test="${!empty authInfo}">
-                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/myPage">마이페이지</a></li>
-                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/logout">로그아웃</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/myPage">Mypage</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/logout">Logout</a></li>
             </c:if>
-            <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/notice">Notice</a></li>
         </ul>
-    </div>
-    <div class="navbar-center">
-    </div>
-    <div class="navbar-end">
-        <form action="/search" class="mb-0 flex items-center">
-            <input type="text" name="query" id="query" value="${query}" placeholder="검색"
-                   class="input border-purple-700 my-[1.2rem] h-[1.5rem]"/>
-            <button class="px-[1.3rem] text-gray-800 text-xl" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-            </button>
-        </form>
     </div>
 </header>
 <main class="flex-1 mt-[4rem]">

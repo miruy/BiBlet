@@ -12,7 +12,7 @@
             <div class="max-w-md">
                 <h1 class="mb-5 text-3xl font-bold text-gray-600" >이메일 인증에 성공했습니다.</h1>
                 <h1 class="mb-5 text-2xl text-gray-600">로그인이 가능합니다.</h1>
-                <button class="btn btn-secondary" type="button" onclick="location.href='/'">Start BiBlet</button>
+                <button class="btn btn-secondary hover:text-white" type="button" onclick="location.href='/'">Start BiBlet</button>
             </div>
         </div>
     </div>

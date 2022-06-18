@@ -6,8 +6,8 @@
 
 <%@ include file="common/header.jsp" %>
 
-<section class="container">
-    <div class="bg-white justify-center px-48 py-10">
+<section class="">
+    <div class="bg-white justify-center items-center ml-32 px-48 py-20">
         <div class="flex flex-col xl:flex-row ">
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
             <div class="flex flex-col">
@@ -262,7 +262,7 @@
         </div>
     </c:forEach>
 
-    <div class="bg-gray-100 px-48 py-10">
+    <div class="bg-gray-100 px-48 pb-20 pt-10">
 
 
         <div id="writeCommentBtn" class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4"></div>

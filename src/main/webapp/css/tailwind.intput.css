@@ -30,14 +30,18 @@ header {
     font-family: LeferiPoint-WhiteObliqueA;
 }
 
+header_biblet{
+    font-family: LeferiPoint-BlackObliqueA;
+}
+
 body {
     font-family: OTWelcomeRA;
 }
 
 footer {
-    font-family: LeferiPoint-WhiteObliqueA;
+    font-family: LeferiPoint-BlackObliqueA;
 }
 
-biblet{
-    font-family: LeferiPoint-BlackObliqueA;
+footer_biblet{
+    font-family: OTWelcomeRA;
 }

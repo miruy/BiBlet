@@ -50,7 +50,7 @@ public class MailUtils {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         mailSender.setUsername("dbflarla496695@gmail.com");
-        mailSender.setPassword("DBdbflarla?!");
+        mailSender.setPassword("dong ewyu gdpc jukl");
         mailSender.setDefaultEncoding("utf-8");
         mailSender.setJavaMailProperties(properties);
     }

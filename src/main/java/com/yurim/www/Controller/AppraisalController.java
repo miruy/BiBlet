@@ -5,6 +5,7 @@ import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AppraisalService;
 import com.yurim.www.service.BookShelfService;
+import com.yurim.www.service.MainService;
 import com.yurim.www.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class AppraisalController {
 
     private final AppraisalService appraisalService;
     private final BookShelfService bookShelfService;
+    private final MainService mainService;
 
     /**
      * 도서 상세보기 - 해당 도서의 대한 모든 평가 추출
@@ -117,6 +119,8 @@ public class AppraisalController {
             }
 
         }
+
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
         return "detail";
     }
