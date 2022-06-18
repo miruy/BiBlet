@@ -42,4 +42,23 @@ public class MainDAOImpl implements MainDAO {
 		return sqlSessionTemplate.selectOne("totalCommentCount");
 	}
 
+	@Override
+	public Long userCommentCount(Long userNo){
+		return sqlSessionTemplate.selectOne("userCommentCount", userNo);
+	}
+
+	@Override
+	public Long userStarCount(Long userNo){
+		return sqlSessionTemplate.selectOne("userStarCount", userNo);
+	}
+
+	@Override
+	public List<String> wantReadList(Long userNo){
+		return sqlSessionTemplate.selectList("wantReadList", userNo);
+	}
+
+	@Override
+	public List<String> readingList(Long userNo){
+		return sqlSessionTemplate.selectList("readingList", userNo);
+	}
 }

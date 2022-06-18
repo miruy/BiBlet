@@ -7,7 +7,7 @@
     </insert>
 
     <select id="selectStatus" parameterType="HashMap" resultType="Integer">
-        SELECT status FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo} AND status=0 OR status=1
+        SELECT status FROM bookshelf WHERE isbn=#{isbn} AND user_no=#{userNo}
     </select>
 
     <delete id="deleteStatus" parameterType="BookShelfDTO">

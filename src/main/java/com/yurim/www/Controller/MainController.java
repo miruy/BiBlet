@@ -36,24 +36,28 @@ public class MainController {
         // 최근 코멘트 순 (최근 코멘트)
         model.addAttribute("latestComments",  mainService.latestComments());
 
-
+        // 총 코멘트 수(footer)
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
-//        if (session == null || session.getAttribute("authInfo") == null) {
-//            return "common/main";
-//        } else {
-//
-//            MemberVO authInfo = (MemberVO) session.getAttribute("authInfo");
-//
-//            Long mem_num = authInfo.getMem_num();
-//
-//            session.setAttribute("myID", authInfo.getMem_id());
-//
-//            model.addAttribute("myCommentCount", mainService.memCommentCount(mem_num));
-//            model.addAttribute("myBookInfo", mainService.myBookInfo(mem_num));
-//
-//            return "common/main";
-//        }
+
+        //회원 로그인 시
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        if (authInfo != null) {
+
+            Long userNo = authInfo.getUserNo();
+
+            session.setAttribute("myID", authInfo.getId());
+
+            model.addAttribute("myCommentCount", mainService.userCommentCount(userNo));
+            model.addAttribute("myStarCount", mainService.userStarCount(userNo));
+            model.addAttribute("wantReadList", mainService.wantReadList(userNo));
+            model.addAttribute("readingList", mainService.readingList(userNo));
+
+            return "main";
+        }
+
 
         return "main";
     }

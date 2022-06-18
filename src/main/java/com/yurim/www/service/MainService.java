@@ -11,4 +11,8 @@ public interface MainService {
     List<AppraisalDTO> latestComments();
     List<Integer> latestStar(Long userNo, String isbn);
     Long totalCommentCount();
+    Long userCommentCount(Long userNo);
+    Long userStarCount(Long userNo);
+    List<String> wantReadList(Long userNo);
+    List<String> readingList(Long userNo);
 }

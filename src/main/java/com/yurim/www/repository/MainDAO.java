@@ -11,4 +11,8 @@ public interface MainDAO {
 	List<AppraisalDTO> latestComments();
 	List<Integer> latestStar(HashMap<String, String> map);
 	Long totalCommentCount();
+	Long userCommentCount(Long userNo);
+	Long userStarCount(Long userNo);
+	List<String> wantReadList(Long userNo);
+	List<String> readingList(Long userNo);
 }

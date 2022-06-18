@@ -21,7 +21,7 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public List<String> recommendList() {
-		return mainDAO.recommendList();
+        return mainDAO.recommendList();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public List<Integer> latestStar(Long userNo, String isbn){
+    public List<Integer> latestStar(Long userNo, String isbn) {
         HashMap<String, String> map = new HashMap<>();
         String userNoS = String.valueOf(userNo);
         map.put("userNo", userNoS);
@@ -43,5 +43,23 @@ public class MainServiceImpl implements MainService {
         return mainDAO.totalCommentCount();
     }
 
+    @Override
+    public Long userCommentCount(Long userNo) {
+        return mainDAO.userCommentCount(userNo);
+    }
 
+    @Override
+    public Long userStarCount(Long userNo) {
+        return mainDAO.userCommentCount(userNo);
+    }
+
+    @Override
+    public List<String> wantReadList(Long userNo) {
+        return mainDAO.wantReadList(userNo);
+    }
+
+    @Override
+    public List<String> readingList(Long userNo) {
+        return mainDAO.readingList(userNo);
+    }
 }

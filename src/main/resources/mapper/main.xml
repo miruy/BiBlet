@@ -34,7 +34,28 @@
     </select>
 
     <select id="totalCommentCount" resultType="Long">
-        SELECT COUNT(appraisal_no) FROM appraisal
+        SELECT COUNT(comment) FROM appraisal
     </select>
 
+    <select id="userCommentCount" parameterType="Long" resultType="Long">
+        SELECT COUNT(comment) FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN user ON user.user_no = bookshelf.user_no
+        WHERE user.user_no = #{userNo}
+    </select>
+
+    <select id="userStarCount" parameterType="Long" resultType="Long">
+        SELECT COUNT(star) FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+            INNER JOIN user ON user.user_no = bookshelf.user_no
+        WHERE user.user_no = #{userNo}
+    </select>
+
+    <select id="wantReadList" parameterType="Long" resultType="String">
+        SELECT isbn FROM bookshelf WHERE bookshelf.status = 0 AND bookshelf.user_no = #{userNo}
+    </select>
+
+    <select id="readingList" parameterType="Long" resultType="String">
+        SELECT isbn FROM bookshelf WHERE bookshelf.status = 1 AND bookshelf.user_no = #{userNo}
+    </select>
 </mapper>

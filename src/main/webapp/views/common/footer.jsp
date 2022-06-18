@@ -7,7 +7,7 @@
 
     <div class="grid place-items-center ">
         <c:if test="${!empty totalCommentCount}">
-            <footer_biblet class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">현재까지 총 ${totalCommentCount}개의 평가가 작성되었어요!</footer_biblet>
+            <footer_biblet class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">지금까지 ${totalCommentCount}개의 코멘트가 쌓였어요!</footer_biblet>
         </c:if>
     </div>
 
