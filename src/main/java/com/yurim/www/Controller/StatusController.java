@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class StatusController {
     private final BookShelfService bookShelService;
-    private final UserService userService;
 
     @ResponseBody
     @PostMapping("/insertOrUpdate")

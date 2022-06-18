@@ -52,10 +52,10 @@
     </select>
 
     <select id="wantReadList" parameterType="Long" resultType="String">
-        SELECT isbn FROM bookshelf WHERE bookshelf.status = 0 AND bookshelf.user_no = #{userNo}
+        SELECT isbn FROM bookshelf WHERE bookshelf.status = 0 AND bookshelf.user_no = #{userNo} ORDER BY bookshelf.status_no DESC limit 0,10
     </select>
 
     <select id="readingList" parameterType="Long" resultType="String">
-        SELECT isbn FROM bookshelf WHERE bookshelf.status = 1 AND bookshelf.user_no = #{userNo}
+        SELECT isbn FROM bookshelf WHERE bookshelf.status = 1 AND bookshelf.user_no = #{userNo} ORDER BY bookshelf.status_no DESC limit 0,10
     </select>
 </mapper>

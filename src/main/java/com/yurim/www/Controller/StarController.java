@@ -23,7 +23,6 @@ import java.util.HashMap;
 public class StarController {
 
     private final AppraisalService appraisalService;
-    private final UserService userService;
     private final BookShelfService bookShelService;
 
     @ResponseBody

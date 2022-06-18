@@ -42,7 +42,7 @@
                     <label class="label">
                         <span class="label-text">Email</span>
                     </label>
-                    <form:input type="email" path="email" id="email" name="email" class="input input-bordered"/>
+                    <form:input type="text" path="email" id="email" name="email" class="input input-bordered"/>
                     <label class="text-center"><form:errors path="email" /></label>
                 </div>
 

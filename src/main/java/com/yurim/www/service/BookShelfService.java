@@ -2,6 +2,8 @@ package com.yurim.www.service;
 
 import com.yurim.www.dto.BookShelfDTO;
 
+import java.util.List;
+
 public interface BookShelfService {
     Long selectStatusNoForStar(BookShelfDTO bookShelf);
     void insertStatus(BookShelfDTO bookShelf);
@@ -13,4 +15,5 @@ public interface BookShelfService {
     Long selectStatusNoForWriteComment(BookShelfDTO bookShelf);
 
     Integer userStatus(Long userNo, String isbn);
+    List<String> selectMyCommentIsbn(Long userNo);
 }

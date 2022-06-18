@@ -5,7 +5,6 @@ import com.yurim.www.exception.AuthstatusException;
 import com.yurim.www.exception.IdPasswordNotMatchingException;
 import com.yurim.www.service.MailSendService;
 import com.yurim.www.service.UserService;
-import com.yurim.www.vo.RequestKakaoLogin;
 import com.yurim.www.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -113,7 +111,7 @@ public class UserLoginController {
     }
 
     @PostMapping("/findId")
-    public String findId(UserDTO userDTO, Model model, String email, String pass) throws Exception {
+    public String findId(Model model, String email, String pass) throws Exception {
 
         if (email.equals("") || pass.equals("")) {
             return "error/required_error";
@@ -139,7 +137,7 @@ public class UserLoginController {
     }
 
     @PostMapping("/findPass")
-    public String findPass(UserDTO userDTO, Model model, String email, String id) throws Exception {
+    public String findPass(String email, String id) throws Exception {
 
         if (email.equals("") || id.equals("")) {
             return "error/required_error";

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -68,5 +69,10 @@ public class BookShelfServiceImpl implements BookShelfService {
         map.put("isbn", isbn);
 
         return bookShelfDAO.userStatus(map);
+    }
+
+    @Override
+    public List<String> selectMyCommentIsbn(Long userNo){
+        return bookShelfDAO.selectMyCommentIsbn(userNo);
     }
 }

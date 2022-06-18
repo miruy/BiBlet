@@ -20,8 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/")
 public class MainController {
-
-    private final UserService userService;
     private final MainService mainService;
 
     @GetMapping
@@ -48,7 +46,11 @@ public class MainController {
 
             Long userNo = authInfo.getUserNo();
 
-            session.setAttribute("myID", authInfo.getId());
+            if(authInfo.getId().substring(0,5).equals("kakao")){
+                model.addAttribute("myID", authInfo.getName());
+            }else {
+                model.addAttribute("myID", authInfo.getId());
+            }
 
             model.addAttribute("myCommentCount", mainService.userCommentCount(userNo));
             model.addAttribute("myStarCount", mainService.userStarCount(userNo));

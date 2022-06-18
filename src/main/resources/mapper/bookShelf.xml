@@ -29,4 +29,10 @@
     <select id="userStatus" parameterType="HashMap" resultType="Integer">
         SELECT status FROM bookshelf WHERE isbn = #{isbn} AND user_no = #{userNo}
     </select>
+
+    <select id="selectMyCommentIsbn" parameterType="Long" resultType="String">
+        SELECT isbn FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE bookshelf.user_no = #{userNo} AND comment IS NOT NULL
+    </select>
 </mapper>

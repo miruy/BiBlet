@@ -1,15 +1,14 @@
 package com.yurim.www.service;
 
 import com.yurim.www.dto.UserDTO;
-import com.yurim.www.exception.AlreadyExistEmailException;
-import com.yurim.www.exception.AlreadyExistIdException;
-import com.yurim.www.exception.AuthstatusException;
-import com.yurim.www.exception.IdPasswordNotMatchingException;
+import com.yurim.www.exception.*;
 import com.yurim.www.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor

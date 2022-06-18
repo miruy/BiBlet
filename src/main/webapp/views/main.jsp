@@ -326,13 +326,6 @@
             </c:forEach>
             </c:if>
 
-            // 로그인한 회원의 도서 정보
-            <c:if test="${!empty myBookInfo}">
-            <c:forEach var="myBookInfo" items="${myBookInfo}">
-            myBookInfo(${myBookInfo.isbn})
-            </c:forEach>
-            </c:if>
-
             <c:if test="${! empty authInfo}">
             // 로그인 시 (회원)님이 읽고싶은 도서
             let defaultTransform3 = 0;
@@ -393,7 +386,7 @@
 
             function goNext4() {
                 defaultTransform4 = defaultTransform4 - 398;
-                var slider = document.getElementById("wantReadBook__detail");
+                var slider = document.getElementById("readingBook__detail");
                 if (Math.abs(defaultTransform4) >= slider.scrollWidth / 1.7) defaultTransform4 = 0;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
             }
@@ -401,7 +394,7 @@
             next4.addEventListener("click", goNext4);
 
             function goPrev4() {
-                var slider = document.getElementById("wantReadBook__detail");
+                var slider = document.getElementById("readingBook__detail");
                 if (Math.abs(defaultTransform4) === 0) defaultTransform4 = 0;
                 else defaultTransform4 = defaultTransform4 + 398;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
@@ -445,7 +438,7 @@
         });
 
 
-        // 최근 평가 도서 불러오기(1개)
+        // 최근 코멘트 5개
         function latestComments(isbn) {
             console.log(isbn);
             $.ajax({	//카카오 검색요청 / [요청]
@@ -459,25 +452,6 @@
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log("title : " + msg.documents[0].title);
                     $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");	//표지
-                });
-        }
-
-
-        // '찜' 도서 목록 불러오기
-        function myBookInfo(isbn) {
-
-            $.ajax({	//카카오 검색요청 / [요청]
-                method: "GET",
-                traditional: true,
-                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                url: "https://dapi.kakao.com/v3/search/book?target=isbn",
-                data: {query: isbn},
-                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
-            })
-                .done(function (msg) {	//검색 결과 담기 / [응답]
-                    console.log(msg);
-                    $("#myLike").append("<img src='" + msg.documents[0].thumbnail + "'/>");	//표지
-                    $("#myLike").append(msg.documents[0].title);	//제목
                 });
         }
 

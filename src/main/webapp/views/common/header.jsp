@@ -62,7 +62,7 @@
                 <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/signup">Sign Up</a></li>
             </c:if>
             <c:if test="${!empty authInfo}">
-                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/myPage">Mypage</a></li>
+                <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/mypage">Mypage</a></li>
                 <li class="mx-[1.3rem] text-xl text-gray-800"><a href="/logout">Logout</a></li>
             </c:if>
         </ul>

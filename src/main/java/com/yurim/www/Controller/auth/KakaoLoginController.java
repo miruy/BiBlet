@@ -29,8 +29,7 @@ public class KakaoLoginController {
 
     @ResponseBody
     @PostMapping("/login/kakao")
-    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
-                              Model model, HttpSession session, HttpServletResponse response) throws Exception {
+    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, HttpSession session, HttpServletResponse response) throws Exception {
 
         UserDTO kakaoUser = new UserDTO();
         UserDTO authInfo = null;

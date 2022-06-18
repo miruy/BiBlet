@@ -3,6 +3,7 @@ package com.yurim.www.repository;
 import com.yurim.www.dto.BookShelfDTO;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface BookShelfDAO {
     Long selectStatusNoForStar(BookShelfDTO bookShelf);
@@ -20,4 +21,5 @@ public interface BookShelfDAO {
     Long selectStatusNoForWriteComment(BookShelfDTO bookShelf);
 
     Integer userStatus(HashMap<String, String> map);
+    List<String> selectMyCommentIsbn(Long userNo);
 }

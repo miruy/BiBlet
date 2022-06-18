@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -57,5 +58,10 @@ public class BookShelfDAOImpl implements BookShelfDAO {
 	@Override
 	public Integer userStatus(HashMap<String, String> map){
 		return sqlSessionTemplate.selectOne("userStatus", map);
+	}
+
+	@Override
+	public List<String> selectMyCommentIsbn(Long userNo){
+		return sqlSessionTemplate.selectList("selectMyCommentIsbn", userNo);
 	}
 }

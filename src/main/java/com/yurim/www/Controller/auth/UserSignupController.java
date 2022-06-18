@@ -33,8 +33,7 @@ public class UserSignupController {
      * signup
      */
     @PostMapping
-    public String responseSignup(
-            @Valid @ModelAttribute("requestSignup") RequestSignup requestSignup,
+    public String responseSignup(@ModelAttribute("requestSignup") @Valid RequestSignup requestSignup,
             Errors errors){
         UserDTO signupUser = new UserDTO();
 
