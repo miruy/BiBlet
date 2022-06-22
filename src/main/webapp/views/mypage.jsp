@@ -29,8 +29,10 @@
             </div>
 
             <div class="flex flex-col mb-20 px-10">
-                <span class="text-xl mb-4">읽고싶어요</span>
-
+                <div class="flex-col flex-row  mb-4">
+                    <span class="text-xl mr-2">읽고싶어요</span>
+                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                </div>
                 <div class="w-full relative flex items-center justify-center">
 
                     <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
@@ -47,8 +49,10 @@
             </div>
 
             <div class="flex flex-col mb-20 px-10">
-                <span class="text-xl mb-4">읽는 중</span>
-
+                <div class="flex-col flex-row  mb-4">
+                    <span class="text-xl mr-2">읽는 중</span>
+                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                </div>
                 <div class="w-full relative flex items-center justify-center">
 
                     <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
@@ -65,7 +69,10 @@
             </div>
 
             <div class="flex flex-col mb-20 px-10">
-                <span class="text-xl mb-4">나의 코멘트</span>
+                <div class="flex-col flex-row  mb-4">
+                    <span class="text-xl mr-2">나의 코멘트</span>
+                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                </div>
                 <div class="carousel carousel-center space-x-4 w-pull bg-gray-100">
                     <c:if test="${!empty myComments}">
                         <c:forEach var="myComment" items="${myComments}">
@@ -118,30 +125,11 @@
             </div>
 
             <div class="flex flex-col mb-20 px-10">
-                <span class="text-xl mb-4">나의 평가</span>
-                    <div id="myEvaluateList" class="flex space-x-4">
-            </div>
-
-            <div>
-                여기는 마이페이지
-
-
-                리스트
-                나의 읽고싶어요
-                책 표지 5개 미리보기
-
-                나의 읽는 중
-                책 표지 5개 미리보기
-
-                나의 코멘트
-                댓글 캐러셀모양으로 책 제목, 코멘트, 기간
-
-                나의 평가
-                책 표지 5개, 밑에 별점 미리보기
-
-                위에
-            </div>
-
+                <div class="flex-col flex-row  mb-4">
+                    <span class="text-xl mr-2">나의 평가</span>
+                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                </div>
+                <div id="myEvaluateList" class="flex space-x-4 mt-2"></div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"
