@@ -327,12 +327,7 @@
             // 최근 코멘트
             <c:if test="${!empty latestComments}">
             <c:forEach var="latestComment" items="${latestComments}">
-            <%--                    <c:if test="${latestComment.storedPic eq null}">--%>
             latestComments(${latestComment.isbn})
-            <%--                    </c:if>--%>
-            <%--                    <c:if test="${latestComment.storedPic ne null}">--%>
-            <%--                    latestComments(${latestComment.isbn}, ${latestComment.comment}, ${latestComment.storedPic}, ${latestComment.id}, ${latestComment.star})--%>
-            <%--                    </c:if>--%>
             </c:forEach>
             </c:if>
 
@@ -461,76 +456,6 @@
             })
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log("title : " + msg.documents[0].title);
-                    // var html = '';
-                    // html += '<tr>';
-                    // html += '<td>';
-                    // html += '<div class="flex justify-center items-center text-center space-x-3">';
-                    // if (storedPic != null) {
-                    //     html += '<div>http://' + storedPic + '</div>';
-                    // } else if (storedPic == null) {
-                    //     html += '<div>' + originPic + '</div>';
-                    // }
-                    // html += '<div class="font-bold">' + id + '</div>';
-                    // html += '</div>';
-                    // html += '</td>';
-                    // html += '<td class="justify-center items-center text-center">';
-                    // html += '<span class="w-40"><a href="/read/"' + isbn + '>' + msg.documents[0].title + '</a></span>';
-                    // html += '</td>';
-                    // html += '<td class="justify-center items-center text-center">';
-                    // if (comment.length > 20) {
-                    //     html += '<textarea rows="2" disabled>' + comment + '</textarea>';
-                    // } else if (comment.length <= 20) {
-                    //     html += comment;
-                    // }
-                    // html += '</td>';
-                    // html += '<td class="justify-center items-center text-center text-yellow-400">';
-                    // if (star == 0) {
-                    //     html += '☆☆☆☆☆';
-                    // } else if (star == 1) {
-                    //     html += '★☆☆☆';
-                    // } else if (star == 2) {
-                    //     html += '★★☆☆☆';
-                    // } else if (star == 3) {
-                    //     html += '★★★☆☆';
-                    // } else if (star == 4) {
-                    //     html += '★★★★☆';
-                    // } else if (star == 5) {
-                    //     html += '★★★★★';
-                    // }
-                    // html += '</td>';
-                    // html += '</tr>';
-                    //
-                    // $("#latestComment").append(html);
-
-                    <%--<tr>--%>
-                    <%--            <td>--%>
-                    <%--                <div class="flex justify-center items-center text-center space-x-3">--%>
-                    <%--                    <div>${latestComment.storedPic}</div>--%>
-                    <%--                    <div>--%>
-                    <%--                        <div class="font-bold">${latestComment.id}</div>--%>
-                    <%--                    </div>--%>
-                    <%--                </div>--%>
-                    <%--            </td>--%>
-                    <%--            <td class="justify-center items-center text-center">--%>
-                    <%--                <span id="bookName${latestComment.isbn}" class="w-40"></span>--%>
-                    <%--            </td>--%>
-                    <%--            <td class="justify-center items-center text-center">--%>
-                    <%--                <c:if test="${latestComment.comment.length() > 20}">--%>
-                    <%--                    <textarea rows="2" disabled>${latestComment.comment}</textarea>--%>
-                    <%--                </c:if>--%>
-                    <%--                <c:if test="${latestComment.comment.length() <= 20}">--%>
-                    <%--                    ${latestComment.comment}--%>
-                    <%--                </c:if>--%>
-                    <%--            </td>--%>
-                    <%--            <td class="justify-center items-center text-center text-yellow-400">--%>
-                    <%--                <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>--%>
-                    <%--                <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>--%>
-                    <%--                <c:if test="${latestComment.star==2}">★★☆☆☆</c:if>--%>
-                    <%--                <c:if test="${latestComment.star==3}">★★★☆☆</c:if>--%>
-                    <%--                <c:if test="${latestComment.star==4}">★★★★☆</c:if>--%>
-                    <%--                <c:if test="${latestComment.star==5}">★★★★★</c:if>--%>
-                    <%--            </td>--%>
-                    <%--        </tr>--%>
                     $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");	//표지
                 });
         }

@@ -2200,10 +2200,6 @@ body[dir="rtl"] .checkbox:checked,
   z-index: 50;
 }
 
-.m-1 {
-  margin: 0.25rem;
-}
-
 .my-\[1\.2rem\] {
   margin-top: 1.2rem;
   margin-bottom: 1.2rem;
@@ -2217,6 +2213,16 @@ body[dir="rtl"] .checkbox:checked,
 .mx-\[1\.3rem\] {
   margin-left: 1.3rem;
   margin-right: 1.3rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .ml-32 {
@@ -2317,10 +2323,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .mt-\[4rem\] {
   margin-top: 4rem;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
 }
 
 .box-content {
@@ -2559,11 +2561,6 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-width: 2px;
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-blue-100 {
   --tw-border-opacity: 1;
   border-color: rgb(219 234 254 / var(--tw-border-opacity));
@@ -2572,6 +2569,11 @@ body[dir="rtl"] .checkbox:checked,
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-gray-200 {
@@ -2764,16 +2766,6 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 1;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -2789,9 +2781,19 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 1.25rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold {
@@ -2939,11 +2941,6 @@ footer_biblet{
   font-family: OTWelcomeRA;
 }
 
-.hover\:border-white:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .hover\:border-gray-200:hover {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
@@ -2952,11 +2949,6 @@ footer_biblet{
 .hover\:border-purple-600:hover {
   --tw-border-opacity: 1;
   border-color: rgb(147 51 234 / var(--tw-border-opacity));
-}
-
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-200:hover {

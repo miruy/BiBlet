@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yurim.www.repository.MypageDAO">
+    <select id="myCommentForMypage" parameterType="Long" resultType="AppraisalDTO">
+        SELECT bookshelf.isbn,
+               appraisal.star,
+               appraisal.comment,
+               appraisal.start_date,
+               appraisal.end_date,
+               appraisal.appraisal_no,
+               appraisal.co_prv
+        FROM appraisal
+                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE bookshelf.user_no = #{userNo} AND appraisal.comment IS NOT NULL
+    </select>
+</mapper>

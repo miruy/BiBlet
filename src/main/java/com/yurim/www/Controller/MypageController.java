@@ -5,6 +5,7 @@ import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.BookShelfService;
 import com.yurim.www.service.MainService;
+import com.yurim.www.service.MypageService;
 import com.yurim.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class MypageController {
 
 	private final UserService userService;
 	private final MainService mainService;
-	private final BookShelfService bookShelfService;
+	private final MypageService mypageService;
 
 	/**
 	 * 회원 정보 조회
@@ -42,6 +43,7 @@ public class MypageController {
 			String id = authInfo.getId();
 			UserDTO user = userService.selectUserInfoById(id);
 
+			// 프로필, id
 			if(user.getStoredPic() == null){
 				model.addAttribute("profile", user.getOriginPic());
 			}else{
@@ -54,15 +56,19 @@ public class MypageController {
 				model.addAttribute("id", user.getId());
 			}
 
+			// 나의 코멘트
+			model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));
+
+			// 나의 평가
+
+
+
+			// 읽고싶어요, 읽는 중, footer
 			model.addAttribute("wantReadList", mainService.wantReadList(userNo));
 			model.addAttribute("readingList", mainService.readingList(userNo));
 			model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
-//			bookShelf.setUserNo(userNo);
-//			bookShelf.setIsbn();
-			//isbn만 요청하는 것 보다 코멘트, 날짜 랑 같이 요청해서 같이 돌리기
-//			List<String> isbns = bookShelfService.selectMyCommentIsbn(userNo);
-//			model.addAttribute("myCommentIsbns", isbns);
+
 		}
 
 
