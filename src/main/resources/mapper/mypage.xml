@@ -3,7 +3,6 @@
 <mapper namespace="com.yurim.www.repository.MypageDAO">
     <select id="myCommentForMypage" parameterType="Long" resultType="AppraisalDTO">
         SELECT bookshelf.isbn,
-               appraisal.star,
                appraisal.comment,
                appraisal.start_date,
                appraisal.end_date,
@@ -12,5 +11,13 @@
         FROM appraisal
                  INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE bookshelf.user_no = #{userNo} AND appraisal.comment IS NOT NULL
+    </select>
+
+    <select id="myEvaluateList" parameterType="Long" resultType="AppraisalDTO">
+        SELECT appraisal.star,
+               bookshelf.isbn
+        FROM appraisal
+            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE bookshelf.user_no = #{userNo} ORDER BY appraisal.appraisal_no DESC limit 5
     </select>
 </mapper>

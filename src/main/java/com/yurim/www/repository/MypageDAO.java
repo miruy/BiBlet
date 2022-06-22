@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MypageDAO {
     List<AppraisalDTO> myCommentForMypage(Long userNo);
+    List<AppraisalDTO> myEvaluateList(Long userNo);
 }

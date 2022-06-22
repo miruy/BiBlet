@@ -60,7 +60,7 @@ public class MypageController {
 			model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));
 
 			// 나의 평가
-
+			model.addAttribute("myEvaluateList", mypageService.myEvaluateList(userNo));
 
 
 			// 읽고싶어요, 읽는 중, footer

@@ -17,4 +17,9 @@ public class MypageDAOImpl implements MypageDAO {
     public List<AppraisalDTO> myCommentForMypage(Long userNo){
         return sqlSessionTemplate.selectList("myCommentForMypage", userNo);
     }
+
+    @Override
+    public List<AppraisalDTO> myEvaluateList(Long userNo){
+        return sqlSessionTemplate.selectList("myEvaluateList", userNo);
+    }
 }

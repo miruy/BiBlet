@@ -69,7 +69,7 @@
                 <div class="carousel carousel-center space-x-4 w-pull bg-gray-100">
                     <c:if test="${!empty myComments}">
                         <c:forEach var="myComment" items="${myComments}">
-                            <div class="carousel-item rounded-lg bg-white w-80 h-72 flex flex-col">
+                            <div class="carousel-item rounded-lg bg-white w-85 h-79 flex flex-col">
                                 <div class="p-4 space-x-4">
                                     <div class="flex flex-row border-b-2 border-gray-300 my-2">
                                         <div id="title${myComment.isbn}"></div>
@@ -78,7 +78,7 @@
                                               id="content${myComment.appraisalNo}"
                                               disabled>${myComment.comment}</textarea>
                                     <c:if test="${!empty myComment.startDate}">
-                                        <div class="flex flex-row px-2 py-2">
+                                        <div class="flex flex-row">
                                             <svg enable-background="new 0 0 32 32" height="20" id="Layer_1"
                                                  version="1.1" viewBox="0 0 32 32" width="20" xml:space="preserve"
                                                  xmlns="http://www.w3.org/2000/svg"
@@ -106,11 +106,20 @@
                                             </div>
                                         </div>
                                     </c:if>
+                                    <div class="flex flex-row pt-1">
+                                        <svg id="Layer_1" class="mr-2" width="22" height="22" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,46C11.9,46,2,36.1,2,24S11.9,2,24,2s22,9.9,22,22S36.1,46,24,46z M24,4C13,4,4,13,4,24c0,11,9,20,20,20   c11,0,20-9,20-20C44,13,35,4,24,4z"/></g><g><polygon points="20,34.1 11.3,25.4 12.7,23.9 20,31.2 35.3,15.9 36.7,17.4  "/></g></svg>
+                                            ${myComment.coPrv}
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>
                     </c:if>
                 </div>
+            </div>
+
+            <div class="flex flex-col mb-20 px-10">
+                <span class="text-xl mb-4">나의 평가</span>
+                    <div id="myEvaluateList" class="flex space-x-4">
             </div>
 
             <div>
@@ -142,9 +151,16 @@
             $(document).ready(function () {
                 // 나의 코멘트
                 <c:if test="${!empty myComments}">
-                <c:forEach var="myComment" items="${myComments}">
-                myComments(${myComment.isbn})
-                </c:forEach>
+                    <c:forEach var="myComment" items="${myComments}">
+                        myComments(${myComment.isbn})
+                    </c:forEach>
+                </c:if>
+
+                // 나의 평가
+                <c:if test="${!empty myEvaluateList}">
+                    <c:forEach var="myEvaluate" items="${myEvaluateList}">
+                        myEvaluateList(${myEvaluate.isbn},${myEvaluate.star} )
+                    </c:forEach>
                 </c:if>
             })
 
@@ -165,6 +181,47 @@
                     });
             }
 
+            // 나의 평가
+            function myEvaluateList(isbn, star) {
+                var pageNum = 1;
+                var isbn_query = isbn;
+                var starP = '';
+                console.log("isbn_query:" + isbn_query);
+                console.log("star : " + star);
+                $.ajax({	//카카오 검색요청 / [요청]
+                    method: "GET",
+                    traditional: true,
+                    async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                    url: "https://dapi.kakao.com/v3/search/book",
+                    data: {query: isbn_query, page: pageNum},
+                    headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+                })
+
+                    .done(function (msg) {	//검색 결과 담기 / [응답]
+
+                        if (star == 0) {
+                            starP = '☆☆☆☆☆';
+                        } else if (star == 1) {
+                            starP = '★☆☆☆☆';
+                        } else if (star == 2) {
+                            starP = '★★☆☆☆';
+                        } else if (star == 3) {
+                            starP = '★★★☆☆';
+                        } else if (star == 4) {
+                            starP = '★★★★☆';
+                        } else if (star == 5) {
+                            starP = '★★★★★';
+                        }
+
+                        var html = '';
+                        html += '<div>';
+                            html += '<a href="/read/' + isbn + '"><img class="w-44 h-64" src="' + msg.documents[0].thumbnail + '"/></a>';
+                            html += '<div class="text-yellow-400 text-3xl text-center">' + starP + '</div>';
+                        html += '</div>';
+
+                        $("#myEvaluateList").append(html);
+                    });
+            }
 
             // 읽고싶은 도서 5개
             function wantReadList() {
