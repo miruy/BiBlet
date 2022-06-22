@@ -65,20 +65,20 @@
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
-                            <div class="text-4xl cursor-pointer mt-3 text-center" onclick="alert('로그인 후 이용가능합니다.')">
-                                &#x2795
+                            <div class="cursor-pointer mt-3" onclick="alert('로그인 후 이용가능합니다.')">
+                                <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,26c6.6,0,12-5.4,12-12S30.6,2,24,2c-6.6,0-12,5.4-12,12S17.4,26,24,26z M24,4c5.5,0,10,4.5,10,10s-4.5,10-10,10   c-5.5,0-10-4.5-10-10S18.5,4,24,4z"/><path d="M33,28H15C7.8,28,2,33.8,2,41v5h2v-5c0-6.1,4.9-11,11-11h18V28z"/><polygon points="46,38 40,38 40,32 38,32 38,38 32,38 32,40 38,40 38,46 40,46 40,40 46,40  "/></g></svg>
                             </div>
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">코멘트</span>
-                            <div class="text-3xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">
-                                &#x270F
+                            <div class="cursor-pointer mt-4" onclick="alert('로그인 후 이용가능합니다.')">
+                               <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M20.8,27.2l2.1-6.3L38,5.8l4.2,4.2L27.1,25.1L20.8,27.2z M24.7,21.9L24,24l2.1-0.7L39.4,10L38,8.6L24.7,21.9z"/></g><g><path d="M42.9,9.3l-4.2-4.2l1.4-1.4c1.2-1.2,3-1.2,4.2,0c0.6,0.6,0.9,1.3,0.9,2.1c0,0.8-0.3,1.5-0.9,2.1L42.9,9.3z M41.5,5.1    l1.4,1.4c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7C42.5,4.7,41.9,4.7,41.5,5.1z"/></g></g><g><path d="M38,46H5c-1.7,0-3-1.3-3-3V10c0-1.7,1.3-3,3-3h27v2H5c-0.6,0-1,0.4-1,1v33c0,0.6,0.4,1,1,1h33c0.6,0,1-0.4,1-1V16h2v27   C41,44.7,39.7,46,38,46z"/></g></svg>
                             </div>
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽는중</span>
-                            <div class="text-4xl cursor-pointer mt-4 text-center" onclick="alert('로그인 후 이용가능합니다.')">
-                                &#x1F440
+                            <div class="cursor-pointer mt-4" onclick="alert('로그인 후 이용가능합니다.')">
+                                <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M46.7,45.3L33.4,32c2.9-3.2,4.6-7.4,4.6-12c0-9.9-8.1-18-18-18C10.1,2,2,10.1,2,20c0,9.9,8.1,18,18,18c4.6,0,8.8-1.8,12-4.6  l13.3,13.3L46.7,45.3z M4,20c0-8.8,7.2-16,16-16s16,7.2,16,16s-7.2,16-16,16S4,28.8,4,20z"/></svg>
                             </div>
                         </div>
                     </c:if>
@@ -129,8 +129,12 @@
                             <label class="swap mt-2">
                                 <input name="want" type="checkbox"
                                        <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
-                                <div class="swap-on text-3xl" onclick="insertStatus(0)">&#x2714</div>
-                                <div class="swap-off text-4xl" onclick="deleteStatus(0)">&#x2795</div>
+                                <div class="swap-on" onclick="insertStatus(0)">
+                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,26c-6.6,0-12-5.4-12-12S17.4,2,24,2c6.6,0,12,5.4,12,12S30.6,26,24,26z M24,4c-5.5,0-10,4.5-10,10s4.5,10,10,10   c5.5,0,10-4.5,10-10S29.5,4,24,4z"/></g><g><path d="M4,46H2v-5c0-7.2,5.8-13,13-13h18v2H15C8.9,30,4,34.9,4,41V46z"/></g><g><path d="M38,46.3l-6.7-6.6c-1.8-2.2-1.7-5.3,0.2-7.2c0.9-0.9,2.3-1.5,3.7-1.5c1,0,2,0.3,2.8,0.8c2.1-1.3,4.8-1,6.5,0.7l0,0l0,0   c0.9,0.9,1.5,2.3,1.5,3.6c0,1.3-0.4,2.5-1.2,3.5L38,46.3z M35.2,33c-0.9,0-1.7,0.3-2.3,0.9c-1.2,1.2-1.2,3.1-0.1,4.5l0.1,0.1l5.1,5   l5.3-5.3c0.6-0.7,0.7-1.5,0.7-2.1c0-0.8-0.3-1.6-0.9-2.2l0,0c-1.2-1.2-3.1-1.2-4.5-0.1L38,34.3l-0.6-0.6C36.6,33.1,35.8,33,35.2,33   z"/></g></svg>
+                                </div>
+                                <div class="swap-off " onclick="deleteStatus(0)">
+                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,26c6.6,0,12-5.4,12-12S30.6,2,24,2c-6.6,0-12,5.4-12,12S17.4,26,24,26z M24,4c5.5,0,10,4.5,10,10s-4.5,10-10,10   c-5.5,0-10-4.5-10-10S18.5,4,24,4z"/><path d="M33,28H15C7.8,28,2,33.8,2,41v5h2v-5c0-6.1,4.9-11,11-11h18V28z"/><polygon points="46,38 40,38 40,32 38,32 38,38 32,38 32,40 38,40 38,46 40,46 40,40 46,40  "/></g></svg>
+                                </div>
                             </label>
                         </div>
 
@@ -138,9 +142,8 @@
                             <div class="flex flex-col">
                                 <span class="text-gray-600 mb-2 ml-2">코멘트</span>
                                 <div class="dropdown">
-                                    <div tabindex="0"
-                                         class="btn m-1 bg-white border-white hover:bg-white hover:border-white text-3xl">
-                                        &#x270F
+                                    <div tabindex="0">
+                                        <svg id="Layer_1" width="30" height="30"  style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M20.8,27.2l2.1-6.3L38,5.8l4.2,4.2L27.1,25.1L20.8,27.2z M24.7,21.9L24,24l2.1-0.7L39.4,10L38,8.6L24.7,21.9z"/></g><g><path d="M42.9,9.3l-4.2-4.2l1.4-1.4c1.2-1.2,3-1.2,4.2,0c0.6,0.6,0.9,1.3,0.9,2.1c0,0.8-0.3,1.5-0.9,2.1L42.9,9.3z M41.5,5.1    l1.4,1.4c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7C42.5,4.7,41.9,4.7,41.5,5.1z"/></g></g><g><path d="M38,46H5c-1.7,0-3-1.3-3-3V10c0-1.7,1.3-3,3-3h27v2H5c-0.6,0-1,0.4-1,1v33c0,0.6,0.4,1,1,1h33c0.6,0,1-0.4,1-1V16h2v27   C41,44.7,39.7,46,38,46z"/></g></svg>
                                     </div>
                                     <ul tabindex="0"
                                         class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
@@ -155,8 +158,9 @@
                         <c:if test="${empty userStatusNo}">
                             <div class="flex flex-col">
                                 <span class="text-gray-600 mb-2 ml-2">코멘트</span>
-                                <label for="my-modal-3"
-                                       class="btn modal-button bg-white border-white hover:bg-white hover:border-white text-3xl">&#x270F</label>
+                                <label for="my-modal-3" class="modal-button">
+                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M20.8,27.2l2.1-6.3L38,5.8l4.2,4.2L27.1,25.1L20.8,27.2z M24.7,21.9L24,24l2.1-0.7L39.4,10L38,8.6L24.7,21.9z"/></g><g><path d="M42.9,9.3l-4.2-4.2l1.4-1.4c1.2-1.2,3-1.2,4.2,0c0.6,0.6,0.9,1.3,0.9,2.1c0,0.8-0.3,1.5-0.9,2.1L42.9,9.3z M41.5,5.1    l1.4,1.4c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7C42.5,4.7,41.9,4.7,41.5,5.1z"/></g></g><g><path d="M38,46H5c-1.7,0-3-1.3-3-3V10c0-1.7,1.3-3,3-3h27v2H5c-0.6,0-1,0.4-1,1v33c0,0.6,0.4,1,1,1h33c0.6,0,1-0.4,1-1V16h2v27   C41,44.7,39.7,46,38,46z"/></g></svg>
+                                </label>
                             </div>
                         </c:if>
 
@@ -165,8 +169,12 @@
                             <label class="swap mt-2">
                                 <input name="read" type="checkbox"
                                        <c:if test="${userStatus == 1}">checked="checked"</c:if>/>
-                                <div class="swap-on text-3xl" onclick="insertStatus(1)">&#x1F4D6</div>
-                                <div class="swap-off text-3xl" onclick="deleteStatus(1)">&#x1F440</div>
+                                <div class="swap-on" onclick="insertStatus(1)">
+                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M38,46.9l-14-9.7l-14,9.7V5c0-1.7,1.3-3,3-3h22c1.7,0,3,1.3,3,3V46.9z M24,34.8l12,8.3V5c0-0.6-0.4-1-1-1H13   c-0.6,0-1,0.4-1,1v38.1L24,34.8z"/></g></svg>
+                                </div>
+                                <div class="swap-off" onclick="deleteStatus(1)">
+                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M46.7,45.3L33.4,32c2.9-3.2,4.6-7.4,4.6-12c0-9.9-8.1-18-18-18C10.1,2,2,10.1,2,20c0,9.9,8.1,18,18,18c4.6,0,8.8-1.8,12-4.6  l13.3,13.3L46.7,45.3z M4,20c0-8.8,7.2-16,16-16s16,7.2,16,16s-7.2,16-16,16S4,28.8,4,20z"/></svg>
+                                </div>
                             </label>
                         </div>
                     </c:if>
@@ -327,7 +335,15 @@
                                     </div>
 
                                     <div class="flex flex-row px-2 py-2">
-                                        <div>&#x1F4C6</div>
+                                        <svg enable-background="new 0 0 32 32" height="20" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="calendar_1_">
+                                                <path d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z" fill="#333332"/>
+                                                <rect fill="#333332" height="3" width="4" x="7" y="12"/><rect fill="#333332" height="3" width="4" x="7" y="17"/>
+                                                <rect fill="#333332" height="3" width="4" x="7" y="22"/><rect fill="#333332" height="3" width="4" x="14" y="22"/>
+                                                <rect fill="#333332" height="3" width="4" x="14" y="17"/><rect fill="#333332" height="3" width="4" x="14" y="12"/><rect fill="#333332" height="3" width="4" x="21" y="22"/><rect fill="#333332" height="3" width="4" x="21" y="17"/>
+                                                <rect fill="#333332" height="3" width="4" x="21" y="12"/>
+                                            </g>
+                                        </svg>
                                         <div class="ml-2 pr-2 text-gray-600" id="startDate${comment.appraisalNo}">
                                                 ${comment.startDate}
                                         </div>
@@ -719,9 +735,13 @@
                                     '</div>'+
                                 '</div>'+
                                 '<label class="flex flex-row">' +
-                                    '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' +  '</label>' +
+                                    '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2">'+
+                                    '<svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>'+
+                                    '수정' + '</label>' +
                                 '</label>' +
-                                '<div class="text-gray-400 hover:text-black" onclick="deleteComment()"><div>&#x1F5D1</div>삭제' + '</div>'+
+                                '<div class="text-gray-400 hover:text-black" onclick="deleteComment()">'+
+                            '<svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>'+
+                            '삭제' + '</div>'+
                             '</div>'
                         );
 
@@ -752,9 +772,13 @@
                         '</div>'+
                     '</div>'+
                     '<label class="flex flex-row">' +
-                        '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2"><div>&#x1F4DD</div>수정' + '</label>' +
+                        '<label for="modifyComment" class="text-gray-400 hover:text-black pr-2">'+
+                           '<svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>'+
+                            '수정' + '</label>' +
                     '</label>' +
-                    '<div class="text-gray-400 hover:text-black" onclick="deleteComment()"><div>&#x1F5D1</div>삭제' + '</div>'+
+                    '<div class="text-gray-400 hover:text-black" onclick="deleteComment()">' +
+                    '<svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>'+
+                    '삭제' + '</div>'+
                 '</div>'
             );
         }

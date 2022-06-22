@@ -12,75 +12,75 @@
 
         <c:if test="${!empty authInfo}">
             <div class="flex flex-col justify-center items-center text-center text-black p-16 space-x-2 space-y-4">
-                <c:if test="${!empty myID}">
+            <c:if test="${!empty myID}">
 
-                        <div class="flex flex-row">
-                            <div class="text-2xl">${myID}</div>
-                            <span class="text-xl">님 안녕하세요 :)</span>
+                <div class="flex flex-row">
+                    <div class="text-2xl">${myID}</div>
+                    <span class="text-xl">님 안녕하세요 :)</span>
+                </div>
+
+                <div class="flex flex-row space-x-2">
+                    <c:if test="${!empty myCommentCount}">
+                        <span class="text-xl">지금까지</span>
+                        <span class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</span>
+                        <span class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</span>
+                        <span class="text-xl">를 등록하였어요!</span>
+                    </c:if>
+                </div>
+                </div>
+
+                <div class="flex flex-col mb-20">
+                    <span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span>
+
+                    <div class="w-full relative flex items-center justify-center">
+                        <button id="prev3" aria-label="slide backward"
+                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❮
+                        </button>
+
+                        <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                            <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                         </div>
 
-                    <div class="flex flex-row space-x-2">
-                        <c:if test="${!empty myCommentCount}">
-                            <span class="text-xl">지금까지</span>
-                            <span class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</span>
-                            <span class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</span>
-                            <span class="text-xl">를 등록하였어요!</span>
-                        </c:if>
+                        <button id="next3" aria-label="slide forward"
+                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❯
+                        </button>
                     </div>
-             </div>
 
-                    <div class="flex flex-col mb-20">
-                        <span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span>
+                    <template id="template__wantReadDetail__link">
+                        <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
+                            <img class='h-72 w-48' src='{wantReadBook_thumbnail}'/>
+                        </a>
+                    </template>
+                </div>
 
-                        <div class="w-full relative flex items-center justify-center">
-                            <button id="prev3" aria-label="slide backward"
-                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❮
-                            </button>
+                <div class="flex flex-col mb-20">
+                    <span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span>
 
-                            <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                                <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                            </div>
+                    <div class="w-full relative flex items-center justify-center">
+                        <button id="prev4" aria-label="slide backward"
+                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❮
+                        </button>
 
-                            <button id="next3" aria-label="slide forward"
-                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❯
-                            </button>
+                        <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                            <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                         </div>
 
-                        <template id="template__wantReadDetail__link">
-                            <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                                <img class='h-72 w-48' src='{wantReadBook_thumbnail}'/>
-                            </a>
-                        </template>
+                        <button id="next4" aria-label="slide forward"
+                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❯
+                        </button>
                     </div>
 
-                    <div class="flex flex-col mb-20">
-                        <span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span>
-
-                        <div class="w-full relative flex items-center justify-center">
-                            <button id="prev4" aria-label="slide backward"
-                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❮
-                            </button>
-
-                            <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                                <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                            </div>
-
-                            <button id="next4" aria-label="slide forward"
-                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❯
-                            </button>
-                        </div>
-
-                        <template id="template__readingDetail__link">
-                            <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                                <img class='h-72 w-48' src='{readingBook_thumbnail}'/>
-                            </a>
-                        </template>
-                    </div>
-                </c:if>
+                    <template id="template__readingDetail__link">
+                        <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
+                            <img class='h-72 w-48' src='{readingBook_thumbnail}'/>
+                        </a>
+                    </template>
+                </div>
+            </c:if>
 
         </c:if>
 
@@ -161,7 +161,12 @@
                             <tr>
                                 <td>
                                     <div class="flex justify-center items-center text-center space-x-3">
-                                        <div>${latestComment.storedPic}</div>
+                                        <c:if test="${latestComment.storedPic eq null}">
+                                            <div>${latestComment.originPic}</div>
+                                        </c:if>
+                                        <c:if test="${latestComment.storedPic ne null}">
+                                            <div>http://${latestComment.storedPic}</div>
+                                        </c:if>
                                         <div>
                                             <div class="font-bold">${latestComment.id}</div>
                                         </div>
@@ -322,7 +327,12 @@
             // 최근 코멘트
             <c:if test="${!empty latestComments}">
             <c:forEach var="latestComment" items="${latestComments}">
+            <%--                    <c:if test="${latestComment.storedPic eq null}">--%>
             latestComments(${latestComment.isbn})
+            <%--                    </c:if>--%>
+            <%--                    <c:if test="${latestComment.storedPic ne null}">--%>
+            <%--                    latestComments(${latestComment.isbn}, ${latestComment.comment}, ${latestComment.storedPic}, ${latestComment.id}, ${latestComment.star})--%>
+            <%--                    </c:if>--%>
             </c:forEach>
             </c:if>
 
@@ -439,7 +449,7 @@
 
 
         // 최근 코멘트 5개
-        function latestComments(isbn) {
+        function latestComments(isbn, originPic, storedPic, id, comment, star) {
             console.log(isbn);
             $.ajax({	//카카오 검색요청 / [요청]
                 method: "GET",
@@ -451,6 +461,76 @@
             })
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log("title : " + msg.documents[0].title);
+                    // var html = '';
+                    // html += '<tr>';
+                    // html += '<td>';
+                    // html += '<div class="flex justify-center items-center text-center space-x-3">';
+                    // if (storedPic != null) {
+                    //     html += '<div>http://' + storedPic + '</div>';
+                    // } else if (storedPic == null) {
+                    //     html += '<div>' + originPic + '</div>';
+                    // }
+                    // html += '<div class="font-bold">' + id + '</div>';
+                    // html += '</div>';
+                    // html += '</td>';
+                    // html += '<td class="justify-center items-center text-center">';
+                    // html += '<span class="w-40"><a href="/read/"' + isbn + '>' + msg.documents[0].title + '</a></span>';
+                    // html += '</td>';
+                    // html += '<td class="justify-center items-center text-center">';
+                    // if (comment.length > 20) {
+                    //     html += '<textarea rows="2" disabled>' + comment + '</textarea>';
+                    // } else if (comment.length <= 20) {
+                    //     html += comment;
+                    // }
+                    // html += '</td>';
+                    // html += '<td class="justify-center items-center text-center text-yellow-400">';
+                    // if (star == 0) {
+                    //     html += '☆☆☆☆☆';
+                    // } else if (star == 1) {
+                    //     html += '★☆☆☆';
+                    // } else if (star == 2) {
+                    //     html += '★★☆☆☆';
+                    // } else if (star == 3) {
+                    //     html += '★★★☆☆';
+                    // } else if (star == 4) {
+                    //     html += '★★★★☆';
+                    // } else if (star == 5) {
+                    //     html += '★★★★★';
+                    // }
+                    // html += '</td>';
+                    // html += '</tr>';
+                    //
+                    // $("#latestComment").append(html);
+
+                    <%--<tr>--%>
+                    <%--            <td>--%>
+                    <%--                <div class="flex justify-center items-center text-center space-x-3">--%>
+                    <%--                    <div>${latestComment.storedPic}</div>--%>
+                    <%--                    <div>--%>
+                    <%--                        <div class="font-bold">${latestComment.id}</div>--%>
+                    <%--                    </div>--%>
+                    <%--                </div>--%>
+                    <%--            </td>--%>
+                    <%--            <td class="justify-center items-center text-center">--%>
+                    <%--                <span id="bookName${latestComment.isbn}" class="w-40"></span>--%>
+                    <%--            </td>--%>
+                    <%--            <td class="justify-center items-center text-center">--%>
+                    <%--                <c:if test="${latestComment.comment.length() > 20}">--%>
+                    <%--                    <textarea rows="2" disabled>${latestComment.comment}</textarea>--%>
+                    <%--                </c:if>--%>
+                    <%--                <c:if test="${latestComment.comment.length() <= 20}">--%>
+                    <%--                    ${latestComment.comment}--%>
+                    <%--                </c:if>--%>
+                    <%--            </td>--%>
+                    <%--            <td class="justify-center items-center text-center text-yellow-400">--%>
+                    <%--                <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>--%>
+                    <%--                <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>--%>
+                    <%--                <c:if test="${latestComment.star==2}">★★☆☆☆</c:if>--%>
+                    <%--                <c:if test="${latestComment.star==3}">★★★☆☆</c:if>--%>
+                    <%--                <c:if test="${latestComment.star==4}">★★★★☆</c:if>--%>
+                    <%--                <c:if test="${latestComment.star==5}">★★★★★</c:if>--%>
+                    <%--            </td>--%>
+                    <%--        </tr>--%>
                     $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");	//표지
                 });
         }

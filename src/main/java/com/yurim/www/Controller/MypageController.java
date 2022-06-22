@@ -61,8 +61,8 @@ public class MypageController {
 //			bookShelf.setUserNo(userNo);
 //			bookShelf.setIsbn();
 			//isbn만 요청하는 것 보다 코멘트, 날짜 랑 같이 요청해서 같이 돌리기
-			List<String> isbns = bookShelfService.selectMyCommentIsbn(userNo);
-			model.addAttribute("myCommentIsbns", isbns);
+//			List<String> isbns = bookShelfService.selectMyCommentIsbn(userNo);
+//			model.addAttribute("myCommentIsbns", isbns);
 		}
 
 

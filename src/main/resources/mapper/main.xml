@@ -20,7 +20,8 @@
                user.id,
                user.name,
                user.user_no,
-               user.stored_pic
+               user.stored_pic,
+               user.origin_pic
         FROM appraisal
                  INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no

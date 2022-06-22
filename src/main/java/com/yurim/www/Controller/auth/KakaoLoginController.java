@@ -41,7 +41,11 @@ public class KakaoLoginController {
         kakaoUser.setName(requestKakaoLogin.getName());
         kakaoUser.setId("kakao" + requestKakaoLogin.getId());
         kakaoUser.setPass(UUID.randomUUID().toString().replaceAll("-", ""));
-        kakaoUser.setStoredPic(requestKakaoLogin.getThumbnailImage());
+
+        String subKakaoStoredPic = requestKakaoLogin.getThumbnailImage().substring(7);
+        System.out.println("subKakaoStoredPic : " + subKakaoStoredPic);
+
+        kakaoUser.setStoredPic(subKakaoStoredPic);
         kakaoUser.setAuthStatus(1);
         kakaoUser.setAuthKey(UUID.randomUUID().toString().replaceAll("-", ""));
         kakaoUser.setEmail(UUID.randomUUID().toString().replaceAll("-", ""));
