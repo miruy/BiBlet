@@ -28,5 +28,11 @@
     <select id="mypage_2" parameterType="Long" resultType="String">
         SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 1
     </select>
-
+    <select id="mypage_4" parameterType="Long" resultType="AppraisalDTO">
+        SELECT appraisal.star,
+               bookshelf.isbn
+        FROM appraisal
+                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
+        WHERE bookshelf.user_no = #{userNo}
+    </select>
 </mapper>

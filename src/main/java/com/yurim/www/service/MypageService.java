@@ -9,4 +9,5 @@ public interface MypageService {
     List<AppraisalDTO> myEvaluateList(Long userNo);
     List<String> mypage_1(Long userNo);
     List<String> mypage_2(Long userNo);
+    List<AppraisalDTO> mypage_4(Long userNo);
 }

@@ -33,4 +33,9 @@ public class MypageServiceImpl implements MypageService {
     public List<String> mypage_2(Long userNo){
         return mypageDAO.mypage_2(userNo);
     }
+
+    @Override
+    public List<AppraisalDTO> mypage_4(Long userNo){
+        return mypageDAO.mypage_4(userNo);
+    }
 }

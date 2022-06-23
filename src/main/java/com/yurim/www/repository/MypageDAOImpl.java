@@ -32,4 +32,9 @@ public class MypageDAOImpl implements MypageDAO {
     public List<String> mypage_2(Long userNo){
         return sqlSessionTemplate.selectList("mypage_2", userNo);
     }
+
+    @Override
+    public List<AppraisalDTO> mypage_4(Long userNo){
+        return sqlSessionTemplate.selectList("mypage_4", userNo);
+    }
 }

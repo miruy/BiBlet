@@ -67,6 +67,8 @@ public class MainController {
     @GetMapping("/search")
     public String search(@RequestParam(defaultValue = "") String query, Model model) {
         model.addAttribute("query", query);
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "search";
     }
 

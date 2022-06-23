@@ -50,7 +50,7 @@
 
                     <template id="template__wantReadDetail__link">
                         <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                            <img class='h-72 w-48' src='{wantReadBook_thumbnail}'/>
+                            <img class='h-72 w-48 rounded-lg' src='{wantReadBook_thumbnail}'/>
                         </a>
                     </template>
                 </div>
@@ -76,7 +76,7 @@
 
                     <template id="template__readingDetail__link">
                         <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                            <img class='h-72 w-48' src='{readingBook_thumbnail}'/>
+                            <img class='h-72 w-48 rounded-lg' src='{readingBook_thumbnail}'/>
                         </a>
                     </template>
                 </div>
@@ -111,7 +111,7 @@
 
             <template id="template__detail__link">
                 <a href='{detail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48' src='{book_thumbnail}'/>
+                    <img class='h-72 w-48 rounded-lg' src='{book_thumbnail}'/>
                 </a>
             </template>
         </div>
@@ -138,7 +138,7 @@
 
             <template id="template__recommendDetail__link">
                 <a href='{recommendDetail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48' src='{recommendBook_thumbnail}'/>
+                    <img class='h-72 w-48 rounded-lg' src='{recommendBook_thumbnail}'/>
                 </a>
             </template>
         </div>

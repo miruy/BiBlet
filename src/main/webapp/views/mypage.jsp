@@ -35,7 +35,7 @@
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
-                    <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                    <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden shadow-xl">
                         <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                     </div>
 
@@ -43,7 +43,7 @@
 
                 <template id="template__wantReadDetail__link">
                     <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                        <img class='h-64 w-44' src='{wantReadBook_thumbnail}'/>
+                        <img class='h-64 w-44 shadow-xl rounded-lg' src='{wantReadBook_thumbnail}'/>
                     </a>
                 </template>
             </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
-                    <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                    <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden shadow-xl">
                         <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                     </div>
 
@@ -63,7 +63,7 @@
 
                 <template id="template__readingDetail__link">
                     <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                        <img class='h-64 w-44' src='{readingBook_thumbnail}'/>
+                        <img class='h-64 w-44 shadow-xl rounded-lg' src='{readingBook_thumbnail}'/>
                     </a>
                 </template>
             </div>
@@ -127,7 +127,7 @@
             <div class="flex flex-col mb-20 px-10">
                 <div class="flex-col flex-row  mb-4">
                     <span class="text-xl mr-2">나의 평가</span>
-                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                    <a class="text-gray-400" href="/mypage_4"> > 더보기 </a>
                 </div>
                 <div id="myEvaluateList" class="flex space-x-4 mt-2"></div>
             </div>
@@ -214,7 +214,7 @@
 
                         var html = '';
                         html += '<div>';
-                            html += '<a href="/read/' + isbn + '"><img class="w-44 h-64" src="' + msg.documents[0].thumbnail + '"/></a>';
+                            html += '<a href="/read/' + isbn + '"><img class="w-44 h-64 shadow-xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
                             html += '<div class="text-yellow-400 text-3xl text-center">' + starP + '</div>';
                         html += '</div>';
 

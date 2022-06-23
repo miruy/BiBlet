@@ -4,6 +4,7 @@ import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AuthstatusException;
 import com.yurim.www.exception.IdPasswordNotMatchingException;
 import com.yurim.www.service.MailSendService;
+import com.yurim.www.service.MainService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestKakaoLogin;
 import com.yurim.www.vo.RequestLogin;
@@ -25,11 +26,11 @@ import java.util.UUID;
 public class KakaoLoginController {
 
     private final UserService userService;
-    private final MailSendService mailSendService;
+    private final MainService mainService;
 
     @ResponseBody
     @PostMapping("/login/kakao")
-    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, HttpSession session, HttpServletResponse response) throws Exception {
+    public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, HttpSession session) throws Exception {
 
         UserDTO kakaoUser = new UserDTO();
         UserDTO authInfo = null;

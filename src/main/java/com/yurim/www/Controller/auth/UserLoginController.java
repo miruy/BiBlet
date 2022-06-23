@@ -4,6 +4,7 @@ import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AuthstatusException;
 import com.yurim.www.exception.IdPasswordNotMatchingException;
 import com.yurim.www.service.MailSendService;
+import com.yurim.www.service.MainService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,11 @@ public class UserLoginController {
 
     private final UserService userService;
     private final MailSendService mailSendService;
+    private final MainService mainService;
 
     @GetMapping("/login")
-    public String loginForm(RequestLogin requestLogin, HttpSession session, HttpServletRequest request,
-                            @CookieValue(value = "REMEMBER", required = false) Cookie cookie) throws Exception {
+    public String loginForm(RequestLogin requestLogin, HttpSession session,
+                            @CookieValue(value = "REMEMBER", required = false) Cookie cookie, Model model) throws Exception {
 
         if (session != null && session.getAttribute("authInfo") != null) {
             return "redirect:/";
@@ -40,6 +42,10 @@ public class UserLoginController {
             requestLogin.setId(cookie.getValue());
             requestLogin.setRememberId(true);
         }
+
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
+
         return "auth/login";
     }
 
@@ -106,7 +112,9 @@ public class UserLoginController {
      * 아이디 찾기(회원)
      */
     @GetMapping("/findId")
-    public String findIdForm() {
+    public String findIdForm(Model model) {
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "user/findId";
     }
 
@@ -123,6 +131,8 @@ public class UserLoginController {
             return "error/findId_error";
         }
 
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         model.addAttribute("foundId", foundId);
         return "user/foundId";
 
@@ -132,12 +142,14 @@ public class UserLoginController {
      * 비밀번호 찾기(회원)
      */
     @GetMapping("/findPass")
-    public String findPassForm() {
+    public String findPassForm(Model model) {
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "user/findPass";
     }
 
     @PostMapping("/findPass")
-    public String findPass(String email, String id) throws Exception {
+    public String findPass(String email, String id, Model model) throws Exception {
 
         if (email.equals("") || id.equals("")) {
             return "error/required_error";
@@ -148,6 +160,9 @@ public class UserLoginController {
         if (user == false) {
             return "error/findPass_error";
         }
+
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "user/foundPass";
     }
 

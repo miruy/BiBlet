@@ -4,10 +4,12 @@ import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.AlreadyExistEmailException;
 import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.service.MailSendService;
+import com.yurim.www.service.MainService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestSignup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +22,15 @@ public class UserSignupController {
 
     private final UserService userService;
     private final MailSendService mailSendService;
+    private final MainService mainService;
 
     /**
      * signup Form
      */
     @GetMapping
-    public String requestSignup(@ModelAttribute("requestSignup") RequestSignup requestSignup) {
+    public String requestSignup(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model) {
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "auth/signup";
     }
 
@@ -78,9 +83,11 @@ public class UserSignupController {
      * 이메일 인증 확인
      */
     @GetMapping("/emailCheck")
-    public String emailCheck(@ModelAttribute("requestSignup") RequestSignup requestSignup) {
+    public String emailCheck(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model) {
         String authKey = userService.selectKey(requestSignup.getEmail());
         userService.updateAuthStatus(requestSignup.getEmail(), authKey);
+        // 총 코멘트 수(footer)
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "check/emailCheck";
     }
 }

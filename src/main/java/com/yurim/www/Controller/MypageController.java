@@ -125,6 +125,22 @@ public class MypageController {
 		return "myComment";
 	}
 
+	@GetMapping("/mypage_4")
+	public String myEvaluate(Model model, HttpSession session) {
+
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo != null) {
+
+			Long userNo = authInfo.getUserNo();
+
+			model.addAttribute("mypage_4", mypageService.mypage_4(userNo));
+		}
+
+		return "myEvaluate";
+	}
 
 //	/**
 //	 * 회원 정보 수정 폼
