@@ -29,9 +29,9 @@
             </div>
 
             <div class="flex flex-col mb-20 px-10">
-                <div class="flex-col flex-row  mb-4">
+                <div class="flex-col flex-row mb-4">
                     <span class="text-xl mr-2">읽고싶어요</span>
-                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                    <a class="text-gray-400" href="/mypage_1"> > 더보기 </a>
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
@@ -51,7 +51,7 @@
             <div class="flex flex-col mb-20 px-10">
                 <div class="flex-col flex-row  mb-4">
                     <span class="text-xl mr-2">읽는 중</span>
-                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                    <a class="text-gray-400" href="/mypage_2"> > 더보기 </a>
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
@@ -71,14 +71,14 @@
             <div class="flex flex-col mb-20 px-10">
                 <div class="flex-col flex-row  mb-4">
                     <span class="text-xl mr-2">나의 코멘트</span>
-                    <a class="text-gray-400" href="/"> > 더보기 </a>
+                    <a class="text-gray-400" href="/mypage_3"> > 더보기 </a>
                 </div>
                 <div class="carousel carousel-center space-x-4 w-pull bg-gray-100">
                     <c:if test="${!empty myComments}">
                         <c:forEach var="myComment" items="${myComments}">
                             <div class="carousel-item rounded-lg bg-white w-85 h-79 flex flex-col">
-                                <div class="p-4 space-x-4">
-                                    <div class="flex flex-row border-b-2 border-gray-300 my-2">
+                                <div class="p-4 space-x-2">
+                                    <div class="flex flex-row border-b-2 border-gray-300 my-2 pl-12 pr-10">
                                         <div id="title${myComment.isbn}"></div>
                                     </div>
                                     <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2" rows="7"
@@ -130,7 +130,7 @@
                     <a class="text-gray-400" href="/"> > 더보기 </a>
                 </div>
                 <div id="myEvaluateList" class="flex space-x-4 mt-2"></div>
-        </div>
+            </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"
                 integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -165,7 +165,17 @@
 
                     .done(function (msg) {	//검색 결과 담기 / [응답]
                         console.log(msg);
-                        $("#title" + isbn).append("<a href='/read/" + isbn + "' class='text-center'>" + msg.documents[0].title + "</a>");
+                        let title = msg.documents[0].title;
+                        let subTitle = '';
+
+                        if(title.length > 15){
+                            subTitle = title.substring(0, 14);
+                            console.log(subTitle);
+                            $("#title" + isbn).append("<a href='/read/" + isbn + "'>" + subTitle + "...</a>");
+                        }else if(title.length < 15){
+                            $("#title" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");
+                        }
+
                     });
             }
 
@@ -176,6 +186,7 @@
                 var starP = '';
                 console.log("isbn_query:" + isbn_query);
                 console.log("star : " + star);
+
                 $.ajax({	//카카오 검색요청 / [요청]
                     method: "GET",
                     traditional: true,

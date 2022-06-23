@@ -20,4 +20,13 @@
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE bookshelf.user_no = #{userNo} ORDER BY appraisal.appraisal_no DESC limit 5
     </select>
+
+    <select id="mypage_1" parameterType="Long" resultType="String">
+        SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 0
+    </select>
+
+    <select id="mypage_2" parameterType="Long" resultType="String">
+        SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 1
+    </select>
+
 </mapper>

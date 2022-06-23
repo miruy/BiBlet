@@ -7,22 +7,23 @@
 <%@ include file="common/header.jsp" %>
 
 <section class="">
-    <div class="bg-white justify-center items-center ml-32 px-48 py-20">
-        <div class="flex flex-col xl:flex-row ">
+    <div class="bg-white justify-center items-center ml-32 px-24 py-20">
+        <div class="flex flex-col xl:flex-row">
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
-            <div class="flex flex-col">
-                <div id="bookTitle" class="flex flex-col mt-6"></div>
-                <div class="flex flex-col">
-                    <div id="bookAuthor" class="text-gray-500 flex-row mt-2"></div>
-                    <div class="text-l mt-2">
-                        <c:if test="${starAVG ne 0}">
-                            평균 ★ ${starAVG} (${starCount}명)
-                        </c:if>
-                        <c:if test="${starAVG eq 0}">
-                            평균 ★ ${starAVG} (0명)
-                        </c:if>
+            <div class="flex flex-col ml-4">
+
+                    <div id="bookTitle" class="flex flex-col mt-6"></div>
+                    <div class="flex flex-col">
+                        <div id="bookAuthor" class="text-gray-500 flex-row mt-2"></div>
+                        <div class="text-l mt-2">
+                            <c:if test="${starAVG ne 0}">
+                                평균 ★ ${starAVG} (${starCount}명)
+                            </c:if>
+                            <c:if test="${starAVG eq 0}">
+                                평균 ★ ${starAVG} (0명)
+                            </c:if>
+                        </div>
                     </div>
-                </div>
 
                 <div class="flex flex-row mt-24 space-x-16">
 

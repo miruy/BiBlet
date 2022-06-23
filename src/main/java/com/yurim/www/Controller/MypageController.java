@@ -29,7 +29,6 @@ public class MypageController {
 	 */
 	@GetMapping("/mypage")
 	public String memberInfo(Model model, HttpSession session, HttpServletResponse response) {
-		BookShelfDTO bookShelf = new BookShelfDTO();
 
 		// 회원 정보 불러오기
 		UserDTO authInfo = null;
@@ -74,6 +73,58 @@ public class MypageController {
 
 		return "mypage";
 	}
+
+	@GetMapping("/mypage_1")
+	public String wantRead(Model model, HttpSession session) {
+
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo != null) {
+
+			Long userNo = authInfo.getUserNo();
+
+			model.addAttribute("mypage_1", mypageService.mypage_1(userNo));
+		}
+
+		return "wantRead";
+	}
+
+	@GetMapping("/mypage_2")
+	public String reading(Model model, HttpSession session) {
+
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo != null) {
+
+			Long userNo = authInfo.getUserNo();
+
+			model.addAttribute("mypage_2", mypageService.mypage_2(userNo));
+		}
+
+		return "reading";
+	}
+
+	@GetMapping("/mypage_3")
+	public String myComment(Model model, HttpSession session) {
+
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo != null) {
+
+			Long userNo = authInfo.getUserNo();
+
+			model.addAttribute("mypage_3", mypageService.myCommentForMypage(userNo));
+		}
+
+		return "myComment";
+	}
+
 
 //	/**
 //	 * 회원 정보 수정 폼
