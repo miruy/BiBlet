@@ -271,21 +271,23 @@ public class MypageController {
 //
 //		mypageService.deleteMemInfo(memInfoUpdateCmd.getMem_num());
 //	}
-//
-//	/**
-//	 * 비밀번호 확인
-//	 */
-//	@ResponseBody
-//	@PostMapping("/infoUpdatePassCheck")
-//	public int PassCheck(@RequestBody PassCheckCmd passCheckCmd, HttpSession session) {
-//		MemberVO authInfo = (MemberVO) session.getAttribute("authInfo");
-//		if (authInfo.getMem_pass().equals(passCheckCmd.getPassCheck())) {
-//			return 1;
-//		} else {
-//			return 0;
-//		}
-//	}
-//
+
+	@ResponseBody
+	@PostMapping("/editPassCheck")
+	public int PassCheck(@RequestBody RequestLogin requestLogin, HttpSession session) {
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo.getPass().equals(requestLogin.getPassCheck())) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+
+	}
+
 //	/**
 //	 * 보관함
 //	 */

@@ -19,4 +19,7 @@ public class RequestLogin {
     private String pass;
     private boolean rememberId;
     private int authStatus;
+
+    //edit 회원정보 수정
+    private String passCheck;
 }
