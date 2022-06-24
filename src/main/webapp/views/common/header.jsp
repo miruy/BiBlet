@@ -13,6 +13,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/css/tailwind.output.css"/>
     <link rel="stylesheet" href="/css/detailCSS.css">
+    <link rel="stylesheet" href="/css/editCSS.css">
     <title>BiBlet</title>
     <style type="text/css">
         a {

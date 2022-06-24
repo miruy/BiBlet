@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.inputTitle {
+	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+	border-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
+

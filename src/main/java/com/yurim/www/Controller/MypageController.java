@@ -3,17 +3,24 @@ package com.yurim.www.Controller;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.BookShelfDTO;
 import com.yurim.www.dto.UserDTO;
+import com.yurim.www.exception.AlreadyExistEmailException;
+import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.service.BookShelfService;
 import com.yurim.www.service.MainService;
 import com.yurim.www.service.MypageService;
 import com.yurim.www.service.UserService;
+import com.yurim.www.vo.RequestLogin;
+import com.yurim.www.vo.RequestSignup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,7 +35,8 @@ public class MypageController {
 	 * 회원 정보 조회
 	 */
 	@GetMapping("/mypage")
-	public String memberInfo(Model model, HttpSession session, HttpServletResponse response) {
+	public String memberInfo(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model,
+							 HttpSession session, HttpServletResponse response) {
 
 		// 회원 정보 불러오기
 		UserDTO authInfo = null;
@@ -61,12 +69,13 @@ public class MypageController {
 			// 나의 평가
 			model.addAttribute("myEvaluateList", mypageService.myEvaluateList(userNo));
 
-
 			// 읽고싶어요, 읽는 중, footer
 			model.addAttribute("wantReadList", mainService.wantReadList(userNo));
 			model.addAttribute("readingList", mainService.readingList(userNo));
 			model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
+			// 회원정보(모달)
+			model.addAttribute("myInfo", userService.selectUserInfoById(id));
 
 		}
 
@@ -142,52 +151,34 @@ public class MypageController {
 		return "myEvaluate";
 	}
 
-//	/**
-//	 * 회원 정보 수정 폼
-//	 */
-//	@GetMapping("/edit")
-//	public String infoUpdateForm(CommandLogin loginMember, Model model, HttpSession session,
-//			HttpServletResponse response, Errors errors) {
-//
-//		/**
-//		 * 에러시 반환
-//		 */
-//		if (errors.hasErrors()) {
-//			return "user/Mypage";
-//		}
-//
-//		/**
-//		 * session에서 데이터를 꺼내 MemberVO객체에 저장
-//		 */
-//		MemberVO authInfo = null;
-//		if (session != null) {
-//			session.getAttribute("authInfo");
-//		}
-//
-//		authInfo = (MemberVO) session.getAttribute("authInfo");
-//
-//		/**
-//		 * Long mem_num으로 변환
-//		 */
-//		Long mem_num = authInfo.getMem_num();
-//
-//		/**
-//		 * 세션 테이블에 다시 저장
-//		 */
-//		session.setAttribute("authInfo", authInfo);
-//
-//		MemberVO member = mypageService.memberInfo(mem_num);
-//		model.addAttribute("myInfo", member);
-//		return "user/infoUpdate";
-//	}
-//
-//	/**
-//	 * 회원 정보 수정
-//	 */
-//	@PostMapping("/infoUpdate")
-//	public String infoUpdate(@ModelAttribute("memInfoCmd") MemInfoUpdateCmd memInfoUpdateCmd,
-//			HttpServletRequest request, Model model) throws IllegalStateException, IOException {
-//
+	@GetMapping("/edit")
+	public String modifyUserInfoForm(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model, HttpSession session, HttpServletResponse response) {
+
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		if (authInfo != null) {
+
+			String id = authInfo.getId();
+
+			session.setAttribute("authInfo", authInfo);
+
+			model.addAttribute("myInfo2", userService.selectUserInfoById(id));
+		}
+
+		return "edit";
+	}
+
+
+	@PostMapping("/edit")
+	public String modifyUserInfo(@ModelAttribute("requestSignup") @Valid RequestSignup requestSignup, Errors errors,
+								 HttpServletRequest request, Model model) throws IllegalStateException{
+
+		if(errors.hasErrors()) {
+			return "mypage";
+		}
+
 //		MultipartFile multipartFile = memInfoUpdateCmd.getFile();
 //
 //		System.out.println(memInfoUpdateCmd.getMem_name());
@@ -199,10 +190,39 @@ public class MypageController {
 //		MemberVO profile = mypageService.memberInfo(memInfoUpdateCmd.getMem_num());
 //
 //		model.addAttribute("profile", profile);
+
+		try{
+//			signupUser.setName(requestSignup.getName());
+//			signupUser.setId(requestSignup.getId());
+//			signupUser.setPass(requestSignup.getPass());
+//			signupUser.setEmail(requestSignup.getEmail());
 //
-//		return "redirect:/MyPage";
-//	}
+//			userService.userSignup(signupUser);
 //
+//			/**
+//			 * 이메일 확인 메일 발송
+//			 * 	- random key 발급
+//			 */
+//
+//			String authKey = mailSendService.sendAuthMail(signupUser.getEmail());
+//
+//			signupUser.setAuthKey(authKey);
+//
+//			/**
+//			 * authKey 저장
+//			 */
+//			userService.updateKey(signupUser.getEmail(), signupUser.getAuthKey());
+//
+//			return "check/signupCheck";
+
+		}catch(AlreadyExistIdException e) {
+			errors.rejectValue("id", "alreadyExistId");
+			return "auth/signup";
+		}
+
+		return "redirect:/MyPage";
+	}
+
 //	/**
 //	 * 탈퇴 폼
 //	 */
