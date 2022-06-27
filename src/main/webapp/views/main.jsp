@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="common/header.jsp" %>
 
@@ -160,15 +161,33 @@
                         <c:forEach var="latestComment" items="${latestComments}">
                             <tr>
                                 <td>
-                                    <div class="flex justify-center items-center text-center space-x-3">
-                                        <c:if test="${latestComment.storedPic eq null}">
-                                            <div>${latestComment.originPic}</div>
-                                        </c:if>
-                                        <c:if test="${latestComment.storedPic ne null}">
-                                            <div>http://${latestComment.storedPic}</div>
-                                        </c:if>
-                                        <div>
-                                            <div class="font-bold">${latestComment.id}</div>
+                                    <div class="flex">
+                                        <div class="text-center">
+                                            <c:if test="${latestComment.storedPic eq null}">
+<%--                                                <img src="<c:url value='/images/${latestComment.originPic}'/>" class="mask mask-squircle w-10 h-10"/>--%>
+                                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${latestComment.storedPic ne null}">
+                                                <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
+                                                <c:if test="${idSub ne 'kakao'}">
+                                                    <img src="<c:url value='/images/${latestComment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                </c:if>
+                                                <c:if test="${idSub eq 'kakao'}">
+                                                    <img src="<c:url value='http://${latestComment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                </c:if>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="p-4">
+                                            <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
+                                            <c:if test="${idSub ne 'kakao'}">
+                                                <div class="font-bold">${latestComment.id}</div>
+                                            </c:if>
+                                            <c:if test="${idSub eq 'kakao'}">
+                                                <div class="font-bold">${latestComment.name}</div>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </td>

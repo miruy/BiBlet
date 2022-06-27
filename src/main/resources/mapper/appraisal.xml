@@ -76,6 +76,7 @@
             appraisal.start_date,
             appraisal.end_date,
             user.id,
+            user.name,
             user.origin_pic
         FROM bookshelf
             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no

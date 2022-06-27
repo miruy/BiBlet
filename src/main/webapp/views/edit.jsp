@@ -77,8 +77,7 @@
                                         </label>
                                         <label class="text-center"><form:errors path="pass" /></label>
                                 </div>
-
-
+                                
                                 <button type="submit" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-44 ml-[8rem]">저장</button>
                             </div>
 
