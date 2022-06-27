@@ -63,13 +63,21 @@
 
                                 <div class="form-control">
                                     <label class="input-group">
-                                        <span class="inputTitle text-black w-24 justify-center">Password</span>
-                                        <form:input type="password" path="pass" id="passCheck" name="pass" class="input input-bordered text-lg text-center w-80" />
+                                        <span class="inputTitle text-black w-24 justify-center text-center text-sm">Existing password</span>
+                                        <input type="password" id="passCheck" name="pass" placeholder="기존 비밀번호" class="input input-bordered text-lg text-center w-80" />
                                         <input type="hidden" name="pass" id="pass" value="${myInfo2.pass}" />
                                         <button type="button" class="btn btn-square w-24 bg-gray-200 border-gray-200" onClick="passCheckBtn(${myInfo2.userNo})">비밀번호 확인</button>
                                     </label>
-                                    <label class="text-center"><form:errors path="email" /></label>
                                 </div>
+
+                                <div id="passUpdateForm" class="form-control">
+                                        <label class="input-group">
+                                            <span class="inputTitle text-black w-24 justify-center text-center text-sm">Change password</span>
+                                            <form:input type="password" path="pass" id="pass" name="pass" placeholder="변경 비밀번호" class="input input-bordered text-lg text-center w-80" />
+                                        </label>
+                                        <label class="text-center"><form:errors path="pass" /></label>
+                                </div>
+
 
                                 <button type="submit" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-44 ml-[8rem]">저장</button>
                             </div>
@@ -86,6 +94,11 @@
     </div>
             <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
             <script>
+
+                $(document).ready(function () {
+                    $("#passUpdateForm").hide();
+                })
+
 
                 function passCheckBtn(userNo){
 
@@ -106,7 +119,7 @@
                             if(data == 1){
                                 alert("비밀번호가 확인되었습니다.");
 
-                                passUpdateForm(mem_num);
+                                $("#passUpdateForm").show();
 
                             }else if(data == 0){
                                 alert("비밀번호가 일치하지 않습니다.");
@@ -114,10 +127,6 @@
                         }
                     });
                 }
-
-                $(document).ready(function () {
-
-                })
 
 
             </script>
