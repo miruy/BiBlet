@@ -43,4 +43,9 @@ public class MypageDAOImpl implements MypageDAO {
     public void updateUserInfo(UserDTO newInfo) {
         sqlSessionTemplate.update("updateUserInfo", newInfo);
     }
+
+    @Override
+    public void deleteUserInfo(Long userNo){
+        sqlSessionTemplate.delete("deleteUserInfo", userNo);
+    }
 }

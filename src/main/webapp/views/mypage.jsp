@@ -277,7 +277,7 @@
                 function infoDelete(){
                     // 확인 팝업 창
                     if(confirm("탈퇴하시겠습니까?")){
-                        location.href = "/delete";
+                        location.href = "/withdraw";
                     }
                 }
 

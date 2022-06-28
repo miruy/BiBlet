@@ -16,4 +16,5 @@ public interface MypageService {
     List<String> mypage_2(Long userNo);
     List<AppraisalDTO> mypage_4(Long userNo);
     void updateUserInfo(RequestUpdateUserInfo requestUpdateUserInfo, MultipartFile multipartFile, HttpServletRequest request) throws IllegalStateException, IOException;
+    void deleteUserInfo(Long userNo);
 }

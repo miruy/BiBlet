@@ -80,4 +80,9 @@ public class MypageServiceImpl implements MypageService {
 
         mypageDAO.updateUserInfo(newInfo);
     }
+
+    @Override
+    public void deleteUserInfo(Long userNo){
+        mypageDAO.deleteUserInfo(userNo);
+    }
 }

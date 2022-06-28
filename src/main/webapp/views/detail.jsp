@@ -213,7 +213,7 @@
                         <c:if test="${empty userStatusNo}">
                             <div class="flex flex-col">
                                 <span class="text-gray-600 mb-2 ml-2">코멘트</span>
-                                <label for="my-modal-3" class="modal-button">
+                                <label for="my-modal-3" class="modal-button cursor-pointer">
                                     <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                          version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>

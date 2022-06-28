@@ -123,7 +123,6 @@
                         url: '<c:url value="/editPassCheck"/>',
                         type: 'POST',
                         data: JSON.stringify({
-                            "userNo": userNo,
                             "passCheck": passCheck,
                             "pass": pass
                         }),
