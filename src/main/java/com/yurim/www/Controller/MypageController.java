@@ -48,20 +48,7 @@ public class MypageController {
 			Long userNo = authInfo.getUserNo();
 
 			String id = authInfo.getId();
-			UserDTO user = userService.selectUserInfoById(id);
-
-			// 프로필, id
-			if(user.getStoredPic() == null){
-				model.addAttribute("profile", user.getOriginPic());
-			}else{
-				model.addAttribute("profile", user.getStoredPic());
-			}
-
-			if(user.getId().substring(0,5).equals("kakao")){
-				model.addAttribute("id", user.getName());
-			}else{
-				model.addAttribute("id", user.getId());
-			}
+			userService.selectUserInfoById(id);
 
 			// 나의 코멘트
 			model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));

@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="common/header.jsp" %>
 
@@ -13,49 +14,48 @@
         <%--회원정보 모달--%>
         <input type="checkbox" id="modifyUserInfo" class="modal-toggle"/>
         <div class="modal bg-opacity-60 bg-gray-300">
-            <div class="modal-box relative h-4/5 w-11/12 max-w-3xl">
+            <div class="modal-box relative h-5/6 w-11/12 max-w-3xl">
 
                 <label for="modifyUserInfo"
                        class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
                 <div class="text-gray-600 mb-6 text-center text-3xl font-bold">회원정보</div>
 
-                <div class="mx-60 mb-6">
-                    <div class="avatar">
-                        <div class="rounded-full">
-
-                            <c:if test="${myInfo.storedPic eq null}">
-                                <div class="relative w-60 h-60 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                    <svg class="absolute w-64 h-64 text-gray-400 -left-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <div class="space-y-4 my-[3rem]">
+                        <c:if test="${myInfo.storedPic eq null}">
+                            <div class="mx-64">
+                                <div class="relative w-[12rem] h-[12rem] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                    <svg class="absolute w-[14rem] h-[14rem] text-gray-400 -left-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                 </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${myInfo.storedPic ne null}">
+                            <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
+                            <c:if test="${idSub ne 'kakao'}">
+                                <img src="<c:url value='/images/${myInfo.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
                             </c:if>
-
-                            <c:if test="${myInfo.storedPic ne null}">
-                                <img src="<c:url value='/images/${myInfo.storedPic}'/>" />
+                            <c:if test="${idSub eq 'kakao'}">
+                                <img src="<c:url value='http://${myInfo.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
                             </c:if>
+                        </c:if>
 
+                        <div class="overflow-x-auto">
+                            <table class="table w-80 mx-auto">
+                                <tbody>
+                                <tr>
+                                    <th class="text-xl font-semibold">Name</th>
+                                    <td class="text-lg text-center">${myInfo.name}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-xl font-semibold">ID</th>
+                                    <td class="text-lg text-center">${myInfo.id}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-xl font-semibold">Email</th>
+                                    <td class="text-lg text-center">${myInfo.email}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                </div>
-
-                <div class="ml-48">
-                    <div class="overflow-x-auto">
-                        <table class="table w-80">
-                            <tbody>
-                            <tr>
-                                <th class="text-xl font-semibold">Name</th>
-                                <td class="text-lg text-center">${myInfo.name}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-xl font-semibold">ID</th>
-                                <td class="text-lg text-center">${myInfo.id}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-xl font-semibold">Email</th>
-                                <td class="text-lg text-center">${myInfo.email}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
                 <div class="flex justify-center items-center">
@@ -77,11 +77,33 @@
 
         <div class="card w-full bg-gray-100 shadow-xl">
 
-            <div class="flex p-16 justify-between">
-                <div class="flex flex-row space-x-2">
-                    <div class="text-2xl">${profile}</div>
-                    <div class="text-xl">${id}</div>
-                    <span class="text-xl">님의 My Page 입니다 :)</span>
+            <div class="flex justify-between p-16">
+                <div class="flex flex-row space-x-4">
+                    <div class="">
+                        <c:if test="${myInfo.storedPic eq null}">
+                            <div class="relative w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-16 h-16 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </c:if>
+                        <c:if test="${myInfo.storedPic ne null}">
+                            <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
+                            <c:if test="${idSub ne 'kakao'}">
+                                <img src="<c:url value='/images/${myInfo.storedPic}'/>" class="mask mask-circle w-14 h-14"/>
+                            </c:if>
+                            <c:if test="${idSub eq 'kakao'}">
+                                <img src="<c:url value='http://${myInfo.storedPic}'/>" class="mask mask-circle w-14 h-14"/>
+                            </c:if>
+                        </c:if>
+                    </div>
+
+                    <div class="pt-4">
+                        <c:if test="${idSub ne 'kakao'}">
+                            <div class="text-xl">${myInfo.id}</div>
+                        </c:if>
+                        <c:if test="${idSub eq 'kakao'}">
+                            <div class="text-xl">${myInfo.name}</div>
+                        </c:if>
+                    </div>
                 </div>
 
                 <label for="modifyUserInfo" class="modal-button">
@@ -102,7 +124,7 @@
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
-                    <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden shadow-xl">
+                    <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
                         <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                     </div>
 
@@ -122,7 +144,7 @@
                 </div>
                 <div class="w-full relative flex items-center justify-center">
 
-                    <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden shadow-xl">
+                    <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
                         <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                     </div>
 

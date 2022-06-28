@@ -353,9 +353,14 @@
         <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4">
             <div id="myComment_1" class="hidden">
                <div class="flex flex-row justify-center items-center text-center space-x-4">
-                   <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                       <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                   </div>
+                   <c:if test="${myC.storedPic eq null}">
+                       <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                           <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                       </div>
+                   </c:if>
+                   <c:if test="${myC.storedPic ne null}">
+                       <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                   </c:if>
                    <span class="text-gray-600 text-sm">${myC.name}</span>
                 <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
                 <label class="flex flex-row">
@@ -373,9 +378,14 @@
 
             <div id="myComment_2" class="hidden">
                 <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                    </div>
+                    <c:if test="${myC.storedPic eq null}">
+                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </c:if>
+                    <c:if test="${myC.storedPic ne null}">
+                        <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                    </c:if>
                     <span class="text-gray-600 text-sm">${myC.name}</span>
                     <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
                     <div class="flex flex-row space-x-4">
@@ -404,9 +414,14 @@
 
             <div id="myComment_3" class="hidden">
                 <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                    </div>
+                    <c:if test="${myC.storedPic eq null}">
+                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </c:if>
+                    <c:if test="${myC.storedPic ne null}">
+                        <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                    </c:if>
                     <span class="text-gray-600 text-sm">${myC.id}</span>
                     <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
                     <label class="flex flex-row">
@@ -425,9 +440,14 @@
 
             <div id="myComment_4" class="hidden">
                 <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                    </div>
+                    <c:if test="${myC.storedPic eq null}">
+                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </c:if>
+                    <c:if test="${myC.storedPic ne null}">
+                        <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                    </c:if>
                     <span class="text-gray-600 text-sm">${myC.id}</span>
                     <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
                     <div class="flex flex-row space-x-4">
@@ -493,23 +513,40 @@
                         <c:forEach var="comment" items="${commentsByMembers}">
                             <div class="carousel-item rounded-lg bg-gray-100 w-80 h-72 flex flex-col">
                                 <div class="p-4 space-x-4">
-                                    <div class="flex flex-row border-b-2 border-gray-300 mt-2">
-                                        <div class="ml-4 mr-2 text-gray-600">${comment.originPic}</div>
+                                    <div class="flex flex-row border-b-2 border-gray-300 space-x-2 pl-2">
+                                        <div class="pb-2">
+                                            <c:if test="${comment.storedPic eq null}">
+                                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${comment.storedPic ne null}">
+                                                <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
+                                                <c:if test="${idSub ne 'kakao'}">
+                                                    <img src="<c:url value='/images/${comment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                </c:if>
+                                                <c:if test="${idSub eq 'kakao'}">
+                                                    <img src="<c:url value='http://${comment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                </c:if>
+                                            </c:if>
+                                        </div>
 
-                                        <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
-                                        <c:if test="${idSub ne 'kakao'}">
-                                            <div class="text-gray-600 text-sm">${comment.id}</div>
-                                        </c:if>
+                                        <div class="mt-2">
+                                            <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
+                                            <c:if test="${idSub ne 'kakao'}">
+                                                <div class="text-gray-600 text-sm">${comment.id}</div>
+                                            </c:if>
 
-                                        <c:if test="${idSub eq 'kakao'}">
-                                            <div class="text-gray-600 text-sm">${comment.name}</div>
-                                        </c:if>
+                                            <c:if test="${idSub eq 'kakao'}">
+                                                <div class="text-gray-600 text-sm">${comment.name}</div>
+                                            </c:if>
+                                        </div>
 
-                                        <div id="star${comment.id}"></div>
+                                        <div id="star${comment.id}" class="mt-2"></div>
                                     </div>
 
                                     <div class="border-b-2 border-gray-300 py-2">
-                                        <textarea class="text-gray-800 box-content w-64 resize-none" rows="7"
+                                        <textarea class="text-gray-800 box-content w-64 resize-none" rows="6"
                                                   id="content${comment.appraisalNo}"
                                                   disabled>${comment.comment}</textarea>
                                     </div>
@@ -521,20 +558,20 @@
                                                  viewBox="0 0 32 32" width="20" xml:space="preserve"
                                                  xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <g id="calendar_1_">
-                                                <path d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z"
-                                                      fill="#333332"/>
-                                                <rect fill="#333332" height="3" width="4" x="7" y="12"/>
-                                                <rect fill="#333332" height="3" width="4" x="7" y="17"/>
-                                                <rect fill="#333332" height="3" width="4" x="7" y="22"/>
-                                                <rect fill="#333332" height="3" width="4" x="14" y="22"/>
-                                                <rect fill="#333332" height="3" width="4" x="14" y="17"/>
-                                                <rect fill="#333332" height="3" width="4" x="14" y="12"/>
-                                                <rect fill="#333332" height="3" width="4" x="21" y="22"/>
-                                                <rect fill="#333332" height="3" width="4" x="21" y="17"/>
-                                                <rect fill="#333332" height="3" width="4" x="21" y="12"/>
-                                            </g>
-                                        </svg>
+                                                <g id="calendar_1_">
+                                                    <path d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z"
+                                                          fill="#333332"/>
+                                                    <rect fill="#333332" height="3" width="4" x="7" y="12"/>
+                                                    <rect fill="#333332" height="3" width="4" x="7" y="17"/>
+                                                    <rect fill="#333332" height="3" width="4" x="7" y="22"/>
+                                                    <rect fill="#333332" height="3" width="4" x="14" y="22"/>
+                                                    <rect fill="#333332" height="3" width="4" x="14" y="17"/>
+                                                    <rect fill="#333332" height="3" width="4" x="14" y="12"/>
+                                                    <rect fill="#333332" height="3" width="4" x="21" y="22"/>
+                                                    <rect fill="#333332" height="3" width="4" x="21" y="17"/>
+                                                    <rect fill="#333332" height="3" width="4" x="21" y="12"/>
+                                                </g>
+                                            </svg>
                                             <div class="ml-2 pr-2 text-gray-600" id="startDate${comment.appraisalNo}">
                                                     ${comment.startDate}
                                             </div>
@@ -655,7 +692,7 @@
             }
 
             $("#star" + id).html(
-                '<div class="ml-16 text-yellow-400">' + starForComment + '</div>'
+                '<div class="ml-16 text-yellow-400 text-xl">' + starForComment + '</div>'
             );
         }
 

@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="common/header.jsp" %>
 
@@ -16,17 +17,20 @@
                 <div class="mx-80 pl-10 mb-6">
                     <div class="avatar">
                         <div class="rounded-full">
-
-                            <c:if test="${myInfo.storedPic eq null}">
-                                <div class="relative w-60 h-60 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                    <svg class="absolute w-64 h-64 text-gray-400 -left-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            <c:if test="${myInfo2.storedPic eq null}">
+                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                 </div>
                             </c:if>
-
-                            <c:if test="${myInfo.storedPic ne null}">
-                                <img src="<c:url value='/images/${myInfo.storedPic}'/>" />
+                            <c:if test="${myInfo2.storedPic ne null}">
+                                <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
+                                <c:if test="${idSub ne 'kakao'}">
+                                    <img src="<c:url value='/images/${myInfo.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                </c:if>
+                                <c:if test="${idSub eq 'kakao'}">
+                                    <img src="<c:url value='http://${myInfo.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                </c:if>
                             </c:if>
-
                         </div>
                     </div>
                 </div>
