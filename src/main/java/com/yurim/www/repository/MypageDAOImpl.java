@@ -1,6 +1,7 @@
 package com.yurim.www.repository;
 
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -36,5 +37,10 @@ public class MypageDAOImpl implements MypageDAO {
     @Override
     public List<AppraisalDTO> mypage_4(Long userNo){
         return sqlSessionTemplate.selectList("mypage_4", userNo);
+    }
+
+    @Override
+    public void updateUserInfo(UserDTO newInfo) {
+        sqlSessionTemplate.update("updateUserInfo", newInfo);
     }
 }

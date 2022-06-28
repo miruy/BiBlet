@@ -51,6 +51,11 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
+    public UserDTO selectUserInfoByUserNo(Long UserNo) {
+        return sqlSessionTemplate.selectOne("selectUserInfoByUserNo", UserNo);
+    }
+
+    @Override
     public String findIdByEmail(HashMap<String, String> map) {
         return sqlSessionTemplate.selectOne("findIdByEmail", map);
     }

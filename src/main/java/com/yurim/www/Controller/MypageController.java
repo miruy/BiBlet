@@ -11,16 +11,19 @@ import com.yurim.www.service.MypageService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestLogin;
 import com.yurim.www.vo.RequestSignup;
+import com.yurim.www.vo.RequestUpdateUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -35,7 +38,7 @@ public class MypageController {
 	 * 회원 정보 조회
 	 */
 	@GetMapping("/mypage")
-	public String memberInfo(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model,
+	public String memberInfo(Model model,
 							 HttpSession session, HttpServletResponse response) {
 
 		// 회원 정보 불러오기
@@ -46,9 +49,6 @@ public class MypageController {
 		if (authInfo != null) {
 
 			Long userNo = authInfo.getUserNo();
-
-			String id = authInfo.getId();
-			userService.selectUserInfoById(id);
 
 			// 나의 코멘트
 			model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));
@@ -62,7 +62,7 @@ public class MypageController {
 			model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
 			// 회원정보(모달)
-			model.addAttribute("myInfo", userService.selectUserInfoById(id));
+			model.addAttribute("myInfo", userService.selectUserInfoByUserNo(userNo));
 
 		}
 
@@ -139,7 +139,7 @@ public class MypageController {
 	}
 
 	@GetMapping("/edit")
-	public String modifyUserInfoForm(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model, HttpSession session, HttpServletResponse response) {
+	public String modifyUserInfoForm(@ModelAttribute("requestUpdateUserInfo") RequestUpdateUserInfo requestUpdateUserInfo, Model model, HttpSession session, HttpServletResponse response) {
 
 		// 회원 정보 불러오기
 		UserDTO authInfo = null;
@@ -147,11 +147,11 @@ public class MypageController {
 
 		if (authInfo != null) {
 
-			String id = authInfo.getId();
+			Long userNo = authInfo.getUserNo();
 
 			session.setAttribute("authInfo", authInfo);
 
-			model.addAttribute("myInfo2", userService.selectUserInfoById(id));
+			model.addAttribute("myInfo2", userService.selectUserInfoByUserNo(userNo));
 		}
 
 		return "edit";
@@ -159,26 +159,33 @@ public class MypageController {
 
 
 	@PostMapping("/edit")
-	public String modifyUserInfo(@ModelAttribute("requestSignup") @Valid RequestSignup requestSignup, Errors errors,
-								 HttpServletRequest request, Model model) throws IllegalStateException{
+	public String modifyUserInfo(@ModelAttribute("requestUpdateUserInfo") @Valid RequestUpdateUserInfo requestUpdateUserInfo, Errors errors, HttpSession session,
+								 HttpServletRequest request, Model model) throws IllegalStateException, IOException {
 
-		if(errors.hasErrors()) {
-			return "mypage";
-		}
+//		if(errors.hasErrors()) {
+//			return "mypage";
+//		}
 
-//		MultipartFile multipartFile = memInfoUpdateCmd.getFile();
-//
-//		System.out.println(memInfoUpdateCmd.getMem_name());
-//		System.out.println(memInfoUpdateCmd.getMem_id());
-//		System.out.println(memInfoUpdateCmd.getMem_pass());
-//		System.out.println(memInfoUpdateCmd.getFile().getOriginalFilename());
-//		mypageService.updateMemInfo(memInfoUpdateCmd, multipartFile, request);
-//
+		// 회원 정보 불러오기
+		UserDTO authInfo = null;
+		authInfo = (UserDTO) session.getAttribute("authInfo");
+
+		Long userNo = authInfo.getUserNo();
+
+		MultipartFile multipartFile = requestUpdateUserInfo.getFile();
+
+		System.out.println(requestUpdateUserInfo.getId());
+		System.out.println(requestUpdateUserInfo.getNewPass());
+		System.out.println(requestUpdateUserInfo.getEmail());
+		System.out.println(requestUpdateUserInfo.getFile().getOriginalFilename());
+		requestUpdateUserInfo.setUserNo(userNo);
+		mypageService.updateUserInfo(requestUpdateUserInfo, multipartFile, request);
+
 //		MemberVO profile = mypageService.memberInfo(memInfoUpdateCmd.getMem_num());
 //
 //		model.addAttribute("profile", profile);
-
-		try{
+//
+//		try{
 //			signupUser.setName(requestSignup.getName());
 //			signupUser.setId(requestSignup.getId());
 //			signupUser.setPass(requestSignup.getPass());
@@ -201,13 +208,13 @@ public class MypageController {
 //			userService.updateKey(signupUser.getEmail(), signupUser.getAuthKey());
 //
 //			return "check/signupCheck";
+//
+//		}catch(AlreadyExistIdException e) {
+//			errors.rejectValue("id", "alreadyExistId");
+//			return "auth/signup";
+//		}
 
-		}catch(AlreadyExistIdException e) {
-			errors.rejectValue("id", "alreadyExistId");
-			return "auth/signup";
-		}
-
-		return "redirect:/MyPage";
+		return "redirect:/mypage";
 	}
 
 //	/**

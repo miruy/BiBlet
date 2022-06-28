@@ -11,5 +11,6 @@ public interface UserService {
     UserDTO authenticate(UserDTO userDTO) throws Exception;
     String findIdByEmail(String email, String pass);
     UserDTO selectUserInfoById(String id);
+    UserDTO selectUserInfoByUserNo(Long userNo);
     UserDTO kakaoAuthenticate(UserDTO userDTO);
 }

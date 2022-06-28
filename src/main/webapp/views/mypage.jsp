@@ -41,30 +41,47 @@
                         <div class="overflow-x-auto">
                             <table class="table w-80 mx-auto">
                                 <tbody>
-                                <tr>
-                                    <th class="text-xl font-semibold">Name</th>
-                                    <td class="text-lg text-center">${myInfo.name}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xl font-semibold">ID</th>
-                                    <td class="text-lg text-center">${myInfo.id}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xl font-semibold">Email</th>
-                                    <td class="text-lg text-center">${myInfo.email}</td>
-                                </tr>
+                                <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
+                                <c:if test="${idSub ne 'kakao'}">
+                                    <tr>
+                                        <th class="text-xl font-semibold">Name</th>
+                                        <td class="text-lg text-center">${myInfo.name}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-xl font-semibold">ID</th>
+                                        <td class="text-lg text-center">${myInfo.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-xl font-semibold">Email</th>
+                                        <td class="text-lg text-center">${myInfo.email}</td>
+                                    </tr>
+                                </c:if>
+
+                                <c:if test="${idSub eq 'kakao'}">
+                                    <tr>
+                                        <th class="text-xl font-semibold">Name</th>
+                                        <td class="text-lg text-center">${myInfo.name}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-gray-400">카카오로그인 회원입니다.</td>
+                                    </tr>
+                                </c:if>
                                 </tbody>
                             </table>
                         </div>
                 </div>
 
                 <div class="flex justify-center items-center">
-                    <div class="modal-action">
-                        <button type="button" id="edit" onClick="infoUpdate()"
-                                class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">회원정보 수정
-                        </button>
-                    </div>
-
+                    <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
+                    <c:if test="${idSub ne 'kakao'}">
+                        <div class="modal-action">
+                            <button type="button" id="edit" onClick="infoUpdate()"
+                                    class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">회원정보 수정
+                            </button>
+                        </div>
+                    </c:if>
                     <div class="modal-action">
                         <button type="button" id="delete" onClick="infoDelete()"
                                 class="btn btn-secondary hover:bg-purple-600 hover:text-white">회원 탈퇴

@@ -14,37 +14,35 @@
 
                 <div class="text-gray-600 mb-6 text-center text-3xl font-bold">회원정보 수정</div>
 
-                <div class="mx-80 pl-10 mb-6">
-                    <div class="avatar">
-                        <div class="rounded-full">
-                            <c:if test="${myInfo2.storedPic eq null}">
-                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                                </div>
-                            </c:if>
-                            <c:if test="${myInfo2.storedPic ne null}">
-                                <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
-                                <c:if test="${idSub ne 'kakao'}">
-                                    <img src="<c:url value='/images/${myInfo.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                                </c:if>
-                                <c:if test="${idSub eq 'kakao'}">
-                                    <img src="<c:url value='http://${myInfo.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                                </c:if>
-                            </c:if>
+                <div class="mx-auto mb-6">
+                    <c:if test="${myInfo2.storedPic eq null}">
+                        <div class="mx-64">
+                            <div class="relative w-[12rem] h-[12rem] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-[14rem] h-[14rem] text-gray-400 -left-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+                    <c:if test="${myInfo2.storedPic ne null}">
+                        <c:set var="idSub" value="${fn:substring(myInfo2.id,0,5)}"/>
+                        <c:if test="${idSub ne 'kakao'}">
+                            <img src="<c:url value='/images/${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                        </c:if>
+                        <c:if test="${idSub eq 'kakao'}">
+                            <img src="<c:url value='http://${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                        </c:if>
+                    </c:if>
                 </div>
 
-                <div class="mx-60 pl-2">
+                <div class="mx-auto">
                     <div class="overflow-x-auto">
 
-                            <form:form modelAttribute="requestSignup" method="post" action="edit">
+                            <form:form modelAttribute="requestUpdateUserInfo" method="post" action="edit" enctype="multipart/form-data">
 
                             <div class="space-y-4">
                                 <div class="form-control">
                                     <label class="input-group">
                                         <span class="inputTitle text-black w-24 justify-center">Name</span>
-                                        <input type="text" placeholder="${myInfo2.id}" class="input input-bordered placeholder-black text-lg text-center w-80" readonly />
+                                        <input type="text" placeholder="${myInfo2.name}" class="input input-bordered placeholder-black text-lg text-center w-80" readonly />
                                     </label>
                                 </div>
 
@@ -65,26 +63,34 @@
                                     <label class="text-center"><form:errors path="email" /></label>
                                 </div>
 
-                                <div class="form-control">
+                                <div class="form-control flex flex-row space-x-2">
                                     <label class="input-group">
                                         <span class="inputTitle text-black w-24 justify-center text-center text-sm">Existing password</span>
-                                        <input type="password" id="passCheck" name="pass" placeholder="기존 비밀번호" class="input input-bordered text-lg text-center w-80" />
+                                        <input type="password" id="passCheck" name="passCheck" placeholder="기존 비밀번호" class="input input-bordered text-lg text-center w-80" />
                                         <input type="hidden" name="pass" id="pass" value="${myInfo2.pass}" />
-                                        <button type="button" class="btn btn-square w-24 bg-gray-200 border-gray-200" onClick="passCheckBtn(${myInfo2.userNo})">비밀번호 확인</button>
                                     </label>
+                                    <button type="button" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black" onClick="passCheckBtn(${myInfo2.userNo})">비밀번호 확인</button>
                                 </div>
 
                                 <div id="passUpdateForm" class="form-control">
                                         <label class="input-group">
                                             <span class="inputTitle text-black w-24 justify-center text-center text-sm">Change password</span>
-                                            <form:input type="password" path="pass" id="pass" name="pass" placeholder="변경 비밀번호" class="input input-bordered text-lg text-center w-80" />
+                                            <input type="password" id="newPass" name="newPass" placeholder="변경 비밀번호" class="input input-bordered text-lg text-center w-80" />
                                         </label>
-                                        <label class="text-center"><form:errors path="pass" /></label>
                                 </div>
-                                
-                                <button type="submit" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-44 ml-[8rem]">저장</button>
-                            </div>
 
+                                <div class="form-control flex flex-row space-x-2">
+                                    <label class="input-group">
+                                        <span class="inputTitle text-black w-24 justify-center">Profile</span>
+                                        <input type="file" id="file" name="file" class="input input-bordered text-lg text-center w-80" />
+                                    </label>
+                                    <label for="file" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black">선택</label>
+
+
+                                </div>
+
+                                <button type="submit" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-44 ml-[10rem]">저장</button>
+                            </div>
 
                             </form:form>
 
@@ -101,6 +107,11 @@
                 $(document).ready(function () {
                     $("#passUpdateForm").hide();
                 })
+
+                $("#file").on('change',function(){
+                    var fileName = $("#file").val();
+                    $(".upload-name").val(fileName);
+                });
 
 
                 function passCheckBtn(userNo){

@@ -25,6 +25,10 @@
         SELECT * FROM user WHERE id=#{id}
     </select>
 
+    <select id="selectUserInfoByUserNo" parameterType="Long" resultType="UserDTO">
+        SELECT * FROM user WHERE user_no=#{userNo}
+    </select>
+
     <select id="findIdByEmail" parameterType="HashMap" resultType="String">
         SELECT id FROM user WHERE email=#{email} AND pass=#{pass}
     </select>

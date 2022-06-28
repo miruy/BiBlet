@@ -4,22 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-public class RequestSignup {
-
-    @NotEmpty(message="필수 입력란 입니다.")
-    @Size(min = 2, message = "최소 2글자이상 입력바랍니다.")
-    private String name;
+public class RequestUpdateUserInfo {
 
     @NotEmpty(message="필수 입력란 입니다.")
     @Size(min = 5, max = 10, message = "5 ~ 10글자 이내로 입력바랍니다.")
     private String id;
 
-    @NotEmpty(message="필수 입력란 입니다.")
-    @Size(min = 4, max = 15, message = "4 ~ 15글자 이내로 입력바랍니다.")
     private String pass;
 
     @NotEmpty(message="필수 입력란 입니다.")
@@ -27,6 +23,9 @@ public class RequestSignup {
     private String email;
 
     private String commonError;
-    private int authStatus;
+
+    private MultipartFile file;
+    private String newPass;
+    private Long userNo;
 
 }

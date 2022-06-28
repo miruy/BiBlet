@@ -35,4 +35,8 @@
                  INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         WHERE bookshelf.user_no = #{userNo}
     </select>
+
+    <update id="updateUserInfo" parameterType="UserDTO">
+        UPDATE user SET origin_pic = #{originPic}, stored_pic = #{storedPic}, id = #{id}, email = #{email}, pass = #{pass} WHERE user_no = #{userNo}
+    </update>
 </mapper>
