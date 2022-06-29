@@ -56,12 +56,20 @@
                                         <th class="text-xl font-semibold">Email</th>
                                         <td class="text-lg text-center">${myInfo.email}</td>
                                     </tr>
+                                    <tr>
+                                        <th class="text-xl font-semibold">Date</th>
+                                        <td class="text-lg text-center">${myInfo.regDate}</td>
+                                    </tr>
                                 </c:if>
 
                                 <c:if test="${idSub eq 'kakao'}">
                                     <tr>
                                         <th class="text-xl font-semibold">Name</th>
                                         <td class="text-lg text-center">${myInfo.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-xl font-semibold">Date</th>
+                                        <td class="text-lg text-center">${myInfo.regDate}</td>
                                     </tr>
 
                                     <tr>

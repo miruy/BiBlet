@@ -19,6 +19,7 @@
                         <span class="label-text">ID</span>
                     </label>
                     <form:input path="id" id="id" name="id" type="text" class="input input-bordered"/>
+                    <div class="text-center"><form:errors path="id" /></div>
                 </div>
 
                 <div class="form-control">
@@ -26,7 +27,7 @@
                         <span class="label-text">Password</span>
                     </label>
                     <form:input type="password" path="pass" id="pass" name="pass" class="input input-bordered"/>
-                    <form:errors path="pass" />
+                    <div class="text-center"><form:errors path="pass" /></div>
                 </div>
 
                 <div class="form-control">
@@ -44,7 +45,7 @@
                     <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-accent text-gray-600 hover:text-black">Kakao Login</a>
                 </div>
 
-                <a href="/adimLogin" class="text-center">Administrator Login</a>
+                <a href="/admin/login" class="text-center text-gray-400">Administrator Login</a>
 
                 <a href="/findId" class="mt-3" >Forgot your id?</a>
                 <a href="/findPass" >Forgot your password?</a>

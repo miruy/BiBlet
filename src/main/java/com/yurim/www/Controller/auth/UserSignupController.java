@@ -84,6 +84,7 @@ public class UserSignupController {
      */
     @GetMapping("/emailCheck")
     public String emailCheck(@ModelAttribute("requestSignup") RequestSignup requestSignup, Model model) {
+
         String authKey = userService.selectKey(requestSignup.getEmail());
         userService.updateAuthStatus(requestSignup.getEmail(), authKey);
         // 총 코멘트 수(footer)

@@ -17,9 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Alias("UserDTO")
 public class UserDTO {
-    /**
-     * user
-     */
+
     private Long userNo;
     private String name;
     private String id;

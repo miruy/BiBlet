@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../common/header.jsp" %>
 
@@ -10,51 +8,35 @@
 
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
         <div class="text-center mb-[0.7rem]">
-            <h1 class="text-4xl font-bold">Sign Up</h1>
+            <h1 class="text-4xl font-bold">Administrator Login</h1>
         </div>
         <div class="card flex-shrink-0 w-full shadow-2xl bg-base-100">
-            <form:form modelAttribute="requestSignup" class="card-body lg:px-[10%]">
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Name</span>
-                    </label>
-                    <form:input type="text" path="name" id="name" name="name" class="input input-bordered" />
-                    <label class="text-center"><form:errors path="name" /></label>
-                </div>
+            <form:form modelAttribute="requestAdmLogin" class="card-body lg:px-[10%]">
+                <form:errors />
 
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">ID</span>
                     </label>
-                    <form:input type="text" path="id" id="id" name="id" class="input input-bordered"/>
-                    <label class="text-center"><form:errors path="id" /></label>
+                    <form:input path="admId" id="admId" name="admId" type="text" class="input input-bordered"/>
+                    <div class="text-center"><form:errors path="admId" /></div>
                 </div>
 
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Password</span>
                     </label>
-                    <form:input type="password" path="pass" id="pass" name="pass" class="input input-bordered"/>
-                    <label class="text-center"><form:errors path="pass" /></label>
+                    <form:input type="password" path="admPass" id="admPass" name="admPass" class="input input-bordered"/>
+                    <div class="text-center"><form:errors path="admPass" /></div>
                 </div>
 
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Email</span>
-                    </label>
-                    <form:input type="text" path="email" id="email" name="email" class="input input-bordered"/>
-                    <label class="text-center"><form:errors path="email" /></label>
-                </div>
+                <div class="text-center"><form:errors path="commonError" /></div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Sign Up</button>
+                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Login</button>
                 </div>
 
-                <div class="form-control mt-1">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" class="btn btn-accent text-gray-600 hover:text-black">Kakao Login</a>
-                </div>
 
-                <a href="/admin/signup" class="text-center text-gray-400">Administrator SignUp</a>
             </form:form>
         </div>
     </div>
@@ -93,7 +75,7 @@
 
                                 }, error: function(){
                                     console.log("에러");
-                                    window.location.replace('signup')
+                                    window.location.replace('login')
                                 }
                             })
                         },

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yurim.www.repository.AdministratorDAO">
+
+    <insert id="adminSignup" parameterType="AdministratorDTO">
+        INSERT INTO administrator
+            (adm_name, adm_id, adm_pass, adm_regdate, adm_email, adm_authkey, adm_authstatus, securitycode)
+        VALUES
+            (#{admName}, #{admId}, #{admPass}, now(), #{admEmail}, #{admAuthkey}, #{admAuthstatus}, #{securitycode})
+    </insert>
+
+    <select id="adminEmailChk" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM administrator WHERE adm_email=#{admEmail}
+    </select>
+
+    <select id="adminIdChk" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM administrator WHERE adm_id=#{admId}
+    </select>
+
+    <update id="updateAdmAuthkey" parameterType="HashMap">
+        UPDATE administrator SET adm_authkey=#{admAuthkey} WHERE adm_email=#{admEmail}
+    </update>
+
+    <update id="updateAdmStatus" parameterType="String">
+        UPDATE administrator SET adm_authstatus='1' WHERE adm_email=#{adm_email}
+    </update>
+
+    <select id="selectByAdminId" parameterType="String" resultType="AdministratorDTO">
+        SELECT * FROM administrator WHERE adm_id=#{admId}
+    </select>
+
+</mapper>
