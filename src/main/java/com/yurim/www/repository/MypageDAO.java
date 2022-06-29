@@ -13,4 +13,5 @@ public interface MypageDAO {
     List<AppraisalDTO> mypage_4(Long userNo);
     void updateUserInfo(UserDTO newInfo);
     void deleteUserInfo(Long userNo);
+    void changedDefaultProfile(Long userNo);
 }

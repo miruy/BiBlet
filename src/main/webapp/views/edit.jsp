@@ -14,24 +14,35 @@
 
                 <div class="text-gray-600 mb-6 text-center text-3xl font-bold">회원정보 수정</div>
 
-                <div class="mx-auto mb-6">
+                <div id="profile" class="mx-auto mb-6">
+
                     <c:if test="${myInfo2.storedPic eq null}">
-                        <div class="mx-64">
+                        <label class="mx-auto" for="file">
                             <div class="relative w-[12rem] h-[12rem] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                 <svg class="absolute w-[14rem] h-[14rem] text-gray-400 -left-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                             </div>
-                        </div>
+                        </label>
                     </c:if>
                     <c:if test="${myInfo2.storedPic ne null}">
                         <c:set var="idSub" value="${fn:substring(myInfo2.id,0,5)}"/>
                         <c:if test="${idSub ne 'kakao'}">
-                            <img src="<c:url value='/images/${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                            <label class="mx-auto" for="file">
+                                <img src="<c:url value='/images/${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                            </label>
                         </c:if>
                         <c:if test="${idSub eq 'kakao'}">
-                            <img src="<c:url value='http://${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                            <label class="mx-auto" for="file">
+                                <img src="<c:url value='http://${myInfo2.storedPic}'/>" class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
+                            </label>
                         </c:if>
                     </c:if>
+
                 </div>
+
+                <c:set var="idSub" value="${fn:substring(myInfo2.id,0,5)}"/>
+                <c:if test="${idSub ne 'kakao'}">
+                    <button id="defaultProfile" type="button" class="btn btn btn-ghost w-44 mx-auto mb-4" onclick="changedDefaultProfile(${myInfo2.userNo})">기본 프로필로 돌아가기</button>
+                </c:if>
 
                 <div class="mx-auto">
                     <div class="overflow-x-auto">
@@ -101,48 +112,67 @@
 
         </div>
     </div>
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <script>
+    <script>
 
-                $(document).ready(function () {
-                    $("#passUpdateForm").hide();
-                })
+        $(document).ready(function () {
+            $("#passUpdateForm").hide();
+        })
 
-                $("#file").on('change',function(){
-                    var fileName = $("#file").val();
-                    $(".upload-name").val(fileName);
-                });
+        $("#file").on('change',function(){
+            var fileName = $("#file").val();
+            $(".upload-name").val(fileName);
+        });
 
 
-                function passCheckBtn(userNo){
+        function passCheckBtn(userNo){
 
-                    let passCheck = $("#passCheck").val();
-                    let pass = $("#pass").val();
+            let passCheck = $("#passCheck").val();
+            let pass = $("#pass").val();
 
-                    $.ajax({
-                        url: '<c:url value="/editPassCheck"/>',
-                        type: 'POST',
-                        data: JSON.stringify({
-                            "passCheck": passCheck,
-                            "pass": pass
-                        }),
-                        dataType: "json",
-                        contentType: 'application/json',
-                        success: function(data) {
-                            if(data == 1){
-                                alert("비밀번호가 확인되었습니다.");
+            $.ajax({
+                url: '<c:url value="/editPassCheck"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "passCheck": passCheck,
+                    "pass": pass
+                }),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(data) {
+                    if(data == 1){
+                        alert("비밀번호가 확인되었습니다.");
 
-                                $("#passUpdateForm").show();
+                        $("#passUpdateForm").show();
 
-                            }else if(data == 0){
-                                alert("비밀번호가 일치하지 않습니다.");
-                            }
-                        }
-                    });
+                    }else if(data == 0){
+                        alert("비밀번호가 일치하지 않습니다.");
+                    }
                 }
+            });
+        }
 
+        function changedDefaultProfile(userNo) {
 
-            </script>
+            $.ajax({
+                url: '<c:url value="/changedDefaultProfile"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "userNo": userNo
+                }),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log("성공");
+                    location.reload();
+                }, error: function (data) {
+                    console.log("에러" + data);
+                }
+            });
+
+        }
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 </section>
 

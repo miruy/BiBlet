@@ -23,8 +23,8 @@
                 <div class="flex flex-row space-x-2">
                     <c:if test="${!empty myCommentCount}">
                         <span class="text-xl">지금까지</span>
-                        <span class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</span>
-                        <span class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</span>
+                        <a href="/mypage_3" class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</a>
+                        <a href="/mypage_4" class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</a>
                         <span class="text-xl">를 등록하였어요!</span>
                     </c:if>
                 </div>

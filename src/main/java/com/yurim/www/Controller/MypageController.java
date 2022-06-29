@@ -13,6 +13,7 @@ import com.yurim.www.vo.RequestLogin;
 import com.yurim.www.vo.RequestSignup;
 import com.yurim.www.vo.RequestUpdateUserInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -174,10 +175,6 @@ public class MypageController {
 
         MultipartFile multipartFile = requestUpdateUserInfo.getFile();
 
-        System.out.println(requestUpdateUserInfo.getId());
-        System.out.println(requestUpdateUserInfo.getNewPass());
-        System.out.println(requestUpdateUserInfo.getEmail());
-        System.out.println(requestUpdateUserInfo.getFile().getOriginalFilename());
         requestUpdateUserInfo.setUserNo(userNo);
         mypageService.updateUserInfo(requestUpdateUserInfo, multipartFile, request);
 
@@ -222,6 +219,12 @@ public class MypageController {
             return 0;
         }
 
+    }
+    @ResponseBody
+    @PostMapping("/changedDefaultProfile")
+    public ResponseEntity changedDefaultProfile(@RequestBody RequestUpdateUserInfo requestUpdateUserInfo){
+        mypageService.changedDefaultProfile(requestUpdateUserInfo.getUserNo());
+        return ResponseEntity.ok(1);
     }
 
 }

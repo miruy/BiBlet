@@ -85,4 +85,9 @@ public class MypageServiceImpl implements MypageService {
     public void deleteUserInfo(Long userNo){
         mypageDAO.deleteUserInfo(userNo);
     }
+
+    @Override
+    public void changedDefaultProfile(Long userNo){
+        mypageDAO.changedDefaultProfile(userNo);
+    }
 }

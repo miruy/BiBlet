@@ -48,4 +48,10 @@ public class MypageDAOImpl implements MypageDAO {
     public void deleteUserInfo(Long userNo){
         sqlSessionTemplate.delete("deleteUserInfo", userNo);
     }
+
+    @Override
+    public void changedDefaultProfile(Long userNo){
+        sqlSessionTemplate.update("changedDefaultProfile", userNo);
+    }
+
 }
