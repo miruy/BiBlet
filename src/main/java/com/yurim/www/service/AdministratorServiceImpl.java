@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -88,6 +89,21 @@ public class AdministratorServiceImpl implements AdministratorService{
         }
 
         return adminInfo;
+    }
+
+    @Override
+    public List<UserDTO> allUserInfo(){
+        return administratorDAO.allUserInfo();
+    }
+
+    @Override
+    public Long totalCount(){
+        return administratorDAO.totalCount();
+    }
+
+    @Override
+    public List<UserDTO> selectUserBySearchValue(UserDTO searchUser){
+        return administratorDAO.selectUserBySearchValue(searchUser);
     }
 
 }

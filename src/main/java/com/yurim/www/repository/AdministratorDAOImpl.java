@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -45,5 +46,20 @@ public class AdministratorDAOImpl implements AdministratorDAO{
     @Override
     public AdministratorDTO selectByAdminId(String admId) {
         return sqlSessionTemplate.selectOne("selectByAdminId", admId);
+    }
+
+    @Override
+    public List<UserDTO> allUserInfo(){
+        return sqlSessionTemplate.selectList("allUserInfo");
+    }
+
+    @Override
+    public Long totalCount(){
+        return sqlSessionTemplate.selectOne("totalCount");
+    }
+
+    @Override
+    public List<UserDTO> selectUserBySearchValue(UserDTO searchUser){
+        return sqlSessionTemplate.selectList("selectUserBySearchValue", searchUser);
     }
 }

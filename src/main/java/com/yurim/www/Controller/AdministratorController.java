@@ -1,23 +1,40 @@
 package com.yurim.www.Controller;
+
+import com.yurim.www.dto.UserDTO;
+import com.yurim.www.service.AdministratorService;
+import com.yurim.www.vo.RequestAdmSearch;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdministratorController {
 
-	@GetMapping("/supervise")
-	public String adminPage(Model model) {
-		
-//		// 회원정보탭
-//		List<MemberVO> memberList = admPageService.listOfMember();
-//		model.addAttribute("memberList", memberList);
-//		int memcount = admPageService.countMember();
-//		model.addAttribute("memcount", memcount);
-//
+    private final AdministratorService administratorService;
+
+    @GetMapping("/supervise")
+    public String adminPage(Model model) {
+
+        // 회원 관리 탭
+
+        model.addAttribute("users", administratorService.allUserInfo());
+        model.addAttribute("totalUsers", administratorService.totalCount());
+
 //		//평가탭
 //		List<CommandListAppr> apprList = admPageService.listOfAppraisal();
 //		model.addAttribute("apprList", apprList);
@@ -38,18 +55,58 @@ public class AdministratorController {
 //		int admcount = admPageService.countAdmin();
 //		model.addAttribute("admcount", admcount);
 
-		return "admin/supervise";
-	}
+        return "admin/supervise";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/adminSearch", produces = "application/json; charset=UTF-8")
+    private String requestKakaoName(@RequestBody RequestAdmSearch requestAdmSearch, Errors errors,
+                                    HttpSession session, HttpServletResponse response, Model model) throws ParseException {
+
+        UserDTO searchUser = new UserDTO();
+        JSONObject jo = new JSONObject();
+        JSONArray ja = new JSONArray();
+
+        searchUser.setOption(requestAdmSearch.getOption());
+        searchUser.setKeyword(requestAdmSearch.getKeyword());
 
 
-//	@PostMapping("/search")
-//	public String searchInfo(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
+        System.out.println(searchUser.getOption());
+        List<UserDTO> searchList = administratorService.selectUserBySearchValue(searchUser);
+
+        for (int i = 0; i < searchList.size(); i++) {
+
+            JSONObject jso = new JSONObject();
+
+            jso.put("userNo", searchList.get(i).getUserNo());
+            jso.put("name", searchList.get(i).getName());
+            jso.put("profile", searchList.get(i).getStoredPic());
+            jso.put("id", searchList.get(i).getId());
+            jso.put("pass", searchList.get(i).getPass());
+            jso.put("email", searchList.get(i).getEmail());
+
+            String regDate = searchList.get(i).getRegDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+
+			jso.put("regDate", regDate);
+            jso.put("authStatus", searchList.get(i).getAuthStatus());
+            jso.put("option", searchUser.getOption());
+
+            ja.add(jso);
+
+        }
+
+        jo.put("item", ja);
+
+        return jo.toString();
+    }
+
+//	@ResponseBody
+//	@PostMapping("/admin_search")
+//	public String adminSearch(@RequestBody RequestAdmSearchValue requestAdmSearchValue, HttpServletResponse response, Model model) throws Exception {
 //
-//		if ("".equals(member.getOption()) || member.getOption() == null) {
-//			member.setOption("mem_num");
-//			member.setKeyword(null);
-//		}
-//
+//		System.out.println("여기는 어드민 검색 창");
+//		System.out.println(requestAdmSearchValue.getSearchValue());
+
 //		//회원검색
 //		List<MemberVO> searchList = admPageService.searchMember(member);
 //		model.addAttribute("searchList", searchList);
@@ -63,10 +120,10 @@ public class AdministratorController {
 //
 //		int starcount = admPageService.countStar();
 //		model.addAttribute("starcount", starcount);
-//
-//		return "admin/admin_supervise";
+
+//		return "admin/supervise";
 //	}
-//
+
 //	@ResponseBody
 //	@PostMapping(value = "/commentPage", produces = "application/json; charset=UTF-8")
 //	public String searchAdmInfo(@RequestBody CommandListAppr appr) {

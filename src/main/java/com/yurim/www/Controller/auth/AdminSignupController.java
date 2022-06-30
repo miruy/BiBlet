@@ -76,7 +76,6 @@ public class AdminSignupController {
      */
     @GetMapping("/confirm")
     public String admConfirm(@RequestParam(defaultValue = "") String adm_email) {
-        System.out.println("adm_email : " + adm_email);
 
         administratorService.updateAdmStatus(adm_email);
 

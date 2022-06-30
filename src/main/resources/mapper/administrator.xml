@@ -29,4 +29,29 @@
         SELECT * FROM administrator WHERE adm_id=#{admId}
     </select>
 
+    <select id="allUserInfo" resultType="UserDTO">
+        select * from user
+    </select>
+
+    <select id="totalCount" resultType="Long">
+        SELECT COUNT(*) FROM user
+    </select>
+
+    <select id="selectUserBySearchValue" parameterType="UserDTO" resultType="UserDTO">
+        <if test='option=="선택"'>
+            SELECT * FROM user WHERE name LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
+        </if>
+        <if test='option=="userNo"'>
+            SELECT * FROM user WHERE user_no LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
+        </if>
+        <if test='option=="name"'>
+            SELECT * FROM user WHERE name LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
+        </if>
+        <if test='option=="id"'>
+            SELECT * FROM user WHERE id LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
+        </if>
+        <if test='option=="email"'>
+            SELECT * FROM user WHERE email LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
+        </if>
+    </select>
 </mapper>
