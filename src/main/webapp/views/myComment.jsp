@@ -110,6 +110,4 @@
 
 <%@ include file="common/footer.jsp" %>
 
-<%--let title = msg.documents[0].title;--%>
-<%--let subTitle = '';--%>
 

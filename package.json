@@ -6,6 +6,7 @@
     "css": "npx tailwindcss -i ./src/main/webapp/css/tailwind.intput.css -o ./src/main/webapp/css/tailwind.output.css --watch"
   },
   "dependencies": {
-    "daisyui": "^2.14.3"
+    "daisyui": "^2.14.3",
+    "flowbite": "^1.4.7"
   }
 }
