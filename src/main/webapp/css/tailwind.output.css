@@ -2311,23 +2311,6 @@ body[dir="rtl"] .checkbox:checked,
   width: 1.25rem;
 }
 
-.input-md {
-  height: 3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  line-height: 2;
-}
-
-.input-sm {
-  height: 2rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  font-size: 0.875rem;
-  line-height: 2rem;
-}
-
 .card-compact .card-body {
   padding: 1rem;
   font-size: 0.875rem;
@@ -2473,6 +2456,11 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: 1.3rem;
 }
 
+.mx-\[2rem\] {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 .ml-32 {
   margin-left: 8rem;
 }
@@ -2589,6 +2577,14 @@ body[dir="rtl"] .checkbox:checked,
   margin-top: 4rem;
 }
 
+.ml-12 {
+  margin-left: 3rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
 .box-content {
   box-sizing: content-box;
 }
@@ -2665,12 +2661,16 @@ body[dir="rtl"] .checkbox:checked,
   height: 1.5rem;
 }
 
-.h-4 {
-  height: 1rem;
+.h-24 {
+  height: 6rem;
 }
 
-.h-20 {
-  height: 5rem;
+.h-7 {
+  height: 1.75rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .min-h-screen {
@@ -2749,16 +2749,20 @@ body[dir="rtl"] .checkbox:checked,
   width: 1.25rem;
 }
 
+.w-7 {
+  width: 1.75rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-xs {
-  max-width: 20rem;
 }
 
 .max-w-md {
@@ -3365,6 +3369,10 @@ footer {
 
 footer_biblet{
   font-family: OTWelcomeRA;
+}
+
+#admin_tab_group{
+  font-family: LeferiPoint-WhiteObliqueA;
 }
 
 #tab_content_group > div.active {

@@ -48,6 +48,10 @@ footer_biblet{
     font-family: OTWelcomeRA;
 }
 
+#admin_tab_group{
+    font-family: LeferiPoint-WhiteObliqueA;
+}
+
 #tab_content_group > div.active {
     display: block;
 }

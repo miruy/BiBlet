@@ -17,18 +17,26 @@
 
 </head>
 <body>
-<div class="flex flex-col justify-center bg-white px-32 py-8">
+<div class="flex flex-col justify-center bg-white px-8 py-8">
 	<div class="card w-full bg-gray-50 shadow-xl p-10">
 
 		<div class="flex flex flex-row">
-			<a href="/" class="text-gray-800"><header_biblet class="normal-case text-4xl border-0 mx-[1rem] mt-4">BiBlet</header_biblet></a>
+			<a href="/" class="text-gray-800"><header_biblet class="normal-case text-4xl border-0 ml-16 mt-4">BiBlet</header_biblet></a>
 
 			<div id="admin_tab_group"class="tabs mx-auto">
-				<button id="user_tab" class="tab tab-bordered h-10 text-3xl">회원 관리</button>
-				<button id="star_tab" class="tab tab-bordered h-10 text-3xl">평가 관리</button>
-				<button id="comment_tab" class="tab tab-bordered h-10 text-3xl">코멘트 관리</button>
-				<button id="notice_tab" class="tab tab-bordered h-10 text-3xl">공지 관리</button>
-				<button id="admin_tab" class="tab tab-bordered h-10 text-3xl">관리자 정보</button>
+				<button id="user_tab" class="tab tab-bordered h-10 text-2xl font-bold">회원 관리
+					<svg class="w-8 h-8 ml-1" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+						<g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linejoin="round" transform="translate(3 2)"><path d="m8.5 2.5 2 2v1c0 1.65685425-1.34314575 3-3 3-1.59768088 0-2.90366088-1.24891996-2.99490731-2.82372721l-.00509269-1.17627279z" stroke-linecap="round"/><path d="m2.5 10v-4.5c0-2.76142375 2.23857625-5 5-5 2.7614237 0 5 2.23857625 5 5v4.5"/><path d="m14.5 14.5v-.7281753c0-3.1864098-3.6862915-5.2718247-7-5.2718247s-7 2.0854149-7 5.2718247v.7281753c0 .5522847.44771525 1 1 1h12c.5522847 0 1-.4477153 1-1z" stroke-linecap="round"/></g>
+					</svg>
+				</button>
+				<button id="star_tab" class="tab tab-bordered h-10 text-2xl font-bold">평가 관리
+					<svg class="w-8 h-8 ml-1" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+						<path d="m7.5 11.5-5 3 2-5.131-4-3.869h5l2-5 2 5h5l-4 4 2 5z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 3)"/>
+					</svg>
+				</button>
+				<button id="comment_tab" class="tab tab-bordered h-10 text-2xl font-bold">코멘트 관리</button>
+				<button id="notice_tab" class="tab tab-bordered h-10 text-2xl font-bold">공지 관리</button>
+				<button id="admin_tab" class="tab tab-bordered h-10 text-2xl font-bold">관리자 정보</button>
 			</div>
 
 		</div>
