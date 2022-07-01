@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -28,5 +29,9 @@ public class RequestSignup {
 
     private String commonError;
     private int authStatus;
+
+    private LocalDateTime regDate;
+    private String profile;
+    private Long userNo;
 
 }

@@ -54,4 +54,8 @@
             SELECT * FROM user WHERE email LIKE CONCAT('%',#{keyword},'%') ORDER BY reg_date DESC
         </if>
     </select>
+
+    <select id="searchUserInfoByUserNo" parameterType="Long" resultType="UserDTO">
+        SELECT * FROM user WHERE user_no=#{userNo}
+    </select>
 </mapper>

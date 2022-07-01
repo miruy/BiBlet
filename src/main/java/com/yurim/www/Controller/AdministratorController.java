@@ -1,24 +1,10 @@
 package com.yurim.www.Controller;
-
-import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
-import com.yurim.www.vo.RequestAdmSearch;
+import com.yurim.www.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,14 +12,15 @@ import java.util.List;
 public class AdministratorController {
 
     private final AdministratorService administratorService;
+    private final UserService userService;
 
     @GetMapping("/supervise")
-    public String adminPage(Model model) {
+    public String supervise() {
 
         // 회원 관리 탭
 
-        model.addAttribute("users", administratorService.allUserInfo());
-        model.addAttribute("totalUsers", administratorService.totalCount());
+//        model.addAttribute("users", administratorService.allUserInfo());
+//        model.addAttribute("totalUsers", administratorService.totalCount());
 
 //		//평가탭
 //		List<CommandListAppr> apprList = admPageService.listOfAppraisal();
@@ -58,47 +45,65 @@ public class AdministratorController {
         return "admin/supervise";
     }
 
-    @ResponseBody
-    @PostMapping(value = "/adminSearch", produces = "application/json; charset=UTF-8")
-    private String requestKakaoName(@RequestBody RequestAdmSearch requestAdmSearch, Errors errors,
-                                    HttpSession session, HttpServletResponse response, Model model) throws ParseException {
-
-        UserDTO searchUser = new UserDTO();
-        JSONObject jo = new JSONObject();
-        JSONArray ja = new JSONArray();
-
-        searchUser.setOption(requestAdmSearch.getOption());
-        searchUser.setKeyword(requestAdmSearch.getKeyword());
-
-
-        System.out.println(searchUser.getOption());
-        List<UserDTO> searchList = administratorService.selectUserBySearchValue(searchUser);
-
-        for (int i = 0; i < searchList.size(); i++) {
-
-            JSONObject jso = new JSONObject();
-
-            jso.put("userNo", searchList.get(i).getUserNo());
-            jso.put("name", searchList.get(i).getName());
-            jso.put("profile", searchList.get(i).getStoredPic());
-            jso.put("id", searchList.get(i).getId());
-            jso.put("pass", searchList.get(i).getPass());
-            jso.put("email", searchList.get(i).getEmail());
-
-            String regDate = searchList.get(i).getRegDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
-
-			jso.put("regDate", regDate);
-            jso.put("authStatus", searchList.get(i).getAuthStatus());
-            jso.put("option", searchUser.getOption());
-
-            ja.add(jso);
-
-        }
-
-        jo.put("item", ja);
-
-        return jo.toString();
-    }
+//    @GetMapping("/userManagement")
+//    public ResponseEntity userManagement() {
+//        return ResponseEntity.ok(
+//                ResponseUserManagement.builder()
+//                        .users(administratorService.allUserInfo())
+//                        .totalCount(administratorService.totalCount())
+//                        .build()
+//        );
+//    }
+//
+//    @ResponseBody
+//    @PostMapping(value = "/adminSearch", produces = "application/json; charset=UTF-8")
+//    private String adminSearch(@RequestBody RequestAdmSearch requestAdmSearch, Errors errors,
+//                                    HttpSession session, HttpServletResponse response, Model model) throws ParseException {
+//
+//        UserDTO searchUser = new UserDTO();
+//        JSONObject jo = new JSONObject();
+//        JSONArray ja = new JSONArray();
+//
+//        searchUser.setOption(requestAdmSearch.getOption());
+//        searchUser.setKeyword(requestAdmSearch.getKeyword());
+//
+//        List<UserDTO> searchList = administratorService.selectUserBySearchValue(searchUser);
+//
+//        for (int i = 0; i < searchList.size(); i++) {
+//
+//            JSONObject jso = new JSONObject();
+//
+//            jso.put("userNo", searchList.get(i).getUserNo());
+//            jso.put("name", searchList.get(i).getName());
+//            jso.put("profile", searchList.get(i).getStoredPic());
+//            jso.put("id", searchList.get(i).getId());
+//            jso.put("pass", searchList.get(i).getPass());
+//            jso.put("email", searchList.get(i).getEmail());
+//
+//            String regDate = searchList.get(i).getRegDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+//
+//			jso.put("regDate", regDate);
+//            jso.put("authStatus", searchList.get(i).getAuthStatus());
+//            jso.put("option", searchUser.getOption());
+//
+//            ja.add(jso);
+//
+//        }
+//
+//        jo.put("item", ja);
+//
+//        return jo.toString();
+//    }
+//
+//    @PostMapping(value = "/searchReturn", produces = "application/json; charset=UTF-8")
+//    public String searchReturn(@RequestBody RequestSignup requestSignup, HttpSession session, HttpServletResponse response, Model model){
+//        System.out.println("searchReturn : " + requestSignup.getUserNo());
+//
+//       UserDTO searchReturn = userService.selectUserInfoByUserNo(requestSignup.getUserNo());
+//
+//        model.addAttribute("searchReturn", requestSignup.getUserNo());
+//        return "admin/supervise";
+//    }
 
 //	@ResponseBody
 //	@PostMapping("/admin_search")

@@ -109,13 +109,13 @@ public class AppraisalController {
             bookShelf.setUserNo(userNo);
             bookShelf.setIsbn(isbn);
 
-            Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
+            bookShelfService.selectStatusNoForComment(bookShelf);
 
-            if (statusNo != null) {
+            if (bookShelf.getStatusNo() != null) {
                 List<AppraisalDTO> myComment = appraisalService.selectMyComment(bookShelf);
 
                 model.addAttribute("myComment", myComment);
-                model.addAttribute("userStatusNo", statusNo);
+                model.addAttribute("userStatusNo", bookShelf.getStatusNo());
             }
 
         }
@@ -152,29 +152,28 @@ public class AppraisalController {
         bookShelf.setUserNo(userNo);
         bookShelf.setIsbn(isbn);
 
-        Long statusNo = bookShelfService.selectStatusNoForComment(bookShelf);
-
+        bookShelfService.selectStatusNoForComment(bookShelf);
 
         // 별점 포함 독서상태가 없는 상태
-        if (statusNo == null) {
+        if (bookShelf.getStatusNo() == null) {
 
             bookShelf.setUserNo(userNo);
             bookShelf.setIsbn(isbn);
             bookShelf.setStatus(2);
             bookShelfService.insertStatus(bookShelf);
 
-            Long statusNo2 = bookShelfService.selectStatusNoForComment(bookShelf);
+            bookShelfService.selectStatusNoForComment(bookShelf);
 
             appraisal.setComment(requestWriteComment.getComment());
             appraisal.setStartDate(requestWriteComment.getStartDate());
             appraisal.setEndDate(requestWriteComment.getEndDate());
             appraisal.setCoPrv(requestWriteComment.getCoPrv());
-            appraisal.setStatusNo(statusNo2);
+            appraisal.setStatusNo(bookShelf.getStatusNo());
 
             appraisalService.writeComment(appraisal);
 
         // 해당 도서의 대한 별점만 있는 상태
-        }else if(statusNo != null){
+        }else if(bookShelf.getStatusNo() != null){
             //update
             appraisal.setComment(requestWriteComment.getComment());
             appraisal.setStartDate(requestWriteComment.getStartDate());

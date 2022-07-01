@@ -11,7 +11,7 @@ public interface BookShelfService {
     Integer selectStatus(String isbn, Long userNo);
     void updateStatus(BookShelfDTO bookShelf);
     Integer selectStatusForComment(BookShelfDTO bookShelf);
-    Long selectStatusNoForComment(BookShelfDTO bookShelf);
+    void selectStatusNoForComment(BookShelfDTO bookShelf);
     Long selectStatusNoForWriteComment(BookShelfDTO bookShelf);
 
     Integer userStatus(Long userNo, String isbn);

@@ -106,4 +106,9 @@ public class AdministratorServiceImpl implements AdministratorService{
         return administratorDAO.selectUserBySearchValue(searchUser);
     }
 
+    @Override
+    public List<UserDTO> searchUserInfoByUserNo(Long userNo){
+        return administratorDAO.searchUserInfoByUserNo(userNo);
+    }
+
 }

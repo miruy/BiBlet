@@ -13,4 +13,5 @@ public interface AdministratorService {
     List<UserDTO> allUserInfo();
     Long totalCount();
     List<UserDTO> selectUserBySearchValue(UserDTO searchUser);
+    List<UserDTO> searchUserInfoByUserNo(Long userNo);
 }
