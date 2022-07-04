@@ -67,5 +67,10 @@ public class AdministratorDAOImpl implements AdministratorDAO{
     public List<UserDTO> searchUserInfoByUserNo(Long userNo){
         return sqlSessionTemplate.selectList("searchUserInfoByUserNo", userNo);
     }
+
+    @Override
+    public Long totalCountBySearchValue(UserDTO searchUser){
+        return sqlSessionTemplate.selectOne("totalCountBySearchValue", searchUser);
+    }
 }
 

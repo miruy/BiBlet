@@ -111,4 +111,9 @@ public class AdministratorServiceImpl implements AdministratorService{
         return administratorDAO.searchUserInfoByUserNo(userNo);
     }
 
+    @Override
+    public Long totalCountBySearchValue(UserDTO searchUser){
+        return administratorDAO.totalCountBySearchValue(searchUser);
+    }
+
 }

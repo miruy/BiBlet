@@ -1,8 +1,11 @@
 package com.yurim.www.Controller;
+import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.UserService;
+import com.yurim.www.vo.RequestAdmSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -14,47 +17,66 @@ public class AdministratorController {
     private final AdministratorService administratorService;
     private final UserService userService;
 
-    @GetMapping("/supervise")
-    public String supervise() {
+    @GetMapping("/supervise_1")
+    public String userManagement(Model model) {
 
         // 회원 관리 탭
+        model.addAttribute("users", administratorService.allUserInfo());
+        model.addAttribute("totalUsers", administratorService.totalCount());
 
-//        model.addAttribute("users", administratorService.allUserInfo());
-//        model.addAttribute("totalUsers", administratorService.totalCount());
-
-//		//평가탭
-//		List<CommandListAppr> apprList = admPageService.listOfAppraisal();
-//		model.addAttribute("apprList", apprList);
-//
-//		int starcount = admPageService.countStar();
-//		model.addAttribute("starcount", starcount);
-//
-//		//코멘트탭
-//		List<CommandListAppr> commentList = admPageService.listOfAppraisal();
-//		model.addAttribute("commentList", commentList);
-//
-//		int commentcount = admPageService.countComment();
-//		model.addAttribute("commentcount", commentcount);
-//
-//		// 관리자정보탭
-//		List<AdministratorVO> adminList = admPageService.listOfAdmin();
-//		model.addAttribute("adminList", adminList);
-//		int admcount = admPageService.countAdmin();
-//		model.addAttribute("admcount", admcount);
-
-        return "admin/supervise";
+        return "admin/supervise_1";
     }
 
-//    @GetMapping("/userManagement")
-//    public ResponseEntity userManagement() {
-//        return ResponseEntity.ok(
-//                ResponseUserManagement.builder()
-//                        .users(administratorService.allUserInfo())
-//                        .totalCount(administratorService.totalCount())
-//                        .build()
-//        );
-//    }
+    @PostMapping("/supervise_1")
+    public String userSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+
+        UserDTO searchUser = new UserDTO();
+
+        if(requestAdmSearch.getOption() == null){
+            searchUser.setOption("선택");
+            searchUser.setKeyword(requestAdmSearch.getKeyword());
+        }else {
+            searchUser.setOption(requestAdmSearch.getOption());
+            searchUser.setKeyword(requestAdmSearch.getKeyword());
+        }
+
+        model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
+        model.addAttribute("searchListCount", administratorService.totalCountBySearchValue(searchUser));
+
+        return "admin/search_1";
+
+    }
+
+    @GetMapping("/supervise_2")
+    public String starManagement(Model model) {
+
+        // 평가 관리 탭
+        model.addAttribute("users", administratorService.allUserInfo());
+        model.addAttribute("totalUsers", administratorService.totalCount());
+
+        return "admin/supervise_2";
+    }
+
+//    @PostMapping("/supervise_2")
+//    public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
 //
+//        UserDTO searchUser = new UserDTO();
+//
+//        if(requestAdmSearch.getOption() == null){
+//            searchUser.setOption("선택");
+//            searchUser.setKeyword(requestAdmSearch.getKeyword());
+//        }else {
+//            searchUser.setOption(requestAdmSearch.getOption());
+//            searchUser.setKeyword(requestAdmSearch.getKeyword());
+//        }
+//
+//        model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
+//        model.addAttribute("searchListCount", administratorService.totalCountBySearchValue(searchUser));
+//
+//        return "admin/search_2";
+//
+//    }
+
 //    @ResponseBody
 //    @PostMapping(value = "/adminSearch", produces = "application/json; charset=UTF-8")
 //    private String adminSearch(@RequestBody RequestAdmSearch requestAdmSearch, Errors errors,
