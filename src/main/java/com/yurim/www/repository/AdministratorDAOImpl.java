@@ -93,5 +93,25 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     public Long totalStarCountBySearchValue(AppraisalDTO appraisal) {
         return sqlSessionTemplate.selectOne("totalStarCountBySearchValue", appraisal);
     }
+
+    @Override
+    public Long totalComment(){
+        return sqlSessionTemplate.selectOne("totalComment");
+    }
+
+    @Override
+    public List<AppraisalDTO> allCommentInfo() {
+        return sqlSessionTemplate.selectList("allCommentInfo");
+    }
+
+    @Override
+    public Long totalCommentCountBySearchValue(AppraisalDTO appraisal) {
+        return sqlSessionTemplate.selectOne("totalCommentCountBySearchValue", appraisal);
+    }
+
+    @Override
+    public List<AppraisalDTO> selectCommentBySearchValue(AppraisalDTO appraisal) {
+        return sqlSessionTemplate.selectList("selectCommentBySearchValue", appraisal);
+    }
 }
 

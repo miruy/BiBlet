@@ -24,4 +24,10 @@ public interface AdministratorService {
     Long totalStar();
     List<AppraisalDTO> selectStarBySearchValue(AppraisalDTO appraisal);
     Long totalStarCountBySearchValue(AppraisalDTO appraisal);
+
+
+    Long totalComment();
+    List<AppraisalDTO> allCommentInfo();
+    Long totalCommentCountBySearchValue(AppraisalDTO appraisal);
+    List<AppraisalDTO> selectCommentBySearchValue(AppraisalDTO appraisal);
 }

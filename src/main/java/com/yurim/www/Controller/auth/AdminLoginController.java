@@ -41,7 +41,7 @@ public class AdminLoginController {
         try {
 
             if (session != null && session.getAttribute("admAuthInfo") != null) {
-                return "redirect:/admin/supervise_1";
+                return "admin/supervise_user";
             }
 
             /**
@@ -55,7 +55,7 @@ public class AdminLoginController {
             session.setAttribute("admAuthInfo", admAuthInfo);
 
 
-            return "redirect:/admin/supervise_1";
+            return "redirect:/admin/supervise_user";
         } catch (IdPasswordNotMatchingException e) {
             errors.rejectValue("commonError", "IdPasswordNotMatching");
             return "auth/adminLogin";

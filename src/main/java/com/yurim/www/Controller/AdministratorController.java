@@ -6,14 +6,9 @@ import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestAdmSearch;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 
 @Controller
@@ -24,17 +19,17 @@ public class AdministratorController {
     private final AdministratorService administratorService;
     private final UserService userService;
 
-    @GetMapping("/supervise_1")
+    @GetMapping("/supervise_user")
     public String userManagement(Model model) {
 
         // 회원 관리 탭
         model.addAttribute("users", administratorService.allUserInfo());
         model.addAttribute("totalUsers", administratorService.totalUser());
 
-        return "admin/supervise_1";
+        return "admin/supervise_user";
     }
 
-    @PostMapping("/supervise_1")
+    @PostMapping("/supervise_user")
     public String userSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
 
         UserDTO searchUser = new UserDTO();
@@ -48,24 +43,24 @@ public class AdministratorController {
         }
 
         model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
-        model.addAttribute("searchListCount", administratorService.totalCountBySearchValue(searchUser));
+        model.addAttribute("searchUserCount", administratorService.totalCountBySearchValue(searchUser));
 
-        return "admin/search_1";
+        return "admin/search_user";
 
     }
 
-    @GetMapping("/supervise_2")
+    @GetMapping("/supervise_appraisal")
     public String starManagement(Model model) {
 
         // 평가 관리 탭
         model.addAttribute("stars", administratorService.allStarInfo());
         model.addAttribute("totalStar", administratorService.totalStar());
 
-        return "admin/supervise_2";
+        return "admin/supervise_appraisal";
     }
 
 
-    @PostMapping("/supervise_2")
+    @PostMapping("/supervise_appraisal")
     public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
 
         AppraisalDTO appraisal = new AppraisalDTO();
@@ -84,9 +79,44 @@ public class AdministratorController {
         }
 
         model.addAttribute("searchStarList", administratorService.selectStarBySearchValue(appraisal));
-        model.addAttribute("searchListCount", administratorService.totalStarCountBySearchValue(appraisal));
+        model.addAttribute("searchStarCount", administratorService.totalStarCountBySearchValue(appraisal));
 
-        return "admin/search_2";
+        return "admin/search_appraisal";
+
+    }
+
+    @GetMapping("/supervise_comment")
+    public String commentManagement(Model model) {
+
+        // 코멘트 관리 탭
+        model.addAttribute("comments", administratorService.allCommentInfo());
+        model.addAttribute("totalComment", administratorService.totalComment());
+
+        return "admin/supervise_comment";
+    }
+
+    @PostMapping("/supervise_comment")
+    public String commentSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+
+        AppraisalDTO appraisal = new AppraisalDTO();
+
+        if(requestAdmSearch.getReturnIsbn().equals("")){
+            if (requestAdmSearch.getOption() == null) {
+                appraisal.setOption("선택");
+                appraisal.setKeyword(requestAdmSearch.getKeyword());
+            } else {
+                appraisal.setOption(requestAdmSearch.getOption());
+                appraisal.setKeyword(requestAdmSearch.getKeyword());
+            }
+        }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+            appraisal.setOption("kakao");
+            appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
+        }
+
+        model.addAttribute("searchCommentList", administratorService.selectCommentBySearchValue(appraisal));
+        model.addAttribute("searchCommentCount", administratorService.totalCommentCountBySearchValue(appraisal));
+
+        return "admin/search_comment";
 
     }
 

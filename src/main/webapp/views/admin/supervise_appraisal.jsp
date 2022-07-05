@@ -7,24 +7,22 @@
 
 <%@ include file="../common/admin_header.jsp" %>
 
-<section class="container mx-auto">
 
+<section class="container mx-auto">
 
     <div class="flex flex-col justify-center bg-white pt-2 pb-8 pl-8 pr-8">
 
 
-        <div id="tab_content_group" class="px-10 py-8 my-4 w-full bg-gray-100 admin_font">
+        <div class="px-10 py-8 my-4 w-full bg-gray-100 admin_font">
 
             <%--평가 관리--%>
             <div id="starManagement">
 
-
                 <div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
-                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post"
-                      action="/admin/supervise_2">
+                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_appraisal">
 
                     <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
-                        <option disabled selected>선택</option>
+                        <option id="default" name="default" value="default" disabled selected>선택</option>
                         <option id="userNo" name="userNo" value="userNo">회원 번호</option>
                         <option id="name" name="name" value="name">이름</option>
                         <option id="id" name="id" value="id">아이디</option>
@@ -50,15 +48,13 @@
                     </div>
 
                 </form>
-
-
                 <div class="my-4">
 
                     <div class="overflow-x-auto">
 
                         <div class="flex flex-row space-x-2">
-                            <div class="ml-2 mb-2">검색 평가 수 :</div>
-                            <div>${searchListCount}</div>
+                            <div class="ml-2 mb-2">총 평가 수 :</div>
+                            <div>${totalStar}</div>
                         </div>
 
                         <table class="table w-full text-center">
@@ -69,20 +65,20 @@
                                 <th>이름</th>
                                 <th>아이디</th>
                                 <th>제목</th>
+                                <th>별점</th>
                                 <th>작가</th>
                                 <th>출판사</th>
-                                <th>별점</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:if test="${!empty searchStarList}">
-                                <c:forEach var="searchStar" items="${searchStarList}">
+                            <c:if test="${!empty stars}">
+                                <c:forEach var="star" items="${stars}">
                                     <tr class="hover">
                                         <th>
-                                                ${searchStar.userNo}
+                                                ${star.userNo}
                                         </th>
                                         <td>
-                                            <c:if test="${searchStar.storedPic eq null}">
+                                            <c:if test="${star.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                                     <svg class="absolute w-12 h-12 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
@@ -93,35 +89,35 @@
                                                     </svg>
                                                 </div>
                                             </c:if>
-                                            <c:if test="${searchStar.storedPic ne null}">
-                                                <c:set var="idSub" value="${fn:substring(searchStar.id,0,5)}"/>
+                                            <c:if test="${star.storedPic ne null}">
+                                                <c:set var="idSub" value="${fn:substring(star.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${searchStar.storedPic}'/>"
+                                                    <img src="<c:url value='/images/${star.storedPic}'/>"
                                                          class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${searchStar.storedPic}'/>"
+                                                    <img src="<c:url value='http://${star.storedPic}'/>"
                                                          class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                             </c:if>
                                         </td>
                                         <td>
-                                                ${searchStar.name}
+                                                ${star.name}
                                         </td>
                                         <td>
-                                                ${searchStar.id}
+                                                ${star.id}
                                         </td>
-                                        <td id="title${searchStar.appraisalNo}"></td>
-                                        <td id="authors${searchStar.appraisalNo}"></td>
-                                        <td id="publisher${searchStar.appraisalNo}"></td>
+                                        <td id="title${star.appraisalNo}"></td>
                                         <td class="text-center text-yellow-400">
-                                            <c:if test="${searchStar.star==0}">☆☆☆☆☆</c:if>
-                                            <c:if test="${searchStar.star==1}">★☆☆☆☆</c:if>
-                                            <c:if test="${searchStar.star==2}">★★☆☆☆</c:if>
-                                            <c:if test="${searchStar.star==3}">★★★☆☆</c:if>
-                                            <c:if test="${searchStar.star==4}">★★★★☆</c:if>
-                                            <c:if test="${searchStar.star==5}">★★★★★</c:if>
+                                            <c:if test="${star.star==0}">☆☆☆☆☆</c:if>
+                                            <c:if test="${star.star==1}">★☆☆☆☆</c:if>
+                                            <c:if test="${star.star==2}">★★☆☆☆</c:if>
+                                            <c:if test="${star.star==3}">★★★☆☆</c:if>
+                                            <c:if test="${star.star==4}">★★★★☆</c:if>
+                                            <c:if test="${star.star==5}">★★★★★</c:if>
                                         </td>
+                                        <td id="authors${star.appraisalNo}"></td>
+                                        <td id="publisher${star.appraisalNo}"></td>
 
                                     </tr>
                                 </c:forEach>
@@ -131,9 +127,11 @@
                     </div>
 
                 </div>
-            </div>
 
+
+            </div>
         </div>
+
 
 
     </div>
@@ -148,15 +146,13 @@
         });
 
         $(document).ready(() => {
-
-            <c:if test="${!empty searchStarList}">
-            <c:forEach var="searchStar" items="${searchStarList}">
-            searchStarManagement("${searchStar.isbn}", "${searchStar.appraisalNo}")
+            <c:if test="${!empty stars}">
+            <c:forEach var="star" items="${stars}">
+            starManagement("${star.isbn}", "${star.appraisalNo}")
             </c:forEach>
             </c:if>
-
-
         });
+
 
         $("#admin_tab_group > button").click((event) => {
             $("#admin_tab_group > button").removeClass("tab-active");
@@ -186,17 +182,42 @@
             }
         })
 
-        // 검색 조건 변경 또는 "책 정보 관련 키워드" 검색 시 isbn 검색 요청
-        let searchStatus = function () {
+        function starManagement(isbn, appraisalNo){
+            var pageNum = 1;
+            $.ajax({	//카카오 검색요청 / [요청]
+                method: "GET",
+                url: "https://dapi.kakao.com/v3/search/book",
+                traditional: true,
+                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                data: {query: isbn, page: pageNum},
+                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+            })
+
+                .done(function (msg) {	//검색 결과 담기 / [응답]
+                    console.log(msg);
+
+                    let title = msg.documents[0].title;
+
+                    if(title.length > 18){
+                        $("#title" + appraisalNo).append('<textarea rows="1" class="resize-x" disabled>' + msg.documents[0].title + '</textarea>');
+                    }else {
+                        $("#title" + appraisalNo).append(msg.documents[0].title);
+                    }
+                    $("#authors" + appraisalNo).append(msg.documents[0].authors);
+                    $("#publisher" + appraisalNo).append(msg.documents[0].publisher);
+                });
+        }
+
+        let searchStatus = function(){
 
             $("#selectMsg").hide();
 
             let select = document.getElementById("option");
             let selectValue = select.options[document.getElementById("option").selectedIndex].value;
 
-            if (selectValue == "title") {
+            if(selectValue == "title"){
 
-                $("#keyword").on("propertychange change keyup paste input", function () {
+                $("#keyword").on("propertychange change keyup paste input", function(){
                     let keyword = document.getElementById("keyword").value;
                     console.log(keyword);
 
@@ -223,32 +244,8 @@
             }
         }
 
-        // 검색된 isbn으로 책 정보 불러오기
-        function searchStarManagement(isbn, appraisalNo){
-            var pageNum = 1;
-            $.ajax({	//카카오 검색요청 / [요청]
-                method: "GET",
-                url: "https://dapi.kakao.com/v3/search/book",
-                traditional: true,
-                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                data: {query: isbn, page: pageNum},
-                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
-            })
 
-                .done(function (msg) {	//검색 결과 담기 / [응답]
-                    console.log(msg);
 
-                    let title = msg.documents[0].title;
-
-                    if(title.length > 18){
-                        $("#title" + appraisalNo).append('<textarea rows="1" class="resize-x" disabled>' + msg.documents[0].title + '</textarea>');
-                    }else {
-                        $("#title" + appraisalNo).append(msg.documents[0].title);
-                    }
-                    $("#authors" + appraisalNo).append(msg.documents[0].authors);
-                    $("#publisher" + appraisalNo).append(msg.documents[0].publisher);
-                });
-        }
     </script>
 </section>
 

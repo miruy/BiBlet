@@ -18,10 +18,10 @@
 			<div id="userManagement">
 
 				<div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
-				<form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_1">
+				<form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_user">
 
 						<select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
-							<option disabled selected>선택</option>
+							<option id="default" name="default" value="default" disabled selected>선택</option>
 							<option id="userNo" name="userNo" value="userNo">회원 번호</option>
 							<option id="name" name="name" value="name">이름</option>
 							<option id="id" name="id" value="id" >아이디</option>
@@ -44,8 +44,8 @@
 					<div class="overflow-x-auto">
 
 						<div class="flex flex-row space-x-2">
-							<div class="ml-2 mb-2">검색 회원 수 :</div>
-							<div>${searchListCount}</div>
+							<div class="ml-2 mb-2">총 회원 수 :</div>
+							<div>${totalUsers}</div>
 						</div>
 
 						<table class="table w-full text-center">
@@ -62,61 +62,61 @@
 							</tr>
 							</thead>
 							<tbody>
-							<c:if test="${!empty searchList}">
-							<c:forEach var="searchUser" items="${searchList}">
+							<c:if test="${!empty users}">
+							<c:forEach var="user" items="${users}">
 							<tr class="hover">
 								<th>
-									${searchUser.userNo}
+									${user.userNo}
 								</th>
 								<td>
-									<c:if test="${searchUser.storedPic eq null}">
+									<c:if test="${user.storedPic eq null}">
 										<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
 											<svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
 										</div>
 									</c:if>
-									<c:if test="${searchUser.storedPic ne null}">
-										<c:set var="idSub" value="${fn:substring(searchUser.id,0,5)}"/>
+									<c:if test="${user.storedPic ne null}">
+										<c:set var="idSub" value="${fn:substring(user.id,0,5)}"/>
 										<c:if test="${idSub ne 'kakao'}">
-											<img src="<c:url value='/images/${searchUser.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+											<img src="<c:url value='/images/${user.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
 										</c:if>
 										<c:if test="${idSub eq 'kakao'}">
-											<img src="<c:url value='http://${searchUser.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+											<img src="<c:url value='http://${user.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
 										</c:if>
 									</c:if>
 								</td>
 								<td>
-									${searchUser.name}
+									${user.name}
 								</td>
 								<td>
-									${searchUser.id}
+									${user.id}
 								</td>
 								<td>
-									<c:set var="idSub" value="${fn:substring(searchUser.id,0,5)}"/>
+									<c:set var="idSub" value="${fn:substring(user.id,0,5)}"/>
 									<c:if test="${idSub ne 'kakao'}">
-										${searchUser.pass}
+										${user.pass}
 									</c:if>
 									<c:if test="${idSub eq 'kakao'}">
-										<textarea rows="1" class="w-14 bg-white resize-x" disabled>${searchUser.pass}</textarea>
+										<textarea rows="1" class="w-14 bg-white resize-x" disabled>${user.pass}</textarea>
 									</c:if>
 								</td>
 								<td>
-									<c:set var="idSub" value="${fn:substring(searchUser.id,0,5)}"/>
+									<c:set var="idSub" value="${fn:substring(user.id,0,5)}"/>
 									<c:if test="${idSub ne 'kakao'}">
-										${searchUser.email}
+										${user.email}
 									</c:if>
 									<c:if test="${idSub eq 'kakao'}">
-										<textarea rows="1" class="w-24 bg-white resize-x" disabled>${searchUser.email}</textarea>
+										<textarea rows="1" class="w-24 bg-white resize-x" disabled>${user.email}</textarea>
 									</c:if>
 								</td>
 								<td>
-									<fmt:parseDate value="${searchUser.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+									<fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
 									<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${ parsedDateTime }" />
 								</td>
 								<td>
-									<c:if test="${searchUser.authStatus == 1}">
+									<c:if test="${user.authStatus == 1}">
 										<span>인증</span>
 									</c:if>
-									<c:if test="${searchUser.authStatus == 0}">
+									<c:if test="${user.authStatus == 0}">
 										<span>미인증</span>
 									</c:if>
 								</td>
@@ -130,7 +130,6 @@
 
 				</div>
 			</div>
-
 		</div>
 
 
@@ -152,6 +151,8 @@
 		$("#user_tab").addClass("tab-active");
 		$("#userManagement").addClass("active")
 	});
+
+
 
 	$("#admin_tab_group > button").click((event) => {
 		$("#admin_tab_group > button").removeClass("tab-active");
@@ -181,11 +182,10 @@
 		}
 	})
 
-	let searchStatus = function() {
-
+	let searchStatus = function(){
 		$("#selectMsg").hide();
-
 	}
+
 </script>
 </section>
 

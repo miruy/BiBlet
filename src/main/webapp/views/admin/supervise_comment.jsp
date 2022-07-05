@@ -15,11 +15,11 @@
 
         <div class="px-10 py-8 my-4 w-full bg-gray-100 admin_font">
 
-            <%--평가 관리--%>
-            <div id="starManagement">
+            <%--코멘트 관리--%>
+            <div id="commentManagement">
 
                 <div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
-                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_2">
+                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_comment">
 
                     <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
                         <option id="default" name="default" value="default" disabled selected>선택</option>
@@ -53,8 +53,8 @@
                     <div class="overflow-x-auto">
 
                         <div class="flex flex-row space-x-2">
-                            <div class="ml-2 mb-2">총 평가 수 :</div>
-                            <div>${totalStar}</div>
+                            <div class="ml-2 mb-2">총 코멘트 수 :</div>
+                            <div>${totalComment}</div>
                         </div>
 
                         <table class="table w-full text-center">
@@ -65,20 +65,18 @@
                                 <th>이름</th>
                                 <th>아이디</th>
                                 <th>제목</th>
-                                <th>작가</th>
-                                <th>출판사</th>
-                                <th>별점</th>
+                                <th>코멘트</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:if test="${!empty stars}">
-                                <c:forEach var="star" items="${stars}">
+                            <c:if test="${!empty comments}">
+                                <c:forEach var="comment" items="${comments}">
                                     <tr class="hover">
                                         <th>
-                                                ${star.userNo}
+                                                ${comment.userNo}
                                         </th>
                                         <td>
-                                            <c:if test="${star.storedPic eq null}">
+                                            <c:if test="${comment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                                     <svg class="absolute w-12 h-12 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
@@ -89,34 +87,27 @@
                                                     </svg>
                                                 </div>
                                             </c:if>
-                                            <c:if test="${star.storedPic ne null}">
-                                                <c:set var="idSub" value="${fn:substring(star.id,0,5)}"/>
+                                            <c:if test="${comment.storedPic ne null}">
+                                                <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${star.storedPic}'/>"
+                                                    <img src="<c:url value='/images/${comment.storedPic}'/>"
                                                          class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${star.storedPic}'/>"
+                                                    <img src="<c:url value='http://${comment.storedPic}'/>"
                                                          class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                             </c:if>
                                         </td>
                                         <td>
-                                                ${star.name}
+                                                ${comment.name}
                                         </td>
                                         <td>
-                                                ${star.id}
+                                                ${comment.id}
                                         </td>
-                                        <td id="title${star.appraisalNo}"></td>
-                                        <td id="authors${star.appraisalNo}"></td>
-                                        <td id="publisher${star.appraisalNo}"></td>
-                                        <td class="text-center text-yellow-400">
-                                            <c:if test="${star.star==0}">☆☆☆☆☆</c:if>
-                                            <c:if test="${star.star==1}">★☆☆☆☆</c:if>
-                                            <c:if test="${star.star==2}">★★☆☆☆</c:if>
-                                            <c:if test="${star.star==3}">★★★☆☆</c:if>
-                                            <c:if test="${star.star==4}">★★★★☆</c:if>
-                                            <c:if test="${star.star==5}">★★★★★</c:if>
+                                        <td id="title${comment.appraisalNo}"></td>
+                                        <td class="">
+                                          ${comment.comment}
                                         </td>
 
                                     </tr>
@@ -141,14 +132,14 @@
     <script>
 
         $(document).ready(() => {
-            $("#star_tab").addClass("tab-active");
-            $("#starManagement").addClass("active")
+            $("#comment_tab").addClass("tab-active");
+            $("#comment_Management").addClass("active")
         });
 
         $(document).ready(() => {
-            <c:if test="${!empty stars}">
-            <c:forEach var="star" items="${stars}">
-            starManagement("${star.isbn}", "${star.appraisalNo}")
+            <c:if test="${!empty comments}">
+            <c:forEach var="comment" items="${comments}">
+            starManagement("${comment.isbn}", "${comment.appraisalNo}")
             </c:forEach>
             </c:if>
         });
@@ -203,8 +194,6 @@
                     }else {
                         $("#title" + appraisalNo).append(msg.documents[0].title);
                     }
-                    $("#authors" + appraisalNo).append(msg.documents[0].authors);
-                    $("#publisher" + appraisalNo).append(msg.documents[0].publisher);
                 });
         }
 
