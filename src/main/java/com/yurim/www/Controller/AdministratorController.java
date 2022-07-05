@@ -1,12 +1,19 @@
 package com.yurim.www.Controller;
+
+import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.UserService;
 import com.yurim.www.vo.RequestAdmSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -22,7 +29,7 @@ public class AdministratorController {
 
         // 회원 관리 탭
         model.addAttribute("users", administratorService.allUserInfo());
-        model.addAttribute("totalUsers", administratorService.totalCount());
+        model.addAttribute("totalUsers", administratorService.totalUser());
 
         return "admin/supervise_1";
     }
@@ -32,10 +39,10 @@ public class AdministratorController {
 
         UserDTO searchUser = new UserDTO();
 
-        if(requestAdmSearch.getOption() == null){
+        if (requestAdmSearch.getOption() == null) {
             searchUser.setOption("선택");
             searchUser.setKeyword(requestAdmSearch.getKeyword());
-        }else {
+        } else {
             searchUser.setOption(requestAdmSearch.getOption());
             searchUser.setKeyword(requestAdmSearch.getKeyword());
         }
@@ -51,31 +58,47 @@ public class AdministratorController {
     public String starManagement(Model model) {
 
         // 평가 관리 탭
-        model.addAttribute("users", administratorService.allUserInfo());
-        model.addAttribute("totalUsers", administratorService.totalCount());
+        model.addAttribute("stars", administratorService.allStarInfo());
+        model.addAttribute("totalStar", administratorService.totalStar());
 
         return "admin/supervise_2";
     }
 
-//    @PostMapping("/supervise_2")
-//    public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
-//
-//        UserDTO searchUser = new UserDTO();
-//
-//        if(requestAdmSearch.getOption() == null){
-//            searchUser.setOption("선택");
-//            searchUser.setKeyword(requestAdmSearch.getKeyword());
-//        }else {
-//            searchUser.setOption(requestAdmSearch.getOption());
-//            searchUser.setKeyword(requestAdmSearch.getKeyword());
-//        }
-//
-//        model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
-//        model.addAttribute("searchListCount", administratorService.totalCountBySearchValue(searchUser));
+
+    @PostMapping("/supervise_2")
+    public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+
+        AppraisalDTO appraisal = new AppraisalDTO();
+
+        if(requestAdmSearch.getReturnIsbn().equals("")){
+            if (requestAdmSearch.getOption() == null) {
+                appraisal.setOption("선택");
+                appraisal.setKeyword(requestAdmSearch.getKeyword());
+            } else {
+                appraisal.setOption(requestAdmSearch.getOption());
+                appraisal.setKeyword(requestAdmSearch.getKeyword());
+            }
+        }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+            appraisal.setOption("kakao");
+            appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
+        }
+
+        model.addAttribute("searchStarList", administratorService.selectStarBySearchValue(appraisal));
+        model.addAttribute("searchListCount", administratorService.totalStarCountBySearchValue(appraisal));
+
+        return "admin/search_2";
+
+    }
+
+//    @ResponseBody
+//    @PostMapping("/returnIsbnForStarManagement")
+//    private String returnIsbnForStarManagement(@RequestParam String isbn, Model model) {
+//        System.out.println("returnIsbnForStarManagement : " + isbn);
+////        model.addAttribute("isbnt", isbn);
 //
 //        return "admin/search_2";
-//
 //    }
+
 
 //    @ResponseBody
 //    @PostMapping(value = "/adminSearch", produces = "application/json; charset=UTF-8")

@@ -1,6 +1,7 @@
 package com.yurim.www.service;
 
 import com.yurim.www.dto.AdministratorDTO;
+import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.*;
 import com.yurim.www.repository.AdministratorDAO;
@@ -97,8 +98,8 @@ public class AdministratorServiceImpl implements AdministratorService{
     }
 
     @Override
-    public Long totalCount(){
-        return administratorDAO.totalCount();
+    public Long totalUser(){
+        return administratorDAO.totalUser();
     }
 
     @Override
@@ -116,4 +117,22 @@ public class AdministratorServiceImpl implements AdministratorService{
         return administratorDAO.totalCountBySearchValue(searchUser);
     }
 
+    @Override
+    public List<AppraisalDTO> allStarInfo(){
+        return administratorDAO.allStarInfo();
+    }
+    @Override
+    public Long totalStar(){
+        return administratorDAO.totalStar();
+    }
+
+    @Override
+    public List<AppraisalDTO> selectStarBySearchValue(AppraisalDTO appraisal){
+        return administratorDAO.selectStarBySearchValue(appraisal);
+    }
+
+    @Override
+    public Long totalStarCountBySearchValue(AppraisalDTO appraisal){
+        return administratorDAO.totalStarCountBySearchValue(appraisal);
+    }
 }

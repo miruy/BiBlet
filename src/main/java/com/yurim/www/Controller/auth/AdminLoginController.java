@@ -24,7 +24,7 @@ public class AdminLoginController {
     private final AdministratorService administratorService;
 
     @GetMapping("/login")
-    public String adminLoginForm(@ModelAttribute("requestAdmLogin") RequestAdmLogin requestAdmLogin) {
+    public String adminLoginForm(RequestAdmLogin requestAdmLogin, HttpSession session) {
         return "auth/adminLogin";
     }
 
@@ -41,7 +41,7 @@ public class AdminLoginController {
         try {
 
             if (session != null && session.getAttribute("admAuthInfo") != null) {
-                return "supervise";
+                return "redirect:/admin/supervise_1";
             }
 
             /**
@@ -55,7 +55,7 @@ public class AdminLoginController {
             session.setAttribute("admAuthInfo", admAuthInfo);
 
 
-            return "supervise";
+            return "redirect:/admin/supervise_1";
         } catch (IdPasswordNotMatchingException e) {
             errors.rejectValue("commonError", "IdPasswordNotMatching");
             return "auth/adminLogin";

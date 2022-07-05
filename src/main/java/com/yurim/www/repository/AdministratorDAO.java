@@ -1,6 +1,7 @@
 package com.yurim.www.repository;
 
 import com.yurim.www.dto.AdministratorDTO;
+import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 
 import java.util.HashMap;
@@ -14,8 +15,13 @@ public interface AdministratorDAO {
     void updateAdmStatus(String adm_email);
     AdministratorDTO selectByAdminId(String admId);
     List<UserDTO> allUserInfo();
-    Long totalCount();
+    Long totalUser();
     List<UserDTO> selectUserBySearchValue(UserDTO searchUser);
     List<UserDTO> searchUserInfoByUserNo(Long userNo);
     Long totalCountBySearchValue(UserDTO searchUser);
+
+    List<AppraisalDTO> allStarInfo();
+    Long totalStar();
+    List<AppraisalDTO> selectStarBySearchValue(AppraisalDTO appraisal);
+    Long totalStarCountBySearchValue(AppraisalDTO appraisal);
 }

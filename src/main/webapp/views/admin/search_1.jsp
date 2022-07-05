@@ -18,7 +18,7 @@
 			<div id="userManagement">
 
 				<div id="selectMsg" class="mx-auto"></div>
-				<form class="flex flex-row justify-center" name="requestAdmSearch" method="post">
+				<form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_1">
 
 						<select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2">
 							<option disabled selected>선택</option>

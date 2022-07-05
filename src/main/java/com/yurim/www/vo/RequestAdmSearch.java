@@ -8,4 +8,5 @@ import lombok.Setter;
 public class RequestAdmSearch {
     private String keyword;
     private String option;
+    private String returnIsbn;
 }

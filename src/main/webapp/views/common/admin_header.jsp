@@ -1,9 +1,10 @@
 <%@ page import="com.yurim.www.dto.UserDTO" %>
+<%@ page import="com.yurim.www.dto.AdministratorDTO" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-    UserDTO authInfo = (UserDTO) request.getSession().getAttribute("authInfo");
+    AdministratorDTO admAuthInfo = (AdministratorDTO) request.getSession().getAttribute("admAuthInfo");
 %>
 <html data-theme="purpleTheme">
 <head>

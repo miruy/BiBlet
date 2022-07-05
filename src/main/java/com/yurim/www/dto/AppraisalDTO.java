@@ -33,4 +33,7 @@ public class AppraisalDTO {
     private String isbn;
     private String name;
     private String storedPic;
+
+    private String option;
+    private String keyword;
 }
