@@ -39,7 +39,7 @@
                             </svg>
                         </div>
                         <input type="text" name="keyword" id="keyword" value="${keyword}"
-                               class="input input-bordered text-gray-900 text-sm p-7 pl-10 w-full" placeholder="평가 검색"/>
+                               class="input input-bordered text-gray-900 text-sm p-7 pl-10 w-full" placeholder="코멘트 검색"/>
 
                         <input type="hidden" id="returnIsbn" name="returnIsbn" value=""/>
 

@@ -20,12 +20,21 @@ public interface AdministratorDAO {
     List<UserDTO> searchUserInfoByUserNo(Long userNo);
     Long totalCountBySearchValue(UserDTO searchUser);
 
+
     List<AppraisalDTO> allStarInfo();
     Long totalStar();
     List<AppraisalDTO> selectStarBySearchValue(AppraisalDTO appraisal);
     Long totalStarCountBySearchValue(AppraisalDTO appraisal);
+
+
     Long totalComment();
     List<AppraisalDTO> allCommentInfo();
     Long totalCommentCountBySearchValue(AppraisalDTO appraisal);
     List<AppraisalDTO> selectCommentBySearchValue(AppraisalDTO appraisal);
+
+
+    Long totalAdmin();
+    List<AdministratorDTO> allAdminInfo();
+    Long totalAdminCountBySearchValue(AdministratorDTO admin);
+    List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin);
 }

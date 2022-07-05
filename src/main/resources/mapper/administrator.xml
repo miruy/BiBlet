@@ -324,4 +324,48 @@
             WHERE appraisal.comment IS NOT NULL AND bookshelf.isbn LIKE CONCAT('%',#{keyword},'%') ORDER BY appraisal.appraisal_no DESC
         </if>
     </select>
+
+    <select id="totalAdmin" resultType="Long">
+        SELECT COUNT(*) FROM administrator
+    </select>
+
+    <select id="allAdminInfo" resultType="AdministratorDTO">
+        SELECT * FROM administrator
+    </select>
+
+    <select id="totalAdminCountBySearchValue" parameterType="AdministratorDTO" resultType="Long">
+        <if test='option=="선택"'>
+            SELECT count(*) FROM administrator WHERE adm_name LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admNo"'>
+            SELECT count(*) FROM administrator WHERE adm_no LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admName"'>
+            SELECT count(*) FROM administrator WHERE adm_name LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admId"'>
+            SELECT count(*) FROM administrator WHERE adm_id LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admEmail"'>
+            SELECT count(*) FROM administrator WHERE adm_email LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+    </select>
+
+    <select id="selectAdminBySearchValue" parameterType="AdministratorDTO" resultType="AdministratorDTO">
+        <if test='option=="선택"'>
+            SELECT * FROM administrator WHERE adm_name LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admNo"'>
+            SELECT * FROM administrator WHERE adm_no LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admName"'>
+            SELECT * FROM administrator WHERE adm_name LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admId"'>
+            SELECT * FROM administrator WHERE adm_id LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+        <if test='option=="admEmail"'>
+            SELECT * FROM administrator WHERE adm_email LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
+        </if>
+    </select>
 </mapper>

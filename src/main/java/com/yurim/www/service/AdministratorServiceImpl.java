@@ -155,4 +155,24 @@ public class AdministratorServiceImpl implements AdministratorService{
     public List<AppraisalDTO> selectCommentBySearchValue(AppraisalDTO appraisal){
         return administratorDAO.selectCommentBySearchValue(appraisal);
     }
+
+    @Override
+    public Long totalAdmin(){
+        return administratorDAO.totalAdmin();
+    }
+
+    @Override
+    public List<AdministratorDTO> allAdminInfo(){
+        return administratorDAO.allAdminInfo();
+    }
+
+    @Override
+    public Long totalAdminCountBySearchValue(AdministratorDTO admin){
+        return administratorDAO.totalAdminCountBySearchValue(admin);
+    }
+
+    @Override
+    public List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin){
+        return administratorDAO.selectAdminBySearchValue(admin);
+    }
 }

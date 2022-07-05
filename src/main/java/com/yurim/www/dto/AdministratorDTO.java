@@ -25,6 +25,9 @@ public class AdministratorDTO {
     private int admAuthstatus;
     private String securitycode;
 
+    private String option;
+    private String keyword;
+
     public AdministratorDTO(String admId, String admPass, String admEmail, String securitycode) {
         super();
         this.admId = admId;

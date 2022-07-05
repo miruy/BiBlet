@@ -1,5 +1,6 @@
 package com.yurim.www.Controller;
 
+import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
@@ -117,6 +118,41 @@ public class AdministratorController {
         model.addAttribute("searchCommentCount", administratorService.totalCommentCountBySearchValue(appraisal));
 
         return "admin/search_comment";
+
+    }
+
+
+
+
+
+
+    @GetMapping("/supervise_admin")
+    public String adminInfo(Model model) {
+
+        // 관리자 정보 탭
+        model.addAttribute("admins", administratorService.allAdminInfo());
+        model.addAttribute("totalAdmins", administratorService.totalAdmin());
+
+        return "admin/supervise_admin";
+    }
+
+    @PostMapping("/supervise_admin")
+    public String adminSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+
+        AdministratorDTO searchAdmin = new AdministratorDTO();
+
+        if (requestAdmSearch.getOption() == null) {
+            searchAdmin.setOption("선택");
+            searchAdmin.setKeyword(requestAdmSearch.getKeyword());
+        } else {
+            searchAdmin.setOption(requestAdmSearch.getOption());
+            searchAdmin.setKeyword(requestAdmSearch.getKeyword());
+        }
+
+        model.addAttribute("searchAdminList", administratorService.selectAdminBySearchValue(searchAdmin));
+        model.addAttribute("searchAdminCount", administratorService.totalAdminCountBySearchValue(searchAdmin));
+
+        return "admin/search_admin";
 
     }
 

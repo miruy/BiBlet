@@ -30,4 +30,11 @@ public interface AdministratorService {
     List<AppraisalDTO> allCommentInfo();
     Long totalCommentCountBySearchValue(AppraisalDTO appraisal);
     List<AppraisalDTO> selectCommentBySearchValue(AppraisalDTO appraisal);
+
+
+    Long totalAdmin();
+    List<AdministratorDTO> allAdminInfo();
+    Long totalAdminCountBySearchValue(AdministratorDTO admin);
+    List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin);
+
 }
