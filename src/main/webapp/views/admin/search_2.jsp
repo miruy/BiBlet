@@ -19,11 +19,11 @@
             <div id="starManagement">
 
 
-                <div id="selectMsg" class="mx-auto"></div>
+                <div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
                 <form class="flex flex-row justify-center" name="requestAdmSearch" method="post"
                       action="/admin/supervise_2">
 
-                    <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2">
+                    <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
                         <option disabled selected>선택</option>
                         <option id="userNo" name="userNo" value="userNo">회원 번호</option>
                         <option id="name" name="name" value="name">이름</option>
@@ -43,7 +43,7 @@
                         <input type="text" name="keyword" id="keyword" value="${keyword}"
                                class="input input-bordered text-gray-900 text-sm p-7 pl-10 w-full" placeholder="평가 검색"/>
 
-                        <input type="hidden" id="returnIsbn" value="${returnIsbn}"/>
+                        <input type="hidden" id="returnIsbn" name="returnIsbn" value=""/>
 
                         <input type="submit" id="admin_search" value="검색"
                                class="text-white absolute right-2.5 bottom-2.5 top-2.5 text-sm font-medium text-gray-600 hover:text-white btn-secondary w-16 h-10 rounded-lg"></input>
@@ -111,17 +111,16 @@
                                         <td>
                                                 ${searchStar.id}
                                         </td>
-                                        <td>
-                                            제목
-                                        </td>
-                                        <td>
-                                            저자
-                                        </td>
-                                        <td>
-                                            출판사
-                                        </td>
-                                        <td>
-                                                ${searchStar.star}
+                                        <td id="title${searchStar.appraisalNo}"></td>
+                                        <td id="authors${searchStar.appraisalNo}"></td>
+                                        <td id="publisher${searchStar.appraisalNo}"></td>
+                                        <td class="text-center text-yellow-400">
+                                            <c:if test="${searchStar.star==0}">☆☆☆☆☆</c:if>
+                                            <c:if test="${searchStar.star==1}">★☆☆☆☆</c:if>
+                                            <c:if test="${searchStar.star==2}">★★☆☆☆</c:if>
+                                            <c:if test="${searchStar.star==3}">★★★☆☆</c:if>
+                                            <c:if test="${searchStar.star==4}">★★★★☆</c:if>
+                                            <c:if test="${searchStar.star==5}">★★★★★</c:if>
                                         </td>
 
                                     </tr>
@@ -150,10 +149,9 @@
 
         $(document).ready(() => {
 
-            <c:if test="${!empty returnKeyword}">
-            <c:forEach var="keyword" items="${returnKeyword}">
-            console.log("${keyword}");
-            searchStarManagement("${keyword}")
+            <c:if test="${!empty searchStarList}">
+            <c:forEach var="searchStar" items="${searchStarList}">
+            searchStarManagement("${searchStar.isbn}", "${searchStar.appraisalNo}")
             </c:forEach>
             </c:if>
 
@@ -188,10 +186,69 @@
             }
         })
 
+        // 검색 조건 변경 또는 "책 정보 관련 키워드" 검색 시 isbn 검색 요청
+        let searchStatus = function () {
 
+            $("#selectMsg").hide();
 
+            let select = document.getElementById("option");
+            let selectValue = select.options[document.getElementById("option").selectedIndex].value;
 
+            if (selectValue == "title") {
 
+                $("#keyword").on("propertychange change keyup paste input", function () {
+                    let keyword = document.getElementById("keyword").value;
+                    console.log(keyword);
+
+                    var pageNum = 1;
+                    $.ajax({	//카카오 검색요청 / [요청]
+                        method: "GET",
+                        url: "https://dapi.kakao.com/v3/search/book",
+                        traditional: true,
+                        async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                        data: {query: keyword, page: pageNum},
+                        headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+                    })
+
+                        .done(function (msg) {	//검색 결과 담기 / [응답]
+                            console.log(msg);
+
+                            let isbn = msg.documents[0].isbn.slice(-13);
+
+                            document.getElementById('returnIsbn').value = isbn;
+
+                        });
+                });
+
+            }
+        }
+
+        // 검색된 isbn으로 책 정보 불러오기
+        function searchStarManagement(isbn, appraisalNo){
+            var pageNum = 1;
+            $.ajax({	//카카오 검색요청 / [요청]
+                method: "GET",
+                url: "https://dapi.kakao.com/v3/search/book",
+                traditional: true,
+                async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                data: {query: isbn, page: pageNum},
+                headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+            })
+
+                .done(function (msg) {	//검색 결과 담기 / [응답]
+                    console.log(msg);
+
+                    let title = msg.documents[0].title;
+
+                    if(title.length > 18){
+                        $("#title" + appraisalNo).append('<textarea rows="1" class="resize-x" disabled>' + msg.documents[0].title + '</textarea>');
+                    }else {
+                        $("#title" + appraisalNo).append(msg.documents[0].title);
+                    }
+                    $("#authors" + appraisalNo).append(msg.documents[0].authors);
+                    $("#publisher" + appraisalNo).append(msg.documents[0].publisher);
+                });
+        }
     </script>
 </section>
 

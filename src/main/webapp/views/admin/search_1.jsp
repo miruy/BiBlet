@@ -17,10 +17,10 @@
 			<%--회원 관리--%>
 			<div id="userManagement">
 
-				<div id="selectMsg" class="mx-auto"></div>
+				<div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
 				<form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_1">
 
-						<select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2">
+						<select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
 							<option disabled selected>선택</option>
 							<option id="userNo" name="userNo" value="userNo">회원 번호</option>
 							<option id="name" name="name" value="name">이름</option>
@@ -181,7 +181,11 @@
 		}
 	})
 
+	let searchStatus = function() {
 
+		$("#selectMsg").hide();
+
+	}
 </script>
 </section>
 
