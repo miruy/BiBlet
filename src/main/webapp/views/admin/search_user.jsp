@@ -59,6 +59,7 @@
 								<th>이메일</th>
 								<th>가입일자</th>
 								<th>이메일 인증 여부</th>
+								<th>강제 탈퇴</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -120,7 +121,9 @@
 										<span>미인증</span>
 									</c:if>
 								</td>
+								<td>
 
+								</td>
 							</tr>
 							</c:forEach>
 							</c:if>

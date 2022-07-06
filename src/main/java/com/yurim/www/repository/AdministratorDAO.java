@@ -37,4 +37,9 @@ public interface AdministratorDAO {
     List<AdministratorDTO> allAdminInfo();
     Long totalAdminCountBySearchValue(AdministratorDTO admin);
     List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin);
+
+
+    AdministratorDTO selectAdminInfoByAdmNo(Long admNo);
+
+    void deleteUser(Long userNo);
 }

@@ -133,5 +133,16 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     public List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin) {
         return sqlSessionTemplate.selectList("selectAdminBySearchValue", admin);
     }
+
+    @Override
+    public AdministratorDTO selectAdminInfoByAdmNo(Long admNo){
+        return sqlSessionTemplate.selectOne("selectAdminInfoByAdmNo", admNo);
+    }
+
+    @Override
+    public void deleteUser(Long userNo){
+        sqlSessionTemplate.delete("deleteUser", userNo);
+    }
 }
+
 

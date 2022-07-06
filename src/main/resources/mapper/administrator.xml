@@ -368,4 +368,12 @@
             SELECT * FROM administrator WHERE adm_email LIKE CONCAT('%',#{keyword},'%') ORDER BY adm_regdate DESC
         </if>
     </select>
+
+    <select id="selectAdminInfoByAdmNo" parameterType="Long" resultType="AdministratorDTO">
+        select * from administrator WHERE adm_no = #{admNo}
+    </select>
+
+    <delete id="deleteUser" parameterType="Long">
+
+    </delete>
 </mapper>

@@ -4,12 +4,16 @@ import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
-import com.yurim.www.service.UserService;
+import com.yurim.www.service.MypageService;
+import com.yurim.www.vo.RequestAdmLogin;
 import com.yurim.www.vo.RequestAdmSearch;
+import com.yurim.www.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -18,14 +22,31 @@ import org.springframework.web.bind.annotation.*;
 public class AdministratorController {
 
     private final AdministratorService administratorService;
-    private final UserService userService;
+    private final MypageService mypageService;
 
     @GetMapping("/supervise_user")
-    public String userManagement(Model model) {
+    public String userManagement(Model model, HttpSession session) {
 
-        // 회원 관리 탭
-        model.addAttribute("users", administratorService.allUserInfo());
-        model.addAttribute("totalUsers", administratorService.totalUser());
+        //관리자 로그인 시
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+
+            // 회원 관리 탭
+            model.addAttribute("users", administratorService.allUserInfo());
+            model.addAttribute("totalUsers", administratorService.totalUser());
+
+            model.addAttribute("admInfo", admInfo);
+
+        }
 
         return "admin/supervise_user";
     }
@@ -154,6 +175,33 @@ public class AdministratorController {
 
         return "admin/search_admin";
 
+    }
+
+    @ResponseBody
+    @PostMapping("/adminPassCheck")
+    public int PassCheck(@RequestBody RequestAdmLogin requestAdmLogin, HttpSession session) {
+        // 관리자 정보 불러오기
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if (admAuthInfo.getAdmPass().equals(requestAdmLogin.getPassCheck())) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteUser")
+    public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session, Model model) {
+
+      mypageService.deleteUserInfo(requestLogin.getUserNo());
+
+        // 회원 세션 정보 삭제
+//        session.removeAttribute("authInfo");
+
+        return 1;
     }
 
 //    @ResponseBody

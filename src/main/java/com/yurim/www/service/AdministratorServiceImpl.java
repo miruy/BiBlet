@@ -175,4 +175,14 @@ public class AdministratorServiceImpl implements AdministratorService{
     public List<AdministratorDTO> selectAdminBySearchValue(AdministratorDTO admin){
         return administratorDAO.selectAdminBySearchValue(admin);
     }
+
+    @Override
+    public AdministratorDTO selectAdminInfoByAdmNo(Long admNo){
+        return administratorDAO.selectAdminInfoByAdmNo(admNo);
+    }
+
+    @Override
+    public void deleteUser(Long userNo){
+        administratorDAO.deleteUser(userNo);
+    }
 }

@@ -1,4 +1,3 @@
-<%@ page import="com.yurim.www.dto.UserDTO" %>
 <%@ page import="com.yurim.www.dto.AdministratorDTO" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,7 +40,7 @@
 
     <div class="flex flex-col justify-center bg-white px-8 py-4 top-0 z-50">
 
-            <div class="flex flex-row admin_font px-28">
+            <div class="flex flex-row admin_font px-10">
                 <a href="/" class="text-gray-800"><header_biblet class="normal-case text-4xl border-0 mx-20 mt-4">BiBlet</header_biblet></a>
 
                 <div id="admin_tab_group" class="tabs space-x-4" >
@@ -82,12 +81,7 @@
 
 </header>
 <script>
-    // $(document).ready(() => {
-    //     // $("#admin_tab_group").addClass("tab-active");
-    //     // $("#starManagement").addClass("active")
-    //
-    //     $("#admin_tab_group")
-    // });
+
 </script>
 <main class="flex-1 mt-[4rem]">
 
