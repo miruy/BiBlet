@@ -40,4 +40,5 @@ public interface AdministratorService {
 
     AdministratorDTO selectAdminInfoByAdmNo(Long admNo);
     void deleteUser(Long userNo);
+    void deleteAppraisal(Long appraisalNo);
 }

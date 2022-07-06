@@ -122,9 +122,49 @@
 									</c:if>
 								</td>
 								<td>
-
+									<label for="forcedWithdraw${searchUser.userNo}" class="modal-button cursor-pointer">
+										<svg class="w-8 h-8" style="enable-background:new 0 0 50 50;" version="1.1" viewBox="0 0 50 50" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+											<g id="Layer_1">
+												<path d="M25,49c13.233,0,24-10.767,24-24S38.233,1,25,1S1,11.767,1,25S11.767,49,25,49z M47,25c0,5.706-2.185,10.912-5.761,14.825   L10.175,8.761C14.088,5.185,19.293,3,25,3C37.131,3,47,12.869,47,25z M8.761,10.175l31.064,31.064C35.912,44.815,30.707,47,25,47   C12.869,47,3,37.131,3,25C3,19.294,5.185,14.088,8.761,10.175z"/>
+											</g>
+										</svg>
+									</label>
 								</td>
 							</tr>
+
+								<%--강제 탈퇴 모달--%>
+								<input type="checkbox" id="forcedWithdraw${searchUser.userNo}" class="modal-toggle"/>
+								<div class="modal bg-opacity-60 bg-gray-300">
+									<div class="modal-box relative h-2/3 w-5/6 max-w-xl">
+
+										<div class="text-gray-600 mb-6 text-center text-3xl font-bold">강제 탈퇴</div>
+
+										<div class="flex flex-col py-20 text-center">
+											<div class="text-xl text-black">관리자 권한으로 해당 회원을 탈퇴시키겠습니까?</div>
+											<div class="text-gray-400">해당 회원과 관련된 모든 정보가 삭제됩니다.</div>
+
+											<div id="forcedWithDrawModal" class="flex flex-row justify-center">
+												<div class="modal-action">
+													<button type="button" id="yes" onClick="forcedWithDrawUserBtn()"
+															class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">yes
+													</button>
+												</div>
+
+												<label for="forcedWithdraw${searchUser.userNo}"
+													   class="btn btn-secondary mt-6 w-[3.5rem] hover:bg-purple-600 hover:text-white">no</label>
+											</div>
+
+											<c:if test="${!empty admInfo}">
+												<div id="forcedWithdraw" class="form-control flex flex-row mx-auto space-x-2 my-4">
+													<input type="password" id="passCheck" name="passCheck" placeholder="관리자 비밀번호" class="input input-bordered text-lg text-center w-60" />
+													<button type="button" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black" onClick="adminPassCheckBtn(${admInfo.admPass}, ${searchUser.userNo})">비밀번호 확인</button>
+												</div>
+											</c:if>
+										</div>
+									</div>
+								</div>
+								<!--모달 끝-->
+
 							</c:forEach>
 							</c:if>
 							</tbody>
@@ -156,6 +196,10 @@
 		$("#userManagement").addClass("active")
 	});
 
+	$(document).ready(() =>{
+		$("#forcedWithdraw").hide();
+	});
+
 	$("#admin_tab_group > button").click((event) => {
 		$("#admin_tab_group > button").removeClass("tab-active");
 		$(event.target).addClass("tab-active");
@@ -185,8 +229,60 @@
 	})
 
 	let searchStatus = function() {
-
 		$("#selectMsg").hide();
+	}
+
+	function forcedWithDrawUserBtn(){
+		$("#forcedWithDrawModal").hide();
+		$("#forcedWithdraw").show();
+	}
+
+	function adminPassCheckBtn(admPass, userNo){
+
+		let passCheck = $("#passCheck").val();
+
+		$.ajax({
+			url: '<c:url value="/admin/adminPassCheck"/>',
+			type: 'POST',
+			data: JSON.stringify({
+				"passCheck": passCheck,
+				"admPass": admPass
+			}),
+			dataType: "json",
+			contentType: 'application/json',
+			success: function(data) {
+				if(data == 1){
+					alert("비밀번호가 확인되었습니다.");
+
+					forcedWithDrawUser(userNo);
+
+				}else if(data == 0){
+					alert("비밀번호가 일치하지 않습니다.");
+				}
+			}
+		});
+	}
+
+	function forcedWithDrawUser(userNo){
+
+		$.ajax({
+			url: '<c:url value="/admin/deleteUser"/>',
+			type: 'POST',
+			data: JSON.stringify({
+				"userNo": userNo
+			}),
+			dataType: "json",
+			contentType: 'application/json',
+			success: function(data) {
+				console.log("data : " + data);
+				if(data == 1){
+					console.log("회원 강제삭제 성공");
+
+					location.reload();
+				}
+
+			}
+		});
 
 	}
 </script>

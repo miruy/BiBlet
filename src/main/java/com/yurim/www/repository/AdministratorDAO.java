@@ -42,4 +42,5 @@ public interface AdministratorDAO {
     AdministratorDTO selectAdminInfoByAdmNo(Long admNo);
 
     void deleteUser(Long userNo);
+    void deleteAppraisal(Long appraisalNo);
 }

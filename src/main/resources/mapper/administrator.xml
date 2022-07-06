@@ -374,6 +374,13 @@
     </select>
 
     <delete id="deleteUser" parameterType="Long">
+        DELETE appraisal, bookshelf, user FROM user
+            INNER JOIN bookshelf ON user.user_no = bookshelf.user_no
+            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+        WHERE user.user_no = #{userNo}
+    </delete>
 
+    <delete id="deleteAppraisal" parameterType="Long">
+        UPDATE appraisal SET star = NULL WHERE appraisal_no = #{appraisalNo}
     </delete>
 </mapper>

@@ -279,7 +279,7 @@
 				if(data == 1){
 					console.log("회원 강제삭제 성공");
 
-					location.reload();
+					// location.reload();
 				}
 
 			}

@@ -7,6 +7,7 @@ import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.MypageService;
 import com.yurim.www.vo.RequestAdmLogin;
 import com.yurim.www.vo.RequestAdmSearch;
+import com.yurim.www.vo.RequestCommentForDetail;
 import com.yurim.www.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -52,9 +53,17 @@ public class AdministratorController {
     }
 
     @PostMapping("/supervise_user")
-    public String userSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+    public String userSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
         UserDTO searchUser = new UserDTO();
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        Long admNo = admAuthInfo.getAdmNo();
+        AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+        model.addAttribute("admInfo", admInfo);
 
         if (requestAdmSearch.getOption() == null) {
             searchUser.setOption("선택");
@@ -72,20 +81,43 @@ public class AdministratorController {
     }
 
     @GetMapping("/supervise_appraisal")
-    public String starManagement(Model model) {
+    public String starManagement(Model model,  HttpSession session) {
 
-        // 평가 관리 탭
-        model.addAttribute("stars", administratorService.allStarInfo());
-        model.addAttribute("totalStar", administratorService.totalStar());
+        //관리자 로그인 시
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            // 평가 관리 탭
+            model.addAttribute("stars", administratorService.allStarInfo());
+            model.addAttribute("totalStar", administratorService.totalStar());
+        }
 
         return "admin/supervise_appraisal";
     }
 
 
     @PostMapping("/supervise_appraisal")
-    public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+    public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
         AppraisalDTO appraisal = new AppraisalDTO();
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        Long admNo = admAuthInfo.getAdmNo();
+        AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+        model.addAttribute("admInfo", admInfo);
 
         if(requestAdmSearch.getReturnIsbn().equals("")){
             if (requestAdmSearch.getOption() == null) {
@@ -194,9 +226,22 @@ public class AdministratorController {
 
     @ResponseBody
     @PostMapping("/deleteUser")
-    public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session, Model model) {
+    public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session) {
 
-      mypageService.deleteUserInfo(requestLogin.getUserNo());
+      administratorService.deleteUser(requestLogin.getUserNo());
+
+        // 회원 세션 정보 삭제
+//        session.removeAttribute("authInfo");
+
+        return 1;
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteAppraisal")
+    public int deleteAppraisal(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
+
+        System.out.println(requestCommentForDetail.getAppraisalNo());
+        administratorService.deleteAppraisal(requestCommentForDetail.getAppraisalNo());
 
         // 회원 세션 정보 삭제
 //        session.removeAttribute("authInfo");
