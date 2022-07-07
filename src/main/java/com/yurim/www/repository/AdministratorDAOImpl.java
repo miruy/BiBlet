@@ -148,6 +148,11 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     public void deleteAppraisal(Long appraisalNo){
         sqlSessionTemplate.delete("deleteAppraisal", appraisalNo);
     }
+
+    @Override
+    public void disabledComment(Long appraisalNo){
+        sqlSessionTemplate.delete("disabledComment", appraisalNo);
+    }
 }
 
 

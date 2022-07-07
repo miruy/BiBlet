@@ -32,12 +32,12 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
+
         if(admAuthInfo == null){
 
             return "redirect:/admin/login";
 
         }else if (admAuthInfo != null) {
-
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
 
@@ -57,24 +57,34 @@ public class AdministratorController {
 
         UserDTO searchUser = new UserDTO();
 
-        //관리자 세션 전달
+        //관리자 로그인 시
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        Long admNo = admAuthInfo.getAdmNo();
-        AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
-        model.addAttribute("admInfo", admInfo);
+        if(admAuthInfo == null){
 
-        if (requestAdmSearch.getOption() == null) {
-            searchUser.setOption("선택");
-            searchUser.setKeyword(requestAdmSearch.getKeyword());
-        } else {
-            searchUser.setOption(requestAdmSearch.getOption());
-            searchUser.setKeyword(requestAdmSearch.getKeyword());
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            if (requestAdmSearch.getOption() == null) {
+                searchUser.setOption("선택");
+                searchUser.setKeyword(requestAdmSearch.getKeyword());
+            } else {
+                searchUser.setOption(requestAdmSearch.getOption());
+                searchUser.setKeyword(requestAdmSearch.getKeyword());
+            }
+
+            model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
+            model.addAttribute("searchUserCount", administratorService.totalCountBySearchValue(searchUser));
+
         }
 
-        model.addAttribute("searchList", administratorService.selectUserBySearchValue(searchUser));
-        model.addAttribute("searchUserCount", administratorService.totalCountBySearchValue(searchUser));
+
 
         return "admin/search_user";
 
@@ -111,64 +121,103 @@ public class AdministratorController {
 
         AppraisalDTO appraisal = new AppraisalDTO();
 
-        //관리자 세션 전달
+        //관리자 로그인 시
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        Long admNo = admAuthInfo.getAdmNo();
-        AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
-        model.addAttribute("admInfo", admInfo);
+        if(admAuthInfo == null){
 
-        if(requestAdmSearch.getReturnIsbn().equals("")){
-            if (requestAdmSearch.getOption() == null) {
-                appraisal.setOption("선택");
-                appraisal.setKeyword(requestAdmSearch.getKeyword());
-            } else {
-                appraisal.setOption(requestAdmSearch.getOption());
-                appraisal.setKeyword(requestAdmSearch.getKeyword());
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            if(requestAdmSearch.getReturnIsbn().equals("")){
+                if (requestAdmSearch.getOption() == null) {
+                    appraisal.setOption("선택");
+                    appraisal.setKeyword(requestAdmSearch.getKeyword());
+                } else {
+                    appraisal.setOption(requestAdmSearch.getOption());
+                    appraisal.setKeyword(requestAdmSearch.getKeyword());
+                }
+            }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+                appraisal.setOption("kakao");
+                appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
             }
-        }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
-            appraisal.setOption("kakao");
-            appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
-        }
 
-        model.addAttribute("searchStarList", administratorService.selectStarBySearchValue(appraisal));
-        model.addAttribute("searchStarCount", administratorService.totalStarCountBySearchValue(appraisal));
+            model.addAttribute("searchStarList", administratorService.selectStarBySearchValue(appraisal));
+            model.addAttribute("searchStarCount", administratorService.totalStarCountBySearchValue(appraisal));
+        }
 
         return "admin/search_appraisal";
 
     }
 
     @GetMapping("/supervise_comment")
-    public String commentManagement(Model model) {
+    public String commentManagement(Model model, HttpSession session) {
 
-        // 코멘트 관리 탭
-        model.addAttribute("comments", administratorService.allCommentInfo());
-        model.addAttribute("totalComment", administratorService.totalComment());
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            // 코멘트 관리 탭
+            model.addAttribute("comments", administratorService.allCommentInfo());
+            model.addAttribute("totalComment", administratorService.totalComment());
+
+        }
+
 
         return "admin/supervise_comment";
     }
 
     @PostMapping("/supervise_comment")
-    public String commentSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+    public String commentSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
         AppraisalDTO appraisal = new AppraisalDTO();
 
-        if(requestAdmSearch.getReturnIsbn().equals("")){
-            if (requestAdmSearch.getOption() == null) {
-                appraisal.setOption("선택");
-                appraisal.setKeyword(requestAdmSearch.getKeyword());
-            } else {
-                appraisal.setOption(requestAdmSearch.getOption());
-                appraisal.setKeyword(requestAdmSearch.getKeyword());
-            }
-        }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
-            appraisal.setOption("kakao");
-            appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
-        }
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        model.addAttribute("searchCommentList", administratorService.selectCommentBySearchValue(appraisal));
-        model.addAttribute("searchCommentCount", administratorService.totalCommentCountBySearchValue(appraisal));
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            if(requestAdmSearch.getReturnIsbn().equals("")){
+                if (requestAdmSearch.getOption() == null) {
+                    appraisal.setOption("선택");
+                    appraisal.setKeyword(requestAdmSearch.getKeyword());
+                } else {
+                    appraisal.setOption(requestAdmSearch.getOption());
+                    appraisal.setKeyword(requestAdmSearch.getKeyword());
+                }
+            }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+                appraisal.setOption("kakao");
+                appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
+            }
+
+            model.addAttribute("searchCommentList", administratorService.selectCommentBySearchValue(appraisal));
+            model.addAttribute("searchCommentCount", administratorService.totalCommentCountBySearchValue(appraisal));
+        }
 
         return "admin/search_comment";
 
@@ -180,30 +229,63 @@ public class AdministratorController {
 
 
     @GetMapping("/supervise_admin")
-    public String adminInfo(Model model) {
+    public String adminInfo(Model model, HttpSession session) {
 
-        // 관리자 정보 탭
-        model.addAttribute("admins", administratorService.allAdminInfo());
-        model.addAttribute("totalAdmins", administratorService.totalAdmin());
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            // 관리자 정보 탭
+            model.addAttribute("admins", administratorService.allAdminInfo());
+            model.addAttribute("totalAdmins", administratorService.totalAdmin());
+
+        }
 
         return "admin/supervise_admin";
     }
 
     @PostMapping("/supervise_admin")
-    public String adminSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, Model model) {
+    public String adminSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
         AdministratorDTO searchAdmin = new AdministratorDTO();
 
-        if (requestAdmSearch.getOption() == null) {
-            searchAdmin.setOption("선택");
-            searchAdmin.setKeyword(requestAdmSearch.getKeyword());
-        } else {
-            searchAdmin.setOption(requestAdmSearch.getOption());
-            searchAdmin.setKeyword(requestAdmSearch.getKeyword());
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+
+            if (requestAdmSearch.getOption() == null) {
+                searchAdmin.setOption("선택");
+                searchAdmin.setKeyword(requestAdmSearch.getKeyword());
+            } else {
+                searchAdmin.setOption(requestAdmSearch.getOption());
+                searchAdmin.setKeyword(requestAdmSearch.getKeyword());
+            }
+
+            model.addAttribute("searchAdminList", administratorService.selectAdminBySearchValue(searchAdmin));
+            model.addAttribute("searchAdminCount", administratorService.totalAdminCountBySearchValue(searchAdmin));
         }
 
-        model.addAttribute("searchAdminList", administratorService.selectAdminBySearchValue(searchAdmin));
-        model.addAttribute("searchAdminCount", administratorService.totalAdminCountBySearchValue(searchAdmin));
 
         return "admin/search_admin";
 
@@ -240,7 +322,6 @@ public class AdministratorController {
     @PostMapping("/deleteAppraisal")
     public int deleteAppraisal(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
 
-        System.out.println(requestCommentForDetail.getAppraisalNo());
         administratorService.deleteAppraisal(requestCommentForDetail.getAppraisalNo());
 
         // 회원 세션 정보 삭제
@@ -249,6 +330,19 @@ public class AdministratorController {
         return 1;
     }
 
+
+    @ResponseBody
+    @PostMapping("/disabledComment")
+    public int disabledComment(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
+
+        System.out.println(requestCommentForDetail.getAppraisalNo());
+        administratorService.disabledComment(requestCommentForDetail.getAppraisalNo());
+
+        // 회원 세션 정보 삭제
+//        session.removeAttribute("authInfo");
+
+        return 1;
+    }
 //    @ResponseBody
 //    @PostMapping("/returnIsbnForStarManagement")
 //    private String returnIsbnForStarManagement(@RequestParam String isbn, Model model) {

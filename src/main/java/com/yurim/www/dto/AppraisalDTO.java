@@ -36,4 +36,6 @@ public class AppraisalDTO {
 
     private String option;
     private String keyword;
+
+    private int active;
 }

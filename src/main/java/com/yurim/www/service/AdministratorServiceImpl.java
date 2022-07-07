@@ -190,4 +190,9 @@ public class AdministratorServiceImpl implements AdministratorService{
     public void deleteAppraisal(Long appraisalNo){
         administratorDAO.deleteAppraisal(appraisalNo);
     }
+
+    @Override
+    public void disabledComment(Long appraisalNo){
+        administratorDAO.disabledComment(appraisalNo);
+    }
 }

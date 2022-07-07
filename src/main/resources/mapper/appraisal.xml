@@ -3,8 +3,8 @@
 <mapper namespace="com.yurim.www.repository.AppraisalDAO">
 
     <insert id="writeComment" parameterType="AppraisalDTO">
-        INSERT INTO appraisal(comment, start_date, end_date, co_prv, status_no)
-        VALUES (#{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo})
+        INSERT INTO appraisal(comment, start_date, end_date, co_prv, status_no, active)
+        VALUES (#{comment}, #{startDate}, #{endDate}, #{coPrv}, #{statusNo}, 1)
     </insert>
 
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">

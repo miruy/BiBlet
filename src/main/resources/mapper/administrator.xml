@@ -212,7 +212,8 @@
                user.name,
                user.id,
                appraisal.appraisal_no,
-               appraisal.comment
+               appraisal.comment,
+               appraisal.active
         FROM appraisal
                  INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -261,7 +262,8 @@
                 user.name,
                 user.id,
                 appraisal.appraisal_no,
-                appraisal.comment
+                appraisal.comment,
+                appraisal.active
             FROM appraisal
                 INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
                 INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -275,7 +277,8 @@
             user.name,
             user.id,
             appraisal.appraisal_no,
-            appraisal.comment
+            appraisal.comment,
+            appraisal.active
             FROM appraisal
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
             INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -289,7 +292,8 @@
             user.name,
             user.id,
             appraisal.appraisal_no,
-            appraisal.comment
+            appraisal.comment,
+            appraisal.active
             FROM appraisal
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
             INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -303,7 +307,8 @@
             user.name,
             user.id,
             appraisal.appraisal_no,
-            appraisal.comment
+            appraisal.comment,
+            appraisal.active
             FROM appraisal
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
             INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -317,7 +322,8 @@
             user.name,
             user.id,
             appraisal.appraisal_no,
-            appraisal.comment
+            appraisal.comment,
+            appraisal.active
             FROM appraisal
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
             INNER JOIN user ON user.user_no = bookshelf.user_no
@@ -382,5 +388,9 @@
 
     <delete id="deleteAppraisal" parameterType="Long">
         UPDATE appraisal SET star = NULL WHERE appraisal_no = #{appraisalNo}
+    </delete>
+
+    <delete id="disabledComment" parameterType="Long">
+        UPDATE appraisal SET active = 0 WHERE appraisal_no = #{appraisalNo}
     </delete>
 </mapper>
