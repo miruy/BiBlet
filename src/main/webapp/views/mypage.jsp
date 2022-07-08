@@ -195,10 +195,16 @@
                                     <div class="flex flex-row border-b-2 border-gray-300 my-2 pl-12 pr-10">
                                         <div id="title${myComment.isbn}"></div>
                                     </div>
-                                    <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2"
-                                              rows="7"
-                                              id="content${myComment.appraisalNo}"
-                                              disabled>${myComment.comment}</textarea>
+                                    <c:if test="${myComment.active == 0}">
+                                        <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                                    </c:if>
+                                    <c:if test="${myComment.active == 1}">
+                                        <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2"
+                                                  rows="7"
+                                                  id="content${myComment.appraisalNo}"
+                                                  disabled>${myComment.comment}
+                                        </textarea>
+                                    </c:if>
                                     <c:if test="${!empty myComment.startDate}">
                                         <div class="flex flex-row">
                                             <svg enable-background="new 0 0 32 32" height="20" id="Layer_1"

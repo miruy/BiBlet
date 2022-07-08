@@ -194,11 +194,16 @@
                                     <span id="bookName${latestComment.isbn}" class="w-40"></span>
                                 </td>
                                 <td class="justify-center items-center text-center">
-                                    <c:if test="${latestComment.comment.length() > 20}">
-                                        <textarea rows="2" disabled>${latestComment.comment}</textarea>
+                                    <c:if test="${latestComment.active == 0}">
+                                        <span>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</span>
                                     </c:if>
-                                    <c:if test="${latestComment.comment.length() <= 20}">
-                                        ${latestComment.comment}
+                                    <c:if test="${latestComment.active == 1}">
+                                        <c:if test="${latestComment.comment.length() > 20}">
+                                            <textarea rows="2" disabled>${latestComment.comment}</textarea>
+                                        </c:if>
+                                        <c:if test="${latestComment.comment.length() <= 20}">
+                                            ${latestComment.comment}
+                                        </c:if>
                                     </c:if>
                                 </td>
                                 <td class="justify-center items-center text-center text-yellow-400">

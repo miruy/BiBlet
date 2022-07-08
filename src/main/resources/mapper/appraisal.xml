@@ -10,6 +10,7 @@
     <select id="findAllComment" parameterType="String" resultType="AppraisalDTO">
         SELECT appraisal.appraisal_no,
                appraisal.comment,
+               appraisal.active,
                appraisal.start_date,
                appraisal.end_date,
                appraisal.status_no,
@@ -76,6 +77,7 @@
             appraisal.comment,
             appraisal.start_date,
             appraisal.end_date,
+            appraisal.active,
             user.id,
             user.name,
             user.stored_pic,

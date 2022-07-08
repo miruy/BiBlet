@@ -362,7 +362,12 @@
                        <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
                    </c:if>
                    <span class="text-gray-600 text-sm">${myC.name}</span>
-                <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
+                   <c:if test="${myC.active == 0}">
+                       <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                   </c:if>
+                   <c:if test="${myC.active == 1}">
+                       <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
+                   </c:if>
                 <label class="flex flex-row">
                     <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
                        <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>
@@ -387,7 +392,12 @@
                         <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
                     </c:if>
                     <span class="text-gray-600 text-sm">${myC.name}</span>
-                    <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
+                    <c:if test="${myC.active == 0}">
+                        <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                    </c:if>
+                    <c:if test="${myC.active == 1}">
+                        <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
+                    </c:if>
                     <div class="flex flex-row space-x-4">
                         <div class="flex flex-col">
                             <div class="text-gray-400 text-xs">독서시작날짜</div>
@@ -546,9 +556,15 @@
                                     </div>
 
                                     <div class="border-b-2 border-gray-300 py-2">
+                                        <c:if test="${comment.active == 0}">
+                                            <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                                        </c:if>
+                                        <c:if test="${comment.active == 1}">
                                         <textarea class="text-gray-800 box-content w-64 resize-none" rows="6"
                                                   id="content${comment.appraisalNo}"
-                                                  disabled>${comment.comment}</textarea>
+                                                  disabled>${comment.comment}
+                                        </textarea>
+                                        </c:if>
                                     </div>
 
                                     <c:if test="${!empty comment.startDate}">

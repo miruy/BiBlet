@@ -4,6 +4,7 @@
     <select id="myCommentForMypage" parameterType="Long" resultType="AppraisalDTO">
         SELECT bookshelf.isbn,
                appraisal.comment,
+               appraisal.active,
                appraisal.start_date,
                appraisal.end_date,
                appraisal.appraisal_no,

@@ -17,6 +17,7 @@
         SELECT bookshelf.isbn,
                appraisal.star,
                appraisal.comment,
+               appraisal.active,
                user.id,
                user.name,
                user.user_no,
