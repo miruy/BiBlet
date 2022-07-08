@@ -150,8 +150,8 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     }
 
     @Override
-    public void disabledComment(Long appraisalNo){
-        sqlSessionTemplate.delete("disabledComment", appraisalNo);
+    public void disabledComment(HashMap<String, Long> map){
+        sqlSessionTemplate.delete("disabledComment", map);
     }
 }
 

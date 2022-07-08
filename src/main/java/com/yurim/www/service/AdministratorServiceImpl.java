@@ -192,7 +192,11 @@ public class AdministratorServiceImpl implements AdministratorService{
     }
 
     @Override
-    public void disabledComment(Long appraisalNo){
-        administratorDAO.disabledComment(appraisalNo);
+    public void disabledComment(int active, Long appraisalNo){
+        HashMap<String, Long> map = new HashMap<>();
+        Long activeL = (long) active;
+        map.put("active", activeL);
+        map.put("appraisalNo", appraisalNo);
+        administratorDAO.disabledComment(map);
     }
 }

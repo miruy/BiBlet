@@ -23,4 +23,6 @@ public class RequestCommentForDetail {
 	private String endDate;
 	private String coPrv;
 	private Long statusNum;
+
+	private int active;
 }

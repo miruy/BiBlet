@@ -115,49 +115,15 @@
                                                 ${searchComment.comment}
                                         </td>
                                         <td>
-                                            <label for="forcedDisabled${comment.appraisalNo}" class="modal-button cursor-pointer">
-                                                <c:if test="${comment.active == 0}">
-                                                    <input type="checkbox" class="toggle toggle-md" />
-                                                </c:if>
-                                                <c:if test="${comment.active == 1}">
-                                                    <input type="checkbox" class="toggle toggle-md "  checked/>
-                                                </c:if>
-                                            </label>
+                                            <c:if test="${searchComment.active == 0}">
+                                                <input type="checkbox" id="forcedDisabled_unCheck" class="toggle toggle-md" onclick="forcedDisabled_unCheck(1, ${searchComment.appraisalNo})"/>
+                                            </c:if>
+                                            <c:if test="${searchComment.active == 1}">
+                                                <input type="checkbox" id="forcedDisabled_check" class="toggle toggle-md" onclick="forcedDisabled_check(0, ${searchComment.appraisalNo})" checked/>
+                                            </c:if>
                                         </td>
                                     </tr>
-
-                                    <%--강제 비활성화 모달--%>
-                                    <input type="checkbox" id="forcedDisabled${comment.appraisalNo}" class="modal-toggle"/>
-                                    <div class="modal bg-opacity-60 bg-gray-300">
-                                        <div class="modal-box relative h-2/3 w-5/6 max-w-xl">
-
-                                            <div class="text-gray-600 mb-6 text-center text-3xl font-bold">강제 비활성화</div>
-
-                                            <div class="flex flex-col py-20 text-center">
-                                                <div class="text-xl text-black">관리자 권한으로 해당 코멘트를 비활성화시키겠습니까?</div>
-                                                <div class="text-gray-400">해당 코멘트를 비활성화시키면 복구할 수 없습니다.</div>
-
-                                                <div id="forcedDisabledConfirm" class="flex flex-row justify-center">
-                                                    <div class="modal-action">
-                                                        <button type="button" id="yes" onClick="forcedDisabledBtn()"
-                                                                class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">yes
-                                                        </button>
-                                                    </div>
-
-                                                    <label for="forcedDisabled${comment.appraisalNo}"
-                                                           class="btn btn-secondary mt-6 w-[3.5rem] hover:bg-purple-600 hover:text-white">no</label>
-                                                </div>
-
-                                                <c:if test="${!empty admInfo}">
-                                                    <div id="forcedDisabled" class="form-control flex flex-row mx-auto space-x-2 my-4">
-                                                        <input type="password" id="passCheck" name="passCheck" placeholder="관리자 비밀번호" class="input input-bordered text-lg text-center w-60" />
-                                                        <button type="button" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black" onClick="adminPassCheckBtn(${admInfo.admPass}, ${comment.appraisalNo})">비밀번호 확인</button>
-                                                    </div>
-                                                </c:if>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--모달 끝-->
+                                    
 
                                 </c:forEach>
                             </c:if>
@@ -180,10 +146,6 @@
         $(document).ready(() => {
             $("#comment_tab").addClass("tab-active");
             $("#commentManagement").addClass("active")
-        });
-
-        $(document).ready(() =>{
-            $("#forcedDisabled").hide();
         });
 
         $(document).ready(() => {
@@ -287,59 +249,48 @@
                 });
         }
 
-        function forcedDisabledBtn(){
-
-            $("#forcedDisabledConfirm").hide();
-            $("#forcedDisabled").show();
-        }
-
-        function adminPassCheckBtn(admPass, appraisalNo){
-
-            let passCheck = $("#passCheck").val();
-
-            $.ajax({
-                url: '<c:url value="/admin/adminPassCheck"/>',
-                type: 'POST',
-                data: JSON.stringify({
-                    "passCheck": passCheck,
-                    "admPass": admPass
-                }),
-                dataType: "json",
-                contentType: 'application/json',
-                success: function(data) {
-                    if(data == 1){
-                        alert("비밀번호가 확인되었습니다.");
-
-                        forcedDisabledComment(appraisalNo);
-
-                    }else if(data == 0){
-                        alert("비밀번호가 일치하지 않습니다.");
-                    }
-                }
-            });
-        }
-
-        function forcedDisabledComment(appraisalNo){
+        function forcedDisabled_unCheck(active, appraisalNo){
+            // 활성상태 0으로
+            console.log(active);
+            console.log(appraisalNo);
 
             $.ajax({
                 url: '<c:url value="/admin/disabledComment"/>',
                 type: 'POST',
                 data: JSON.stringify({
+                    "active": active,
                     "appraisalNo": appraisalNo
                 }),
                 dataType: "json",
                 contentType: 'application/json',
                 success: function(data) {
-                    if(data == 1){
-                        console.log("평가 비활성화 성공");
-
-                        // location.reload();
-                    }
-
+                    console.log(data);
+                    location.reload();
                 }
             });
-
         }
+
+        function forcedDisabled_check(active, appraisalNo){
+            // 활성상태 1로
+            console.log(active);
+            console.log(appraisalNo);
+
+            $.ajax({
+                url: '<c:url value="/admin/disabledComment"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "active": active,
+                    "appraisalNo": appraisalNo
+                }),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(data) {
+                    console.log(data);
+                    location.reload();
+                }
+            });
+        }
+
     </script>
 </section>
 

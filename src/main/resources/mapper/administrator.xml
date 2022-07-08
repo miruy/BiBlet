@@ -390,7 +390,7 @@
         UPDATE appraisal SET star = NULL WHERE appraisal_no = #{appraisalNo}
     </delete>
 
-    <delete id="disabledComment" parameterType="Long">
-        UPDATE appraisal SET active = 0 WHERE appraisal_no = #{appraisalNo}
+    <delete id="disabledComment" parameterType="HashMap">
+        UPDATE appraisal SET active = #{active} WHERE appraisal_no = #{appraisalNo}
     </delete>
 </mapper>

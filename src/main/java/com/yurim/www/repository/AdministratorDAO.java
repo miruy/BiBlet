@@ -43,5 +43,5 @@ public interface AdministratorDAO {
 
     void deleteUser(Long userNo);
     void deleteAppraisal(Long appraisalNo);
-    void disabledComment(Long appraisalNo);
+    void disabledComment(HashMap<String, Long> map);
 }

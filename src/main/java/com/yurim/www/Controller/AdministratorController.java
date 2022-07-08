@@ -335,12 +335,10 @@ public class AdministratorController {
     @PostMapping("/disabledComment")
     public int disabledComment(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
 
-        System.out.println(requestCommentForDetail.getAppraisalNo());
-        administratorService.disabledComment(requestCommentForDetail.getAppraisalNo());
+        administratorService.disabledComment(requestCommentForDetail.getActive(), requestCommentForDetail.getAppraisalNo());
 
         // 회원 세션 정보 삭제
 //        session.removeAttribute("authInfo");
-
         return 1;
     }
 //    @ResponseBody

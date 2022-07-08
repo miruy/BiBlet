@@ -2449,12 +2449,6 @@ body[dir="rtl"] .checkbox:checked,
   width: 3rem;
 }
 
-.toggle-lg {
-  --handleoffset: 2rem;
-  height: 2rem;
-  width: 4rem;
-}
-
 .card-compact .card-body {
   padding: 1rem;
   font-size: 0.875rem;
