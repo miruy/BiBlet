@@ -393,4 +393,16 @@
     <delete id="disabledComment" parameterType="HashMap">
         UPDATE appraisal SET active = #{active} WHERE appraisal_no = #{appraisalNo}
     </delete>
+
+    <select id="selectAllNotice" resultType="NoticeDTO">
+        select * from notice ORDER BY notice_no DESC
+    </select>
+
+    <select id="totalNoticeCount" resultType="Long">
+        SELECT count(*) FROM notice
+    </select>
+
+    <delete id="deleteNotice" parameterType="Long">
+        DELETE notice FROM notice WHERE notice_no = #{noticeNo}
+    </delete>
 </mapper>

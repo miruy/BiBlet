@@ -2,6 +2,7 @@ package com.yurim.www.repository;
 
 import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 
 import java.util.HashMap;
@@ -44,4 +45,8 @@ public interface AdministratorDAO {
     void deleteUser(Long userNo);
     void deleteAppraisal(Long appraisalNo);
     void disabledComment(HashMap<String, Long> map);
+
+    List<NoticeDTO> selectAllNotice();
+    Long totalNoticeCount();
+    void deleteNotice(Long noticeNo);
 }

@@ -2,6 +2,7 @@ package com.yurim.www.repository;
 
 import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -152,6 +153,21 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     @Override
     public void disabledComment(HashMap<String, Long> map){
         sqlSessionTemplate.delete("disabledComment", map);
+    }
+
+    @Override
+    public List<NoticeDTO> selectAllNotice(){
+        return sqlSessionTemplate.selectList("selectAllNotice");
+    }
+
+    @Override
+    public Long totalNoticeCount(){
+        return sqlSessionTemplate.selectOne("totalNoticeCount");
+    }
+
+    @Override
+    public void deleteNotice(Long noticeNo){
+        sqlSessionTemplate.delete("deleteNotice", noticeNo);
     }
 }
 

@@ -40,11 +40,11 @@
 
                     <div class="flex flex-row space-x-2">
                         <div class="ml-2 mb-2">전체 글 :</div>
-                        <div>${noticeCount}</div>
+                        <div>${searchNoticeCount}</div>
                     </div>
 
 
-                    <c:if test="${!empty noticeList}">
+                    <c:if test="${!empty searchNoticeList}">
                         <table class="table w-full">
                             <thead>
                             <tr class="text-center">
@@ -56,23 +56,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="notice" items="${noticeList}">
+                            <c:forEach var="searchNotice" items="${searchNoticeList}">
                                 <tr>
                                     <td class="justify-center items-center text-center">
-                                       ${notice.noticeNo}
+                                       ${searchNotice.noticeNo}
                                     </td>
                                     <td class="justify-center items-center text-center">
-                                        ${notice.writer}
+                                        ${searchNotice.writer}
                                     </td>
                                     <td class="justify-center items-center text-center">
-                                        <a href="/notice_${notice.noticeNo}">${notice.title}</a>
+                                        <a href="/notice_${searchNotice.noticeNo}">${searchNotice.title}</a>
                                     </td>
                                     <td class="justify-center items-center text-center">
-                                        <fmt:parseDate value="${notice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                        <fmt:parseDate value="${searchNotice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" />
                                     </td>
                                     <td class="justify-center items-center text-center">
-                                        ${notice.count}
+                                        ${searchNotice.count}
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -80,13 +80,6 @@
                         </table>
                     </c:if>
                 </div>
-
-
-
-                <form method="post" id="requestPageChange" name="requestPageChange" class="btn-group mx-auto mt-8">
-                    <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
-                    <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
-                </form>
 
 
             </div>
@@ -98,20 +91,9 @@
     <script>
 
         $(document).ready(function () {
-            <c:forEach var="notice" items="${noticeList}">
-                <c:if test="${notice.noticeNo <= 10}">
-                  $("#page2_tab").prop("checked", true);
-                </c:if>
 
-                <c:if test="${notice.noticeNo >= 10 && notice.noticeNo <= 20}">
-                    $("#page1_tab").prop("checked", true);
-                </c:if>
-            </c:forEach>
         })
 
-        function submit_page(){
-            document.getElementById("requestPageChange").submit();
-        }
     </script>
 
 </section>

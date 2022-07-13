@@ -2,6 +2,7 @@ package com.yurim.www.service;
 
 import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 
 import java.util.List;
@@ -42,4 +43,8 @@ public interface AdministratorService {
     void deleteUser(Long userNo);
     void deleteAppraisal(Long appraisalNo);
     void disabledComment(int active, Long appraisalNo);
+
+    List<NoticeDTO> selectAllNotice();
+    Long totalNoticeCount();
+    void deleteNotice(Long noticeNo);
 }

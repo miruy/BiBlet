@@ -3,6 +3,8 @@ package com.yurim.www.Controller;
 import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.NoticeService;
+import com.yurim.www.vo.RequestAdmSearch;
+import com.yurim.www.vo.RequestNoticeSearch;
 import com.yurim.www.vo.RequestPageChange;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,24 @@ public class NoticeController {
         return "notice";
     }
 
+    @PostMapping("/notice_search")
+    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, Model model){
+        NoticeDTO searchNotice = new NoticeDTO();
+
+        if (requestNoticeSearch.getOption() == null) {
+            searchNotice.setOption("선택");
+            searchNotice.setKeyword(requestNoticeSearch.getKeyword());
+        } else {
+            searchNotice.setOption(requestNoticeSearch.getOption());
+            searchNotice.setKeyword(requestNoticeSearch.getKeyword());
+        }
+
+        model.addAttribute("searchNoticeList", noticeService.selectNoticeBySearchValue(searchNotice));
+        model.addAttribute("searchNoticeCount", noticeService.totalNoticeCountBySearchValue(searchNotice));
+
+        return "notice_search";
+    }
+
 
     @GetMapping("/notice_{noticeNo}")
     public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
@@ -58,7 +78,6 @@ public class NoticeController {
 
         return "notice_detail";
     }
-
 
 //    @GetMapping("/mypage_1")
 //    public String wantRead(Model model, HttpSession session) {

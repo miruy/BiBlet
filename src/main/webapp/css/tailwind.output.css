@@ -2570,10 +2570,6 @@ body[dir="rtl"] .checkbox:checked,
   z-index: 50;
 }
 
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
 .my-\[1\.2rem\] {
   margin-top: 1.2rem;
   margin-bottom: 1.2rem;
@@ -2612,16 +2608,6 @@ body[dir="rtl"] .checkbox:checked,
 .mx-\[1\.3rem\] {
   margin-left: 1.3rem;
   margin-right: 1.3rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.mx-10 {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
 }
 
 .ml-32 {
@@ -2842,10 +2828,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .h-\[1\.5rem\] {
   height: 1.5rem;
-}
-
-.h-2 {
-  height: 0.5rem;
 }
 
 .min-h-screen {
@@ -3228,10 +3210,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .p-7 {
   padding: 1.75rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
 }
 
 .px-24 {

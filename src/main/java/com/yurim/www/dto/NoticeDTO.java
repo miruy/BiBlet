@@ -23,4 +23,7 @@ public class NoticeDTO {
     private Long count;
     private String originFile;
     private String storedFile;
+
+    private String option;
+    private String keyword;
 }

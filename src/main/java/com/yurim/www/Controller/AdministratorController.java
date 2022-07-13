@@ -2,19 +2,19 @@ package com.yurim.www.Controller;
 
 import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.MypageService;
-import com.yurim.www.vo.RequestAdmLogin;
-import com.yurim.www.vo.RequestAdmSearch;
-import com.yurim.www.vo.RequestCommentForDetail;
-import com.yurim.www.vo.RequestLogin;
+import com.yurim.www.service.NoticeService;
+import com.yurim.www.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class AdministratorController {
 
     private final AdministratorService administratorService;
-    private final MypageService mypageService;
+    private final NoticeService noticeService;
 
     @GetMapping("/supervise_user")
     public String userManagement(Model model, HttpSession session) {
@@ -178,8 +178,6 @@ public class AdministratorController {
             model.addAttribute("totalComment", administratorService.totalComment());
 
         }
-
-
         return "admin/supervise_comment";
     }
 
@@ -223,9 +221,79 @@ public class AdministratorController {
 
     }
 
+    @GetMapping("/supervise_notice")
+    public String notice(Model model, HttpSession session) {
 
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
+        if(admAuthInfo == null){
 
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            // 공지관리 탭
+            model.addAttribute("allNoticeList", administratorService.selectAllNotice());
+            model.addAttribute("totalNoticeCount", administratorService.totalNoticeCount());
+
+        }
+
+        return "admin/supervise_notice";
+    }
+
+    @PostMapping("/supervise_notice")
+    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, HttpSession session, Model model){
+        NoticeDTO searchNotice = new NoticeDTO();
+
+        //관리자 로그인 시
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+
+            return "redirect:/admin/login";
+
+        }else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            if (requestNoticeSearch.getOption() == null) {
+                searchNotice.setOption("선택");
+                searchNotice.setKeyword(requestNoticeSearch.getKeyword());
+            } else {
+                searchNotice.setOption(requestNoticeSearch.getOption());
+                searchNotice.setKeyword(requestNoticeSearch.getKeyword());
+            }
+
+            model.addAttribute("adminPageSearchNoticeList", noticeService.selectNoticeBySearchValue(searchNotice));
+            model.addAttribute("searchNoticeCount", noticeService.totalNoticeCountBySearchValue(searchNotice));
+        }
+        return "admin/search_notice";
+    }
+
+    @GetMapping("/notice_{noticeNo}")
+    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+            return "redirect:/admin/login";
+        }else if (admAuthInfo != null) {
+            model.addAttribute("adminPageNoticeDetail",  noticeService.selectNoticeDetail(noticeNo));
+        }
+
+        return "admin/superviseNotice_detail";
+    }
 
 
     @GetMapping("/supervise_admin")
@@ -342,4 +410,14 @@ public class AdministratorController {
         return 1;
     }
 
+    @ResponseBody
+    @PostMapping("/deleteNotice")
+    public int deleteNotice(@RequestBody RequestNoticeSearch requestNoticeSearch, HttpSession session) {
+
+        administratorService.deleteNotice(requestNoticeSearch.getNoticeNo());
+
+        // 회원 세션 정보 삭제
+//        session.removeAttribute("authInfo");
+        return 1;
+    }
 }

@@ -2,6 +2,7 @@ package com.yurim.www.service;
 
 import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
+import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.exception.*;
 import com.yurim.www.repository.AdministratorDAO;
@@ -198,5 +199,20 @@ public class AdministratorServiceImpl implements AdministratorService{
         map.put("active", activeL);
         map.put("appraisalNo", appraisalNo);
         administratorDAO.disabledComment(map);
+    }
+
+    @Override
+    public List<NoticeDTO> selectAllNotice(){
+        return administratorDAO.selectAllNotice();
+    }
+
+    @Override
+    public Long totalNoticeCount(){
+        return administratorDAO.totalNoticeCount();
+    }
+
+    @Override
+    public void deleteNotice(Long noticeNo){
+       administratorDAO.deleteNotice(noticeNo);
     }
 }

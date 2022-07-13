@@ -14,10 +14,6 @@ public class NoticeServiceImpl implements NoticeService{
 
     private final NoticeDAO noticeDAO;
 
-    @Override
-    public List<NoticeDTO> selectAllNotice(){
-        return noticeDAO.selectAllNotice();
-    }
 
     @Override
     public Long selectAllNoticeCount(){
@@ -35,4 +31,13 @@ public class NoticeServiceImpl implements NoticeService{
         return noticeDAO.selectNoticeDetail(noticeNo);
     }
 
+    @Override
+    public List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice){
+        return noticeDAO.selectNoticeBySearchValue(notice);
+    }
+
+    @Override
+    public Long totalNoticeCountBySearchValue(NoticeDTO notice){
+        return noticeDAO.totalNoticeCountBySearchValue(notice);
+    }
 }

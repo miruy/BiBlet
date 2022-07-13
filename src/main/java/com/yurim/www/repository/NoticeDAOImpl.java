@@ -15,11 +15,6 @@ public class NoticeDAOImpl implements NoticeDAO {
     private final SqlSessionTemplate sqlSessionTemplate;
 
     @Override
-    public List<NoticeDTO> selectAllNotice(){
-        return sqlSessionTemplate.selectList("selectAllNotice");
-    }
-
-    @Override
     public Long selectAllNoticeCount(){
         return sqlSessionTemplate.selectOne("selectAllNoticeCount");
     }
@@ -37,5 +32,15 @@ public class NoticeDAOImpl implements NoticeDAO {
     @Override
     public List<NoticeDTO> selectNoticeDetail(Long noticeNo){
         return sqlSessionTemplate.selectList("selectNoticeDetail", noticeNo);
+    }
+
+    @Override
+    public List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice){
+        return sqlSessionTemplate.selectList("selectNoticeBySearchValue", notice);
+    }
+
+    @Override
+    public Long totalNoticeCountBySearchValue(NoticeDTO notice){
+        return sqlSessionTemplate.selectOne("totalNoticeCountBySearchValue", notice);
     }
 }
