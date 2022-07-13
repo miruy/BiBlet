@@ -43,9 +43,12 @@
 
 					<div class="overflow-x-auto">
 
-						<div class="flex flex-row space-x-2">
-							<div class="ml-2 mb-2">검색 관리자 수 :</div>
-							<div>${searchAdminCount}</div>
+						<div class="justify-between flex flex-row">
+							<div class="flex flex-row space-x-2">
+								<div class="ml-2 mb-2">총 관리자 수 :</div>
+								<div>${searchAdminCount}</div>
+							</div>
+							<div class="mr-2 mb-2 text-gray-400">관리자 회원가입 시 이름 앞에 'admin_' 이라는 표시가 됩니다.</div>
 						</div>
 
 						<table class="table w-full text-center">

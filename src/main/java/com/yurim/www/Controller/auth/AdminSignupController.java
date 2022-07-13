@@ -40,7 +40,7 @@ public class AdminSignupController {
         }
 
         try {
-            admin.setAdmName(requestAdmSignup.getAdmName());
+            admin.setAdmName("admin_" + requestAdmSignup.getAdmName());
             admin.setAdmId(requestAdmSignup.getAdmId());
             admin.setAdmPass(requestAdmSignup.getAdmPass());
             admin.setAdmEmail(requestAdmSignup.getAdmEmail());
