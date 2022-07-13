@@ -9,4 +9,6 @@ public interface NoticeDAO {
     List<NoticeDTO> selectAllNotice();
     Long selectAllNoticeCount();
     List<NoticeDTO> selectNoticeByPageNo(Long page);
+    List<NoticeDTO> selectNoticeDetail(Long noticeNo);
+    void updateReadCount(Long noticeNo);
 }

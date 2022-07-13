@@ -9,4 +9,5 @@ public interface NoticeService {
     List<NoticeDTO> selectAllNotice();
     Long selectAllNoticeCount();
     List<NoticeDTO> selectNoticeByPageNo(Long page);
+    List<NoticeDTO> selectNoticeDetail(Long noticeNo);
 }

@@ -28,4 +28,14 @@ public class NoticeDAOImpl implements NoticeDAO {
     public List<NoticeDTO> selectNoticeByPageNo(Long page){
         return sqlSessionTemplate.selectList("selectNoticeByPageNo", page);
     }
+
+    @Override
+    public void updateReadCount(Long noticeNo){
+       sqlSessionTemplate.update("updateReadCount", noticeNo);
+    }
+
+    @Override
+    public List<NoticeDTO> selectNoticeDetail(Long noticeNo){
+        return sqlSessionTemplate.selectList("selectNoticeDetail", noticeNo);
+    }
 }

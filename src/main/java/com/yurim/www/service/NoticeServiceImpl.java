@@ -29,4 +29,10 @@ public class NoticeServiceImpl implements NoticeService{
         return noticeDAO.selectNoticeByPageNo(page);
     }
 
+    @Override
+    public List<NoticeDTO> selectNoticeDetail(Long noticeNo){
+        noticeDAO.updateReadCount(noticeNo);
+        return noticeDAO.selectNoticeDetail(noticeNo);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.yurim.www.Controller;
 
 import com.yurim.www.dto.NoticeDTO;
+import com.yurim.www.dto.UserDTO;
 import com.yurim.www.service.NoticeService;
 import com.yurim.www.vo.RequestPageChange;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,6 +38,25 @@ public class NoticeController {
         model.addAttribute("noticeList", noticeService.selectNoticeByPageNo(requestPageChange.getPage()));
 
         return "notice";
+    }
+
+
+    @GetMapping("/notice_{noticeNo}")
+    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
+
+        UserDTO authInfo = null;
+        authInfo = (UserDTO) session.getAttribute("authInfo");
+
+        //회원 로그인 시
+        if(authInfo != null){
+
+        model.addAttribute("noticeDetail",  noticeService.selectNoticeDetail(noticeNo));
+
+        } else if(authInfo == null) {
+            return "redirect:/login";
+        }
+
+        return "notice_detail";
     }
 
 

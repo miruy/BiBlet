@@ -18,4 +18,12 @@
             select * from notice ORDER BY notice_no DESC LIMIT 11, 20
         </if>
     </select>
+
+    <update id="updateReadCount" parameterType="Long">
+        UPDATE notice SET COUNT = COUNT+1 WHERE notice_no = #{noticeNo}
+    </update>
+
+    <select id="selectNoticeDetail" parameterType="Long" resultType="NoticeDTO">
+        select * from notice WHERE notice_no = #{noticeNo}
+    </select>
 </mapper>

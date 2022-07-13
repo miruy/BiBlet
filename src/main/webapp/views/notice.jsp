@@ -64,7 +64,7 @@
                                         ${notice.writer}
                                     </td>
                                     <td class="justify-center items-center text-center">
-                                        ${notice.title}
+                                        <a href="/notice_${notice.noticeNo}">${notice.title}</a>
                                     </td>
                                     <td class="justify-center items-center text-center">
                                         <fmt:parseDate value="${notice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
