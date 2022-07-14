@@ -46,4 +46,12 @@
             SELECT count(*) FROM notice WHERE notice_no LIKE CONCAT('%',#{keyword},'%') ORDER BY write_date DESC
         </if>
     </select>
+
+    <insert id="insertNoticeWithFile" parameterType="NoticeDTO">
+        insert into notice (WRITER, WRITE_DATE, TITLE, CONTENT, origin_file, stored_file) value (#{writer}, now(), #{title}, #{content}, #{originFile}, #{storedFile})
+    </insert>
+
+    <insert id="insertNotice" parameterType="NoticeDTO">
+        insert into notice (WRITER, WRITE_DATE, TITLE, CONTENT) value (#{writer}, now(), #{title}, #{content})
+    </insert>
 </mapper>

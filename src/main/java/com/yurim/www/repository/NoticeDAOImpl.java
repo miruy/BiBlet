@@ -5,6 +5,7 @@ import com.yurim.www.dto.NoticeDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -42,5 +43,15 @@ public class NoticeDAOImpl implements NoticeDAO {
     @Override
     public Long totalNoticeCountBySearchValue(NoticeDTO notice){
         return sqlSessionTemplate.selectOne("totalNoticeCountBySearchValue", notice);
+    }
+
+    @Override
+    public void insertNoticeWithFile(NoticeDTO notice){
+        sqlSessionTemplate.insert("insertNoticeWithFile", notice);
+    }
+
+    @Override
+    public void insertNotice(NoticeDTO notice){
+        sqlSessionTemplate.insert("insertNotice", notice);
     }
 }

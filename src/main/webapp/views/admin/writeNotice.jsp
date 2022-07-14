@@ -14,7 +14,13 @@
 
             <div class="flex flex-col">
 
-                <form method="post" name="requestWriteNotice" id="requestWriteNotice">
+                <form:form modelAttribute="requestWriteNotice" method="post" action="/admin/writeNotice" enctype="multipart/form-data">
+
+                    <div class="mb-4">
+                        <div class="text-center"><form:errors path="title" /></div>
+                        <div class="text-center"><form:errors path="content" /></div>
+                    </div>
+
                     <div class="space-y-2">
                         <div class="form-control">
                             <label class="input-group input-group-md">
@@ -26,17 +32,16 @@
                         <div class="form-control flex flex-row space-x-2">
                             <label class="input-group input-group-md">
                                 <span class="text-gray-600 w-40 justify-center">첨부파일</span>
-                                <input type="file" id="file" name="file" class="input input-bordered text-center w-full" />
+                                <input type="file" id="noticeFile" name="noticeFile" class="input input-bordered text-center w-full" />
                             </label>
-                            <label for="file" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black">선택</label>
+                            <label for="noticeFile" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black">선택</label>
                         </div>
 
                         <textarea id="content" name="content" class="textarea textarea-bordered"></textarea>
 
-                        <button type="button" class="btn btn-secondary text-white hover:text-white px-20" onclick="writeNoticeBtn()">저장</button>
-
+                        <input type="submit" value="저장" class="btn btn-secondary text-white hover:text-white px-20" onclick="confirm('공지사항을 올리겠습니까?')"></input>
                     </div>
-                </form>
+                </form:form>
 
             </div>
         </div>
@@ -68,7 +73,6 @@
 
 
             if(confirm("공지사항을 올리겠습니까?")){
-                document.getElementById("requestWriteNotice").submit();
             }
         }
     </script>

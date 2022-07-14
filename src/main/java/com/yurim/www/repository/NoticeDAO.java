@@ -2,6 +2,7 @@ package com.yurim.www.repository;
 
 
 import com.yurim.www.dto.NoticeDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface NoticeDAO {
     void updateReadCount(Long noticeNo);
     List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice);
     Long totalNoticeCountBySearchValue(NoticeDTO notice);
+    void insertNoticeWithFile(NoticeDTO notice);
+    void insertNotice(NoticeDTO notice);
 }

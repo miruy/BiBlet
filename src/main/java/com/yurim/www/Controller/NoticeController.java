@@ -1,14 +1,21 @@
 package com.yurim.www.Controller;
 
+import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
+import com.yurim.www.exception.AlreadyExistEmailException;
+import com.yurim.www.exception.AlreadyExistIdException;
+import com.yurim.www.exception.RequiredException;
+import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.NoticeService;
 import com.yurim.www.vo.RequestAdmSearch;
 import com.yurim.www.vo.RequestNoticeSearch;
 import com.yurim.www.vo.RequestPageChange;
+import com.yurim.www.vo.RequestWriteNotice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,6 +25,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +38,7 @@ import java.util.logging.Logger;
 public class NoticeController {
 
     private final NoticeService noticeService;
+    private final AdministratorService administratorService;
 
     @GetMapping("/notice")
     public String notice(Model model) {
@@ -89,6 +98,67 @@ public class NoticeController {
 
         return "notice_detail";
     }
+
+
+    @GetMapping("/admin/writeNotice")
+    private String writeNoticeForm(Model model, HttpSession session){
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+            return "redirect:/admin/login";
+        }else if (admAuthInfo != null) {
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+        }
+
+        return "admin/writeNotice";
+    }
+
+    @PostMapping("/admin/writeNotice")
+    private String writeNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors) throws IOException {
+
+        if(errors.hasErrors()) {
+            return "admin/writeNotice";
+        }
+
+        try{
+            NoticeDTO insertNotice = new NoticeDTO();
+
+            if(!requestWriteNotice.getNoticeFile().isEmpty()){
+
+                insertNotice.setTitle(requestWriteNotice.getTitle());
+                insertNotice.setContent(requestWriteNotice.getContent());
+                insertNotice.setWriter("관리자");
+
+                MultipartFile multipartFile = requestWriteNotice.getNoticeFile();
+
+                noticeService.insertNoticeWithFile(insertNotice, multipartFile);
+
+            }else if(requestWriteNotice.getNoticeFile().isEmpty()){
+
+                insertNotice.setTitle(requestWriteNotice.getTitle());
+                insertNotice.setContent(requestWriteNotice.getContent());
+                insertNotice.setWriter("관리자");
+
+                noticeService.insertNotice(insertNotice);
+            }
+
+        }catch (RequiredException e){
+            errors.rejectValue("title", "required");
+            return "admin/writeNotice";
+        }catch(AlreadyExistIdException e) {
+            errors.rejectValue("content", "required");
+            return "admin/writeNotice";
+        }
+
+        return "redirect:/admin/supervise_notice";
+    }
+
 
     @RequestMapping(value="/ckImageUpload", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
@@ -171,7 +241,7 @@ public class NoticeController {
             FileInputStream fileInputStream = null;
             ByteArrayOutputStream outputStream = null;
             ServletOutputStream out = null;
-            
+
                 fileInputStream = new FileInputStream(imgFile);
                 outputStream = new ByteArrayOutputStream();
                 out = response.getOutputStream();
