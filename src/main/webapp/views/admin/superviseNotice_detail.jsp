@@ -32,17 +32,6 @@
                     </table>
 
                     <table class="mt-4 table w-full">
-                        <tbody>
-                            <tr>
-                                <td class="justify-center items-center text-center">
-                                    ${adminPageNotice.content}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                    <table class="mt-4 table w-full">
                         <thead>
                         <tr class="text-center">
                             <th class="text-sm">공지번호</th>
@@ -54,22 +43,27 @@
 
                         <tbody>
                         <tr>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${adminPageNotice.noticeNo}
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${adminPageNotice.writer}
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                 <fmt:parseDate value="${adminPageNotice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" />
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${adminPageNotice.count}
                             </td>
                         </tr>
                         </tbody>
                     </table>
+
+
+                    <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
+                      <div>${adminPageNotice.content}</div>
+                    </div>
 
                     </c:forEach>
                 </c:if>
@@ -83,9 +77,10 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
 
-        $(document).ready(function () {
-
-        })
+        $(document).ready(() => {
+            $("#notice_tab").addClass("tab-active");
+            $("#noticeManagement").addClass("active");
+        });
 
     </script>
 

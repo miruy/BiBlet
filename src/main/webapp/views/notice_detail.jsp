@@ -32,17 +32,6 @@
                     </table>
 
                     <table class="mt-4 table w-full">
-                        <tbody>
-                            <tr>
-                                <td class="justify-center items-center text-center">
-                                    ${notice.content}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                    <table class="mt-4 table w-full">
                         <thead>
                         <tr class="text-center">
                             <th class="text-sm">공지번호</th>
@@ -54,22 +43,26 @@
 
                         <tbody>
                         <tr>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${notice.noticeNo}
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${notice.writer}
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                 <fmt:parseDate value="${notice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" />
                             </td>
-                            <td class="justify-center items-center text-center text-xs">
+                            <td class="justify-center items-center text-center text-sm">
                                     ${notice.count}
                             </td>
                         </tr>
                         </tbody>
                     </table>
+
+                    <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
+                        <div>${notice.content}</div>
+                    </div>
 
                     </c:forEach>
                 </c:if>
