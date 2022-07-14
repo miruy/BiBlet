@@ -87,9 +87,6 @@
 
         })
 
-        function submit_page(){
-
-        }
     </script>
 
 </section>

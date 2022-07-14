@@ -295,6 +295,24 @@ public class AdministratorController {
         return "admin/superviseNotice_detail";
     }
 
+    @GetMapping("/writeNotice")
+    private String  writeNotice(Model model, HttpSession session){
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if(admAuthInfo == null){
+            return "redirect:/admin/login";
+        }else if (admAuthInfo != null) {
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+        }
+
+        return "admin/writeNotice";
+    }
 
     @GetMapping("/supervise_admin")
     public String adminInfo(Model model, HttpSession session) {

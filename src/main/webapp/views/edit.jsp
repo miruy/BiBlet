@@ -96,8 +96,6 @@
                                         <input type="file" id="file" name="file" class="input input-bordered text-lg text-center w-80" />
                                     </label>
                                     <label for="file" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black">선택</label>
-
-
                                 </div>
 
                                 <button type="submit" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-44 ml-[10rem]">저장</button>

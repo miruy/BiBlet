@@ -47,7 +47,7 @@
 								<div>${searchNoticeCount}</div>
 							</div>
 
-							<button class="btn btn-sm btn-secondary text-white hover:text-white mr-2 mb-2">공지사항 작성</button>
+							<button class="btn btn-sm btn-secondary text-white hover:text-white mr-2 mb-2" onclick="location.href='/admin/writeNotice'">공지사항 작성</button>
 						</div>
 
 						<c:if test="${!empty adminPageSearchNoticeList}">
