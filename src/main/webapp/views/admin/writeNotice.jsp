@@ -54,7 +54,7 @@
 
         $(function(){
             CKEDITOR.replace('content', {
-            filebrowserUploadUrl: "${contextPath}/ckImageUpload",
+                filebrowserUploadUrl: "${pageContext.request.contextPath}/ckImageUpload",
             height : 500
             });
         });
