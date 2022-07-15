@@ -215,4 +215,8 @@ public class AdministratorServiceImpl implements AdministratorService{
     public void deleteNotice(Long noticeNo){
        administratorDAO.deleteNotice(noticeNo);
     }
+    @Override
+    public void updateFileToNull(Long noticeNo){
+        administratorDAO.updateFileToNull(noticeNo);
+    }
 }

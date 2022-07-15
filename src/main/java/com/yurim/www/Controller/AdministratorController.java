@@ -4,6 +4,8 @@ import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
+import com.yurim.www.exception.AlreadyExistIdException;
+import com.yurim.www.exception.RequiredException;
 import com.yurim.www.service.AdministratorService;
 import com.yurim.www.service.MypageService;
 import com.yurim.www.service.NoticeService;
@@ -11,9 +13,13 @@ import com.yurim.www.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -33,11 +39,11 @@ public class AdministratorController {
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
 
@@ -61,11 +67,11 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -85,23 +91,22 @@ public class AdministratorController {
         }
 
 
-
         return "admin/search_user";
 
     }
 
     @GetMapping("/supervise_appraisal")
-    public String starManagement(Model model,  HttpSession session) {
+    public String starManagement(Model model, HttpSession session) {
 
         //관리자 로그인 시
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -125,17 +130,17 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
             model.addAttribute("admInfo", admInfo);
 
-            if(requestAdmSearch.getReturnIsbn().equals("")){
+            if (requestAdmSearch.getReturnIsbn().equals("")) {
                 if (requestAdmSearch.getOption() == null) {
                     appraisal.setOption("선택");
                     appraisal.setKeyword(requestAdmSearch.getKeyword());
@@ -143,7 +148,7 @@ public class AdministratorController {
                     appraisal.setOption(requestAdmSearch.getOption());
                     appraisal.setKeyword(requestAdmSearch.getKeyword());
                 }
-            }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+            } else if (!requestAdmSearch.getReturnIsbn().equals("")) {
                 appraisal.setOption("kakao");
                 appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
             }
@@ -163,11 +168,11 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -190,17 +195,17 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
             model.addAttribute("admInfo", admInfo);
 
-            if(requestAdmSearch.getReturnIsbn().equals("")){
+            if (requestAdmSearch.getReturnIsbn().equals("")) {
                 if (requestAdmSearch.getOption() == null) {
                     appraisal.setOption("선택");
                     appraisal.setKeyword(requestAdmSearch.getKeyword());
@@ -208,7 +213,7 @@ public class AdministratorController {
                     appraisal.setOption(requestAdmSearch.getOption());
                     appraisal.setKeyword(requestAdmSearch.getKeyword());
                 }
-            }else if(!requestAdmSearch.getReturnIsbn().equals("")) {
+            } else if (!requestAdmSearch.getReturnIsbn().equals("")) {
                 appraisal.setOption("kakao");
                 appraisal.setKeyword(requestAdmSearch.getReturnIsbn());
             }
@@ -228,11 +233,11 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -248,18 +253,18 @@ public class AdministratorController {
     }
 
     @PostMapping("/supervise_notice")
-    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, HttpSession session, Model model){
+    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, HttpSession session, Model model) {
         NoticeDTO searchNotice = new NoticeDTO();
 
         //관리자 로그인 시
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -281,16 +286,16 @@ public class AdministratorController {
 
 
     @GetMapping("/notice_{noticeNo}")
-    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
+    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo) {
 
         //관리자 세션 전달
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
             return "redirect:/admin/login";
-        }else if (admAuthInfo != null) {
-            model.addAttribute("adminPageNoticeDetail",  noticeService.selectNoticeDetail(noticeNo));
+        } else if (admAuthInfo != null) {
+            model.addAttribute("adminPageNoticeDetail", noticeService.selectNoticeDetail(noticeNo));
         }
 
         return "admin/superviseNotice_detail";
@@ -304,11 +309,11 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -332,11 +337,11 @@ public class AdministratorController {
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
 
             return "redirect:/admin/login";
 
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
 
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
@@ -379,7 +384,7 @@ public class AdministratorController {
     @PostMapping("/deleteUser")
     public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session) {
 
-      administratorService.deleteUser(requestLogin.getUserNo());
+        administratorService.deleteUser(requestLogin.getUserNo());
 
         // 회원 세션 정보 삭제
 //        session.removeAttribute("authInfo");
@@ -408,6 +413,136 @@ public class AdministratorController {
 
         // 회원 세션 정보 삭제
 //        session.removeAttribute("authInfo");
+        return 1;
+    }
+
+    @GetMapping("/writeNotice")
+    private String writeNoticeForm(Model model, HttpSession session) {
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if (admAuthInfo == null) {
+            return "redirect:/admin/login";
+        } else if (admAuthInfo != null) {
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+        }
+
+        return "admin/writeNotice";
+    }
+
+    @PostMapping("/writeNotice")
+    private String writeNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors) throws IOException {
+
+        if (errors.hasErrors()) {
+            return "admin/writeNotice";
+        }
+
+        try {
+            NoticeDTO insertNotice = new NoticeDTO();
+
+            if (!requestWriteNotice.getNoticeFile().isEmpty()) {
+
+                insertNotice.setTitle(requestWriteNotice.getTitle());
+                insertNotice.setContent(requestWriteNotice.getContent());
+                insertNotice.setWriter("관리자");
+
+                MultipartFile multipartFile = requestWriteNotice.getNoticeFile();
+
+                noticeService.insertNoticeWithFile(insertNotice, multipartFile);
+
+            } else if (requestWriteNotice.getNoticeFile().isEmpty()) {
+
+                insertNotice.setTitle(requestWriteNotice.getTitle());
+                insertNotice.setContent(requestWriteNotice.getContent());
+                insertNotice.setWriter("관리자");
+
+                noticeService.insertNotice(insertNotice);
+            }
+
+        } catch (RequiredException e) {
+            errors.rejectValue("title", "required");
+            errors.rejectValue("content", "required");
+            return "admin/writeNotice";
+        }
+
+        return "redirect:/admin/supervise_notice";
+    }
+
+
+    @GetMapping("/modifyNotice_{noticeNo}")
+    public String modifyNoticeForm(@PathVariable Long noticeNo, Model model, HttpSession session) {
+
+        //관리자 세션 전달
+        AdministratorDTO admAuthInfo = null;
+        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
+
+        if (admAuthInfo == null) {
+
+            return "redirect:/admin/login";
+
+        } else if (admAuthInfo != null) {
+
+            Long admNo = admAuthInfo.getAdmNo();
+            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
+            model.addAttribute("admInfo", admInfo);
+
+            model.addAttribute("modifyNoticeDetail", noticeService.selectNoticeDetail(noticeNo));
+        }
+
+        return "admin/modifyNotice";
+    }
+
+    @PostMapping("/modifyNotice")
+    public String modifyNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors, HttpSession session, Model model) throws IOException {
+
+        System.out.println(requestWriteNotice.getNoticeNo());
+        System.out.println(requestWriteNotice.getTitle());
+
+        if (errors.hasErrors()) {
+            return "admin/modifyNotice";
+        }
+
+        try {
+            NoticeDTO updateNotice = new NoticeDTO();
+
+            if (!requestWriteNotice.getNoticeFile().isEmpty()) {
+
+                updateNotice.setTitle(requestWriteNotice.getTitle());
+                updateNotice.setContent(requestWriteNotice.getContent());
+                updateNotice.setNoticeNo(requestWriteNotice.getNoticeNo());
+
+                MultipartFile multipartFile = requestWriteNotice.getNoticeFile();
+
+                noticeService.updateNoticeWithFile(updateNotice, multipartFile);
+
+            } else if (requestWriteNotice.getNoticeFile().isEmpty()) {
+
+                updateNotice.setTitle(requestWriteNotice.getTitle());
+                updateNotice.setContent(requestWriteNotice.getContent());
+                updateNotice.setNoticeNo(requestWriteNotice.getNoticeNo());
+
+                noticeService.updateNotice(updateNotice);
+            }
+
+        } catch (RequiredException e) {
+            errors.rejectValue("title", "required");
+            errors.rejectValue("content", "required");
+            errors.rejectValue("contentWithFile", "required");
+            return "admin/modifyNotice";
+        }
+
+        return "redirect:/admin/supervise_notice";
+    }
+
+    @ResponseBody
+    @PostMapping("/updateFileToNull")
+    public int updateFileToNull(@RequestBody RequestWriteNotice requestWriteNotice){
+        administratorService.updateFileToNull(requestWriteNotice.getNoticeNo());
         return 1;
     }
 

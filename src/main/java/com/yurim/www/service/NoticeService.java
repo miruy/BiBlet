@@ -18,4 +18,6 @@ public interface NoticeService {
     void insertNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException;
     void insertNotice(NoticeDTO notice);
     void fileDownload(String storedFile, HttpServletResponse response);
+    void updateNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException;
+    void updateNotice(NoticeDTO notice);
 }

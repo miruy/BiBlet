@@ -47,4 +47,5 @@ public interface AdministratorService {
     List<NoticeDTO> selectAllNotice();
     Long totalNoticeCount();
     void deleteNotice(Long noticeNo);
+    void updateFileToNull(Long noticeNo);
 }

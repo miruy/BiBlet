@@ -169,6 +169,10 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     public void deleteNotice(Long noticeNo){
         sqlSessionTemplate.delete("deleteNotice", noticeNo);
     }
+    @Override
+    public void updateFileToNull(Long noticeNo){
+        sqlSessionTemplate.update("updateFileToNull", noticeNo);
+    }
 }
 
 

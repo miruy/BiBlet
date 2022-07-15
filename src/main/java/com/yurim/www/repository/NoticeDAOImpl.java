@@ -54,4 +54,13 @@ public class NoticeDAOImpl implements NoticeDAO {
     public void insertNotice(NoticeDTO notice){
         sqlSessionTemplate.insert("insertNotice", notice);
     }
+    @Override
+    public void updateNoticeWithFile(NoticeDTO notice){
+        sqlSessionTemplate.update("updateNoticeWithFile", notice);
+    }
+
+    @Override
+    public void updateNotice(NoticeDTO notice){
+        sqlSessionTemplate.update("updateNotice", notice);
+    }
 }

@@ -405,4 +405,8 @@
     <delete id="deleteNotice" parameterType="Long">
         DELETE notice FROM notice WHERE notice_no = #{noticeNo}
     </delete>
+
+    <update id="updateFileToNull" parameterType="Long">
+        UPDATE notice SET origin_file = NULL, stored_file = NULL WHERE notice_no = #{noticeNo}
+    </update>
 </mapper>

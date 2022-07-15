@@ -54,4 +54,12 @@
     <insert id="insertNotice" parameterType="NoticeDTO">
         insert into notice (WRITER, WRITE_DATE, TITLE, CONTENT) value (#{writer}, now(), #{title}, #{content})
     </insert>
+
+    <update id="updateNoticeWithFile" parameterType="NoticeDTO">
+        UPDATE notice SET title = #{title}, content = #{content}, origin_file = #{originFile}, stored_file = #{storedFile} WHERE notice_no = #{noticeNo}
+    </update>
+
+    <update id="updateNotice" parameterType="NoticeDTO">
+        UPDATE notice SET title = #{title}, content = #{content} WHERE notice_no = #{noticeNo}
+    </update>
 </mapper>

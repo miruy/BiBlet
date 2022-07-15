@@ -95,28 +95,19 @@
                                                 ${allNotice.count}
                                         </td>
                                         <td>
-                                            <label for="editNotice${allNotice.noticeNo}"
-                                                   class="modal-button cursor-pointer">
-                                                <svg class="w-8 h-8" viewBox="0 0 256 256"
+                                            <a id="editNotice${allNotice.noticeNo}" href="/admin/modifyNotice_${allNotice.noticeNo}">
+                                                <svg class="w-10 h-10" height="21" viewBox="0 0 21 21" width="21"
                                                      xmlns="http://www.w3.org/2000/svg">
-                                                    <rect fill="none" height="256" width="256"/>
-                                                    <circle cx="60" cy="76" fill="none" r="28" stroke="#000"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="12"/>
-                                                    <circle cx="60" cy="180" fill="none" r="28" stroke="#000"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="12"/>
-                                                    <line fill="none" stroke="#000" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="12" x1="136" x2="83.1"
-                                                          y1="128" y2="164.2"/>
-                                                    <line fill="none" stroke="#000" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="12" x1="232" x2="164.3"
-                                                          y1="62.3" y2="108.6"/>
-                                                    <line fill="none" stroke="#000" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="12" x1="232" x2="83.1"
-                                                          y1="193.7" y2="91.8"/>
+                                                    <g fill="none" fill-rule="evenodd" stroke="currentColor"
+                                                       stroke-linecap="round" stroke-linejoin="round"
+                                                       transform="translate(4 3)">
+                                                        <path d="m3.5 1.5c-.42139382 0-1.08806048 0-2 0-.55228475 0-1 .44771525-1 1v11c0 .5522848.44771525 1 1 1h10c.5522847 0 1-.4477152 1-1v-11c0-.55228475-.4477153-1-1-1-.8888889 0-1.55555556 0-2 0"/>
+                                                        <path d="m4.5.5h4c.55228475 0 1 .44771525 1 1s-.44771525 1-1 1h-4c-.55228475 0-1-.44771525-1-1s.44771525-1 1-1z"/>
+                                                        <path d="m6.5 5.5v6.056"/>
+                                                        <path d="m6.5 5.5v6" transform="matrix(0 1 -1 0 15 2)"/>
+                                                    </g>
                                                 </svg>
-                                            </label>
+                                            </a>
                                         </td>
                                         <td>
                                             <label for="deleteNotice${allNotice.noticeNo}"
@@ -211,7 +202,6 @@
             $("#noticeManagement").addClass("active");
             $("#passCheckForDeleteNotice").hide();
         });
-
 
 
         $("#admin_tab_group > button").click((event) => {

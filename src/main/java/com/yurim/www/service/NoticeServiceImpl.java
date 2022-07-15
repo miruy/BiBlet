@@ -61,7 +61,7 @@ public class NoticeServiceImpl implements NoticeService{
         String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
 
         //첨부파일이 저장될 경로(서버 측)
-        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/";
+        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
         //파일이 저장될 경로 + 최종 파일명
         String uploadFile = savePath + storedimagename;
@@ -81,30 +81,53 @@ public class NoticeServiceImpl implements NoticeService{
     public void insertNotice(NoticeDTO notice){
         noticeDAO.insertNotice(notice);
     }
+
+
+    @Override
+    public void updateNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException {
+
+        //공지사항 청부파일 이름 추출
+        String orgimagename = multipartFile.getOriginalFilename();
+
+        //공지사항 청부파일 확장자 추출
+        String orgimagenameExtension = orgimagename.substring(orgimagename.lastIndexOf("."));
+
+        //프로젝트 내 폴더에 첨부파일을 저장할 때 uuid값에 orgimagenameExtension(확장자)를 붙혀 저장 (= sjf743ifhrht32 + .png)
+        String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
+
+        //첨부파일이 저장될 경로(서버 측)
+        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
+
+        //파일이 저장될 경로 + 최종 파일명
+        String uploadFile = savePath + storedimagename;
+
+        //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
+        File file = new File(uploadFile);
+
+        multipartFile.transferTo(file);
+
+        notice.setOriginFile(orgimagename);
+        notice.setStoredFile(storedimagename);
+
+        noticeDAO.updateNoticeWithFile(notice);
+    }
+
+    @Override
+    public void updateNotice(NoticeDTO notice){
+        noticeDAO.updateNoticeWithFile(notice);
+    }
+
+
+
     @Override
     public void fileDownload(String storedFile, HttpServletResponse response){
-
-//        // String 변수에 다운로드 파일 경로 담기
-//        String fileName = storedFile;
-//        String downLoadFile = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/" + fileName;
-//
-//        // 파일을 읽어서 스트림에 담기
-//        File file = new File(downLoadFile);
-//        FileInputStream in = new FileInputStream(downLoadFile);
-//
-////        fileName = new String(fileName.getBytes("utf-8"), "8859_1");
-//
-//        // 8비트로 된 데이터(지정되지 않은 파일 형식)
-//        response.setContentType("application/octet-stream");
-//        // 파일 링크를 클릭했을때 다운로드 화면이 출력되게 처리함
-//        response.setHeader("Content-Disposition", "attachment; filename=" + fileName );
 
         try {
             // 다운로드 받을 파일명을 가져온다.
             String fileName = storedFile;
 
             // 다운로드 경로 (내려받을 파일경로를 설정한다.)
-            String filePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/";
+            String filePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
             // 경로와 파일명으로 파일 객체를 생성한다.
             File dFile  = new File(filePath, fileName);
@@ -180,6 +203,6 @@ public class NoticeServiceImpl implements NoticeService{
         catch (Exception e) {
             logger.info(e.getMessage());
         }
-
     }
+
 }

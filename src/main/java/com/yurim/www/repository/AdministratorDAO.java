@@ -49,4 +49,5 @@ public interface AdministratorDAO {
     List<NoticeDTO> selectAllNotice();
     Long totalNoticeCount();
     void deleteNotice(Long noticeNo);
+    public void updateFileToNull(Long noticeNo);
 }

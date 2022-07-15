@@ -102,71 +102,8 @@ public class NoticeController {
 
     @RequestMapping("/file_download")
     public void fileDownload(@RequestParam String storedFile, HttpServletResponse response){
-        System.out.println(storedFile);
-
         noticeService.fileDownload(storedFile, response);
     }
-
-
-    @GetMapping("/admin/writeNotice")
-    private String writeNoticeForm(Model model, HttpSession session) {
-
-        //관리자 세션 전달
-        AdministratorDTO admAuthInfo = null;
-        admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
-
-        if (admAuthInfo == null) {
-            return "redirect:/admin/login";
-        } else if (admAuthInfo != null) {
-            Long admNo = admAuthInfo.getAdmNo();
-            AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
-            model.addAttribute("admInfo", admInfo);
-
-        }
-
-        return "admin/writeNotice";
-    }
-
-    @PostMapping("/admin/writeNotice")
-    private String writeNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors) throws IOException {
-
-        if (errors.hasErrors()) {
-            return "admin/writeNotice";
-        }
-
-        try {
-            NoticeDTO insertNotice = new NoticeDTO();
-
-            if (!requestWriteNotice.getNoticeFile().isEmpty()) {
-
-                insertNotice.setTitle(requestWriteNotice.getTitle());
-                insertNotice.setContent(requestWriteNotice.getContent());
-                insertNotice.setWriter("관리자");
-
-                MultipartFile multipartFile = requestWriteNotice.getNoticeFile();
-
-                noticeService.insertNoticeWithFile(insertNotice, multipartFile);
-
-            } else if (requestWriteNotice.getNoticeFile().isEmpty()) {
-
-                insertNotice.setTitle(requestWriteNotice.getTitle());
-                insertNotice.setContent(requestWriteNotice.getContent());
-                insertNotice.setWriter("관리자");
-
-                noticeService.insertNotice(insertNotice);
-            }
-
-        } catch (RequiredException e) {
-            errors.rejectValue("title", "required");
-            return "admin/writeNotice";
-        } catch (AlreadyExistIdException e) {
-            errors.rejectValue("content", "required");
-            return "admin/writeNotice";
-        }
-
-        return "redirect:/admin/supervise_notice";
-    }
-
 
     @RequestMapping(value = "/ckImageUpload", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,

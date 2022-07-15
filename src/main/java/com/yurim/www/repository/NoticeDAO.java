@@ -15,4 +15,6 @@ public interface NoticeDAO {
     Long totalNoticeCountBySearchValue(NoticeDTO notice);
     void insertNoticeWithFile(NoticeDTO notice);
     void insertNotice(NoticeDTO notice);
+    void updateNoticeWithFile(NoticeDTO notice);
+    void updateNotice(NoticeDTO notice);
 }

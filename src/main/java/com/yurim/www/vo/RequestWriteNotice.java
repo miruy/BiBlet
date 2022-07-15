@@ -16,4 +16,5 @@ public class RequestWriteNotice {
     private String content;
     private MultipartFile noticeFile;
 
+    private Long noticeNo;
 }

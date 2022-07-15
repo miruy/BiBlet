@@ -63,7 +63,10 @@
                     <c:if test="${!empty adminPageNotice.originFile}">
                         <div class="flex flex-row justify-end mt-4 space-x-2">
                             <div class="mt-1">${adminPageNotice.originFile}</div>
-                            <button class="btn btn-sm btn-secondary"><a href="fileEx01_download.jsp?fileName=404.PNG" class="text-white hover:text-white capitalize">download</a></button>
+                            <form method="get" action="/file_download">
+                                <input type="hidden" id="storedFile" name="storedFile" value="${adminPageNotice.storedFile}">
+                                <button type="submit" class="btn btn-sm btn-secondary text-white hover:text-white capitalize">download</button>
+                            </form>
                         </div>
 
                         <div class="rounded-lg bg-white p-2 w-full h-[50rem] overflow-auto">
