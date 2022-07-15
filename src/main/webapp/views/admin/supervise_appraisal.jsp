@@ -19,9 +19,11 @@
             <div id="starManagement">
 
                 <div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '이름'으로 검색됩니다.</div>
-                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post" action="/admin/supervise_appraisal">
+                <form class="flex flex-row justify-center" name="requestAdmSearch" method="post"
+                      action="/admin/supervise_appraisal">
 
-                    <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2" onChange="searchStatus()">
+                    <select id="option" name="option" class="select select-bordered h-[3.6rem] mr-2"
+                            onChange="searchStatus()">
                         <option id="default" name="default" value="default" disabled selected>선택</option>
                         <option id="userNo" name="userNo" value="userNo">회원 번호</option>
                         <option id="name" name="name" value="name">이름</option>
@@ -81,7 +83,7 @@
                                         <td>
                                             <c:if test="${star.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                    <svg class="absolute w-12 h-12 ml-2 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd"
@@ -94,11 +96,11 @@
                                                 <c:set var="idSub" value="${fn:substring(star.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
                                                     <img src="<c:url value='/images/${star.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                         class="mask mask-circle w-10 h-10 ml-2"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
                                                     <img src="<c:url value='http://${star.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                         class="mask mask-circle w-10 h-10 ml-2"/>
                                                 </c:if>
                                             </c:if>
                                         </td>
@@ -120,9 +122,30 @@
                                         <td id="authors${star.appraisalNo}"></td>
                                         <td id="publisher${star.appraisalNo}"></td>
                                         <td>
-                                            <label for="forcedDelete${star.appraisalNo}" class="modal-button cursor-pointer">
-                                                <svg class="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#101820;}</style></defs><title/>
-                                                    <g data-name="Layer 17" id="Layer_17"><path class="cls-1" d="M24,31H8a3,3,0,0,1-3-3V9A1,1,0,0,1,7,9V28a1,1,0,0,0,1,1H24a1,1,0,0,0,1-1V9a1,1,0,0,1,2,0V28A3,3,0,0,1,24,31Z"/><path class="cls-1" d="M28,7H4A1,1,0,0,1,4,5H28a1,1,0,0,1,0,2Z"/><path class="cls-1" d="M20,7a1,1,0,0,1-1-1V3H13V6a1,1,0,0,1-2,0V2a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V6A1,1,0,0,1,20,7Z"/><path class="cls-1" d="M16,26a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0V25A1,1,0,0,1,16,26Z"/><path class="cls-1" d="M21,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,21,24Z"/><path class="cls-1" d="M11,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,11,24Z"/></g>
+                                            <label for="forcedDelete${star.appraisalNo}"
+                                                   class="modal-button cursor-pointer">
+                                                <svg class="w-8 h-8 ml-3" viewBox="0 0 32 32"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <defs>
+                                                        <style>.cls-1 {
+                                                            fill: #101820;
+                                                        }</style>
+                                                    </defs>
+                                                    <title/>
+                                                    <g data-name="Layer 17" id="Layer_17">
+                                                        <path class="cls-1"
+                                                              d="M24,31H8a3,3,0,0,1-3-3V9A1,1,0,0,1,7,9V28a1,1,0,0,0,1,1H24a1,1,0,0,0,1-1V9a1,1,0,0,1,2,0V28A3,3,0,0,1,24,31Z"/>
+                                                        <path class="cls-1"
+                                                              d="M28,7H4A1,1,0,0,1,4,5H28a1,1,0,0,1,0,2Z"/>
+                                                        <path class="cls-1"
+                                                              d="M20,7a1,1,0,0,1-1-1V3H13V6a1,1,0,0,1-2,0V2a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V6A1,1,0,0,1,20,7Z"/>
+                                                        <path class="cls-1"
+                                                              d="M16,26a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0V25A1,1,0,0,1,16,26Z"/>
+                                                        <path class="cls-1"
+                                                              d="M21,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,21,24Z"/>
+                                                        <path class="cls-1"
+                                                              d="M11,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,11,24Z"/>
+                                                    </g>
                                                 </svg>
                                             </label>
                                         </td>
@@ -142,7 +165,8 @@
                                                 <div id="forcedDeleteConfirm" class="flex flex-row justify-center">
                                                     <div class="modal-action">
                                                         <button type="button" id="yes" onClick="forcedDeleteBtn()"
-                                                                class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">yes
+                                                                class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">
+                                                            yes
                                                         </button>
                                                     </div>
 
@@ -151,9 +175,16 @@
                                                 </div>
 
                                                 <c:if test="${!empty admInfo}">
-                                                    <div id="forcedDelete" class="form-control flex flex-row mx-auto space-x-2 my-4">
-                                                        <input type="password" id="passCheck" name="passCheck" placeholder="관리자 비밀번호" class="input input-bordered text-lg text-center w-60" />
-                                                        <button type="button" class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black" onClick="adminPassCheckBtn(${admInfo.admPass}, ${star.appraisalNo})">비밀번호 확인</button>
+                                                    <div id="forcedDelete"
+                                                         class="form-control flex flex-row mx-auto space-x-2 my-4">
+                                                        <input type="password" id="passCheck" name="passCheck"
+                                                               placeholder="관리자 비밀번호"
+                                                               class="input input-bordered text-lg text-center w-60"/>
+                                                        <button type="button"
+                                                                class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black"
+                                                                onClick="adminPassCheckBtn(${admInfo.admPass}, ${star.appraisalNo})">
+                                                            비밀번호 확인
+                                                        </button>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -174,7 +205,6 @@
         </div>
 
 
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -186,7 +216,7 @@
             $("#starManagement").addClass("active")
         });
 
-        $(document).ready(() =>{
+        $(document).ready(() => {
             $("#forcedDelete").hide();
         });
 
@@ -227,7 +257,7 @@
             }
         })
 
-        function starManagement(isbn, appraisalNo){
+        function starManagement(isbn, appraisalNo) {
             var pageNum = 1;
             $.ajax({	//카카오 검색요청 / [요청]
                 method: "GET",
@@ -243,9 +273,9 @@
 
                     let title = msg.documents[0].title;
 
-                    if(title.length > 18){
+                    if (title.length > 18) {
                         $("#title" + appraisalNo).append('<textarea rows="1" class="resize-x" disabled>' + msg.documents[0].title + '</textarea>');
-                    }else {
+                    } else {
                         $("#title" + appraisalNo).append(msg.documents[0].title);
                     }
                     $("#authors" + appraisalNo).append(msg.documents[0].authors);
@@ -253,16 +283,16 @@
                 });
         }
 
-        let searchStatus = function(){
+        let searchStatus = function () {
 
             $("#selectMsg").hide();
 
             let select = document.getElementById("option");
             let selectValue = select.options[document.getElementById("option").selectedIndex].value;
 
-            if(selectValue == "title"){
+            if (selectValue == "title") {
 
-                $("#keyword").on("propertychange change keyup paste input", function(){
+                $("#keyword").on("propertychange change keyup paste input", function () {
                     let keyword = document.getElementById("keyword").value;
                     console.log(keyword);
 
@@ -290,13 +320,13 @@
         }
 
 
-        function forcedDeleteBtn(){
+        function forcedDeleteBtn() {
 
             $("#forcedDeleteConfirm").hide();
             $("#forcedDelete").show();
         }
 
-        function adminPassCheckBtn(admPass, appraisalNo){
+        function adminPassCheckBtn(admPass, appraisalNo) {
 
             let passCheck = $("#passCheck").val();
 
@@ -309,20 +339,20 @@
                 }),
                 dataType: "json",
                 contentType: 'application/json',
-                success: function(data) {
-                    if(data == 1){
+                success: function (data) {
+                    if (data == 1) {
                         alert("비밀번호가 확인되었습니다.");
 
                         forcedDeleteStar(appraisalNo);
 
-                    }else if(data == 0){
+                    } else if (data == 0) {
                         alert("비밀번호가 일치하지 않습니다.");
                     }
                 }
             });
         }
 
-        function forcedDeleteStar(appraisalNo){
+        function forcedDeleteStar(appraisalNo) {
 
             $.ajax({
                 url: '<c:url value="/admin/deleteAppraisal"/>',
@@ -332,8 +362,8 @@
                 }),
                 dataType: "json",
                 contentType: 'application/json',
-                success: function(data) {
-                    if(data == 1){
+                success: function (data) {
+                    if (data == 1) {
                         console.log("평가 강제삭제 성공");
 
                         location.reload();

@@ -2757,6 +2757,26 @@ body[dir="rtl"] .checkbox:checked,
   margin-bottom: 0px;
 }
 
+.ml-12 {
+  margin-left: 3rem;
+}
+
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
+.ml-9 {
+  margin-left: 2.25rem;
+}
+
 .box-content {
   box-sizing: content-box;
 }

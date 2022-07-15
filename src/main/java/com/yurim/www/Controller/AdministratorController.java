@@ -500,9 +500,6 @@ public class AdministratorController {
     @PostMapping("/modifyNotice")
     public String modifyNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors, HttpSession session, Model model) throws IOException {
 
-        System.out.println(requestWriteNotice.getNoticeNo());
-        System.out.println(requestWriteNotice.getTitle());
-
         if (errors.hasErrors()) {
             return "admin/modifyNotice";
         }

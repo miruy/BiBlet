@@ -79,7 +79,7 @@
                                         <td>
                                             <c:if test="${comment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                    <svg class="absolute w-12 h-12 ml-9 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd"
@@ -92,11 +92,11 @@
                                                 <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
                                                     <img src="<c:url value='/images/${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                         class="mask mask-circle w-10 h-10 ml-9"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
                                                     <img src="<c:url value='http://${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                         class="mask mask-circle w-10 h-10 ml-9"/>
                                                 </c:if>
                                             </c:if>
                                         </td>
