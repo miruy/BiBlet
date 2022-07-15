@@ -60,10 +60,23 @@
                         </tbody>
                     </table>
 
+                    <c:if test="${!empty adminPageNotice.originFile}">
+                        <div class="flex flex-row justify-end mt-4 space-x-2">
+                            <div class="mt-1">${adminPageNotice.originFile}</div>
+                            <button class="btn btn-sm btn-secondary"><a href="fileEx01_download.jsp?fileName=404.PNG" class="text-white hover:text-white capitalize">download</a></button>
+                        </div>
 
-                    <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
-                      <div>${adminPageNotice.content}</div>
-                    </div>
+                        <div class="rounded-lg bg-white p-2 w-full h-[50rem] overflow-auto">
+                            <div>${adminPageNotice.content}</div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${empty adminPageNotice.originFile}">
+                        <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
+                            <div>${adminPageNotice.content}</div>
+                        </div>
+                    </c:if>
+
 
                     </c:forEach>
                 </c:if>

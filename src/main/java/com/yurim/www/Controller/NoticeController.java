@@ -44,7 +44,7 @@ public class NoticeController {
     public String notice(Model model) {
 
         // 전체 공지사항
-        Long defaultPage = (long)1;
+        Long defaultPage = (long) 1;
         model.addAttribute("noticeList", noticeService.selectNoticeByPageNo(defaultPage));
 
 
@@ -58,12 +58,13 @@ public class NoticeController {
     public String pageChange(@ModelAttribute("requestPageChange") RequestPageChange requestPageChange, Model model) {
 
         model.addAttribute("noticeList", noticeService.selectNoticeByPageNo(requestPageChange.getPage()));
+        model.addAttribute("noticeCount", noticeService.selectAllNoticeCount());
 
         return "notice";
     }
 
     @PostMapping("/notice_search")
-    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, Model model){
+    private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, Model model) {
         NoticeDTO searchNotice = new NoticeDTO();
 
         if (requestNoticeSearch.getOption() == null) {
@@ -82,34 +83,41 @@ public class NoticeController {
 
 
     @GetMapping("/notice_{noticeNo}")
-    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
+    public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo) {
 
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         //회원 로그인 시
-        if(authInfo != null){
+        if (authInfo != null) {
 
-        model.addAttribute("noticeDetail",  noticeService.selectNoticeDetail(noticeNo));
+            model.addAttribute("noticeDetail", noticeService.selectNoticeDetail(noticeNo));
 
-        } else if(authInfo == null) {
+        } else if (authInfo == null) {
             return "redirect:/login";
         }
 
         return "notice_detail";
     }
 
+    @RequestMapping("/file_download")
+    public void fileDownload(@RequestParam String storedFile, HttpServletResponse response){
+        System.out.println(storedFile);
+
+        noticeService.fileDownload(storedFile, response);
+    }
+
 
     @GetMapping("/admin/writeNotice")
-    private String writeNoticeForm(Model model, HttpSession session){
+    private String writeNoticeForm(Model model, HttpSession session) {
 
         //관리자 세션 전달
         AdministratorDTO admAuthInfo = null;
         admAuthInfo = (AdministratorDTO) session.getAttribute("admAuthInfo");
 
-        if(admAuthInfo == null){
+        if (admAuthInfo == null) {
             return "redirect:/admin/login";
-        }else if (admAuthInfo != null) {
+        } else if (admAuthInfo != null) {
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
             model.addAttribute("admInfo", admInfo);
@@ -122,14 +130,14 @@ public class NoticeController {
     @PostMapping("/admin/writeNotice")
     private String writeNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors) throws IOException {
 
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return "admin/writeNotice";
         }
 
-        try{
+        try {
             NoticeDTO insertNotice = new NoticeDTO();
 
-            if(!requestWriteNotice.getNoticeFile().isEmpty()){
+            if (!requestWriteNotice.getNoticeFile().isEmpty()) {
 
                 insertNotice.setTitle(requestWriteNotice.getTitle());
                 insertNotice.setContent(requestWriteNotice.getContent());
@@ -139,7 +147,7 @@ public class NoticeController {
 
                 noticeService.insertNoticeWithFile(insertNotice, multipartFile);
 
-            }else if(requestWriteNotice.getNoticeFile().isEmpty()){
+            } else if (requestWriteNotice.getNoticeFile().isEmpty()) {
 
                 insertNotice.setTitle(requestWriteNotice.getTitle());
                 insertNotice.setContent(requestWriteNotice.getContent());
@@ -148,10 +156,10 @@ public class NoticeController {
                 noticeService.insertNotice(insertNotice);
             }
 
-        }catch (RequiredException e){
+        } catch (RequiredException e) {
             errors.rejectValue("title", "required");
             return "admin/writeNotice";
-        }catch(AlreadyExistIdException e) {
+        } catch (AlreadyExistIdException e) {
             errors.rejectValue("content", "required");
             return "admin/writeNotice";
         }
@@ -160,10 +168,10 @@ public class NoticeController {
     }
 
 
-    @RequestMapping(value="/ckImageUpload", method = RequestMethod.POST)
+    @RequestMapping(value = "/ckImageUpload", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
                             HttpServletResponse response, MultipartHttpServletRequest multiFile
-            , @RequestParam MultipartFile upload) throws Exception{
+            , @RequestParam MultipartFile upload) throws Exception {
         // 랜덤 문자 생성
         UUID uid = UUID.randomUUID();
 
@@ -174,7 +182,7 @@ public class NoticeController {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-        try{
+        try {
 
             //파일 이름 가져오기
             String fileName = upload.getOriginalFilename();
@@ -186,10 +194,10 @@ public class NoticeController {
             File folder = new File(path);
 
             //해당 디렉토리 확인
-            if(!folder.exists()){
-                try{
+            if (!folder.exists()) {
+                try {
                     folder.mkdirs(); // 폴더 생성
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.getStackTrace();
                 }
             }
@@ -203,26 +211,32 @@ public class NoticeController {
             String fileUrl = "/ckImgSubmit?uid=" + uid + "&fileName=" + fileName;  // 작성화면
 
             // 업로드시 메시지 출력
-            printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+            printWriter.println("{\"filename\" : \"" + fileName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}");
             printWriter.flush();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(out != null) { out.close(); }
-                if(printWriter != null) { printWriter.close(); }
-            } catch(IOException e) { e.printStackTrace(); }
+                if (out != null) {
+                    out.close();
+                }
+                if (printWriter != null) {
+                    printWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return;
     }
 
-    @RequestMapping(value="/ckImgSubmit")
-    public void ckSubmit(@RequestParam(value="uid") String uid
-            , @RequestParam(value="fileName") String fileName
+    @RequestMapping(value = "/ckImgSubmit")
+    public void ckSubmit(@RequestParam(value = "uid") String uid
+            , @RequestParam(value = "fileName") String fileName
             , HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
 
         //서버에 저장된 이미지 경로
         String path = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/";
@@ -232,7 +246,7 @@ public class NoticeController {
         File imgFile = new File(sDirPath);
 
         //사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
-        if(imgFile.isFile()){
+        if (imgFile.isFile()) {
             byte[] buf = new byte[1024];
             int readByte = 0;
             int length = 0;
@@ -242,18 +256,18 @@ public class NoticeController {
             ByteArrayOutputStream outputStream = null;
             ServletOutputStream out = null;
 
-                fileInputStream = new FileInputStream(imgFile);
-                outputStream = new ByteArrayOutputStream();
-                out = response.getOutputStream();
+            fileInputStream = new FileInputStream(imgFile);
+            outputStream = new ByteArrayOutputStream();
+            out = response.getOutputStream();
 
-                while((readByte = fileInputStream.read(buf)) != -1){
-                    outputStream.write(buf, 0, readByte);
-                }
+            while ((readByte = fileInputStream.read(buf)) != -1) {
+                outputStream.write(buf, 0, readByte);
+            }
 
-                imgBuf = outputStream.toByteArray();
-                length = imgBuf.length;
-                out.write(imgBuf, 0, length);
-                out.flush();
+            imgBuf = outputStream.toByteArray();
+            length = imgBuf.length;
+            out.write(imgBuf, 0, length);
+            out.flush();
 
 
         }

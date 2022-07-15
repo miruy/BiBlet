@@ -279,6 +279,7 @@ public class AdministratorController {
         return "admin/search_notice";
     }
 
+
     @GetMapping("/notice_{noticeNo}")
     public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo){
 
