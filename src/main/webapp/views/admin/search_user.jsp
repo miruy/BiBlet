@@ -80,8 +80,8 @@
                                         </th>
                                         <td>
                                             <c:if test="${searchUser.storedPic eq null}">
-                                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 ml-2 text-gray-400 pr-2"
+                                                <div class="relative w-10 h-10 ml-2 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd"

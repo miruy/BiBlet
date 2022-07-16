@@ -30,57 +30,61 @@
                 </div>
                 </div>
 
-                <div class="flex flex-col mb-20">
-                    <span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span>
+                <c:if test="${!empty wantReadList}">
+                    <div class="flex flex-col mb-20">
+                        <span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span>
 
-                    <div class="w-full relative flex items-center justify-center">
-                        <button id="prev3" aria-label="slide backward"
-                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                            ❮
-                        </button>
+                        <div class="w-full relative flex items-center justify-center">
+                            <button id="prev3" aria-label="slide backward"
+                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                ❮
+                            </button>
 
-                        <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                            <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
+                            <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                                <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
+                            </div>
+
+                            <button id="next3" aria-label="slide forward"
+                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                ❯
+                            </button>
                         </div>
 
-                        <button id="next3" aria-label="slide forward"
-                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                            ❯
-                        </button>
+                        <template id="template__wantReadDetail__link">
+                            <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
+                                <img class='h-72 w-48 rounded-lg' src='{wantReadBook_thumbnail}'/>
+                            </a>
+                        </template>
                     </div>
+                </c:if>
 
-                    <template id="template__wantReadDetail__link">
-                        <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                            <img class='h-72 w-48 rounded-lg' src='{wantReadBook_thumbnail}'/>
-                        </a>
-                    </template>
-                </div>
+                <c:if test="${!empty readingList}">
+                    <div class="flex flex-col mb-20">
+                        <span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span>
 
-                <div class="flex flex-col mb-20">
-                    <span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span>
+                        <div class="w-full relative flex items-center justify-center">
+                            <button id="prev4" aria-label="slide backward"
+                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                ❮
+                            </button>
 
-                    <div class="w-full relative flex items-center justify-center">
-                        <button id="prev4" aria-label="slide backward"
-                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                            ❮
-                        </button>
+                            <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                                <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
+                            </div>
 
-                        <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                            <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
+                            <button id="next4" aria-label="slide forward"
+                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                ❯
+                            </button>
                         </div>
 
-                        <button id="next4" aria-label="slide forward"
-                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                            ❯
-                        </button>
+                        <template id="template__readingDetail__link">
+                            <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
+                                <img class='h-72 w-48 rounded-lg' src='{readingBook_thumbnail}'/>
+                            </a>
+                        </template>
                     </div>
-
-                    <template id="template__readingDetail__link">
-                        <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                            <img class='h-72 w-48 rounded-lg' src='{readingBook_thumbnail}'/>
-                        </a>
-                    </template>
-                </div>
+                </c:if>
             </c:if>
 
         </c:if>
@@ -161,8 +165,8 @@
                         <c:forEach var="latestComment" items="${latestComments}">
                             <tr>
                                 <td>
-                                    <div class="flex">
-                                        <div class="text-center">
+                                    <div class="flex ">
+                                        <div class="text-center mt-1.5 ml-8">
                                             <c:if test="${latestComment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                                     <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
@@ -479,7 +483,14 @@
             })
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     console.log("title : " + msg.documents[0].title);
-                    $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + msg.documents[0].title + "</a>");	//표지
+
+                    let title = msg.documents[0].title;
+
+                    if(title.length >= 20){
+                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title.slice(0,20) + "...</a>");
+                    }else if(title.length <= 20){
+                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title + "...</a>");
+                    }
                 });
         }
 

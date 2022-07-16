@@ -193,6 +193,7 @@ public class MypageController {
 
         UserDTO user = userService.selectUserInfoByUserNo(userNo);
         model.addAttribute("userInfo", user);
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "withdraw";
     }
 

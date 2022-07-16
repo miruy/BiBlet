@@ -98,13 +98,13 @@
     <script>
 
         $(document).ready(function () {
-            <c:forEach var="notice" items="${noticeList}">
-                <c:if test="${notice.noticeNo <= 10}">
+            <c:forEach var="notice" items="${noticeList}" varStatus="status">
+                <c:if test="${status.noticeNo <= 10}">
                   $("#page2_tab").prop("checked", true);
                 </c:if>
 
                 <c:if test="${notice.noticeNo >= 10 && notice.noticeNo <= 20}">
-                    $("#page1_tab").prop("checked", true);
+                  $("#page1_tab").prop("checked", true);
                 </c:if>
             </c:forEach>
         })
