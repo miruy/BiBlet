@@ -86,6 +86,7 @@
                 <form method="post" id="requestPageChange" name="requestPageChange" class="btn-group mx-auto mt-8">
                     <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
                     <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
+                    <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
                 </form>
 
 
@@ -98,15 +99,22 @@
     <script>
 
         $(document).ready(function () {
-            <c:forEach var="notice" items="${noticeList}" varStatus="status">
-                <c:if test="${status.noticeNo <= 10}">
-                  $("#page2_tab").prop("checked", true);
-                </c:if>
+            $("#page1_tab").prop("checked", true);
+<%--            <c:forEach var="notice" items="${noticeList}" varStatus="status">--%>
+<%--                <c:if test="${notice.noticeNo <= 10}">--%>
+<%--                  $("#page3_tab").prop("checked", true);--%>
+<%--                </c:if>--%>
 
-                <c:if test="${notice.noticeNo >= 10 && notice.noticeNo <= 20}">
-                  $("#page1_tab").prop("checked", true);
-                </c:if>
-            </c:forEach>
+<%--                <c:if test="${notice.noticeNo > 10 && notice.noticeNo <= 20}">--%>
+<%--                  $("#page2_tab").prop("checked", true);--%>
+<%--                </c:if>--%>
+
+<%--                <c:if test="${notice.noticeNo > 20 && notice.noticeNo <= 30}">--%>
+<%--                    $("#page1_tab").prop("checked", true);--%>
+<%--                </c:if>--%>
+<%--            </c:forEach>--%>
+
+
         })
 
         function submit_page(){
