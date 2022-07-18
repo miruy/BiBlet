@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface NoticeDAO {
     Long selectAllNoticeCount();
-    List<NoticeDTO> selectNoticeByPageNo(Long page);
+    List<NoticeDTO> selectNoticeByPageNo(NoticeDTO page);
     List<NoticeDTO> selectNoticeDetail(Long noticeNo);
     void updateReadCount(Long noticeNo);
     List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice);

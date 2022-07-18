@@ -43,8 +43,6 @@
                         <div>${noticeCount}</div>
                     </div>
 
-
-                    <c:if test="${!empty noticeList}">
                         <table class="table w-full">
                             <thead>
                             <tr class="text-center">
@@ -55,38 +53,17 @@
                                 <th class="text-lg">조회수</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <c:forEach var="notice" items="${noticeList}">
-                                <tr>
-                                    <td class="justify-center items-center text-center">
-                                       ${notice.noticeNo}
-                                    </td>
-                                    <td class="justify-center items-center text-center">
-                                        ${notice.writer}
-                                    </td>
-                                    <td class="justify-center items-center text-center">
-                                        <a href="/notice_${notice.noticeNo}">${notice.title}</a>
-                                    </td>
-                                    <td class="justify-center items-center text-center">
-                                        <fmt:parseDate value="${notice.writeDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" />
-                                    </td>
-                                    <td class="justify-center items-center text-center">
-                                        ${notice.count}
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <tbody id="noticeList">
                             </tbody>
                         </table>
-                    </c:if>
                 </div>
 
 
 
                 <form method="post" id="requestPageChange" name="requestPageChange" class="btn-group mx-auto mt-8">
-                    <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
-                    <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
-                    <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page()" />
+                    <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
+                    <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
+                    <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
                 </form>
 
 
@@ -100,25 +77,53 @@
 
         $(document).ready(function () {
             $("#page1_tab").prop("checked", true);
-<%--            <c:forEach var="notice" items="${noticeList}" varStatus="status">--%>
-<%--                <c:if test="${notice.noticeNo <= 10}">--%>
-<%--                  $("#page3_tab").prop("checked", true);--%>
-<%--                </c:if>--%>
-
-<%--                <c:if test="${notice.noticeNo > 10 && notice.noticeNo <= 20}">--%>
-<%--                  $("#page2_tab").prop("checked", true);--%>
-<%--                </c:if>--%>
-
-<%--                <c:if test="${notice.noticeNo > 20 && notice.noticeNo <= 30}">--%>
-<%--                    $("#page1_tab").prop("checked", true);--%>
-<%--                </c:if>--%>
-<%--            </c:forEach>--%>
-
-
+                submit_page(1);
         })
 
-        function submit_page(){
-            document.getElementById("requestPageChange").submit();
+        function submit_page(page) {
+            $.ajax({
+                url: '<c:url value="/notice"/>',
+                type: 'POST',
+                data: JSON.stringify({
+                    "page": page
+                }),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                let html = '';
+                let noticeList = data.noticeList;
+
+                    $.each(noticeList, function(key, value) {
+                        console.log("data : " + noticeList);
+                        console.log("공지 제목 : " + value.title);
+                        console.log(value.noticeNo);
+
+                            html += '<tr>';
+                            html += '<td class="justify-center items-center text-center">';
+                            html += value.noticeNo;
+                            html += '</td>';
+                            html += '<td class="justify-center items-center text-center">';
+                            html += value.writer;
+                            html += '</td>';
+                            html += '<td class="justify-center items-center text-center">';
+                            html += '<a href="/notice_' + value.noticeNo + '">' + value.title + '</a>';
+                            html += '</td>';
+                            html += '<td class="justify-center items-center text-center">';
+                            html += value.writeDate;
+                            html += '</td>';
+                            html += '<td class="justify-center items-center text-center">';
+                            html +=  value.count;
+                            html += '</td>';
+                            html += '</tr>';
+
+                            $("#noticeList").html(html);
+
+                    });
+
+                }, error: function (data) {
+
+                }
+            });
         }
     </script>
 

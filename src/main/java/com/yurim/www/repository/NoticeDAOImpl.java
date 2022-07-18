@@ -21,7 +21,7 @@ public class NoticeDAOImpl implements NoticeDAO {
     }
 
     @Override
-    public List<NoticeDTO> selectNoticeByPageNo(Long page){
+    public List<NoticeDTO> selectNoticeByPageNo(NoticeDTO page){
         return sqlSessionTemplate.selectList("selectNoticeByPageNo", page);
     }
 

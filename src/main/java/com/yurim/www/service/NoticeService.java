@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface NoticeService {
     Long selectAllNoticeCount();
-    List<NoticeDTO> selectNoticeByPageNo(Long page);
+    List<NoticeDTO> selectNoticeByPageNo(NoticeDTO page);
     List<NoticeDTO> selectNoticeDetail(Long noticeNo);
     List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice);
     Long totalNoticeCountBySearchValue(NoticeDTO notice);

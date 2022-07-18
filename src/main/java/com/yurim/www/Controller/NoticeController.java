@@ -28,9 +28,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 @Controller
@@ -43,24 +41,25 @@ public class NoticeController {
     @GetMapping("/notice")
     public String notice(Model model) {
 
-        // 전체 공지사항
-        Long defaultPage = (long) 1;
-        model.addAttribute("noticeList", noticeService.selectNoticeByPageNo(defaultPage));
-
-
         // 전체 공지사항 수
         model.addAttribute("noticeCount", noticeService.selectAllNoticeCount());
 
         return "notice";
     }
 
+    @ResponseBody
     @PostMapping("/notice")
-    public String pageChange(@ModelAttribute("requestPageChange") RequestPageChange requestPageChange, Model model) {
+    public Map<String, Object> pageChange(@RequestBody RequestPageChange requestPageChange) {
 
-        model.addAttribute("noticeList", noticeService.selectNoticeByPageNo(requestPageChange.getPage()));
-        model.addAttribute("noticeCount", noticeService.selectAllNoticeCount());
+        Map<String, Object> result = new HashMap<String, Object>();
 
-        return "notice";
+        NoticeDTO page = new NoticeDTO();
+        page.setPage(requestPageChange.getPage());
+
+        List<NoticeDTO> noticeList = noticeService.selectNoticeByPageNo(page);
+        result.put("noticeList", noticeList);
+
+        return result;
     }
 
     @PostMapping("/notice_search")
@@ -101,7 +100,7 @@ public class NoticeController {
     }
 
     @RequestMapping("/file_download")
-    public void fileDownload(@RequestParam String storedFile, HttpServletResponse response){
+    public void fileDownload(@RequestParam String storedFile, HttpServletResponse response) {
         noticeService.fileDownload(storedFile, response);
     }
 

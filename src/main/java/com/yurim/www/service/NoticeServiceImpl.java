@@ -29,7 +29,7 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public List<NoticeDTO> selectNoticeByPageNo(Long page){
+    public List<NoticeDTO> selectNoticeByPageNo(NoticeDTO page){
         return noticeDAO.selectNoticeByPageNo(page);
     }
 

@@ -26,4 +26,6 @@ public class NoticeDTO {
 
     private String option;
     private String keyword;
+
+    private Long page;
 }
