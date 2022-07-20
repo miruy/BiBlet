@@ -41,11 +41,6 @@
         </div>
     </div>
 
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script type="text/javascript">
-
-
-    </script>
 </section>
 
 <%@ include file="../common/footer.jsp" %>
