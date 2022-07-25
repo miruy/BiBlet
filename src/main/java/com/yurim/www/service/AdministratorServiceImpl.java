@@ -184,6 +184,8 @@ public class AdministratorServiceImpl implements AdministratorService{
 
     @Override
     public void deleteUser(Long userNo){
+        administratorDAO.deleteUserAppraisalByAdmin(userNo);
+        administratorDAO.deleteUserBookshelfByAdmin(userNo);
         administratorDAO.deleteUser(userNo);
     }
 

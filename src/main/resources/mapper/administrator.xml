@@ -380,10 +380,18 @@
     </select>
 
     <delete id="deleteUser" parameterType="Long">
-        DELETE appraisal, bookshelf, user FROM user
-            INNER JOIN bookshelf ON user.user_no = bookshelf.user_no
-            INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
-        WHERE user.user_no = #{userNo}
+        DELETE FROM user WHERE user_no = #{userNo}
+    </delete>
+
+    <delete id="deleteUserAppraisalByAdmin" parameterType="Long">
+        DELETE FROM appraisal
+        WHERE appraisal_no NOT IN (SELECT tmp.appraisal_no
+        FROM (SELECT status_no as appraisal_no
+        FROM bookshelf WHERE user_no = #{userNo}) tmp)
+    </delete>
+
+    <delete id="deleteUserBookshelfByAdmin" parameterType="Long">
+        DELETE FROM bookshelf WHERE user_no = #{userNo}
     </delete>
 
     <delete id="deleteAppraisal" parameterType="Long">

@@ -166,7 +166,7 @@
                                                 <div class="text-xl text-black">관리자 권한으로 해당 평가를 삭제시키겠습니까?</div>
                                                 <div class="text-gray-400">해당 평가를 삭제시키면 복구할 수 없습니다.</div>
 
-                                                <div id="forcedDeleteConfirm" class="flex flex-row justify-center">
+                                                <div class="forcedDeleteConfirm flex flex-row justify-center">
                                                     <div class="modal-action">
                                                         <button type="button" id="yes" onClick="forcedDeleteBtn()"
                                                                 class="btn btn-secondary mr-4 hover:bg-purple-600 hover:text-white">
@@ -179,14 +179,13 @@
                                                 </div>
 
                                                 <c:if test="${!empty admInfo}">
-                                                    <div id="forcedDelete"
-                                                         class="form-control flex flex-row mx-auto space-x-2 my-4">
-                                                        <input type="password" id="passCheck" name="passCheck"
+                                                    <div class="forcedDelete form-control flex flex-row mx-auto space-x-2 my-4">
+                                                        <input type="password" id="passCheck${searchStar.appraisalNo}" name="passCheck"
                                                                placeholder="관리자 비밀번호"
                                                                class="input input-bordered text-lg text-center w-60"/>
                                                         <button type="button"
                                                                 class="btn btn-secondary hover:bg-purple-600 hover:text-white w-24 bg-gray-200 border-gray-200 text-black"
-                                                                onClick="adminPassCheckBtn(${admInfo.admPass}, ${searchStar.appraisalNo})">
+                                                                onClick="adminPassCheckBtn(${searchStar.appraisalNo})">
                                                             비밀번호 확인
                                                         </button>
                                                     </div>
@@ -221,7 +220,7 @@
         });
 
         $(document).ready(() => {
-            $("#forcedDelete").hide();
+            $(".forcedDelete").hide();
         });
 
         $(document).ready(() => {
@@ -329,20 +328,19 @@
 
         function forcedDeleteBtn() {
 
-            $("#forcedDeleteConfirm").hide();
-            $("#forcedDelete").show();
+            $(".forcedDeleteConfirm").hide();
+            $(".forcedDelete").show();
         }
 
-        function adminPassCheckBtn(admPass, appraisalNo) {
+        function adminPassCheckBtn(appraisalNo) {
 
-            let passCheck = $("#passCheck").val();
+            let passCheck = $("#passCheck" + appraisalNo).val();
 
             $.ajax({
                 url: '<c:url value="/admin/adminPassCheck"/>',
                 type: 'POST',
                 data: JSON.stringify({
-                    "passCheck": passCheck,
-                    "admPass": admPass
+                    "passCheck": passCheck
                 }),
                 dataType: "json",
                 contentType: 'application/json',

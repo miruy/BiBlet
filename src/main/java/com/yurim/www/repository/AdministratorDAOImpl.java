@@ -144,6 +144,14 @@ public class AdministratorDAOImpl implements AdministratorDAO {
     public void deleteUser(Long userNo){
         sqlSessionTemplate.delete("deleteUser", userNo);
     }
+    @Override
+    public void deleteUserAppraisalByAdmin(Long userNo){
+        sqlSessionTemplate.delete("deleteUserAppraisalByAdmin", userNo);
+    }
+    @Override
+    public void deleteUserBookshelfByAdmin(Long userNo){
+        sqlSessionTemplate.delete("deleteUserBookshelfByAdmin", userNo);
+    }
 
     @Override
     public void deleteAppraisal(Long appraisalNo){

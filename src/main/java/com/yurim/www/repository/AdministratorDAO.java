@@ -43,6 +43,8 @@ public interface AdministratorDAO {
     AdministratorDTO selectAdminInfoByAdmNo(Long admNo);
 
     void deleteUser(Long userNo);
+    void deleteUserAppraisalByAdmin(Long userNo);
+    void deleteUserBookshelfByAdmin(Long userNo);
     void deleteAppraisal(Long appraisalNo);
     void disabledComment(HashMap<String, Long> map);
 

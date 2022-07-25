@@ -16,7 +16,7 @@ public class RequestSignup {
     private String name;
 
     @NotEmpty(message="필수 입력란 입니다.")
-    @Size(min = 5, max = 10, message = "5 ~ 10글자 이내로 입력바랍니다.")
+    @Size(min = 5, max = 20, message = "5 ~ 20글자 이내로 입력바랍니다.")
     private String id;
 
     @NotEmpty(message="필수 입력란 입니다.")

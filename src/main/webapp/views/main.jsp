@@ -148,10 +148,11 @@
             </template>
         </div>
 
-        <div class="flex flex-col mb-20">
-            <span class="text-xl mb-4">최근 코멘트</span>
-            <div class="overflow-x-auto w-full">
-                <c:if test="${!empty latestComments}">
+        <c:if test="${!empty latestComments}">
+            <div class="flex flex-col mb-20">
+                <span class="text-xl mb-4">최근 코멘트</span>
+                <div class="overflow-x-auto w-full">
+
                     <table class="table w-full">
                         <thead>
                         <tr class="text-xl text-center">
@@ -169,16 +170,24 @@
                                         <div class="text-center mt-1.5 ml-8">
                                             <c:if test="${latestComment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                         fill="currentColor" viewBox="0 0 20 20"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
                                                 </div>
                                             </c:if>
                                             <c:if test="${latestComment.storedPic ne null}">
                                                 <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${latestComment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                    <img src="<c:url value='/images/${latestComment.storedPic}'/>"
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${latestComment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                    <img src="<c:url value='http://${latestComment.storedPic}'/>"
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                             </c:if>
                                         </div>
@@ -222,9 +231,10 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                </c:if>
+                </div>
             </div>
-        </div>
+        </c:if>
+
     </div>
 
 
@@ -486,9 +496,9 @@
 
                     let title = msg.documents[0].title;
 
-                    if(title.length >= 20){
-                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title.slice(0,20) + "...</a>");
-                    }else if(title.length <= 20){
+                    if (title.length >= 20) {
+                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title.slice(0, 20) + "...</a>");
+                    } else if (title.length <= 20) {
                         $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title + "...</a>");
                     }
                 });
