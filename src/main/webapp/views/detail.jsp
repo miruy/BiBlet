@@ -12,18 +12,18 @@
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
             <div class="flex flex-col ml-4">
 
-                    <div id="bookTitle" class="flex flex-col mt-6"></div>
-                    <div class="flex flex-col">
-                        <div id="bookAuthor" class="text-gray-500 flex-row mt-2"></div>
-                        <div class="text-l mt-2">
-                            <c:if test="${starAVG ne 0}">
-                                평균 ★ ${starAVG} (${starCount}명)
-                            </c:if>
-                            <c:if test="${starAVG eq 0}">
-                                평균 ★ ${starAVG} (0명)
-                            </c:if>
-                        </div>
+                <div id="bookTitle" class="flex flex-col mt-6"></div>
+                <div class="flex flex-col">
+                    <div id="bookAuthor" class="text-gray-500 flex-row mt-2"></div>
+                    <div class="text-l mt-2">
+                        <c:if test="${starAVG ne 0}">
+                            평균 ★ ${starAVG} (${starCount}명)
+                        </c:if>
+                        <c:if test="${starAVG eq 0}">
+                            평균 ★ ${starAVG} (0명)
+                        </c:if>
                     </div>
+                </div>
 
                 <div class="flex flex-row mt-24 space-x-16">
 
@@ -66,8 +66,8 @@
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
-                            <div class="cursor-pointer mt-3" onclick="alert('로그인 후 이용가능합니다.')">
-                                <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                                <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                      version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                     <path d="M24,26c6.6,0,12-5.4,12-12S30.6,2,24,2c-6.6,0-12,5.4-12,12S17.4,26,24,26z M24,4c5.5,0,10,4.5,10,10s-4.5,10-10,10   c-5.5,0-10-4.5-10-10S18.5,4,24,4z"/>
@@ -79,8 +79,8 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">코멘트</span>
-                            <div class="cursor-pointer mt-4" onclick="alert('로그인 후 이용가능합니다.')">
-                                <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                                <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                      version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                     <g>
@@ -97,11 +97,22 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽는중</span>
-                            <div class="cursor-pointer mt-4" onclick="alert('로그인 후 이용가능합니다.')">
-                                <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
-                                     version="1.1" viewBox="0 0 48 48" xml:space="preserve"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path
-                                        d="M46.7,45.3L33.4,32c2.9-3.2,4.6-7.4,4.6-12c0-9.9-8.1-18-18-18C10.1,2,2,10.1,2,20c0,9.9,8.1,18,18,18c4.6,0,8.8-1.8,12-4.6  l13.3,13.3L46.7,45.3z M4,20c0-8.8,7.2-16,16-16s16,7.2,16,16s-7.2,16-16,16S4,28.8,4,20z"/></svg>
+                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                                <svg enable-background="new 0 0 48 48" class="mx-auto" width="30" height="30" version="1.1" viewBox="0 0 48 48"
+                                     xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Expanded">
+                                    <g>
+                                        <g>
+                                            <path d="M23,48.049c-0.147,0-0.294-0.032-0.43-0.097l-21-10C1.222,37.786,1,37.435,1,37.049v-31c0-0.343,0.176-0.662,0.466-0.846     C1.755,5.02,2.12,4.999,2.43,5.146L23,14.941l20.57-9.796c0.31-0.146,0.673-0.126,0.963,0.058C44.824,5.387,45,5.706,45,6.049v31     c0,0.386-0.222,0.737-0.57,0.903l-21,10C23.294,48.017,23.147,48.049,23,48.049z M3,36.417l20,9.524l20-9.524V7.633l-19.57,9.319     c-0.271,0.129-0.588,0.129-0.859,0L3,7.633V36.417z"/>
+                                        </g>
+                                        <g>
+                                            <path d="M23,12.204L5.567,3.903C5.068,3.665,4.857,3.068,5.094,2.57c0.238-0.499,0.834-0.708,1.333-0.474L23,9.989l16.573-7.893     c0.5-0.234,1.095-0.025,1.333,0.474c0.237,0.498,0.026,1.095-0.473,1.333L23,12.204z"/>
+                                        </g>
+                                        <g>
+                                            <rect height="31" width="2" x="22" y="16.049"/>
+                                        </g>
+                                    </g>
+                                </g></svg>
                             </div>
                         </div>
                     </c:if>
@@ -153,7 +164,7 @@
                                 <input name="want" type="checkbox"
                                        <c:if test="${userStatus == 0}">checked="checked"</c:if>/>
                                 <div class="swap-on" onclick="insertStatus(0)">
-                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                                    <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                          version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                         <path d="M24,26c-6.6,0-12-5.4-12-12S17.4,2,24,2c6.6,0,12,5.4,12,12S30.6,26,24,26z M24,4c-5.5,0-10,4.5-10,10s4.5,10,10,10   c5.5,0,10-4.5,10-10S29.5,4,24,4z"/>
@@ -166,7 +177,7 @@
                                         </g></svg>
                                 </div>
                                 <div class="swap-off " onclick="deleteStatus(0)">
-                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                                    <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                          version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                         <path d="M24,26c6.6,0,12-5.4,12-12S30.6,2,24,2c-6.6,0-12,5.4-12,12S17.4,26,24,26z M24,4c5.5,0,10,4.5,10,10s-4.5,10-10,10   c-5.5,0-10-4.5-10-10S18.5,4,24,4z"/>
@@ -180,10 +191,10 @@
 
                         <c:if test="${!empty userStatusNo}">
                             <div class="flex flex-col">
-                                <span class="text-gray-600 mb-2 ml-2">코멘트</span>
+                                <span class="text-gray-600 mb-2">코멘트</span>
                                 <div class="dropdown">
                                     <div tabindex="0">
-                                        <svg id="Layer_1" width="30" height="30"
+                                        <svg class="" id="Layer_1" width="30" height="30"
                                              style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink"><g>
@@ -212,9 +223,9 @@
 
                         <c:if test="${empty userStatusNo}">
                             <div class="flex flex-col">
-                                <span class="text-gray-600 mb-2 ml-2">코멘트</span>
+                                <span class="text-gray-600 mb-2">코멘트</span>
                                 <label for="my-modal-3" class="modal-button cursor-pointer">
-                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                                    <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                          version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                         <g>
@@ -232,22 +243,33 @@
                         </c:if>
 
                         <div class="flex flex-col">
-                            <span class="text-gray-600 mb-2">읽는중</span>
+                            <span class="text-gray-600">읽는중</span>
                             <label class="swap mt-2">
                                 <input name="read" type="checkbox"
                                        <c:if test="${userStatus == 1}">checked="checked"</c:if>/>
                                 <div class="swap-on" onclick="insertStatus(1)">
-                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
+                                    <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                          version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
                                         <path d="M38,46.9l-14-9.7l-14,9.7V5c0-1.7,1.3-3,3-3h22c1.7,0,3,1.3,3,3V46.9z M24,34.8l12,8.3V5c0-0.6-0.4-1-1-1H13   c-0.6,0-1,0.4-1,1v38.1L24,34.8z"/>
                                     </g></svg>
                                 </div>
                                 <div class="swap-off" onclick="deleteStatus(1)">
-                                    <svg id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
-                                         version="1.1" viewBox="0 0 48 48" xml:space="preserve"
-                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path
-                                            d="M46.7,45.3L33.4,32c2.9-3.2,4.6-7.4,4.6-12c0-9.9-8.1-18-18-18C10.1,2,2,10.1,2,20c0,9.9,8.1,18,18,18c4.6,0,8.8-1.8,12-4.6  l13.3,13.3L46.7,45.3z M4,20c0-8.8,7.2-16,16-16s16,7.2,16,16s-7.2,16-16,16S4,28.8,4,20z"/></svg>
+                                    <svg enable-background="new 0 0 48 48" class="mx-auto" width="30" height="30" version="1.1" viewBox="0 0 48 48"
+                                         xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Expanded">
+                                        <g>
+                                            <g>
+                                                <path d="M23,48.049c-0.147,0-0.294-0.032-0.43-0.097l-21-10C1.222,37.786,1,37.435,1,37.049v-31c0-0.343,0.176-0.662,0.466-0.846     C1.755,5.02,2.12,4.999,2.43,5.146L23,14.941l20.57-9.796c0.31-0.146,0.673-0.126,0.963,0.058C44.824,5.387,45,5.706,45,6.049v31     c0,0.386-0.222,0.737-0.57,0.903l-21,10C23.294,48.017,23.147,48.049,23,48.049z M3,36.417l20,9.524l20-9.524V7.633l-19.57,9.319     c-0.271,0.129-0.588,0.129-0.859,0L3,7.633V36.417z"/>
+                                            </g>
+                                            <g>
+                                                <path d="M23,12.204L5.567,3.903C5.068,3.665,4.857,3.068,5.094,2.57c0.238-0.499,0.834-0.708,1.333-0.474L23,9.989l16.573-7.893     c0.5-0.234,1.095-0.025,1.333,0.474c0.237,0.498,0.026,1.095-0.473,1.333L23,12.204z"/>
+                                            </g>
+                                            <g>
+                                                <rect height="31" width="2" x="22" y="16.049"/>
+                                            </g>
+                                        </g>
+                                    </g></svg>
                                 </div>
                             </label>
                         </div>
@@ -350,139 +372,219 @@
         <div id="writeCommentBtn" class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4"></div>
 
         <c:forEach var="myC" items="${myComment}">
-        <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4">
-            <div id="myComment_1" class="hidden">
-               <div class="flex flex-row justify-center items-center text-center space-x-4">
-                   <c:if test="${myC.storedPic eq null}">
-                       <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                           <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                       </div>
-                   </c:if>
-                   <c:if test="${myC.storedPic ne null}">
-                       <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                   </c:if>
-                   <span class="text-gray-600 text-sm">${myC.name}</span>
-                   <c:if test="${myC.active == 0}">
-                       <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
-                   </c:if>
-                   <c:if test="${myC.active == 1}">
-                       <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
-                   </c:if>
-                <label class="flex flex-row">
-                    <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
-                       <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>
-                       <span>수정</span>
-                    </label>
-                </label>
-                <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
-                    <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>
-                    <span>삭제</span>
-                </div>
-                </div>
-            </div>
-
-            <div id="myComment_2" class="hidden">
-                <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <c:if test="${myC.storedPic eq null}">
-                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </c:if>
-                    <c:if test="${myC.storedPic ne null}">
-                        <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                    </c:if>
-                    <span class="text-gray-600 text-sm">${myC.name}</span>
-                    <c:if test="${myC.active == 0}">
-                        <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
-                    </c:if>
-                    <c:if test="${myC.active == 1}">
-                        <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
-                    </c:if>
-                    <div class="flex flex-row space-x-4">
-                        <div class="flex flex-col">
-                            <div class="text-gray-400 text-xs">독서시작날짜</div>
-                            <div class="text-gray-600">${myC.startDate}</div>
-                        </div>
-                        <div class="flex flex-col pr-2">
-                            <div class="text-gray-400 text-xs">독서완료날짜</div>
-                            <div class="text-gray-600">${myC.endDate}</div>
-                        </div>
-                    </div>
-                    <label class="flex flex-row">
-                        <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
-                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>
-                            <span>수정</span>
+            <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white mb-4">
+                <div id="myComment_1" class="hidden">
+                    <div class="flex flex-row justify-center items-center text-center space-x-4">
+                        <c:if test="${myC.storedPic eq null}">
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </c:if>
+                        <c:if test="${myC.storedPic ne null}">
+                            <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                        </c:if>
+                        <span class="text-gray-600 text-sm">${myC.name}</span>
+                        <c:if test="${myC.active == 0}">
+                            <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                        </c:if>
+                        <c:if test="${myC.active == 1}">
+                            <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1"
+                                      disabled>${myC.comment}</textarea>
+                        </c:if>
+                        <label class="flex flex-row">
+                            <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
+                                <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1"
+                                     viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                    <path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/>
+                                    <path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/>
+                                    <path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/>
+                                    <path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/>
+                                </g></svg>
+                                <span>수정</span>
+                            </label>
                         </label>
-                    </label>
-                    <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
-                        <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>
-                        <span>삭제</span>
+                        <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
+                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
+                                 xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                <path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/>
+                                <rect height="28" width="2" x="16" y="12"/>
+                                <rect height="28" width="2" x="30" y="12"/>
+                                <rect height="28" width="2" x="23" y="12"/>
+                                <path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/>
+                            </g></svg>
+                            <span>삭제</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div id="myComment_3" class="hidden">
-                <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <c:if test="${myC.storedPic eq null}">
-                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <div id="myComment_2" class="hidden">
+                    <div class="flex flex-row justify-center items-center text-center space-x-4">
+                        <c:if test="${myC.storedPic eq null}">
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </c:if>
+                        <c:if test="${myC.storedPic ne null}">
+                            <img src="<c:url value='http://${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                        </c:if>
+                        <span class="text-gray-600 text-sm">${myC.name}</span>
+                        <c:if test="${myC.active == 0}">
+                            <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                        </c:if>
+                        <c:if test="${myC.active == 1}">
+                            <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1"
+                                      disabled>${myC.comment}</textarea>
+                        </c:if>
+                        <div class="flex flex-row space-x-4">
+                            <div class="flex flex-col">
+                                <div class="text-gray-400 text-xs">독서시작날짜</div>
+                                <div class="text-gray-600">${myC.startDate}</div>
+                            </div>
+                            <div class="flex flex-col pr-2">
+                                <div class="text-gray-400 text-xs">독서완료날짜</div>
+                                <div class="text-gray-600">${myC.endDate}</div>
+                            </div>
                         </div>
-                    </c:if>
-                    <c:if test="${myC.storedPic ne null}">
-                        <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                    </c:if>
-                    <span class="text-gray-600 text-sm">${myC.id}</span>
-                    <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
-                    <label class="flex flex-row">
-                        <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
-                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>
-                            <span>수정</span>
+                        <label class="flex flex-row">
+                            <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
+                                <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1"
+                                     viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                    <path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/>
+                                    <path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/>
+                                    <path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/>
+                                    <path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/>
+                                </g></svg>
+                                <span>수정</span>
+                            </label>
                         </label>
-                    </label>
-                    <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
-                        <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>
-                        <span>삭제</span>
+                        <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
+                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
+                                 xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                <path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/>
+                                <rect height="28" width="2" x="16" y="12"/>
+                                <rect height="28" width="2" x="30" y="12"/>
+                                <rect height="28" width="2" x="23" y="12"/>
+                                <path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/>
+                            </g></svg>
+                            <span>삭제</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div id="myComment_4" class="hidden">
-                <div class="flex flex-row justify-center items-center text-center space-x-4">
-                    <c:if test="${myC.storedPic eq null}">
-                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                            <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </c:if>
-                    <c:if test="${myC.storedPic ne null}">
-                        <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
-                    </c:if>
-                    <span class="text-gray-600 text-sm">${myC.id}</span>
-                    <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1" disabled>${myC.comment}</textarea>
-                    <div class="flex flex-row space-x-4">
-                        <div class="flex flex-col">
-                            <div class="text-gray-400 text-xs">독서시작날짜</div>
-                            <div class="text-gray-600">${myC.startDate}</div>
-                        </div>
-                        <div class="flex flex-col pr-2">
-                            <div class="text-gray-400 text-xs">독서완료날짜</div>
-                            <div class="text-gray-600">${myC.endDate}</div>
-                        </div>
-                    </div>
-                    <label class="flex flex-row">
-                        <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
-                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/><path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/><path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/><path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/></g></svg>
-                            <span>수정</span>
+                <div id="myComment_3" class="hidden">
+                    <div class="flex flex-row justify-center items-center text-center space-x-4">
+                        <c:if test="${myC.storedPic eq null}">
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </c:if>
+                        <c:if test="${myC.storedPic ne null}">
+                            <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                        </c:if>
+                        <span class="text-gray-600 text-sm">${myC.id}</span>
+                        <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1"
+                                  disabled>${myC.comment}</textarea>
+                        <label class="flex flex-row">
+                            <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
+                                <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1"
+                                     viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                    <path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/>
+                                    <path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/>
+                                    <path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/>
+                                    <path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/>
+                                </g></svg>
+                                <span>수정</span>
+                            </label>
                         </label>
-                    </label>
-                    <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
-                        <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/><rect height="28" width="2" x="16" y="12"/><rect height="28" width="2" x="30" y="12"/><rect height="28" width="2" x="23" y="12"/><path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/></g></svg>
-                        <span>삭제</span>
+                        <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
+                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
+                                 xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                <path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/>
+                                <rect height="28" width="2" x="16" y="12"/>
+                                <rect height="28" width="2" x="30" y="12"/>
+                                <rect height="28" width="2" x="23" y="12"/>
+                                <path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/>
+                            </g></svg>
+                            <span>삭제</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="myComment_4" class="hidden">
+                    <div class="flex flex-row justify-center items-center text-center space-x-4">
+                        <c:if test="${myC.storedPic eq null}">
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </c:if>
+                        <c:if test="${myC.storedPic ne null}">
+                            <img src="<c:url value='/images/${myC.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                        </c:if>
+                        <span class="text-gray-600 text-sm">${myC.id}</span>
+                        <textarea class="my-[1.2rem] text-gray-600 resize-none w-64 bg-white" rows="1"
+                                  disabled>${myC.comment}</textarea>
+                        <div class="flex flex-row space-x-4">
+                            <div class="flex flex-col">
+                                <div class="text-gray-400 text-xs">독서시작날짜</div>
+                                <div class="text-gray-600">${myC.startDate}</div>
+                            </div>
+                            <div class="flex flex-col pr-2">
+                                <div class="text-gray-400 text-xs">독서완료날짜</div>
+                                <div class="text-gray-600">${myC.endDate}</div>
+                            </div>
+                        </div>
+                        <label class="flex flex-row">
+                            <label for="modifyComment" class="text-gray-400 hover:text-black pr-2">
+                                <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1"
+                                     viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                    <path d="M24,2C17.6,1.9,11.7,4.2,7.6,8.2C3.9,11.9,2,16.6,2,22c0,11.6,9.3,20,22,20c1.8,0,3.3-0.1,4.6-0.4L42,46.4V33.8   c2.6-3.4,4-7.5,4-11.8C46,10.4,36.7,2,24,2z M40.2,32.9L40,33.2v10.4l-11.2-4l-0.3,0.1C27.2,39.9,25.8,40,24,40   C12.4,40,4,32.4,4,22c0-4.8,1.7-9.1,5-12.4C12.7,6,18.1,4,24,4c11.6,0,20,7.6,20,18C44,26,42.7,29.8,40.2,32.9z"/>
+                                    <path d="M24,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S26.2,18,24,18z M24,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S25.1,24,24,24z"/>
+                                    <path d="M13,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S15.2,18,13,18z M13,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S14.1,24,13,24z"/>
+                                    <path d="M35,18c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,18,35,18z M35,24c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,24,35,24z"/>
+                                </g></svg>
+                                <span>수정</span>
+                            </label>
+                        </label>
+                        <div class="text-gray-400 hover:text-black" onclick="deleteComment()">
+                            <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
+                                 xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"><g>
+                                <path d="M27,5c0-1.7-1.3-3-3-3s-3,1.3-3,3H5v2h38V5H27z M24,4c0.6,0,1,0.4,1,1h-2C23,4.4,23.4,4,24,4z"/>
+                                <rect height="28" width="2" x="16" y="12"/>
+                                <rect height="28" width="2" x="30" y="12"/>
+                                <rect height="28" width="2" x="23" y="12"/>
+                                <path d="M37,43c0,0.6-0.4,1-1,1H12c-0.6,0-1-0.4-1-1V9H9v34c0,1.7,1.3,3,3,3h24c1.7,0,3-1.3,3-3V9h-2V43z"/>
+                            </g></svg>
+                            <span>삭제</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </c:forEach>
 
 
@@ -527,16 +629,24 @@
                                         <div class="pb-2">
                                             <c:if test="${comment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                         fill="currentColor" viewBox="0 0 20 20"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
                                                 </div>
                                             </c:if>
                                             <c:if test="${comment.storedPic ne null}">
                                                 <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${comment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                    <img src="<c:url value='/images/${comment.storedPic}'/>"
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${comment.storedPic}'/>" class="mask mask-circle w-10 h-10"/>
+                                                    <img src="<c:url value='http://${comment.storedPic}'/>"
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                             </c:if>
                                         </div>
@@ -964,25 +1074,25 @@
 
                         //카카오 로그인 시 나의 코멘트(name 표시)
 
-                            // 날짜 선택 안했을 경우
-                            if(startDate.length == 0){
-                                $("#myComment_1").show();
+                        // 날짜 선택 안했을 경우
+                        if (startDate.length == 0) {
+                            $("#myComment_1").show();
                             // 날짜 선택 했을 경우
-                            }else if(startDate.length != 0){
-                                $("#myComment_2").show();
-                            }
+                        } else if (startDate.length != 0) {
+                            $("#myComment_2").show();
+                        }
 
                     }, error: function (data) {
                         console.log("에러");
                     }
                 });
-            }else if(idSub != "kakao"){
+            } else if (idSub != "kakao") {
                 //일반 로그인 시 나의 코멘트(id 표시)
                 // 날짜 선택 안했을 경우
-                if(startDate.length == 0){
+                if (startDate.length == 0) {
                     $("#myComment_3").show();
                     // 날짜 선택 했을 경우
-                }else if(startDate.length != 0) {
+                } else if (startDate.length != 0) {
                     $("#myComment_4").show();
                 }
             }

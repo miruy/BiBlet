@@ -61,6 +61,7 @@ public class AdminLoginController {
             errors.rejectValue("commonError", "IdPasswordNotMatching");
             return "auth/adminLogin";
         } catch (AuthstatusException e) {
+            errors.rejectValue("authstatusError", "authstatusError");
             return "auth/adminLogin";
         }
     }

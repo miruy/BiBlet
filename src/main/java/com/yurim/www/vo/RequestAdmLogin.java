@@ -17,5 +17,6 @@ public class RequestAdmLogin {
     private String admPass;
 
     private String commonError;
+    private String authstatusError;
     private String passCheck;
 }

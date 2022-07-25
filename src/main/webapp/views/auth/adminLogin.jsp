@@ -31,6 +31,7 @@
                 </div>
 
                 <div class="text-center"><form:errors path="commonError" /></div>
+                <div class="text-center"><form:errors path="authstatusError" /></div>
 
                 <div class="form-control mt-1">
                     <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Login</button>
