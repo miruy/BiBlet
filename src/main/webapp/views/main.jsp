@@ -452,7 +452,7 @@
 
             function readingList() {
                 const isbns = ${readingList};
-                console.log(isbns);
+                console.log("읽는 중 인 도서 : " + isbns);
 
                 isbns.map(isbn => {
                     $.ajax({	//카카오 검색요청 / [요청]

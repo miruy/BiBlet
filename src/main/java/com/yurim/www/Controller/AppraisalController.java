@@ -102,23 +102,24 @@ public class AppraisalController {
             //회원의 읽고싶어요, 읽는 중 뿌리기
             Integer userStatus = bookShelfService.selectStatus(isbn, userNo);
 
-            if (userStatus != null) {
+            if(userStatus == null){
+                return "detail";
+            } else if(userStatus == 0 || userStatus == 1){
                 model.addAttribute("userStatus", userStatus);
+            } else if (userStatus == 2 ) {
+                //회원의 코멘트 뿌리기
+                bookShelf.setUserNo(userNo);
+                bookShelf.setIsbn(isbn);
+
+                bookShelfService.selectStatusNoForComment(bookShelf);
+
+                if (bookShelf.getStatusNo() != null) {
+                    List<AppraisalDTO> myComment = appraisalService.selectMyComment(bookShelf);
+
+                    model.addAttribute("myComment", myComment);
+                    model.addAttribute("userStatusNo", bookShelf.getStatusNo());
+                }
             }
-
-            //회원의 코멘트 뿌리기
-            bookShelf.setUserNo(userNo);
-            bookShelf.setIsbn(isbn);
-
-            bookShelfService.selectStatusNoForComment(bookShelf);
-
-            if (bookShelf.getStatusNo() != null) {
-                List<AppraisalDTO> myComment = appraisalService.selectMyComment(bookShelf);
-
-                model.addAttribute("myComment", myComment);
-                model.addAttribute("userStatusNo", bookShelf.getStatusNo());
-            }
-
         }
 
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());

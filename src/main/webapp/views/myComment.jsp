@@ -36,7 +36,7 @@
             })
 
 
-            // 읽고싶어요 전체
+            // 나의 코멘트 전체
             function mypage_3(isbn, startDate, comment, endDate, coPrv, active) {
                 console.log("[" + isbn);
                 console.log(startDate);

@@ -36,6 +36,14 @@ input[type=password]{
 	font-family:'맑은 고딕', 'malgun gothic', '돋움', Dotum, sans-serif;
 }
 
+textarea::placeholder {
+	color: mediumpurple;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 150px;
+}
+
+
 figure.snip1368 {
 	font-family: 'Roboto', Arial, sans-serif;
 	position: relative;
@@ -86,3 +94,4 @@ figure.snip1368.hover h3 {
 	: translateY(0%);
 	transform: translateY(0%);
 }
+

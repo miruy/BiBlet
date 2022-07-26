@@ -287,8 +287,8 @@
                 <label for="my-modal-3"
                        class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
                 <div id="title" class="text-gray-600 mb-3 text-center"></div>
-                <textarea class="content w-full text-gray-600" rows="13" id="comment" name="comment"
-                          placeholder="이 작품의 대한 생각을 자유롭게 표현해주세요."></textarea>
+                <textarea class="content w-full text-gray-600" rows="15" id="comment" name="comment"
+                          placeholder="- 이 작품의 대한 생각을 자유롭게 표현해주세요. &#13;&#10;- enter 없이 작성해주세요."></textarea>
                 <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
                         <span> 독서 시작 날짜 : </span>
@@ -331,7 +331,7 @@
             <div class="modal-box relative space-y-2 h-4/5 w-11/12 max-w-3xl">
                 <label for="modifyComment"
                        class="btn btn-secondary btn-sm btn-circle absolute right-2 top-2 text-gray-600 hover:text-white">✕</label>
-                <textarea class="content w-full p-8 text-gray-600 mt-6" rows="12" id="comment_m" name="comment"
+                <textarea class="content w-full p-8 text-gray-600 mt-6" rows="15" id="comment_m" name="comment"
                           placeholder="${myComment.comment}"></textarea>
                 <div class="ml-56 mt-2">
                     <div class="flex flex-row text-gray-600 space-x-2">
