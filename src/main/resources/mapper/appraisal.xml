@@ -22,7 +22,16 @@
         FROM bookshelf
                  INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no
-        WHERE bookshelf.isbn = #{isbn} AND appraisal.co_prv = '공개'
+        WHERE bookshelf.isbn = #{isbn} AND appraisal.co_prv = '공개' AND appraisal.comment IS NOT NULL
+    </select>
+
+    <select id="findAllStar" parameterType="String" resultType="AppraisalDTO">
+        SELECT appraisal.star,
+               user.id
+        FROM bookshelf
+                 INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
+                 INNER JOIN user ON bookshelf.user_no = user.user_no
+        WHERE bookshelf.isbn = #{isbn} AND star IS NOT NULL
     </select>
 
     <select id="commentCount" parameterType="String" resultType="int">
@@ -54,7 +63,7 @@
     </select>
 
     <insert id="insertStar" parameterType="HashMap">
-        INSERT INTO appraisal(star, status_no) VALUES (#{star}, #{statusNo})
+        INSERT INTO appraisal(star, status_no, co_prv) VALUES (#{star}, #{statusNo}, '공개')
     </insert>
 
     <update id="updateStar" parameterType="AppraisalDTO">
@@ -85,7 +94,7 @@
         FROM bookshelf
             INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
             INNER JOIN user ON bookshelf.user_no = user.user_no
-        WHERE bookshelf.isbn=#{isbn} AND user.user_no=#{userNo} AND bookshelf.status=2
+        WHERE bookshelf.isbn=#{isbn} AND user.user_no=#{userNo} AND bookshelf.status=2 AND appraisal.comment IS NOT NULL
     </select>
 
     <update id="updateComment" parameterType="AppraisalDTO">
@@ -95,15 +104,6 @@
             SET comment=#{comment}, start_date=#{startDate}, end_date=#{endDate}, co_prv=#{coPrv}
         WHERE bookshelf.isbn=#{isbn} AND user.user_no=#{userNo} AND bookshelf.status=2
     </update>
-
-    <select id="findAllStar" parameterType="String" resultType="AppraisalDTO">
-        SELECT appraisal.star,
-               user.id
-        FROM bookshelf
-                 INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
-                 INNER JOIN user ON bookshelf.user_no = user.user_no
-        WHERE bookshelf.isbn = #{isbn}
-    </select>
 
     <select id="selectKakaoNameById" parameterType="String" resultType="String">
         SELECT name FROM user WHERE id = #{id}

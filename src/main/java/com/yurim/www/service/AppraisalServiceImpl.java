@@ -21,6 +21,11 @@ public class AppraisalServiceImpl implements AppraisalService {
         return appraisalDAO.findAllComment(isbn);
     }
 
+    @Override
+    public List<AppraisalDTO> findAllStar(String isbn){
+        return appraisalDAO.findAllStar(isbn);
+    }
+
     // 해당 도서의 대한 평가 개수 호출
     @Override
     public int commentCount(String isbn) {
@@ -92,10 +97,7 @@ public class AppraisalServiceImpl implements AppraisalService {
         appraisalDAO.updateComment(appraisal);
     }
 
-    @Override
-    public List<AppraisalDTO> findAllStar(String isbn){
-        return appraisalDAO.findAllStar(isbn);
-    }
+
 
     @Override
     public String selectKakaoNameById(String id){

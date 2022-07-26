@@ -21,6 +21,11 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		return sqlSessionTemplate.selectList("findAllComment", isbn);
 	}
 
+	@Override
+	public List<AppraisalDTO> findAllStar(String isbn){
+		return sqlSessionTemplate.selectList("findAllStar", isbn);
+	}
+
 	// 해당 도서의 대한 평가 개수 호출
 	@Override
 	public int commentCount(String isbn) {
@@ -73,10 +78,7 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		sqlSessionTemplate.update("updateComment", appraisal);
 	}
 
-	@Override
-	public List<AppraisalDTO> findAllStar(String isbn){
-		return sqlSessionTemplate.selectList("findAllStar", isbn);
-	}
+
 
 	@Override
 	public String selectKakaoNameById(String id){

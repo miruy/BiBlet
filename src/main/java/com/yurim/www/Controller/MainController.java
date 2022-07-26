@@ -38,6 +38,7 @@ public class MainController {
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
 
+
         //회원 로그인 시
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");

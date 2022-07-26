@@ -624,45 +624,50 @@
                     <c:if test="${!empty commentsByMembers}">
                         <c:forEach var="comment" items="${commentsByMembers}">
                             <div class="carousel-item rounded-lg bg-gray-100 w-80 h-72 flex flex-col">
-                                <div class="p-4 space-x-4">
-                                    <div class="flex flex-row border-b-2 border-gray-300 space-x-2 pl-2">
-                                        <div class="pb-2">
-                                            <c:if test="${comment.storedPic eq null}">
-                                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
-                                                         fill="currentColor" viewBox="0 0 20 20"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                              clip-rule="evenodd"></path>
-                                                    </svg>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${comment.storedPic ne null}">
+                                <div class="py-4 px-8">
+
+                                    <div class="flex flex-row justify-between border-b-2 border-gray-300">
+                                        <div class="flex flex-row space-x-2">
+                                            <div class="pb-2">
+                                                <c:if test="${comment.storedPic eq null}">
+                                                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                        <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                             fill="currentColor" viewBox="0 0 20 20"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${comment.storedPic ne null}">
+                                                    <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
+                                                    <c:if test="${idSub ne 'kakao'}">
+                                                        <img src="<c:url value='/images/${comment.storedPic}'/>"
+                                                             class="mask mask-circle w-10 h-10"/>
+                                                    </c:if>
+                                                    <c:if test="${idSub eq 'kakao'}">
+                                                        <img src="<c:url value='http://${comment.storedPic}'/>"
+                                                             class="mask mask-circle w-10 h-10"/>
+                                                    </c:if>
+                                                </c:if>
+                                            </div>
+
+                                            <div class="mt-2">
                                                 <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                    <div class="text-gray-600 text-sm">${comment.id}</div>
                                                 </c:if>
+
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                    <div class="text-gray-600 text-sm">${comment.name}</div>
                                                 </c:if>
-                                            </c:if>
+                                            </div>
                                         </div>
 
-                                        <div class="mt-2">
-                                            <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
-                                            <c:if test="${idSub ne 'kakao'}">
-                                                <div class="text-gray-600 text-sm">${comment.id}</div>
-                                            </c:if>
-
-                                            <c:if test="${idSub eq 'kakao'}">
-                                                <div class="text-gray-600 text-sm">${comment.name}</div>
-                                            </c:if>
+                                        <div>
+                                            <div id="star${comment.id}" class="mt-2"></div>
                                         </div>
-
-                                        <div id="star${comment.id}" class="mt-2"></div>
                                     </div>
 
                                     <div class="border-b-2 border-gray-300 py-2">
@@ -818,7 +823,7 @@
             }
 
             $("#star" + id).html(
-                '<div class="ml-16 text-yellow-400 text-xl">' + starForComment + '</div>'
+                '<div class="text-yellow-400 text-xl">' + starForComment + '</div>'
             );
         }
 

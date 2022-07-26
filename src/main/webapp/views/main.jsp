@@ -164,10 +164,11 @@
                         </thead>
                         <tbody>
                         <c:forEach var="latestComment" items="${latestComments}">
+
                             <tr>
                                 <td>
-                                    <div class="flex ">
-                                        <div class="text-center mt-1.5 ml-8">
+                                    <div class="flex">
+                                        <div class="text-center mt-1.5 ml-4">
                                             <c:if test="${latestComment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                                     <svg class="absolute w-12 h-12 text-gray-400 pr-2"
@@ -203,22 +204,25 @@
                                         </div>
                                     </div>
                                 </td>
+
                                 <td class="justify-center items-center text-center">
-                                    <span id="bookName${latestComment.isbn}" class="w-40"></span>
+                                    <span id="bookName${latestComment.appraisalNo}" class="w-40"></span>
                                 </td>
+
                                 <td class="justify-center items-center text-center">
                                     <c:if test="${latestComment.active == 0}">
                                         <span>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</span>
                                     </c:if>
                                     <c:if test="${latestComment.active == 1}">
-                                        <c:if test="${latestComment.comment.length() > 20}">
-                                            <textarea rows="2" disabled>${latestComment.comment}</textarea>
+                                        <c:if test="${latestComment.comment.length() > 40}">
+                                            <textarea class="resize-none w-64" rows="2" disabled>${latestComment.comment}</textarea>
                                         </c:if>
-                                        <c:if test="${latestComment.comment.length() <= 20}">
+                                        <c:if test="${latestComment.comment.length() <= 40}">
                                             ${latestComment.comment}
                                         </c:if>
                                     </c:if>
                                 </td>
+
                                 <td class="justify-center items-center text-center text-yellow-400">
                                     <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>
                                     <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>
@@ -228,6 +232,7 @@
                                     <c:if test="${latestComment.star==5}">★★★★★</c:if>
                                 </td>
                             </tr>
+
                         </c:forEach>
                         </tbody>
                     </table>
@@ -364,7 +369,7 @@
             // 최근 코멘트
             <c:if test="${!empty latestComments}">
             <c:forEach var="latestComment" items="${latestComments}">
-            latestComments(${latestComment.isbn})
+            latestComments(${latestComment.isbn}, ${latestComment.appraisalNo})
             </c:forEach>
             </c:if>
 
@@ -481,8 +486,9 @@
 
 
         // 최근 코멘트 5개
-        function latestComments(isbn, originPic, storedPic, id, comment, star) {
+        function latestComments(isbn, appraisalNo) {
             console.log(isbn);
+            console.log("appraisalNo : " + appraisalNo);
             $.ajax({	//카카오 검색요청 / [요청]
                 method: "GET",
                 traditional: true,
@@ -497,9 +503,9 @@
                     let title = msg.documents[0].title;
 
                     if (title.length >= 20) {
-                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title.slice(0, 20) + "...</a>");
+                        $("#bookName" + appraisalNo).append("<a href='/read/" + isbn + "'>" + title.slice(0, 20) + "...</a>");
                     } else if (title.length <= 20) {
-                        $("#bookName" + isbn).append("<a href='/read/" + isbn + "'>" + title + "...</a>");
+                        $("#bookName" + appraisalNo).append("<a href='/read/" + isbn + "'>" + title + "...</a>");
                     }
                 });
         }

@@ -58,6 +58,7 @@ public class AppraisalController {
 
         model.addAttribute("query", query);
         model.addAttribute("isbn", isbn);
+
         model.addAttribute("commentCount", commentCount);
         model.addAttribute("commentsByMembers", commentsByMembers);
         model.addAttribute("starAVG", starAVG);
