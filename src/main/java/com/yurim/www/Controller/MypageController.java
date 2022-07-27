@@ -201,8 +201,17 @@ public class MypageController {
 	@PostMapping("/withdrawUserInfo")
 	public void infoDelete(@RequestBody RequestUpdateUserInfo requestUpdateUserInfo, HttpSession session) {
 
-		mypageService.deleteUserInfo(requestUpdateUserInfo.getUserNo());
+        mypageService.deleteBookshelf(requestUpdateUserInfo.getUserNo());
+//        mypageDAO.deleteUserAppraisal(userNo);
+//        mypageDAO.deleteUserInfo(userNo);
 
+		Integer result = mypageService.deleteUserAppraisal(requestUpdateUserInfo.getUserNo());
+
+        if(result != null){
+            mypageService.deleteUserInfo(requestUpdateUserInfo.getUserNo());
+        }else if(result ==  null){
+            System.out.println("resulet null");
+        }
         // 회원 세션 정보 삭제
         session.removeAttribute("authInfo");
     }

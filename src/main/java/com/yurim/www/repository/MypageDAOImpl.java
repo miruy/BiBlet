@@ -55,8 +55,8 @@ public class MypageDAOImpl implements MypageDAO {
     }
 
     @Override
-    public void deleteUserAppraisal(Long userNo){
-        sqlSessionTemplate.delete("deleteUserAppraisal", userNo);
+    public int deleteUserAppraisal(Long userNo){
+        return sqlSessionTemplate.delete("deleteUserAppraisal", userNo);
     }
 
     @Override

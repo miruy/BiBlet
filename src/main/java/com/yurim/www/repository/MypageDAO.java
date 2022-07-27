@@ -14,6 +14,6 @@ public interface MypageDAO {
     void updateUserInfo(UserDTO newInfo);
     void deleteUserInfo(Long userNo);
     void deleteBookshelf(Long userNo);
-    void deleteUserAppraisal(Long userNo);
+    int deleteUserAppraisal(Long userNo);
     void changedDefaultProfile(Long userNo);
 }

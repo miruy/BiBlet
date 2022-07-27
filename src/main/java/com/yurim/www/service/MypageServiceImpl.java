@@ -82,12 +82,19 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public void deleteUserInfo(Long userNo){
+    public void deleteBookshelf(Long userNo){
         mypageDAO.deleteBookshelf(userNo);
-        mypageDAO.deleteUserAppraisal(userNo);
-        mypageDAO.deleteUserInfo(userNo);
     }
 
+    @Override
+    public int deleteUserAppraisal(Long userNo){
+        return mypageDAO.deleteUserAppraisal(userNo);
+    }
+
+    @Override
+    public void deleteUserInfo(Long userNo){
+        mypageDAO.deleteUserInfo(userNo);
+    }
     @Override
     public void changedDefaultProfile(Long userNo){
         mypageDAO.changedDefaultProfile(userNo);

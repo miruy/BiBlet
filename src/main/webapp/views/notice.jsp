@@ -61,9 +61,13 @@
 
 
                 <form method="post" id="requestPageChange" name="requestPageChange" class="btn-group mx-auto mt-8">
-                    <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
-                    <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
-                    <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
+                    <c:if test="${noticeCount > 10}">
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
+                        <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
+                    </c:if>
+                    <c:if test="${noticeCount > 20}">
+                        <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
+                    </c:if>
                 </form>
 
 
