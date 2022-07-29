@@ -40,7 +40,14 @@
     <div class="flex flex-col justify-center bg-white mx-auto py-4 top-0 z-50">
 
             <div class="flex flex-row admin_font space-x-20">
-                <a href="/" class="text-gray-800"><header_biblet class="normal-case text-4xl border-0 mt-4">BiBlet</header_biblet></a>
+                <a href="/">
+                    <header_biblet class="hover:text-transparent normal-case text-black border-0 mt-4 text-4xl flex flex-row">
+                        <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                        <div class="text-black">i</div>
+                        <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                        <div class="text-black">let</div>
+                    </header_biblet>
+                </a>
 
                 <div id="admin_tab_group" class="tabs space-x-4" >
                     <a href="/admin/supervise_user">
