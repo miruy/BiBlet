@@ -13,7 +13,14 @@
 
     <div class="flex mt-4">
         <div class="flex flex-col">
-            <a href="/"><div class="text-5xl font-bold text-white hover:text-purple-600">BiBlet</div></a>
+            <a href="/">
+                <header_biblet class="hover:text-transparent font-bold text-white text-5xl flex flex-row">
+                    <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                    <div class="text-white">i</div>
+                    <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                    <div class="text-white">let</div>
+                </header_biblet>
+            </a>
             <p class="font-semibold text-white">
                 ACME Industries Ltd. <br>Providing reliable tech since 1992
             </p>

@@ -24,6 +24,10 @@
             color: #7e22ce;
         }
 
+        header_biblet{
+            color: black;
+        }
+
         svg {
             color: #4b5563;
         }
@@ -39,7 +43,15 @@
 <header class="navbar bg-base-100 fixed inset-x-0 top-0 z-50 px-8">
     <div class="navbar-start">
         <div class="flex items-center space-x-4">
-            <a href="/" class="text-gray-800"><header_biblet class="normal-case text-2xl border-0 mx-[1.3rem]">BiBlet</header_biblet></a>
+
+            <a href="/">
+                <header_biblet class="hover:text-transparent normal-case text-black border-0 mx-[1.3rem] text-2xl flex flex-row">
+                    <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                    <div class="text-black">i</div>
+                    <div class="bg-clip-text bg-gradient-to-br from-pink-600 to-purple-600">B</div>
+                    <div class="text-black">let</div>
+                </header_biblet>
+            </a>
 
             <form action="/search" class="mb-0 flex items-center">
                 <input type="text" name="query" id="query" value="${query}" placeholder="검색"
