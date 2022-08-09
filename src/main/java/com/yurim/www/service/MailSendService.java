@@ -14,12 +14,9 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class MailSendService {
-
 	private final UserDAO userDAO;
 
-	/**
-	 * 사용자 이메일 인증 폼 보내기
-	 */
+	//회뤈가입 인증 이메일 발송
 	public String sendAuthMail(String email) {
 		String authKey = getAuthCode(6);
 
@@ -37,10 +34,10 @@ public class MailSendService {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
 		return authKey;
 	}
 
+	//비밀번호 찾기 이메일 발송
 	public boolean sendAuthMailForFindPass(String email, String id){
 
 		UserDTO user = userDAO.selectUserInfoById(id);
@@ -48,9 +45,6 @@ public class MailSendService {
 		if(user == null){
 			return false;
 		}
-
-		System.out.println("비밀번호 찾기 이름 : "+user.getName());
-		System.out.println("비밀번호 찾기 비밀번호" + user.getPass());
 
 		try {
 			MailUtils sendMail = new MailUtils();
@@ -69,9 +63,7 @@ public class MailSendService {
 		return true;
 	}
 
-	/**
-	 * 관리자 이메일 인증 폼 보내기
-	 */
+	//관리자 가입 인증 이메일 발송
 	public String sendAdmAuthMail(String email) {
 		String authKey = getAuthCode(6);
 
@@ -94,13 +86,10 @@ public class MailSendService {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
 		return authKey;
 	}
 
-	/**
-	 * 인증코드 생성
-	 */
+	//인증코드 생성
 	private String getAuthCode(int size) {
 		Random random = new Random();
 		StringBuffer buffer = new StringBuffer();

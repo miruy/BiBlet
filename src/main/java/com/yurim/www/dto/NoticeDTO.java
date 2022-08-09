@@ -24,8 +24,10 @@ public class NoticeDTO {
     private String originFile;
     private String storedFile;
 
+
     private String option;
     private String keyword;
+
 
     private Long page;
 }

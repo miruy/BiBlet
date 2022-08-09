@@ -62,6 +62,7 @@
                         <table class="table w-full text-center">
                             <thead>
                             <tr>
+                                <th>평가번호</th>
                                 <th>회원번호</th>
                                 <th>프로필</th>
                                 <th>이름</th>
@@ -78,8 +79,11 @@
                                 <c:forEach var="star" items="${stars}">
                                     <tr class="hover">
                                         <th>
-                                                ${star.userNo}
+                                                ${star.appraisalNo}
                                         </th>
+                                        <td>
+                                                ${star.userNo}
+                                        </td>
                                         <td>
                                             <c:if test="${star.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

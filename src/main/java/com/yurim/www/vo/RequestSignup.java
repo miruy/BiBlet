@@ -33,5 +33,4 @@ public class RequestSignup {
     private LocalDateTime regDate;
     private String profile;
     private Long userNo;
-
 }

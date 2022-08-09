@@ -13,24 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-/**
- * 관리자 회원가입 컨트롤러
- */
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminLoginController {
-
     private final AdministratorService administratorService;
 
+    //관리자 로그인 폼
     @GetMapping("/login")
     public String adminLoginForm(RequestAdmLogin requestAdmLogin, HttpSession session) {
         return "auth/adminLogin";
     }
 
+    //관리자 로그인
     @PostMapping("/login")
-    public String adminSignup(@ModelAttribute("requestAdmLogin") @Valid RequestAdmLogin requestAdmLogin, Errors errors, HttpSession session,
-                              HttpServletResponse response) throws Exception {
+    public String adminLogin(@ModelAttribute("requestAdmLogin") @Valid RequestAdmLogin requestAdmLogin, Errors errors,
+                             HttpSession session) throws Exception {
         AdministratorDTO admin = new AdministratorDTO();
 
         if(errors.hasErrors()) {
@@ -39,14 +38,10 @@ public class AdminLoginController {
 
         AdministratorDTO admAuthInfo = null;
         try {
-
             if (session != null && session.getAttribute("admAuthInfo") != null) {
                 return "redirect:/admin/supervise_user";
             }
-
-            /**
-             * 관리자 인증
-             */
+            //관리자 인증
             admin.setAdmId(requestAdmLogin.getAdmId());
             admin.setAdmPass(requestAdmLogin.getAdmPass());
 
@@ -54,9 +49,7 @@ public class AdminLoginController {
 
             session.setAttribute("admAuthInfo", admAuthInfo);
 
-
             return "redirect:/admin/supervise_user";
-
         } catch (IdPasswordNotMatchingException e) {
             errors.rejectValue("commonError", "IdPasswordNotMatching");
             return "auth/adminLogin";

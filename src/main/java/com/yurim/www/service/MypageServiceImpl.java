@@ -19,36 +19,43 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class MypageServiceImpl implements MypageService {
-
     private final MypageDAO mypageDAO;
 
+    //나의 펼가 리스트
     @Override
     public List<AppraisalDTO> myCommentForMypage(Long userNo) {
         return mypageDAO.myCommentForMypage(userNo);
     }
 
+    //나의 평점 리스트 5개 조회
     @Override
     public List<AppraisalDTO> myEvaluateList(Long userNo) {
         return mypageDAO.myEvaluateList(userNo);
     }
 
+    //읽고싶어요 리스트
     @Override
     public List<String> mypage_1(Long userNo){
         return mypageDAO.mypage_1(userNo);
     }
 
+    //읽는 중 리스트
     @Override
     public List<String> mypage_2(Long userNo){
         return mypageDAO.mypage_2(userNo);
     }
 
+    //나의 모든 평점 리스트
     @Override
     public List<AppraisalDTO> mypage_4(Long userNo){
         return mypageDAO.mypage_4(userNo);
     }
 
+    //회원정보 수정
     @Override
-    public void updateUserInfo(RequestUpdateUserInfo requestUpdateUserInfo, MultipartFile multipartFile, HttpServletRequest request) throws IllegalStateException, IOException{
+    public void updateUserInfo(RequestUpdateUserInfo requestUpdateUserInfo, MultipartFile multipartFile,
+                               HttpServletRequest request) throws IllegalStateException, IOException{
+
         UserDTO newInfo = new UserDTO();
 
         //사용자가 선택한 프로필 이름 추출
@@ -81,20 +88,25 @@ public class MypageServiceImpl implements MypageService {
         mypageDAO.updateUserInfo(newInfo);
     }
 
+    //보관함 삭제
     @Override
     public void deleteBookshelf(Long userNo){
         mypageDAO.deleteBookshelf(userNo);
     }
 
+    //평가, 평점 삭제
     @Override
     public int deleteUserAppraisal(Long userNo){
         return mypageDAO.deleteUserAppraisal(userNo);
     }
 
+    //회원 탈퇴
     @Override
     public void deleteUserInfo(Long userNo){
         mypageDAO.deleteUserInfo(userNo);
     }
+
+    //기본 프로필로 돌아가기
     @Override
     public void changedDefaultProfile(Long userNo){
         mypageDAO.changedDefaultProfile(userNo);

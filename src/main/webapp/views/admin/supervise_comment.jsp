@@ -60,6 +60,7 @@
                         <table class="table w-full text-center">
                             <thead>
                             <tr>
+                                <th>코멘트번호</th>
                                 <th>회원번호</th>
                                 <th>프로필</th>
                                 <th>이름</th>
@@ -73,9 +74,12 @@
                             <c:if test="${!empty comments}">
                                 <c:forEach var="comment" items="${comments}">
                                     <tr class="hover">
-                                        <th>
+                                        <td>
+                                                ${comment.appraisalNo}
+                                        </td>
+                                        <td>
                                                 ${comment.userNo}
-                                        </th>
+                                        </td>
                                         <td>
                                             <c:if test="${comment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

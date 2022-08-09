@@ -22,16 +22,12 @@ import javax.servlet.http.HttpSession;
 public class StatusController {
     private final BookShelfService bookShelService;
 
+    //독서상태(읽고싶어요, 읽는중) 등록
     @ResponseBody
     @PostMapping("/insertOrUpdate")
-    public ResponseEntity insertStatus(@RequestBody RequestStatus requestStatus, Errors errors,
-                                     HttpSession session, HttpServletResponse response) {
-
+    public ResponseEntity insertStatus(@RequestBody RequestStatus requestStatus, Errors errors, HttpSession session) {
         BookShelfDTO bookShelf = new BookShelfDTO();
 
-        /**
-         * 에러시 반환
-         */
         if (errors.hasErrors()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -47,28 +43,21 @@ public class StatusController {
         Integer result = bookShelService.selectStatus(requestStatus.getIsbn(), userNo);
 
         if(result == null){
-
             bookShelService.insertStatus(bookShelf);
-
         }else if(result != requestStatus.getStatus()){
-
             bookShelf.setBeforeStatus(result);
             bookShelService.updateStatus(bookShelf);
-
         }
-
         return ResponseEntity.ok(requestStatus.getStatus());
     }
 
+    //독서상태 삭제
     @ResponseBody
     @PostMapping("/delete")
-    public ResponseEntity deleteStatus(@RequestBody RequestStatus requestStatus, Errors errors,
-                                     HttpSession session, HttpServletResponse response) {
+    public ResponseEntity deleteStatus(@RequestBody RequestStatus requestStatus, Errors errors, HttpSession session) {
 
         BookShelfDTO bookShelf = new BookShelfDTO();
-/**
- * 에러시 반환
- */
+
         if (errors.hasErrors()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

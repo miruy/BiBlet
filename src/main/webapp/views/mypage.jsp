@@ -169,7 +169,7 @@
                 <c:if test="${!empty wantReadList}">
                     <div class="flex-col flex-row mb-4">
                         <span class="text-xl mr-2">읽고싶어요</span>
-                        <a class="text-gray-400" href="/mypage_1"> > 더보기 </a>
+                        <a class="text-gray-400" href="/wantRead"> > 더보기 </a>
                     </div>
                 </c:if>
                 <c:if test="${empty wantReadList}">
@@ -198,7 +198,7 @@
                 <c:if test="${!empty readingList}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">읽는 중</span>
-                        <a class="text-gray-400" href="/mypage_2"> > 더보기 </a>
+                        <a class="text-gray-400" href="/reading"> > 더보기 </a>
                     </div>
                 </c:if>
                 <c:if test="${empty readingList}">
@@ -226,7 +226,7 @@
                 <c:if test="${!empty myComments}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">나의 코멘트</span>
-                        <a class="text-gray-400" href="/mypage_3"> > 더보기 </a>
+                        <a class="text-gray-400" href="/myComment"> > 더보기 </a>
                     </div>
                 </c:if>
                 <c:if test="${empty myComments}">
@@ -310,7 +310,7 @@
                 <c:if test="${!empty myEvaluateList}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">나의 평가</span>
-                        <a class="text-gray-400" href="/mypage_4"> > 더보기 </a>
+                        <a class="text-gray-400" href="/myEvaluate"> > 더보기 </a>
                     </div>
                 </c:if>
                 <c:if test="${empty myEvaluateList}">

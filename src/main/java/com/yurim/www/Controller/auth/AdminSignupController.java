@@ -14,25 +14,22 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- * 관리자 회원가입 컨트롤러
- */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminSignupController {
-
     private final MailSendService mailSendService;
     private final AdministratorService administratorService;
 
+    //관리자 회원가입 폼
     @GetMapping("/signup")
     public String adminSignupForm(@ModelAttribute("requestAdmSignup") RequestAdmSignup requestAdmSignup) {
         return "auth/adminSignup";
     }
 
+    //관리자 회원가입
     @PostMapping("/signup")
     public String adminSignup(@ModelAttribute("requestAdmSignup") @Valid RequestAdmSignup requestAdmSignup, Errors errors) {
-
         AdministratorDTO admin = new AdministratorDTO();
 
         if(errors.hasErrors()) {
@@ -48,14 +45,10 @@ public class AdminSignupController {
 
             administratorService.adminSignup(admin);
 
-            /**
-             * 이메일 인증 메일 발송
-             */
+            //이메일 인증 메일 발송
             String authKey = mailSendService.sendAdmAuthMail(admin.getAdmEmail());
 
-            /**
-             * 이메일 인증키 업데이트
-             */
+            //이메일 인증키 업데이트
             administratorService.updateAdmAuthkey(admin.getAdmEmail(), authKey);
 
             return "check/signupCheck";
@@ -71,9 +64,7 @@ public class AdminSignupController {
         }
     }
 
-    /**
-     * 이메일 인증 확인
-     */
+    //이메일 인증 확인
     @GetMapping("/confirm")
     public String admConfirm(@RequestParam(defaultValue = "") String adm_email) {
 

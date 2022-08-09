@@ -4,10 +4,8 @@ import com.yurim.www.dto.AdministratorDTO;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.NoticeDTO;
 import com.yurim.www.dto.UserDTO;
-import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.exception.RequiredException;
 import com.yurim.www.service.AdministratorService;
-import com.yurim.www.service.MypageService;
 import com.yurim.www.service.NoticeService;
 import com.yurim.www.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 
 @Controller
@@ -31,6 +28,7 @@ public class AdministratorController {
     private final AdministratorService administratorService;
     private final NoticeService noticeService;
 
+    //회뤈 관리 탭
     @GetMapping("/supervise_user")
     public String userManagement(Model model, HttpSession session) {
 
@@ -58,6 +56,7 @@ public class AdministratorController {
         return "admin/supervise_user";
     }
 
+    //회뤈 관리 탭-회원 검색
     @PostMapping("/supervise_user")
     public String userSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
@@ -95,6 +94,7 @@ public class AdministratorController {
 
     }
 
+    //평점 관리 탭
     @GetMapping("/supervise_appraisal")
     public String starManagement(Model model, HttpSession session) {
 
@@ -116,11 +116,10 @@ public class AdministratorController {
             model.addAttribute("stars", administratorService.allStarInfo());
             model.addAttribute("totalStar", administratorService.totalStar());
         }
-
         return "admin/supervise_appraisal";
     }
 
-
+    //평점 관리 탭-평점 검색
     @PostMapping("/supervise_appraisal")
     public String starSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
@@ -156,11 +155,10 @@ public class AdministratorController {
             model.addAttribute("searchStarList", administratorService.selectStarBySearchValue(appraisal));
             model.addAttribute("searchStarCount", administratorService.totalStarCountBySearchValue(appraisal));
         }
-
         return "admin/search_appraisal";
-
     }
 
+    //평가 관리 탭
     @GetMapping("/supervise_comment")
     public String commentManagement(Model model, HttpSession session) {
 
@@ -186,6 +184,7 @@ public class AdministratorController {
         return "admin/supervise_comment";
     }
 
+    //평가 관리 탭-평가 검색
     @PostMapping("/supervise_comment")
     public String commentSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
@@ -221,11 +220,10 @@ public class AdministratorController {
             model.addAttribute("searchCommentList", administratorService.selectCommentBySearchValue(appraisal));
             model.addAttribute("searchCommentCount", administratorService.totalCommentCountBySearchValue(appraisal));
         }
-
         return "admin/search_comment";
-
     }
 
+    //공지 관리 탭
     @GetMapping("/supervise_notice")
     public String notice(Model model, HttpSession session) {
 
@@ -248,10 +246,10 @@ public class AdministratorController {
             model.addAttribute("totalNoticeCount", administratorService.totalNoticeCount());
 
         }
-
         return "admin/supervise_notice";
     }
 
+    //공지 관리 탭-공지 검색
     @PostMapping("/supervise_notice")
     private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, HttpSession session, Model model) {
         NoticeDTO searchNotice = new NoticeDTO();
@@ -284,7 +282,7 @@ public class AdministratorController {
         return "admin/search_notice";
     }
 
-
+    //공지사항 세부내용
     @GetMapping("/notice_{noticeNo}")
     public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo) {
 
@@ -297,11 +295,10 @@ public class AdministratorController {
         } else if (admAuthInfo != null) {
             model.addAttribute("adminPageNoticeDetail", noticeService.selectNoticeDetail(noticeNo));
         }
-
         return "admin/superviseNotice_detail";
     }
 
-
+    //관리자 정보 탭
     @GetMapping("/supervise_admin")
     public String adminInfo(Model model, HttpSession session) {
 
@@ -324,10 +321,10 @@ public class AdministratorController {
             model.addAttribute("totalAdmins", administratorService.totalAdmin());
 
         }
-
         return "admin/supervise_admin";
     }
 
+    //관리자 정보 태-관리자 검색
     @PostMapping("/supervise_admin")
     public String adminSearch(@ModelAttribute("requestAdmSearch") RequestAdmSearch requestAdmSearch, HttpSession session, Model model) {
 
@@ -359,12 +356,10 @@ public class AdministratorController {
             model.addAttribute("searchAdminList", administratorService.selectAdminBySearchValue(searchAdmin));
             model.addAttribute("searchAdminCount", administratorService.totalAdminCountBySearchValue(searchAdmin));
         }
-
-
         return "admin/search_admin";
-
     }
 
+    //관리자 비밀번호 확인
     @ResponseBody
     @PostMapping("/adminPassCheck")
     public int PassCheck(@RequestBody RequestAdmLogin requestAdmLogin, HttpSession session) {
@@ -377,45 +372,39 @@ public class AdministratorController {
         } else {
             return 0;
         }
-
     }
 
+    //회원 강제 탈퇴-회원 삭제
     @ResponseBody
     @PostMapping("/deleteUser")
     public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session) {
 
         administratorService.deleteUser(requestLogin.getUserNo());
 
-        // 회원 세션 정보 삭제
-//        session.removeAttribute("authInfo");
-
         return 1;
     }
 
+    //회원 강제 탈퇴-평점 및 평가 삭제
     @ResponseBody
     @PostMapping("/deleteAppraisal")
     public int deleteAppraisal(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
 
         administratorService.deleteAppraisal(requestCommentForDetail.getAppraisalNo());
 
-        // 회원 세션 정보 삭제
-//        session.removeAttribute("authInfo");
-
         return 1;
     }
 
-
+    //평가 숨김 처리
     @ResponseBody
     @PostMapping("/disabledComment")
     public int disabledComment(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
 
         administratorService.disabledComment(requestCommentForDetail.getActive(), requestCommentForDetail.getAppraisalNo());
 
-        // 회원 세션 정보 삭제
-//        session.removeAttribute("authInfo");
         return 1;
     }
 
+    //공지사항 작성 폼
     @GetMapping("/writeNotice")
     private String writeNoticeForm(Model model, HttpSession session) {
 
@@ -429,12 +418,11 @@ public class AdministratorController {
             Long admNo = admAuthInfo.getAdmNo();
             AdministratorDTO admInfo = administratorService.selectAdminInfoByAdmNo(admNo);
             model.addAttribute("admInfo", admInfo);
-
         }
-
         return "admin/writeNotice";
     }
 
+    //공지사항 등록
     @PostMapping("/writeNotice")
     private String writeNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors) throws IOException {
 
@@ -469,11 +457,10 @@ public class AdministratorController {
             errors.rejectValue("content", "required");
             return "admin/writeNotice";
         }
-
         return "redirect:/admin/supervise_notice";
     }
 
-
+    //공지사항 수정 폼
     @GetMapping("/modifyNotice_{noticeNo}")
     public String modifyNoticeForm(@PathVariable Long noticeNo, Model model, HttpSession session) {
 
@@ -493,10 +480,10 @@ public class AdministratorController {
 
             model.addAttribute("modifyNoticeDetail", noticeService.selectNoticeDetail(noticeNo));
         }
-
         return "admin/modifyNotice";
     }
 
+    //공지사항 수정
     @PostMapping("/modifyNotice")
     public String modifyNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors, HttpSession session, Model model) throws IOException {
 
@@ -532,10 +519,10 @@ public class AdministratorController {
             errors.rejectValue("contentWithFile", "required");
             return "admin/modifyNotice";
         }
-
         return "redirect:/admin/supervise_notice";
     }
 
+    //공지사항 첨부파일 삭제
     @ResponseBody
     @PostMapping("/updateFileToNull")
     public int updateFileToNull(@RequestBody RequestWriteNotice requestWriteNotice){
@@ -543,14 +530,11 @@ public class AdministratorController {
         return 1;
     }
 
+    //공지사항 삭제
     @ResponseBody
     @PostMapping("/deleteNotice")
     public int deleteNotice(@RequestBody RequestNoticeSearch requestNoticeSearch, HttpSession session) {
-
         administratorService.deleteNotice(requestNoticeSearch.getNoticeNo());
-
-        // 회원 세션 정보 삭제
-//        session.removeAttribute("authInfo");
         return 1;
     }
 }

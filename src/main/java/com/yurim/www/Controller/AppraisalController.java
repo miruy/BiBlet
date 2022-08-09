@@ -23,19 +23,15 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class AppraisalController {
-
     private final AppraisalService appraisalService;
     private final BookShelfService bookShelfService;
     private final MainService mainService;
 
-    /**
-     * 도서 상세보기 - 해당 도서의 대한 모든 평가 추출
-     */
+    //도서 상세보기 - 해당 도서의 대한 모든 평가 조회
     @GetMapping("/read/{isbn}")
-    public String detail(RequestLogin requestLogin, Model model, HttpSession session,
-                         HttpServletResponse response, @RequestParam(required = false) String query,
-                         @PathVariable String isbn) {
-
+    public String detail(RequestLogin requestLogin, Model model, HttpSession session, HttpServletResponse response,
+                                                                @RequestParam(required = false) String query, @PathVariable String isbn) {
+        //회원 비 로그인 시
         BookShelfDTO bookShelf = new BookShelfDTO();
 
         // 해당 도서의 대한 평가 개수
@@ -52,7 +48,6 @@ public class AppraisalController {
         if (starAVG == null) {
             starAVG = 0;
         }
-
         // 해당 도서의 대해 별점평가를 한 회원 수
         Long starCount = appraisalService.starCount(isbn);
 
@@ -65,12 +60,11 @@ public class AppraisalController {
         model.addAttribute("starCount", starCount);
         model.addAttribute("starByMembers", starByMembers);
 
+        //회원 로그인 시
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        //회원 로그인 시
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
 
             // 회원이 평가한 별점 뿌리기
@@ -94,7 +88,6 @@ public class AppraisalController {
                 } else if (userStar == 5) {
                     userStarMsg = "최고예요!";
                 }
-
                 model.addAttribute("userStar", userStar);
                 model.addAttribute("userStarMsg", userStarMsg);
             }
@@ -102,11 +95,11 @@ public class AppraisalController {
             //회원의 읽고싶어요, 읽는 중 뿌리기
             Integer userStatus = bookShelfService.selectStatus(isbn, userNo);
 
-            if(userStatus == null){
+            if (userStatus == null) {
                 return "detail";
-            } else if(userStatus == 0 || userStatus == 1){
+            } else if (userStatus == 0 || userStatus == 1) {
                 model.addAttribute("userStatus", userStatus);
-            } else if (userStatus == 2 ) {
+            } else if (userStatus == 2) {
                 //회원의 코멘트 뿌리기
                 bookShelf.setUserNo(userNo);
                 bookShelf.setIsbn(isbn);
@@ -121,20 +114,14 @@ public class AppraisalController {
                 }
             }
         }
-
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
-
         return "detail";
     }
 
-    /**
-     * 평가 등록
-     */
+    //평가 등록
     @PostMapping("/read/{isbn}")
-    private String writeComment(@ModelAttribute("requestWriteComment") RequestWriteComment requestWriteComment,
-                                Errors errors, @PathVariable String isbn,
-                                Model model, HttpSession session,
-                                HttpServletResponse response) throws UnsupportedEncodingException {
+    private String writeComment(@ModelAttribute("requestWriteComment") RequestWriteComment requestWriteComment, Errors errors, @PathVariable String isbn,
+                                Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
 
         AppraisalDTO appraisal = new AppraisalDTO();
         BookShelfDTO bookShelf = new BookShelfDTO();
@@ -146,9 +133,6 @@ public class AppraisalController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        /**
-         * Long userNo로 변환
-         */
         Long userNo = authInfo.getUserNo();
 
         bookShelf.setUserNo(userNo);
@@ -174,8 +158,8 @@ public class AppraisalController {
 
             appraisalService.writeComment(appraisal);
 
-        // 해당 도서의 대한 별점만 있는 상태
-        }else if(bookShelf.getStatusNo() != null){
+            // 해당 도서의 대한 별점만 있는 상태
+        } else if (bookShelf.getStatusNo() != null) {
             //update
             appraisal.setComment(requestWriteComment.getComment());
             appraisal.setStartDate(requestWriteComment.getStartDate());
@@ -185,7 +169,6 @@ public class AppraisalController {
             appraisal.setIsbn(isbn);
             appraisalService.updateComment(appraisal);
         }
-
         return "redirect:/read/" + isbn;
     }
 
@@ -193,7 +176,7 @@ public class AppraisalController {
     @ResponseBody
     @PostMapping("/updateComment")
     private ResponseEntity updateComment(@RequestBody RequestUpdateComment requestUpdateComment, Errors errors,
-                                         HttpSession session, HttpServletResponse response) {
+                                                                        HttpSession session, HttpServletResponse response) {
 
         AppraisalDTO appraisal = new AppraisalDTO();
 
@@ -204,9 +187,6 @@ public class AppraisalController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        /**
-         * Long userNo로 변환
-         */
         Long userNo = authInfo.getUserNo();
 
         appraisal.setComment(requestUpdateComment.getComment());
@@ -222,7 +202,7 @@ public class AppraisalController {
         return ResponseEntity.ok("코멘트 수정 성공");
     }
 
-    //kakao로그인 시 id 대신 name 가져오기
+    //카카오로그인 시 id 대신 name 가져오기
     @ResponseBody
     @PostMapping("/requestKakaoName")
     private ResponseEntity requestKakaoName(@RequestBody RequestKakaoLogin requestKakaoLogin, Errors errors,
@@ -249,14 +229,10 @@ public class AppraisalController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        /**
-         * Long userNo로 변환
-         */
         Long userNo = authInfo.getUserNo();
 
         appraisalService.deleteComment(userNo, requestDeleteComment.getIsbn());
 
         return ResponseEntity.ok("코멘트 삭제 성공");
     }
-
 }

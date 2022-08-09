@@ -64,6 +64,7 @@
                         <table class="table w-full text-center">
                             <thead>
                             <tr>
+                                <th>코멘트번호</th>
                                 <th>회원번호</th>
                                 <th>프로필</th>
                                 <th>이름</th>
@@ -77,9 +78,12 @@
                             <c:if test="${!empty searchCommentList}">
                                 <c:forEach var="searchComment" items="${searchCommentList}">
                                     <tr class="hover">
-                                        <th>
-                                                ${searchComment.userNo}
-                                        </th>
+                                        <td>
+                                                ${comment.appraisalNo}
+                                        </td>
+                                        <td>
+                                                ${comment.userNo}
+                                        </td>
                                         <td>
                                             <c:if test="${searchComment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

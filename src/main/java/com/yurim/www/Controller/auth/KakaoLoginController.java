@@ -24,10 +24,9 @@ import java.util.UUID;
 @Controller
 @RequiredArgsConstructor
 public class KakaoLoginController {
-
     private final UserService userService;
-    private final MainService mainService;
 
+    //카카오 로그인
     @ResponseBody
     @PostMapping("/login/kakao")
     public boolean kakaoLogin(@Valid @RequestBody RequestKakaoLogin requestKakaoLogin, HttpSession session) throws Exception {
@@ -61,7 +60,5 @@ public class KakaoLoginController {
         session.setAttribute("authInfo", authInfo);
 
         return true;
-
     }
-
 }

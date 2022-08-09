@@ -31,5 +31,4 @@ public class RequestAdmSignup {
     private String securitycode;
 
     private String commonError;
-
 }

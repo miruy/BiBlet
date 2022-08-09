@@ -30,144 +30,116 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor // @Autowried
 public class MypageController {
-
     private final UserService userService;
     private final MainService mainService;
     private final MypageService mypageService;
 
-    /**
-     * 회원 정보 조회
-     */
+    //마이페이지
     @GetMapping("/mypage")
-    public String memberInfo(Model model,
-                             HttpSession session, HttpServletResponse response) {
+    public String memberInfo(Model model, HttpSession session) {
 
-        // 회원 정보 불러오기
+        //회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        // 마이페이지에 보여주기
+        //마이페이지에 보여주기
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
 
-            // 나의 코멘트
+            //나의 코멘트
             model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));
 
-            // 나의 평가
+            //나의 평가
             model.addAttribute("myEvaluateList", mypageService.myEvaluateList(userNo));
 
-            // 읽고싶어요, 읽는 중, footer
+            //읽고싶어요, 읽는 중, footer
             model.addAttribute("wantReadList", mainService.wantReadList(userNo));
             model.addAttribute("readingList", mainService.readingList(userNo));
             model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
-            // 회원정보(모달)
+            //회원정보(모달)
             model.addAttribute("myInfo", userService.selectUserInfoByUserNo(userNo));
-
         }
-
-
         return "mypage";
     }
 
-    @GetMapping("/mypage_1")
+    //읽고싶어요 조회
+    @GetMapping("/wantRead")
     public String wantRead(Model model, HttpSession session) {
-
         // 회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
-
             model.addAttribute("mypage_1", mypageService.mypage_1(userNo));
         }
-
         return "wantRead";
     }
 
-    @GetMapping("/mypage_2")
+    //읽는 중 조회
+    @GetMapping("/reading")
     public String reading(Model model, HttpSession session) {
-
         // 회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
-
             model.addAttribute("mypage_2", mypageService.mypage_2(userNo));
         }
-
         return "reading";
     }
 
-    @GetMapping("/mypage_3")
+    //나의 코멘트 조회
+    @GetMapping("/myComment")
     public String myComment(Model model, HttpSession session) {
-
         // 회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
-
             model.addAttribute("mypage_3", mypageService.myCommentForMypage(userNo));
         }
-
         return "myComment";
     }
 
-    @GetMapping("/mypage_4")
+    //나의 평점 조회
+    @GetMapping("/myEvaluate")
     public String myEvaluate(Model model, HttpSession session) {
-
         // 회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
-
             model.addAttribute("mypage_4", mypageService.mypage_4(userNo));
         }
-
         return "myEvaluate";
     }
 
+    //회원 정보 수정 폼
     @GetMapping("/edit")
-    public String modifyUserInfoForm(@ModelAttribute("requestUpdateUserInfo") RequestUpdateUserInfo requestUpdateUserInfo, Model model, HttpSession session, HttpServletResponse response) {
-
-        // 회원 정보 불러오기
+    public String modifyUserInfoForm(@ModelAttribute("requestUpdateUserInfo") RequestUpdateUserInfo requestUpdateUserInfo,
+                                     Model model, HttpSession session, HttpServletResponse response) {
+        //회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
-
             session.setAttribute("authInfo", authInfo);
-
             model.addAttribute("myInfo2", userService.selectUserInfoByUserNo(userNo));
         }
-
         return "edit";
     }
 
-
+    //회원 정보 수정
     @PostMapping("/edit")
-    public String modifyUserInfo(@ModelAttribute("requestUpdateUserInfo") @Valid RequestUpdateUserInfo requestUpdateUserInfo, Errors errors, HttpSession session,
-                                 HttpServletRequest request, Model model) throws IllegalStateException, IOException {
-
-        if (errors.hasErrors()) {
-            return "mypage";
-        }
-
-        // 회원 정보 불러오기
+    public String modifyUserInfo(@ModelAttribute("requestUpdateUserInfo") @Valid RequestUpdateUserInfo requestUpdateUserInfo, Errors errors,
+                                 HttpSession session, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
+        //회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
@@ -181,11 +153,11 @@ public class MypageController {
         return "redirect:/mypage";
     }
 
+    //회원 탈퇴 폼
     @GetMapping("/withdraw")
-    public String withdrawUserInfoForm(@ModelAttribute("requestUpdateUserInfo") RequestUpdateUserInfo requestUpdateUserInfo, Model model, HttpSession session,
-                                       HttpServletResponse response) {
-
-        // 회원 정보 불러오기
+    public String withdrawUserInfoForm(@ModelAttribute("requestUpdateUserInfo") RequestUpdateUserInfo requestUpdateUserInfo, Model model,
+                                       HttpSession session, HttpServletResponse response) {
+        //회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
@@ -197,25 +169,26 @@ public class MypageController {
         return "withdraw";
     }
 
+    //회원 탈퇴
 	@ResponseBody
 	@PostMapping("/withdrawUserInfo")
 	public void infoDelete(@RequestBody RequestUpdateUserInfo requestUpdateUserInfo, HttpSession session) {
 
         mypageService.deleteBookshelf(requestUpdateUserInfo.getUserNo());
-//        mypageDAO.deleteUserAppraisal(userNo);
-//        mypageDAO.deleteUserInfo(userNo);
 
 		Integer result = mypageService.deleteUserAppraisal(requestUpdateUserInfo.getUserNo());
 
         if(result != null){
             mypageService.deleteUserInfo(requestUpdateUserInfo.getUserNo());
         }else if(result ==  null){
-            System.out.println("resulet null");
+            System.out.println("result null");
         }
+
         // 회원 세션 정보 삭제
         session.removeAttribute("authInfo");
     }
 
+    //비밀번호 확인(회원정보 수정, 회원탈퇴)
     @ResponseBody
     @PostMapping("/editPassCheck")
     public int PassCheck(@RequestBody RequestLogin requestLogin, HttpSession session) {
@@ -228,13 +201,13 @@ public class MypageController {
         } else {
             return 0;
         }
-
     }
+
+    //기본프로필로 변경
     @ResponseBody
     @PostMapping("/changedDefaultProfile")
     public ResponseEntity changedDefaultProfile(@RequestBody RequestUpdateUserInfo requestUpdateUserInfo){
         mypageService.changedDefaultProfile(requestUpdateUserInfo.getUserNo());
         return ResponseEntity.ok(1);
     }
-
 }

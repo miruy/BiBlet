@@ -34,6 +34,7 @@ public class UserDTO {
     private String authKey;
     private int authStatus;
 
+
     private String option;
     private String keyword;
 }

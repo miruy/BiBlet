@@ -1,9 +1,7 @@
 package com.yurim.www.exception;
 
+//이미 존재하는 이메일 예외처리
 public class AlreadyExistEmailException extends RuntimeException{
-	/**
-	 * 이미 존재하는 이메일 에러
-	 */
 	public AlreadyExistEmailException() {
 		super();
 	}

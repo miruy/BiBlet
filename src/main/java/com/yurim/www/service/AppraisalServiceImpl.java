@@ -12,42 +12,45 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AppraisalServiceImpl implements AppraisalService {
-
     private final AppraisalDAO appraisalDAO;
 
-    // 해당 도서의 대한 모든 평가 호출
+    //해당 도서의 대한 모든 평가 조회
     @Override
     public List<AppraisalDTO> findAllComment(String isbn) {
         return appraisalDAO.findAllComment(isbn);
     }
 
+    //해당 도서의 대한 모든 평점 조회
     @Override
     public List<AppraisalDTO> findAllStar(String isbn){
         return appraisalDAO.findAllStar(isbn);
     }
 
-    // 해당 도서의 대한 평가 개수 호출
+    //해당 도서의 대한 평가 개수 조회
     @Override
     public int commentCount(String isbn) {
         return appraisalDAO.commentCount(isbn);
     }
 
-    // 평가 작성
+    //평가 작성
     @Override
     public void writeComment(AppraisalDTO appraisal) {
         appraisalDAO.writeComment(appraisal);
     }
 
+    //평균 평점 조회
     @Override
     public Integer starAVG(String isbn) {
         return appraisalDAO.starAVG(isbn);
     }
 
+    //평점 개수
     @Override
     public Long starCount(String isbn) {
         return appraisalDAO.starCount(isbn);
     }
 
+    //해당 도서의 대한 회원의 평점
     @Override
     public Integer userStar(Long userNo, String isbn) {
         HashMap<String, String> map = new HashMap<>();
@@ -57,6 +60,7 @@ public class AppraisalServiceImpl implements AppraisalService {
         return appraisalDAO.userStar(map);
     }
 
+    //평점 등록
     @Override
     public void insertStar(Long statusNo, int star, Long userNo, String isbn) {
         HashMap<String, Long> map = new HashMap<>();
@@ -69,11 +73,13 @@ public class AppraisalServiceImpl implements AppraisalService {
         appraisalDAO.insertStar(map);
     }
 
+    //평점 수정
     @Override
     public void updateStar(AppraisalDTO appraisal) {
         appraisalDAO.updateStar(appraisal);
     }
 
+    //평점 삭제
     @Override
     public void deleteStar(Long userNo, String isbn, int star) {
         HashMap<String, String> map = new HashMap<>();
@@ -87,23 +93,25 @@ public class AppraisalServiceImpl implements AppraisalService {
         appraisalDAO.deleteStar(map);
     }
 
+    //해당 도서의 대한 회원의 평가
     @Override
     public List<AppraisalDTO> selectMyComment(BookShelfDTO bookShelf) {
         return appraisalDAO.selectMyComment(bookShelf);
     }
 
+    //평가 수정
     @Override
     public void updateComment(AppraisalDTO appraisal) {
         appraisalDAO.updateComment(appraisal);
     }
 
-
-
+    //ID로 카카오 로그인 회원 이름 조회
     @Override
     public String selectKakaoNameById(String id){
         return appraisalDAO.selectKakaoNameById(id);
     }
 
+    //평가 삭제
     @Override
     public void deleteComment(Long userNo, String isbn){
         HashMap<String, String> map = new HashMap<>();

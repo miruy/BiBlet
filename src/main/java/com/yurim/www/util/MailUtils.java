@@ -26,6 +26,7 @@ public class MailUtils {
         messageHelper.setSubject(subject);
     }
 
+    //메일 내용
     public void setText(String htmlContent) throws MessagingException {
         messageHelper.setText(htmlContent, true);
     }

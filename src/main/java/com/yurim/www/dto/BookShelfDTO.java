@@ -18,5 +18,7 @@ public class BookShelfDTO {
     private int status;
     private String isbn;
     private Long userNo;
+
+
     private int beforeStatus;
 }

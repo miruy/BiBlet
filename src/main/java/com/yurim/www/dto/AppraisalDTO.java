@@ -12,9 +12,7 @@ import org.apache.ibatis.type.Alias;
 @NoArgsConstructor
 @Alias("AppraisalDTO")
 public class AppraisalDTO {
-    /**
-     * appraisal
-     */
+
     private Long appraisalNo;
     private int star;
     private String comment;
@@ -23,9 +21,7 @@ public class AppraisalDTO {
     private String coPrv;
     private Long statusNo;
 
-    /**
-     * + requestCommentForDetail / requestWriteComment
-     */
+
     private Long userNo;
     private String id;
     private String originPic;
@@ -34,8 +30,10 @@ public class AppraisalDTO {
     private String name;
     private String storedPic;
 
+
     private String option;
     private String keyword;
+
 
     private int active;
 }

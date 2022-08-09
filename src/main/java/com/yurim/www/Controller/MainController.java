@@ -22,29 +22,25 @@ import java.util.List;
 public class MainController {
     private final MainService mainService;
 
+    //메인
     @GetMapping
     public String main(Model model, HttpSession session) {
-
-        // 별점 평균 순 (인기 도서 TOP10)
+        //별점 평균 순 (인기 도서 TOP10)
         model.addAttribute("popularList", mainService.popularList());
 
-        // 읽고싶어요 순 (이런 책은 어떠세요?)
+        //읽고싶어요 순 (이런 책은 어떠세요?)
         model.addAttribute("recommendList", mainService.recommendList());
 
-        // 최근 코멘트 순 (최근 코멘트)
+        //최근 코멘트 순 (최근 코멘트)
         model.addAttribute("latestComments",  mainService.latestComments());
 
-        // 총 코멘트 수(footer)
+        //총 코멘트 수(footer)
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
-
-
 
         //회원 로그인 시
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
-
         if (authInfo != null) {
-
             Long userNo = authInfo.getUserNo();
 
             if(authInfo.getId().substring(0,5).equals("kakao")){
@@ -52,7 +48,6 @@ public class MainController {
             }else {
                 model.addAttribute("myID", authInfo.getId());
             }
-
             model.addAttribute("myCommentCount", mainService.userCommentCount(userNo));
             model.addAttribute("myStarCount", mainService.userStarCount(userNo));
             model.addAttribute("wantReadList", mainService.wantReadList(userNo));
@@ -60,11 +55,10 @@ public class MainController {
 
             return "main";
         }
-
-
         return "main";
     }
 
+    //도서 검색 리스트
     @GetMapping("/search")
     public String search(@RequestParam(defaultValue = "") String query, Model model) {
         model.addAttribute("query", query);
@@ -72,6 +66,4 @@ public class MainController {
         model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "search";
     }
-
-
 }

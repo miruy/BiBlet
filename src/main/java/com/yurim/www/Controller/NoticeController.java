@@ -36,22 +36,21 @@ import java.util.logging.Logger;
 public class NoticeController {
 
     private final NoticeService noticeService;
-    private final AdministratorService administratorService;
 
+    //공지사항
     @GetMapping("/notice")
     public String notice(Model model) {
-
-        // 전체 공지사항 수
+        //전체 공지사항 수
         model.addAttribute("noticeCount", noticeService.selectAllNoticeCount());
-
         return "notice";
     }
 
+    //페이지 변경
     @ResponseBody
     @PostMapping("/notice")
     public Map<String, Object> pageChange(@RequestBody RequestPageChange requestPageChange) {
 
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
 
         NoticeDTO page = new NoticeDTO();
         page.setPage(requestPageChange.getPage());
@@ -62,10 +61,10 @@ public class NoticeController {
         return result;
     }
 
+    //공지사항 검색
     @PostMapping("/notice_search")
     private String noticeSearch(@ModelAttribute("requestNoticeSearch") RequestNoticeSearch requestNoticeSearch, Model model) {
         NoticeDTO searchNotice = new NoticeDTO();
-
         if (requestNoticeSearch.getOption() == null) {
             searchNotice.setOption("선택");
             searchNotice.setKeyword(requestNoticeSearch.getKeyword());
@@ -73,41 +72,35 @@ public class NoticeController {
             searchNotice.setOption(requestNoticeSearch.getOption());
             searchNotice.setKeyword(requestNoticeSearch.getKeyword());
         }
-
         model.addAttribute("searchNoticeList", noticeService.selectNoticeBySearchValue(searchNotice));
         model.addAttribute("searchNoticeCount", noticeService.totalNoticeCountBySearchValue(searchNotice));
-
         return "notice_search";
     }
 
-
+    //공지사항 세부내용
     @GetMapping("/notice_{noticeNo}")
     public String noticeDetail(Model model, HttpSession session, @PathVariable Long noticeNo) {
-
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         //회원 로그인 시
         if (authInfo != null) {
-
             model.addAttribute("noticeDetail", noticeService.selectNoticeDetail(noticeNo));
-
         } else if (authInfo == null) {
             return "redirect:/login";
         }
-
         return "notice_detail";
     }
 
+    //첨부파일 다운로드
     @RequestMapping("/file_download")
     public void fileDownload(@RequestParam String storedFile, HttpServletResponse response) {
         noticeService.fileDownload(storedFile, response);
     }
 
+    //첨부파일 업로드
     @RequestMapping(value = "/ckImageUpload", method = RequestMethod.POST)
-    public void imageUpload(HttpServletRequest request,
-                            HttpServletResponse response, MultipartHttpServletRequest multiFile
-            , @RequestParam MultipartFile upload) throws Exception {
+    public void imageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
         // 랜덤 문자 생성
         UUID uid = UUID.randomUUID();
 
@@ -119,20 +112,19 @@ public class NoticeController {
         response.setContentType("text/html;charset=utf-8");
 
         try {
-
             //파일 이름 가져오기
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/"; // fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/";
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
 
             //해당 디렉토리 확인
             if (!folder.exists()) {
                 try {
-                    folder.mkdirs(); // 폴더 생성
+                    folder.mkdirs(); //폴더 생성
                 } catch (Exception e) {
                     e.getStackTrace();
                 }
@@ -140,13 +132,13 @@ public class NoticeController {
 
             out = new FileOutputStream(new File(ckUploadPath));
             out.write(bytes);
-            out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화
+            out.flush(); //outputStram에 저장된 데이터를 전송하고 초기화
 
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl = "/ckImgSubmit?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+            String fileUrl = "/ckImgSubmit?uid=" + uid + "&fileName=" + fileName;  //작성화면
 
-            // 업로드시 메시지 출력
+            //업로드시 메시지 출력
             printWriter.println("{\"filename\" : \"" + fileName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}");
             printWriter.flush();
 
@@ -164,21 +156,16 @@ public class NoticeController {
                 e.printStackTrace();
             }
         }
-
         return;
     }
 
+    //공지사항 게시물에 이미지 등록(CK Editor)
     @RequestMapping(value = "/ckImgSubmit")
-    public void ckSubmit(@RequestParam(value = "uid") String uid
-            , @RequestParam(value = "fileName") String fileName
-            , HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    public void ckSubmit(@RequestParam(value = "uid") String uid, @RequestParam(value = "fileName") String fileName,
+                         HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //서버에 저장된 이미지 경로
         String path = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/ckImage/";
-
         String sDirPath = path + uid + "_" + fileName;
-
         File imgFile = new File(sDirPath);
 
         //사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
@@ -204,9 +191,6 @@ public class NoticeController {
             length = imgBuf.length;
             out.write(imgBuf, 0, length);
             out.flush();
-
-
         }
     }
-
 }

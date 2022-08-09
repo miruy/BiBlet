@@ -24,13 +24,14 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 내장 톰캣 - 직접 추가
 	implementation 'javax.servlet:jstl' // jsp - 직접 추가
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.6.7'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'	//Valiedation 유효성 검사 - 직접 추가
 	implementation 'org.springframework.boot:spring-boot-starter-mail'	//JavaMailSender - 직접 추가
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'	//json - 직접 추가
 	implementation 'org.springframework.boot:spring-boot-devtools:2.7.1' // 실행
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'mysql:mysql-connector-java:8.0.16'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

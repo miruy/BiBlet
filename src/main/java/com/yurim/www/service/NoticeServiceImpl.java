@@ -18,36 +18,41 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class NoticeServiceImpl implements NoticeService{
-
     private final NoticeDAO noticeDAO;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
+    //모든 공지사항 수
     @Override
     public Long selectAllNoticeCount(){
         return noticeDAO.selectAllNoticeCount();
     }
 
+    //페이지 수에 따른 공지사항 조회
     @Override
     public List<NoticeDTO> selectNoticeByPageNo(NoticeDTO page){
         return noticeDAO.selectNoticeByPageNo(page);
     }
 
+    //공지사항 세부내용
     @Override
     public List<NoticeDTO> selectNoticeDetail(Long noticeNo){
         noticeDAO.updateReadCount(noticeNo);
         return noticeDAO.selectNoticeDetail(noticeNo);
     }
 
+    //공지사항 검색
     @Override
     public List<NoticeDTO> selectNoticeBySearchValue(NoticeDTO notice){
         return noticeDAO.selectNoticeBySearchValue(notice);
     }
 
+    //검색 공지사항 수
     @Override
     public Long totalNoticeCountBySearchValue(NoticeDTO notice){
         return noticeDAO.totalNoticeCountBySearchValue(notice);
     }
+
+    //첨부파일 포함 공지사항 등록
     @Override
     public void insertNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException {
 
@@ -77,77 +82,41 @@ public class NoticeServiceImpl implements NoticeService{
         noticeDAO.insertNoticeWithFile(notice);
     }
 
+    //첨부파일 미포함 공지사항 등록
     @Override
     public void insertNotice(NoticeDTO notice){
         noticeDAO.insertNotice(notice);
     }
 
-
-    @Override
-    public void updateNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException {
-
-        //공지사항 청부파일 이름 추출
-        String orgimagename = multipartFile.getOriginalFilename();
-
-        //공지사항 청부파일 확장자 추출
-        String orgimagenameExtension = orgimagename.substring(orgimagename.lastIndexOf("."));
-
-        //프로젝트 내 폴더에 첨부파일을 저장할 때 uuid값에 orgimagenameExtension(확장자)를 붙혀 저장 (= sjf743ifhrht32 + .png)
-        String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
-
-        //첨부파일이 저장될 경로(서버 측)
-        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
-
-        //파일이 저장될 경로 + 최종 파일명
-        String uploadFile = savePath + storedimagename;
-
-        //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
-        File file = new File(uploadFile);
-
-        multipartFile.transferTo(file);
-
-        notice.setOriginFile(orgimagename);
-        notice.setStoredFile(storedimagename);
-
-        noticeDAO.updateNoticeWithFile(notice);
-    }
-
-    @Override
-    public void updateNotice(NoticeDTO notice){
-        noticeDAO.updateNoticeWithFile(notice);
-    }
-
-
-
+    //첨부파일 다운로드
     @Override
     public void fileDownload(String storedFile, HttpServletResponse response){
-
         try {
-            // 다운로드 받을 파일명을 가져온다.
+            //다운로드 받을 파일명 fileName에 저장
             String fileName = storedFile;
 
-            // 다운로드 경로 (내려받을 파일경로를 설정한다.)
+            //다운로드 경로 (내려받을 파일이 있는 경로)
             String filePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
-            // 경로와 파일명으로 파일 객체를 생성한다.
+            //경로와 파일명으로 파일 객체 생성
             File dFile  = new File(filePath, fileName);
 
-            // 파일 길이를 가져온다.
+            //파일 길이
             int fSize = (int) dFile.length();
 
-            // 파일이 존재
+            //파일이 존재한다면
             if (fSize > 0) {
 
-                // 파일명을 URLEncoder 하여 attachment, Content-Disposition Header로 설정
+                //파일명을 URLEncoder 하여 attachment, Content-Disposition Header로 설정
                 String encodedFilename = "attachment; filename*=" + "UTF-8" + "''" + URLEncoder.encode(fileName, "UTF-8");
 
-                // ContentType 설정
+                //ContentType 설정
                 response.setContentType("application/octet-stream; charset=utf-8");
 
-                // Header 설정
+                //Header 설정
                 response.setHeader("Content-Disposition", encodedFilename);
 
-                // ContentLength 설정
+                //ContentLength 설정
                 response.setContentLengthLong(fSize);
 
                 BufferedInputStream in = null;
@@ -185,7 +154,7 @@ public class NoticeServiceImpl implements NoticeService{
                         out.write(buffer, 0, bytesRead);
                     }
 
-                    // 버퍼에 남은 내용이 있다면, 모두 파일에 출력
+                    //버퍼에 남은 내용이 있다면, 모두 파일에 출력
                     out.flush();
                 }
                 finally {
@@ -205,4 +174,39 @@ public class NoticeServiceImpl implements NoticeService{
         }
     }
 
+    //첨부파일 포함 공지사항 수정
+    @Override
+    public void updateNoticeWithFile(NoticeDTO notice, MultipartFile multipartFile) throws IOException {
+
+        //공지사항 청부파일 이름 추출
+        String orgimagename = multipartFile.getOriginalFilename();
+
+        //공지사항 청부파일 확장자 추출
+        String orgimagenameExtension = orgimagename.substring(orgimagename.lastIndexOf("."));
+
+        //프로젝트 내 폴더에 첨부파일을 저장할 때 uuid값에 orgimagenameExtension(확장자)를 붙혀 저장 (= sjf743ifhrht32 + .png)
+        String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
+
+        //첨부파일이 저장될 경로(서버 측)
+        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
+
+        //파일이 저장될 경로 + 최종 파일명
+        String uploadFile = savePath + storedimagename;
+
+        //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
+        File file = new File(uploadFile);
+
+        multipartFile.transferTo(file);
+
+        notice.setOriginFile(orgimagename);
+        notice.setStoredFile(storedimagename);
+
+        noticeDAO.updateNoticeWithFile(notice);
+    }
+
+    //공지사항 수정
+    @Override
+    public void updateNotice(NoticeDTO notice){
+        noticeDAO.updateNoticeWithFile(notice);
+    }
 }
