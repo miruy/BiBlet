@@ -9,13 +9,13 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col justify-center bg-white px-32 py-8">
-        <div class="card w-full bg-gray-100 shadow-xl">
+        <div class="card w-full bg-gray-100 shadow-xl p-16">
 
-            <div class="flex flex-col mb-10 px-10 py-10">
-                <span class="text-2xl mr-2 mb-4">읽는 중</span>
+            <div class="flex flex-col space-y-4">
+                <div class="text-2xl mr-2 mb-4">읽는 중</div>
 
                 <div class="flex">
-                    <div id="mypage_2" class="grid grid-cols-5 gap-5"></div>
+                    <div id="allReading" class="grid grid-cols-5 gap-8"></div>
                 </div>
 
             </div>
@@ -30,14 +30,14 @@
                 // 나의 코멘트
                 <c:if test="${!empty mypage_2}">
                     <c:forEach var="mypage_2" items="${mypage_2}">
-                        mypage_2(${mypage_2})
+                    allReading(${mypage_2})
                     </c:forEach>
                 </c:if>
             })
 
 
             // 읽고싶어요 전체
-            function mypage_2(isbn) {
+            function allReading(isbn) {
                 console.log(isbn);
 
                 $.ajax({	//카카오 검색요청 / [요청]
@@ -51,10 +51,10 @@
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                     let html = '';
                     html += '<div>';
-                    html += '<a href="/read/' + isbn + '"><img class="w-44 h-64" src="' + msg.documents[0].thumbnail + '"/></a>';
+                    html += '<a href="/read/' + isbn + '"><img class="w-56 h-76 shadow-2xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
                     html += '</div>';
 
-                    $("#mypage_2").append(html);
+                    $("#allReading").append(html);
                 });
 
             }

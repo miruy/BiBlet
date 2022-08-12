@@ -181,7 +181,7 @@
                     </div>
                 </c:if>
 
-                <div id="wantReadListForMypage" class="flex space-x-4 mt-2"></div>
+                <div id="wantReadListForMypage" class="flex space-x-4 mt-2 mx-auto"></div>
             </div>
 
 
@@ -199,7 +199,7 @@
                     </div>
                 </c:if>
 
-                <div id="readingListForMypage" class="flex space-x-4 mt-2"></div>
+                <div id="readingListForMypage" class="flex space-x-4 mt-2 mx-auto"></div>
             </div>
 
             <div class="flex flex-col mb-20">
@@ -299,7 +299,7 @@
                         <a class="text-gray-400" onclick="alert('평가한 도서가 아직 없네요 :(')"> > 더보기 </a>
                     </div>
                 </c:if>
-                <div id="myEvaluateList" class="flex space-x-4 mt-2"></div>
+                <div id="myEvaluateList" class="flex space-x-4 mt-2 mx-auto"></div>
             </div>
 
         </div>

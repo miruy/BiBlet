@@ -9,13 +9,13 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col justify-center bg-white px-32 py-8">
-        <div class="card w-full bg-gray-100 shadow-xl">
+        <div class="card w-full bg-gray-100 shadow-xl p-16">
 
-            <div class="flex flex-col mb-10 px-10 py-10">
+            <div class="flex flex-col space-y-4">
                 <span class="text-2xl mr-2 mb-4">나의 평가</span>
 
                 <div class="flex">
-                    <div id="mypage_4" class="grid grid-cols-5 gap-5"></div>
+                    <div id="mypage_4" class="grid grid-cols-5 gap-8"></div>
                 </div>
 
             </div>
@@ -69,7 +69,7 @@
 
                     var html = '';
                     html += '<div>';
-                    html += '<a href="/read/' + isbn + '"><img class="w-44 h-64 shadow-xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
+                    html += '<a href="/read/' + isbn + '"><img class="w-56 h-76 shadow-xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
                     html += '<div class="text-yellow-400 text-3xl text-center">' + starP + '</div>';
                     html += '</div>';
 
