@@ -19,7 +19,15 @@
                bookshelf.isbn
         FROM appraisal
             INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
-        WHERE bookshelf.user_no = #{userNo} ORDER BY appraisal.appraisal_no DESC limit 5
+        WHERE bookshelf.user_no = #{userNo} ORDER BY appraisal.appraisal_no DESC limit 6
+    </select>
+
+    <select id="wantReadListForMypage" parameterType="Long" resultType="AppraisalDTO">
+        SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 0 ORDER BY status_no DESC limit 6
+    </select>
+
+    <select id="readingListForMypage" parameterType="Long" resultType="AppraisalDTO">
+        SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 1 ORDER BY status_no DESC limit 6
     </select>
 
     <select id="mypage_1" parameterType="Long" resultType="String">

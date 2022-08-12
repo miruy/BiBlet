@@ -30,12 +30,6 @@
         WHERE appraisal.co_prv = '공개' AND appraisal.comment IS NOT NULL ORDER BY appraisal.appraisal_no DESC limit 5
     </select>
 
-    <select id="latestStar" parameterType="HashMap" resultType="Integer">
-        SELECT star FROM appraisal
-            INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
-        WHERE isbn = #{isbn} AND user_no = #{userNo}
-    </select>
-
     <select id="totalCommentCount" resultType="Long">
         SELECT COUNT(comment) FROM appraisal
     </select>

@@ -31,16 +31,6 @@ public class MainServiceImpl implements MainService {
         return mainDAO.latestComments();
     }
 
-    //최근 평점 5개
-    @Override
-    public List<Integer> latestStar(Long userNo, String isbn) {
-        HashMap<String, String> map = new HashMap<>();
-        String userNoS = String.valueOf(userNo);
-        map.put("userNo", userNoS);
-        map.put("isbn", isbn);
-        return mainDAO.latestStar(map);
-    }
-
     //총 평가 수
     @Override
     public Long totalCommentCount() {

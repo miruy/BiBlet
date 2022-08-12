@@ -7,9 +7,11 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
+
         <div class="text-center mb-[0.7rem]">
             <h1 class="text-4xl font-bold">Login</h1>
         </div>
+
         <div class="card flex-shrink-0 w-full shadow-2xl bg-base-100">
             <form:form modelAttribute="requestLogin" class="card-body lg:px-[10%]">
                 <form:errors />
@@ -51,6 +53,7 @@
                 <a href="/findPass" >Forgot your password?</a>
             </form:form>
         </div>
+
     </div>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>

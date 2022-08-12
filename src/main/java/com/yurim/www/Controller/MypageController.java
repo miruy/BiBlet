@@ -49,12 +49,16 @@ public class MypageController {
             //나의 코멘트
             model.addAttribute("myComments", mypageService.myCommentForMypage(userNo));
 
-            //나의 평가
+            //나의 평가 미리보기 6개
             model.addAttribute("myEvaluateList", mypageService.myEvaluateList(userNo));
 
-            //읽고싶어요, 읽는 중, footer
-            model.addAttribute("wantReadList", mainService.wantReadList(userNo));
-            model.addAttribute("readingList", mainService.readingList(userNo));
+            //읽고싶어요 미리보기 6개
+            model.addAttribute("wantReadListForMypage", mypageService.wantReadListForMypage(userNo));
+
+            //읽는 중 미리보기 6개
+            model.addAttribute("readingListForMypage", mypageService.readingListForMypage(userNo));
+
+            //footer
             model.addAttribute("totalCommentCount", mainService.totalCommentCount());
 
             //회원정보(모달)

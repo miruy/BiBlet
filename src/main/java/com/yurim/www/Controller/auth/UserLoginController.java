@@ -50,7 +50,8 @@ public class UserLoginController {
 
     //로그인
     @PostMapping("/login")
-    public String login(@Valid RequestLogin requestLogin, Errors errors, Model model, HttpSession session, HttpServletResponse response) throws Exception {
+    public String login(@Valid RequestLogin requestLogin, Errors errors, Model model,
+                        HttpSession session, HttpServletResponse response) throws Exception {
 
         if (errors.hasErrors()) {
             return "auth/login";

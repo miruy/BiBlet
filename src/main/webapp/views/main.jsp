@@ -12,11 +12,11 @@
     <div class="flex flex-col justify-center bg-white px-32 py-8">
 
         <c:if test="${!empty authInfo}">
+
             <div class="flex flex-col justify-center items-center text-center text-black p-16 space-x-2 space-y-4">
-            <c:if test="${!empty myID}">
 
                 <div class="flex flex-row">
-                    <div class="text-2xl">${myID}</div>
+                    <c:if test="${!empty myID}"><div class="text-2xl">${myID}</div></c:if>
                     <span class="text-xl">님 안녕하세요 :)</span>
                 </div>
 
@@ -28,63 +28,63 @@
                         <span class="text-xl">를 등록하였어요!</span>
                     </c:if>
                 </div>
+
+            </div>
+
+            <c:if test="${!empty wantReadList}">
+                <div class="flex flex-col mb-20">
+                    <c:if test="${!empty myID}"><span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span></c:if>
+
+                    <div class="w-full relative flex items-center justify-center shadow-2xl">
+                        <button id="prev3" aria-label="slide backward"
+                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❮
+                        </button>
+
+                        <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                            <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
+                        </div>
+
+                        <button id="next3" aria-label="slide forward"
+                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❯
+                        </button>
+                    </div>
+
+                    <template id="template__wantReadDetail__link">
+                        <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
+                            <img class='h-72 w-48 rounded-lg shadow-2xl' src='{wantReadBook_thumbnail}'/>
+                        </a>
+                    </template>
                 </div>
+            </c:if>
 
-                <c:if test="${!empty wantReadList}">
-                    <div class="flex flex-col mb-20">
-                        <span class="text-xl mb-4">${myID}님이 읽고싶은 도서</span>
+            <c:if test="${!empty readingList}">
+                <div class="flex flex-col mb-20">
+                    <c:if test="${!empty myID}"><span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span></c:if>
 
-                        <div class="w-full relative flex items-center justify-center">
-                            <button id="prev3" aria-label="slide backward"
-                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❮
-                            </button>
+                    <div class="w-full relative flex items-center justify-center shadow-2xl">
+                        <button id="prev4" aria-label="slide backward"
+                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❮
+                        </button>
 
-                            <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                                <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                            </div>
-
-                            <button id="next3" aria-label="slide forward"
-                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❯
-                            </button>
+                        <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
+                            <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
                         </div>
 
-                        <template id="template__wantReadDetail__link">
-                            <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                                <img class='h-72 w-48 rounded-lg' src='{wantReadBook_thumbnail}'/>
-                            </a>
-                        </template>
+                        <button id="next4" aria-label="slide forward"
+                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                            ❯
+                        </button>
                     </div>
-                </c:if>
 
-                <c:if test="${!empty readingList}">
-                    <div class="flex flex-col mb-20">
-                        <span class="text-xl mb-4">${myID}님이 읽는 중인 도서</span>
-
-                        <div class="w-full relative flex items-center justify-center">
-                            <button id="prev4" aria-label="slide backward"
-                                    class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❮
-                            </button>
-
-                            <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                                <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                            </div>
-
-                            <button id="next4" aria-label="slide forward"
-                                    class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
-                                ❯
-                            </button>
-                        </div>
-
-                        <template id="template__readingDetail__link">
-                            <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                                <img class='h-72 w-48 rounded-lg' src='{readingBook_thumbnail}'/>
-                            </a>
-                        </template>
-                    </div>
-                </c:if>
+                    <template id="template__readingDetail__link">
+                        <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
+                            <img class='h-72 w-48 rounded-lg shadow-2xl' src='{readingBook_thumbnail}'/>
+                        </a>
+                    </template>
+                </div>
             </c:if>
 
         </c:if>
@@ -98,7 +98,7 @@
         <div class="flex flex-col mb-20">
             <span class="text-xl mb-4">인기 도서 TOP10</span>
 
-            <div class="w-full relative flex items-center justify-center">
+            <div class="w-full relative flex items-center justify-center shadow-2xl">
                 <button id="prev" aria-label="slide backward"
                         class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
                     ❮
@@ -116,7 +116,7 @@
 
             <template id="template__detail__link">
                 <a href='{detail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48 rounded-lg' src='{book_thumbnail}'/>
+                    <img class='h-72 w-48 rounded-lg shadow-2xl' src='{book_thumbnail}'/>
                 </a>
             </template>
         </div>
@@ -125,7 +125,7 @@
         <div class="flex flex-col mb-20">
             <span class="text-xl mb-4">이런 책은 어떠세요?</span>
 
-            <div class="w-full relative flex items-center justify-center">
+            <div class="w-full relative flex items-center justify-center shadow-2xl">
                 <button id="prev2" aria-label="slide backward"
                         class="absolute top-[45%] -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
                     ❮
@@ -143,101 +143,112 @@
 
             <template id="template__recommendDetail__link">
                 <a href='{recommendDetail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48 rounded-lg' src='{recommendBook_thumbnail}'/>
+                    <img class='h-72 w-48 rounded-lg shadow-2xl' src='{recommendBook_thumbnail}'/>
                 </a>
             </template>
         </div>
 
         <c:if test="${!empty latestComments}">
+
             <div class="flex flex-col mb-20">
+
                 <span class="text-xl mb-4">최근 코멘트</span>
-                <div class="overflow-x-auto w-full">
+                <div class="overflow-x-auto w-full shadow-2xl rounded-2xl">
 
                     <table class="table w-full">
                         <thead>
-                        <tr class="text-xl text-center">
-                            <th>이름 / ID</th>
-                            <th>도서</th>
-                            <th>코멘트</th>
-                            <th>평가</th>
-                        </tr>
+                            <tr class="text-xl text-center">
+                                <th>이름 / ID</th>
+                                <th>도서</th>
+                                <th>코멘트</th>
+                                <th>평가</th>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <c:forEach var="latestComment" items="${latestComments}">
 
-                            <tr>
-                                <td>
-                                    <div class="flex">
-                                        <div class="text-center mt-1.5 ml-4">
-                                            <c:if test="${latestComment.storedPic eq null}">
-                                                <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
-                                                         fill="currentColor" viewBox="0 0 20 20"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                              clip-rule="evenodd"></path>
-                                                    </svg>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${latestComment.storedPic ne null}">
+                        <tbody>
+                            <c:forEach var="latestComment" items="${latestComments}">
+
+                                <tr>
+                                    <td>
+                                        <div class="flex">
+                                            <div class="text-center mt-1.5 ml-4">
+
+                                                <c:if test="${latestComment.storedPic eq null}">
+                                                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                        <svg class="absolute w-12 h-12 text-gray-400 pr-2"
+                                                             fill="currentColor" viewBox="0 0 20 20"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </div>
+                                                </c:if>
+
+                                                <c:if test="${latestComment.storedPic ne null}">
+                                                    <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
+                                                    <c:if test="${idSub ne 'kakao'}">
+                                                        <img src="<c:url value='/images/${latestComment.storedPic}'/>"
+                                                             class="mask mask-circle w-10 h-10"/>
+                                                    </c:if>
+                                                    <c:if test="${idSub eq 'kakao'}">
+                                                        <img src="<c:url value='http://${latestComment.storedPic}'/>"
+                                                             class="mask mask-circle w-10 h-10"/>
+                                                    </c:if>
+                                                </c:if>
+
+                                            </div>
+
+                                            <div class="p-4">
                                                 <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
-                                                    <img src="<c:url value='/images/${latestComment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                    <div class="font-bold">${latestComment.id}</div>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
-                                                    <img src="<c:url value='http://${latestComment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10"/>
+                                                    <div class="font-bold">${latestComment.name}</div>
                                                 </c:if>
-                                            </c:if>
+                                            </div>
                                         </div>
 
-                                        <div class="p-4">
-                                            <c:set var="idSub" value="${fn:substring(latestComment.id,0,5)}"/>
-                                            <c:if test="${idSub ne 'kakao'}">
-                                                <div class="font-bold">${latestComment.id}</div>
-                                            </c:if>
-                                            <c:if test="${idSub eq 'kakao'}">
-                                                <div class="font-bold">${latestComment.name}</div>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                                <td class="justify-center items-center text-center">
-                                    <span id="bookName${latestComment.appraisalNo}" class="w-40"></span>
-                                </td>
+                                    <td class="justify-center items-center text-center">
+                                        <span id="bookName${latestComment.appraisalNo}" class="w-40"></span>
+                                    </td>
 
-                                <td class="justify-center items-center text-center">
-                                    <c:if test="${latestComment.active == 0}">
-                                        <span>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</span>
-                                    </c:if>
-                                    <c:if test="${latestComment.active == 1}">
-                                        <c:if test="${latestComment.comment.length() > 40}">
-                                            <textarea class="resize-none w-64" rows="2" disabled>${latestComment.comment}</textarea>
+                                    <td class="justify-center items-center text-center">
+                                        <c:if test="${latestComment.active == 0}">
+                                            <span>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</span>
                                         </c:if>
-                                        <c:if test="${latestComment.comment.length() <= 40}">
-                                            ${latestComment.comment}
+                                        <c:if test="${latestComment.active == 1}">
+                                            <c:if test="${latestComment.comment.length() > 40}">
+                                                <textarea class="resize-none w-64" rows="2" disabled>${latestComment.comment}</textarea>
+                                            </c:if>
+                                            <c:if test="${latestComment.comment.length() <= 40}">
+                                                ${latestComment.comment}
+                                            </c:if>
                                         </c:if>
-                                    </c:if>
-                                </td>
+                                    </td>
 
-                                <td class="justify-center items-center text-center text-yellow-400">
-                                    <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>
-                                    <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>
-                                    <c:if test="${latestComment.star==2}">★★☆☆☆</c:if>
-                                    <c:if test="${latestComment.star==3}">★★★☆☆</c:if>
-                                    <c:if test="${latestComment.star==4}">★★★★☆</c:if>
-                                    <c:if test="${latestComment.star==5}">★★★★★</c:if>
-                                </td>
-                            </tr>
+                                    <td class="justify-center items-center text-center text-yellow-400">
+                                        <c:if test="${latestComment.star==0}">☆☆☆☆☆</c:if>
+                                        <c:if test="${latestComment.star==1}">★☆☆☆☆</c:if>
+                                        <c:if test="${latestComment.star==2}">★★☆☆☆</c:if>
+                                        <c:if test="${latestComment.star==3}">★★★☆☆</c:if>
+                                        <c:if test="${latestComment.star==4}">★★★★☆</c:if>
+                                        <c:if test="${latestComment.star==5}">★★★★★</c:if>
+                                    </td>
 
-                        </c:forEach>
+                                </tr>
+
+                            </c:forEach>
                         </tbody>
                     </table>
+
                 </div>
+
             </div>
+
         </c:if>
 
     </div>

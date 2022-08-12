@@ -9,11 +9,14 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
+
         <div class="text-center mb-[0.7rem]">
             <h1 class="text-4xl font-bold">Sign Up</h1>
         </div>
+
         <div class="card flex-shrink-0 w-full shadow-2xl bg-base-100">
             <form:form modelAttribute="requestSignup" class="card-body lg:px-[10%]">
+
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Name</span>
@@ -55,8 +58,10 @@
                 </div>
 
                 <a href="/admin/signup" class="text-center text-gray-400">Administrator SignUp</a>
+
             </form:form>
         </div>
+
     </div>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>

@@ -33,6 +33,15 @@ public class MypageServiceImpl implements MypageService {
         return mypageDAO.myEvaluateList(userNo);
     }
 
+    //나의 읽고 싶은 도서 리스트 6개 조회
+    public List<AppraisalDTO> wantReadListForMypage(Long userNo){
+        return mypageDAO.wantReadListForMypage(userNo);
+    }
+    //나의 읽는 중 도서 리스트트 6개 조회
+    public List<AppraisalDTO> readingListForMypage(Long userNo){
+        return mypageDAO.readingListForMypage(userNo);
+    }
+
     //읽고싶어요 리스트
     @Override
     public List<String> mypage_1(Long userNo){

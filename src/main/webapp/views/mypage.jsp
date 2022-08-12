@@ -114,9 +114,9 @@
         </div>
         <!--모달 끝-->
 
-        <div class="card w-full bg-gray-100 shadow-xl">
+        <div class="card w-full bg-gray-100 shadow-xl px-16">
 
-            <div class="flex justify-between p-16">
+            <div class="flex justify-between py-16">
                 <div class="flex flex-row space-x-4">
                     <div class="">
                         <c:if test="${myInfo.storedPic eq null}">
@@ -149,80 +149,60 @@
                             <div class="text-xl">${myInfo.name}</div>
                         </c:if>
                     </div>
+
+                    <label for="modifyUserInfo" class="modal-button pt-2">
+
+                        <svg id="Layer_1" class="cursor-pointer w-10 h-10" viewBox="0 0 21 21"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                               stroke-linejoin="round" transform="translate(3 3)">
+                                <path d="m7.5.5c.35132769 0 .69661025.02588228 1.03404495.07584411l.50785434 1.53911115c.44544792.12730646.86820077.30839026 1.26078721.53578009l1.4600028-.70360861c.5166435.39719686.9762801.86487779 1.3645249 1.388658l-.7293289 1.44720284c.2201691.39604534.3936959.82158734.5131582 1.2692035l1.5298263.5338186c.0390082.29913986.0591302.60421522.0591302.91399032 0 .35132769-.0258823.69661025-.0758441 1.03404495l-1.5391112.50785434c-.1273064.44544792-.3083902.86820077-.5357801 1.26078721l.7036087 1.4600028c-.3971969.5166435-.8648778.9762801-1.388658 1.3645249l-1.4472029-.7293289c-.39604532.2201691-.82158732.3936959-1.26920348.5131582l-.5338186 1.5298263c-.29913986.0390082-.60421522.0591302-.91399032.0591302-.35132769 0-.69661025-.0258823-1.03404495-.0758441l-.50785434-1.5391112c-.44544792-.1273064-.86820077-.3083902-1.26078723-.5357801l-1.46000277.7036087c-.51664349-.3971969-.97628006-.8648778-1.36452491-1.388658l.72932886-1.4472029c-.2203328-.39633993-.39395403-.82222042-.51342462-1.27020241l-1.52968981-.53381682c-.03892294-.29882066-.05900023-.60356226-.05900023-.91299317 0-.35132769.02588228-.69661025.07584411-1.03404495l1.53911115-.50785434c.12730646-.44544792.30839026-.86820077.53578009-1.26078723l-.70360861-1.46000277c.39719686-.51664349.86487779-.97628006 1.388658-1.36452491l1.44720284.72932886c.39633995-.2203328.82222044-.39395403 1.27020243-.51342462l.53381682-1.52968981c.29882066-.03892294.60356226-.05900023.91299317-.05900023z"
+                                      stroke-width=".933"/>
+                                <circle cx="7.5" cy="7.5" r="3"/>
+                            </g>
+                        </svg>
+                    </label>
+
                 </div>
 
-                <label for="modifyUserInfo" class="modal-button">
-
-                    <svg id="Layer_1" class="cursor-pointer w-10 h-10" viewBox="0 0 21 21"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
-                           stroke-linejoin="round" transform="translate(3 3)">
-                            <path d="m7.5.5c.35132769 0 .69661025.02588228 1.03404495.07584411l.50785434 1.53911115c.44544792.12730646.86820077.30839026 1.26078721.53578009l1.4600028-.70360861c.5166435.39719686.9762801.86487779 1.3645249 1.388658l-.7293289 1.44720284c.2201691.39604534.3936959.82158734.5131582 1.2692035l1.5298263.5338186c.0390082.29913986.0591302.60421522.0591302.91399032 0 .35132769-.0258823.69661025-.0758441 1.03404495l-1.5391112.50785434c-.1273064.44544792-.3083902.86820077-.5357801 1.26078721l.7036087 1.4600028c-.3971969.5166435-.8648778.9762801-1.388658 1.3645249l-1.4472029-.7293289c-.39604532.2201691-.82158732.3936959-1.26920348.5131582l-.5338186 1.5298263c-.29913986.0390082-.60421522.0591302-.91399032.0591302-.35132769 0-.69661025-.0258823-1.03404495-.0758441l-.50785434-1.5391112c-.44544792-.1273064-.86820077-.3083902-1.26078723-.5357801l-1.46000277.7036087c-.51664349-.3971969-.97628006-.8648778-1.36452491-1.388658l.72932886-1.4472029c-.2203328-.39633993-.39395403-.82222042-.51342462-1.27020241l-1.52968981-.53381682c-.03892294-.29882066-.05900023-.60356226-.05900023-.91299317 0-.35132769.02588228-.69661025.07584411-1.03404495l1.53911115-.50785434c.12730646-.44544792.30839026-.86820077.53578009-1.26078723l-.70360861-1.46000277c.39719686-.51664349.86487779-.97628006 1.388658-1.36452491l1.44720284.72932886c.39633995-.2203328.82222044-.39395403 1.27020243-.51342462l.53381682-1.52968981c.29882066-.03892294.60356226-.05900023.91299317-.05900023z"
-                                  stroke-width=".933"/>
-                            <circle cx="7.5" cy="7.5" r="3"/>
-                        </g>
-                    </svg>
-                </label>
             </div>
 
-            <div class="flex flex-col mb-20 px-10">
-                <c:if test="${!empty wantReadList}">
+            <div class="flex flex-col mb-20">
+                <c:if test="${!empty wantReadListForMypage}">
                     <div class="flex-col flex-row mb-4">
                         <span class="text-xl mr-2">읽고싶어요</span>
                         <a class="text-gray-400" href="/wantRead"> > 더보기 </a>
                     </div>
                 </c:if>
-                <c:if test="${empty wantReadList}">
+                <c:if test="${empty wantReadListForMypage}">
                     <div class="flex-col flex-row mb-4">
                         <span class="text-xl mr-2">읽고싶어요</span>
                         <a class="text-gray-400" onclick="alert('아직 읽고싶은 도서가 없네요 :(')"> > 더보기 </a>
                     </div>
                 </c:if>
-                <div class="w-full relative flex items-center justify-center">
 
-                    <div id="wantReadList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                        <div id="wantReadBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                    </div>
-
-                </div>
-
-                <template id="template__wantReadDetail__link">
-                    <a href='{wantReadDetail__link}' class="list-none flex flex-shrink-0">
-                        <img class='h-64 w-44 shadow-xl rounded-lg' src='{wantReadBook_thumbnail}'/>
-                    </a>
-                </template>
+                <div id="wantReadListForMypage" class="flex space-x-4 mt-2"></div>
             </div>
 
 
-            <div class="flex flex-col mb-20 px-10">
-                <c:if test="${!empty readingList}">
+            <div class="flex flex-col mb-20">
+                <c:if test="${!empty readingListForMypage}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">읽는 중</span>
                         <a class="text-gray-400" href="/reading"> > 더보기 </a>
                     </div>
                 </c:if>
-                <c:if test="${empty readingList}">
+                <c:if test="${empty readingListForMypage}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">읽는 중</span>
                         <a class="text-gray-400" onclick="alert('아직 읽는 중인 도서가 없네요 :(')"> > 더보기 </a>
                     </div>
                 </c:if>
-                <div class="w-full relative flex items-center justify-center">
 
-                    <div id="readingList" class="relative w-full overflow-x-hidden overflow-y-hidden">
-                        <div id="readingBook__detail" class="flex w-full space-x-4 sm:w-auto"></div>
-                    </div>
-
-                </div>
-
-                <template id="template__readingDetail__link">
-                    <a href='{readingDetail__link}' class="list-none flex flex-shrink-0">
-                        <img class='h-64 w-44 shadow-xl rounded-lg' src='{readingBook_thumbnail}'/>
-                    </a>
-                </template>
+                <div id="readingListForMypage" class="flex space-x-4 mt-2"></div>
             </div>
 
-            <div class="flex flex-col mb-20 px-10">
+            <div class="flex flex-col mb-20">
                 <c:if test="${!empty myComments}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">나의 코멘트</span>
@@ -306,7 +286,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col mb-20 px-10">
+            <div class="flex flex-col mb-20">
                 <c:if test="${!empty myEvaluateList}">
                     <div class="flex-col flex-row  mb-4">
                         <span class="text-xl mr-2">나의 평가</span>
@@ -340,6 +320,20 @@
                 <c:if test="${!empty myEvaluateList}">
                 <c:forEach var="myEvaluate" items="${myEvaluateList}">
                 myEvaluateList(${myEvaluate.isbn}, ${myEvaluate.star})
+                </c:forEach>
+                </c:if>
+
+                // 나의 읽고싶은 도서
+                <c:if test="${!empty wantReadListForMypage}">
+                <c:forEach var="wantReadForMypage" items="${wantReadListForMypage}">
+                wantReadListForMypage(${wantReadForMypage.isbn})
+                </c:forEach>
+                </c:if>
+
+                // 나의 읽는 중 도서
+                <c:if test="${!empty readingListForMypage}">
+                <c:forEach var="readingForMypage" items="${readingListForMypage}">
+                readingListForMypage(${readingForMypage.isbn});
                 </c:forEach>
                 </c:if>
             })
@@ -420,7 +414,7 @@
 
                         var html = '';
                         html += '<div>';
-                        html += '<a href="/read/' + isbn + '"><img class="w-44 h-64 shadow-xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
+                        html += '<a href="/read/' + isbn + '"><img class="w-48 h-64 shadow-2xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
                         html += '<div class="text-yellow-400 text-3xl text-center">' + starP + '</div>';
                         html += '</div>';
 
@@ -428,70 +422,52 @@
                     });
             }
 
-            // 읽고싶은 도서 5개
-            function wantReadList() {
-                const isbns = ${wantReadList};
-                console.log(isbns);
+            // 읽고싶은 도서 6개
+            function wantReadListForMypage(isbn) {
+                console.log("읽고싶은 도서 isbn : " + isbn);
 
-                isbns.map(isbn => {
                     $.ajax({	//카카오 검색요청 / [요청]
                         method: "GET",
                         traditional: true,
                         async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                        url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                        url: "https://dapi.kakao.com/v3/search/book",
                         data: {query: isbn},
                         headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
                     })
-                        .done(function (data) {	//검색 결과 담기 / [응답]
-                            const book = data.documents[0];
-                            const isbn = book.isbn.slice(-13);
-                            const thumbnailLink = book.thumbnail;
+                    .done(function (msg) {	//검색 결과 담기 / [응답]
 
-                            console.log("thumbnailLink : " + thumbnailLink);
+                        var html = '';
+                        html += '<div>';
+                        html += '<a href="/read/' + isbn + '"><img class="w-48 h-64 shadow-2xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
+                        html += '</div>';
 
-                            const result = $("#template__wantReadDetail__link").html()
-                                .replace("{wantReadDetail__link}", "/read/" + isbn)
-                                .replace("{wantReadBook_thumbnail}", thumbnailLink);
+                        $("#wantReadListForMypage").append(html);
+                    });
 
-                            $("#wantReadBook__detail").append(result);
-                        });
-                })
             }
 
-            wantReadList();
+            // 읽는 중 도서 6개
+            function readingListForMypage(isbn) {
+                console.log("읽는 중 도서 : " + isbn);
 
-            // 읽는 중 도서 5개
-            function readingList() {
-                const isbns = ${readingList};
-                console.log(isbns);
-
-                isbns.map(isbn => {
                     $.ajax({	//카카오 검색요청 / [요청]
                         method: "GET",
                         traditional: true,
                         async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                        url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                        url: "https://dapi.kakao.com/v3/search/book",
                         data: {query: isbn},
                         headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
                     })
-                        .done(function (data) {	//검색 결과 담기 / [응답]
-                            const book = data.documents[0];
-                            const isbn = book.isbn.slice(-13);
-                            const thumbnailLink = book.thumbnail;
 
-                            console.log("thumbnailLink : " + thumbnailLink);
+                    .done(function (msg) {	//검색 결과 담기 / [응답]
+                        var html = '';
+                        html += '<div>';
+                        html += '<a href="/read/' + isbn + '"><img class="w-48 h-64 shadow-2xl rounded-lg" src="' + msg.documents[0].thumbnail + '"/></a>';
+                        html += '</div>';
 
-                            const result = $("#template__readingDetail__link").html()
-                                .replace("{readingDetail__link}", "/read/" + isbn)
-                                .replace("{readingBook_thumbnail}", thumbnailLink);
-
-                            $("#readingBook__detail").append(result);
-                        });
-                })
+                        $("#readingListForMypage").append(html);
+                    });
             }
-
-            readingList();
-
 
         </script>
 

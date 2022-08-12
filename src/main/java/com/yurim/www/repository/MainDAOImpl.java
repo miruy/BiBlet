@@ -31,12 +31,6 @@ public class MainDAOImpl implements MainDAO {
 		return sqlSessionTemplate.selectList("latestComments");
 	}
 
-	//최근 평점 5개
-	@Override
-	public List<Integer> latestStar(HashMap<String, String> map){
-		return sqlSessionTemplate.selectList("latestStar", map);
-	}
-
 	//총 평가 수
 	@Override
 	public Long totalCommentCount() {

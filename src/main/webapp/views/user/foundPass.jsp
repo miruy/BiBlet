@@ -9,7 +9,7 @@
 
 	<div class="flex flex-col mx-auto lg:mx-[30%] min-h-screen justify-center">
 		<div class="text-center mb-[0.7rem]">
-			<h1 class="text-4xl font-bold">Found ID</h1>
+			<h1 class="text-4xl font-bold">Found Password</h1>
 		</div>
 		<div class="card flex-shrink-0 w-full shadow-2xl bg-base-100">
 			<form:form method="post" class="card-body lg:px-[10%]">
