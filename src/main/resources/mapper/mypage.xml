@@ -30,13 +30,14 @@
         SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 1 ORDER BY status_no DESC limit 5
     </select>
 
-    <select id="mypage_1" parameterType="Long" resultType="String">
+    <select id="wantRead" parameterType="Long" resultType="String">
         SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 0
     </select>
 
-    <select id="mypage_2" parameterType="Long" resultType="String">
+    <select id="reading" parameterType="Long" resultType="String">
         SELECT isbn FROM bookshelf WHERE user_no = #{userNo} AND status = 1
     </select>
+
     <select id="mypage_4" parameterType="Long" resultType="AppraisalDTO">
         SELECT appraisal.star,
                bookshelf.isbn
@@ -62,10 +63,6 @@
         INNER JOIN bookshelf ON bookshelf.status_no = appraisal.status_no
         where bookshelf.user_no = #{userNo}
     </delete>
-
-    <select id="selectStatusNoForDeleteUser" parameterType="Long" resultType="Long">
-        select status_no from bookshelf where user_no = #{userNo}
-    </select>
 
     <update id="changedDefaultProfile" parameterType="Long">
         UPDATE user SET origin_pic='profile.png', stored_pic=NULL WHERE user_no = #{userNo};

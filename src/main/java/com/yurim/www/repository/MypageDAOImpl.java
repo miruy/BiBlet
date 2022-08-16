@@ -37,14 +37,14 @@ public class MypageDAOImpl implements MypageDAO {
 
     //읽고싶어요 리스트
     @Override
-    public List<String> mypage_1(Long userNo){
-        return sqlSessionTemplate.selectList("mypage_1", userNo);
+    public List<String> wantRead(Long userNo){
+        return sqlSessionTemplate.selectList("wantRead", userNo);
     }
 
     //읽는 중 리스트
     @Override
-    public List<String> mypage_2(Long userNo){
-        return sqlSessionTemplate.selectList("mypage_2", userNo);
+    public List<String> reading(Long userNo){
+        return sqlSessionTemplate.selectList("reading", userNo);
     }
 
     //나의 모든 평점 리스트

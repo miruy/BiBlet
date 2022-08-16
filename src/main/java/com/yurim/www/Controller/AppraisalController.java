@@ -27,47 +27,47 @@ public class AppraisalController {
     private final BookShelfService bookShelfService;
     private final MainService mainService;
 
-    //도서 상세보기 - 해당 도서의 대한 모든 평가 조회
+    //도서 상세보기
     @GetMapping("/read/{isbn}")
     public String detail(RequestLogin requestLogin, Model model, HttpSession session, HttpServletResponse response,
                                                                 @RequestParam(required = false) String query, @PathVariable String isbn) {
-        //회원 비 로그인 시
+
         BookShelfDTO bookShelf = new BookShelfDTO();
 
+        // 회원 비 로그인 시
+
+        model.addAttribute("query", query);
+        model.addAttribute("isbn", isbn);
+
         // 해당 도서의 대한 평가 개수
-        int commentCount = appraisalService.commentCount(isbn);
+        model.addAttribute("commentCount", appraisalService.commentCount(isbn));
 
         // 해당 도서의 대한 모든 평가
-        List<AppraisalDTO> commentsByMembers = appraisalService.findAllComment(isbn);
-
-        // 해당 도서의 대한 모든 별점(회원 코멘트에 묶어 표시)
-        List<AppraisalDTO> starByMembers = appraisalService.findAllStar(isbn);
+        model.addAttribute("commentsByMembers", appraisalService.findAllComment(isbn));
 
         // 해당 도서의 대한 별점평균
         Integer starAVG = appraisalService.starAVG(isbn);
         if (starAVG == null) {
             starAVG = 0;
         }
-        // 해당 도서의 대해 별점평가를 한 회원 수
-        Long starCount = appraisalService.starCount(isbn);
-
-        model.addAttribute("query", query);
-        model.addAttribute("isbn", isbn);
-
-        model.addAttribute("commentCount", commentCount);
-        model.addAttribute("commentsByMembers", commentsByMembers);
         model.addAttribute("starAVG", starAVG);
-        model.addAttribute("starCount", starCount);
-        model.addAttribute("starByMembers", starByMembers);
 
-        //회원 로그인 시
+        // 해당 도서의 대해 별점평가를 한 회원 수
+        model.addAttribute("starCount", appraisalService.starCount(isbn));
+
+        // 해당 도서의 대한 모든 별점(회원 코멘트에 묶어 표시)
+        model.addAttribute("starByMembers", appraisalService.findAllStar(isbn));
+
+
+
+        // 회원 로그인 시
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
         if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
 
-            // 회원이 평가한 별점 뿌리기
+            // 회원이 평가한 별점 표시
             Integer userStar = appraisalService.userStar(userNo, isbn);
 
             if (userStar == null) {
@@ -92,7 +92,7 @@ public class AppraisalController {
                 model.addAttribute("userStarMsg", userStarMsg);
             }
 
-            //회원의 읽고싶어요, 읽는 중 뿌리기
+            //회원의 읽고싶어요, 읽는 중 표시
             Integer userStatus = bookShelfService.selectStatus(isbn, userNo);
 
             if (userStatus == null) {
@@ -100,7 +100,7 @@ public class AppraisalController {
             } else if (userStatus == 0 || userStatus == 1) {
                 model.addAttribute("userStatus", userStatus);
             } else if (userStatus == 2) {
-                //회원의 코멘트 뿌리기
+                //회원의 코멘트 표시
                 bookShelf.setUserNo(userNo);
                 bookShelf.setIsbn(isbn);
 

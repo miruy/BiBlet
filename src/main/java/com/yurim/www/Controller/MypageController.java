@@ -76,7 +76,10 @@ public class MypageController {
 
         if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
-            model.addAttribute("mypage_1", mypageService.mypage_1(userNo));
+            model.addAttribute("wantRead", mypageService.wantRead(userNo));
+
+            //footer
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         }
         return "wantRead";
     }
@@ -90,7 +93,10 @@ public class MypageController {
 
         if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
-            model.addAttribute("mypage_2", mypageService.mypage_2(userNo));
+            model.addAttribute("reading", mypageService.reading(userNo));
+
+            //footer
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         }
         return "reading";
     }
@@ -105,6 +111,9 @@ public class MypageController {
         if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("mypage_3", mypageService.myCommentForMypage(userNo));
+
+            //footer
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         }
         return "myComment";
     }
@@ -119,6 +128,9 @@ public class MypageController {
         if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("mypage_4", mypageService.mypage_4(userNo));
+
+            //footer
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         }
         return "myEvaluate";
     }
@@ -135,6 +147,7 @@ public class MypageController {
             Long userNo = authInfo.getUserNo();
             session.setAttribute("authInfo", authInfo);
             model.addAttribute("myInfo2", userService.selectUserInfoByUserNo(userNo));
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         }
         return "edit";
     }

@@ -91,8 +91,8 @@
                             </c:if>
                             </tbody>
                         </table>
-
                     </div>
+
                 </div>
 
                 <div class="flex justify-center items-center">
@@ -224,7 +224,7 @@
                                         <div id="title${myComment.isbn}"></div>
                                     </div>
                                     <c:if test="${myComment.active == 0}">
-                                        <textarea class="text-gray-800 text-center box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                                        <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2"  rows="7">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
                                     </c:if>
                                     <c:if test="${myComment.active == 1}">
                                         <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2"
@@ -303,6 +303,7 @@
             </div>
 
         </div>
+    </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"
                 integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

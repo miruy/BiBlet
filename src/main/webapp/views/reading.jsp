@@ -28,9 +28,9 @@
         <script>
             $(document).ready(function () {
                 // 나의 코멘트
-                <c:if test="${!empty mypage_2}">
-                    <c:forEach var="mypage_2" items="${mypage_2}">
-                    allReading(${mypage_2})
+                <c:if test="${!empty reading}">
+                    <c:forEach var="reading" items="${reading}">
+                    allReading(${reading})
                     </c:forEach>
                 </c:if>
             })

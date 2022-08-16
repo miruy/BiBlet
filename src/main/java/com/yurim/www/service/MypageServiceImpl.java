@@ -44,14 +44,14 @@ public class MypageServiceImpl implements MypageService {
 
     //읽고싶어요 리스트
     @Override
-    public List<String> mypage_1(Long userNo){
-        return mypageDAO.mypage_1(userNo);
+    public List<String> wantRead(Long userNo){
+        return mypageDAO.wantRead(userNo);
     }
 
     //읽는 중 리스트
     @Override
-    public List<String> mypage_2(Long userNo){
-        return mypageDAO.mypage_2(userNo);
+    public List<String> reading(Long userNo){
+        return mypageDAO.reading(userNo);
     }
 
     //나의 모든 평점 리스트

@@ -29,9 +29,9 @@
         <script>
             $(document).ready(function () {
                 // 나의 코멘트
-                <c:if test="${!empty mypage_1}">
-                    <c:forEach var="mypage_1" items="${mypage_1}">
-                    allWantRead(${mypage_1})
+                <c:if test="${!empty wantRead}">
+                    <c:forEach var="wantRead" items="${wantRead}">
+                    allWantRead(${wantRead})
                     </c:forEach>
                 </c:if>
             })

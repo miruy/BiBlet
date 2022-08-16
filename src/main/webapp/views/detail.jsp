@@ -6,9 +6,12 @@
 
 <%@ include file="common/header.jsp" %>
 
-<section class="">
+<section>
+
     <div class="bg-white justify-center items-center ml-32 px-24 py-20">
+
         <div class="flex flex-col xl:flex-row">
+
             <div id="bookThumbnail" class="flex-grow-1 w-60"></div>
             <div class="flex flex-col ml-4">
 
@@ -77,6 +80,7 @@
                                 </g></svg>
                             </div>
                         </div>
+
                         <div class="flex flex-col">
                             <span class="text-gray-600">코멘트</span>
                             <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
@@ -95,6 +99,7 @@
                                     </g></svg>
                             </div>
                         </div>
+
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽는중</span>
                             <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
@@ -117,8 +122,8 @@
                         </div>
                     </c:if>
 
+                    <%--로그인 시 선택 가능--%>
                     <c:if test="${!empty authInfo}">
-                        <%--로그인 시 선택 가능--%>
                         <div class="flex flex-col items-center justify-center">
                                 <%--                            <c:if test="${empty userStarMsg}">--%>
                             <span id="starMsgL" class="text-gray-600"></span>
@@ -127,31 +132,31 @@
                             <div class="star-group flex text-5xl flex-row-reverse mt-2">
                                 <input type="radio" id="star1" value=5 name="star" class="hidden" onclick="star(value)"
                                        onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')"
-                                       <c:if test="${userStar == 5}">checked="checked"</c:if>/>
+                                       <c:if test="${userStar == 5}">checked="checked"</c:if> />
                                 <label for="star1"
                                        class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverL('최고예요!')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star2" value=4 name="star" class="hidden" onclick="star(value)"
                                        onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')"
-                                       <c:if test="${userStar == 4}">checked="checked"</c:if>/>
+                                       <c:if test="${userStar == 4}">checked="checked"</c:if> />
                                 <label for="star2"
                                        class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverL('재미있어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star3" value=3 name="star" class="hidden" onclick="star(value)"
                                        onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')"
-                                       <c:if test="${userStar == 3}">checked="checked"</c:if>/>
+                                       <c:if test="${userStar == 3}">checked="checked"</c:if> />
                                 <label for="star3"
                                        class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverL('보통이에요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star4" value=2 name="star" class="hidden" onclick="star(value)"
                                        onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')"
-                                       <c:if test="${userStar == 2}">checked="checked"</c:if>/>
+                                       <c:if test="${userStar == 2}">checked="checked"</c:if> />
                                 <label for="star4"
                                        class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverL('재미없어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star5" value=1 name="star" class="hidden" onclick="star(value)"
                                        onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')"
-                                       <c:if test="${userStar == 1}">checked="checked"</c:if>/>
+                                       <c:if test="${userStar == 1}">checked="checked"</c:if> />
                                 <label for="star5"
                                        class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverL('싫어요')" onmouseout="mouseOffL('평가하기')">&#9733;</label>
@@ -194,7 +199,7 @@
                                 <span class="text-gray-600 mb-2">코멘트</span>
                                 <div class="dropdown">
                                     <div tabindex="0">
-                                        <svg class="" id="Layer_1" width="30" height="30"
+                                        <svg class="mx-auto" id="Layer_1" width="30" height="30"
                                              style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48"
                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink"><g>
@@ -276,7 +281,9 @@
                     </c:if>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <%--코멘트 작성 폼--%>
@@ -589,6 +596,7 @@
 
 
         <div class="rounded-xl flex flex-col justify-center shadow-xl bg-white py-2">
+
             <div class="p-4 pr-8">
                 <div class="p-4"><span class="text-2xl font-bold text-gray-800">기본정보</span></div>
                 <div id="authors" class="flex pl-4 pb-2 space-x-2">
@@ -608,7 +616,7 @@
                 </div>
             </div>
 
-            <div class="border-b-2 border-blue-100"></div>
+            <div class="border-b-2 border-gray-300"></div>
 
             <div class="p-4">
                 <div class="flex flex-row">
@@ -672,10 +680,10 @@
 
                                     <div class="border-b-2 border-gray-300 py-2">
                                         <c:if test="${comment.active == 0}">
-                                            <textarea class="text-gray-800 box-content bg-white w-64 resize-none mt-2">해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
+                                            <textarea class="text-gray-800 box-content w-64 resize-none mt-2" rows="6" disabled>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>
                                         </c:if>
                                         <c:if test="${comment.active == 1}">
-                                        <textarea class="text-gray-800 box-content w-64 resize-none" rows="6"
+                                        <textarea class="text-gray-800 box-content w-64 resize-none mt-2" rows="6"
                                                   id="content${comment.appraisalNo}"
                                                   disabled>${comment.comment}
                                         </textarea>
@@ -719,8 +727,11 @@
                 </div>
             </div>
         </div>
+
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
 
         $(document).ready(function () {

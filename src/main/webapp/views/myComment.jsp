@@ -62,19 +62,18 @@
                     let html = '';
 
                     if(active == 1){
-                        html += '<div class="card bg-gray-100 shadow-xl">';
-                        html += '<div class="rounded-lg bg-white w-80 h-80 flex flex-col">';
-                            html += '<div class="flex flex-row border-b-2 border-gray-300">'
-                                html += '<div class="p-4">';
-                                if(title.length >= 15) {
-                                    html += '<a href="/read/' + isbn + '">' + subTitle + '...</a>';
-                                }else if(title.length < 15) {
-                                    html += '<a href="/read/' + isbn + '">' + title + '</a>';
-                                }
-                                html += '</div>';
-                            html += '</div>';
+                        html += '<div class="card px-2 bg-gray-100">';
+                        html += '<div class="rounded-lg bg-white w-80 h-80 flex flex-col justify-center">';
+
+                        html += '<div class="flex flex-row border-b-2 border-gray-300">'
+                        if(title.length >= 15) {
+                            html += '<a href="/read/' + isbn + '" class="mx-14">' + subTitle + '...</a>';
+                        }else if(title.length < 15) {
+                            html += '<a href="/read/' + isbn + '" class="mx-14">' + title + '</a>';
+                        }
+                        html += '</div>';
                         html += '<div class="p-4">';
-                        html += '<textarea class="text-gray-800 box-content bg-white w-64 resize-none" rows="7" disabled>' + comment + '</textarea>';
+                        html += '<textarea class="text-gray-800 box-content bg-white w-60 resize-none" rows="7" disabled>' + comment + '</textarea>';
                         if(startDate.length != 0) {
                             html += '<div class="flex flex-row">';
                             html += '<svg enable-background="new 0 0 32 32" height="20" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
@@ -105,15 +104,16 @@
                     }else if(active == 0){
                         html += '<div class="card px-2 bg-gray-100">';
                         html += '<div class="rounded-lg bg-white w-80 h-80 flex flex-col justify-center">';
-                        html += '<div class="p-4">';
-                        html += '<div class="flex flex-row border-b-2 border-gray-300 my-2 pl-12 pr-10">'
+
+                        html += '<div class="flex flex-row border-b-2 border-gray-300">'
                         if(title.length >= 15) {
-                            html += '<a href="/read/' + isbn + '">' + subTitle + '...</a>';
+                            html += '<a href="/read/' + isbn + '" class="mx-14">' + subTitle + '...</a>';
                         }else if(title.length < 15) {
-                            html += '<a href="/read/' + isbn + '">' + title + '...</a>';
+                            html += '<a href="/read/' + isbn + '" class="mx-14">' + title + '</a>';
                         }
                         html += '</div>';
-                        html += '<textarea class="text-gray-800 box-content bg-white w-64 resize-none" rows="7" disabled>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>';
+                        html += '<div class="p-4">';
+                        html += '<textarea class="text-gray-800 box-content bg-white w-60 resize-none" rows="7" disabled>해당 코멘트는 권리자 권한으로 표시가 중지되었습니다.</textarea>';
                         if(startDate.length != 0) {
                             html += '<div class="flex flex-row">';
                             html += '<svg enable-background="new 0 0 32 32" height="20" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';

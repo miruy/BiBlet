@@ -10,7 +10,7 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col justify-center bg-white px-32 py-8">
-        <div class="card w-full bg-gray-50 shadow-2xl p-8">
+        <div class="card w-full bg-gray-50 shadow-2xl p-8 my-14">
 
                 <div class="text-gray-600 mb-6 text-center text-3xl font-bold">회원정보 수정</div>
 

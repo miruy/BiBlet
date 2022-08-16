@@ -22,7 +22,7 @@
         FROM bookshelf
                  INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no
-        WHERE bookshelf.isbn = #{isbn} AND appraisal.co_prv = '공개' AND appraisal.comment IS NOT NULL
+        WHERE bookshelf.isbn = #{isbn} AND appraisal.co_prv = '공개' AND appraisal.comment IS NOT NULL ORDER BY appraisal.appraisal_no DESC
     </select>
 
     <select id="findAllStar" parameterType="String" resultType="AppraisalDTO">
@@ -31,7 +31,7 @@
         FROM bookshelf
                  INNER JOIN appraisal ON bookshelf.status_no = appraisal.status_no
                  INNER JOIN user ON bookshelf.user_no = user.user_no
-        WHERE bookshelf.isbn = #{isbn} AND star IS NOT NULL
+        WHERE bookshelf.isbn = #{isbn} AND star IS NOT NULL ORDER BY appraisal.appraisal_no DESC
     </select>
 
     <select id="commentCount" parameterType="String" resultType="int">
