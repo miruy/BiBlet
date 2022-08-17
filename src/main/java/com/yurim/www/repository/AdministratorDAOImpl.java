@@ -168,7 +168,7 @@ public class AdministratorDAOImpl implements AdministratorDAO {
         sqlSessionTemplate.delete("deleteUser", userNo);
     }
 
-    //관리자권한으로 평가 삭제
+    //평점 삭제
     @Override
     public void deleteUserAppraisalByAdmin(Long userNo){
         sqlSessionTemplate.delete("deleteUserAppraisalByAdmin", userNo);

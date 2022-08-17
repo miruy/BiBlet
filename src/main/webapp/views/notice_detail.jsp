@@ -69,13 +69,13 @@
                                 </form>
                             </div>
 
-                            <div class="rounded-lg bg-white p-2 w-full h-[50rem] overflow-auto">
+                            <div class="rounded-lg bg-white p-8 w-full md:h-auto lg:h-auto overflow-auto">
                                 <div>${notice.content}</div>
                             </div>
                         </c:if>
 
                         <c:if test="${empty notice.originFile}">
-                            <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
+                            <div class="rounded-lg bg-white p-10 mt-4 w-full md:h-auto lg:h-auto overflow-auto">
                                 <div>${notice.content}</div>
                             </div>
                         </c:if>

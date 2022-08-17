@@ -16,11 +16,9 @@
                 <c:if test="${!empty modifyNoticeDetail}">
                     <c:forEach var="modifyNotice" items="${modifyNoticeDetail}">
 
-                        <form:form modelAttribute="requestWriteNotice" method="post" action="/admin/modifyNotice" enctype="multipart/form-data">
+                        <form:form modelAttribute="requestWriteNotice" method="post" action="/admin/modifyNotice_${modifyNotice.noticeNo}" enctype="multipart/form-data">
 
                             <div class="mb-4">
-                                <div class="text-center"><form:errors path="title"/></div>
-                                <div class="text-center"><form:errors path="contentWithFile"/></div>
                                 <div class="text-center"><form:errors path="content"/></div>
                             </div>
 

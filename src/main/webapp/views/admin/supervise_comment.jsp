@@ -10,11 +10,8 @@
 
 <section class="container mx-auto">
 
-    <div class="flex flex-col justify-center bg-white pt-2 pb-8 pl-8 pr-8">
-
-
-        <div class="px-10 py-8 my-4 w-full bg-gray-100 admin_font">
-
+    <div class="flex flex-col justify-center bg-white p-10">
+        <div class="px-10 py-8 my-4 w-full rounded-2xl shadow-2xl bg-gray-100 admin_font">
             <%--코멘트 관리--%>
             <div id="commentManagement">
 
@@ -83,7 +80,7 @@
                                         <td>
                                             <c:if test="${comment.storedPic eq null}">
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute w-12 h-12 ml-9 text-gray-400 pr-2"
+                                                    <svg class="absolute w-12 h-12 text-gray-400 pr-2"
                                                          fill="currentColor" viewBox="0 0 20 20"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd"
@@ -96,11 +93,11 @@
                                                 <c:set var="idSub" value="${fn:substring(comment.id,0,5)}"/>
                                                 <c:if test="${idSub ne 'kakao'}">
                                                     <img src="<c:url value='/images/${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10 ml-9"/>
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                                 <c:if test="${idSub eq 'kakao'}">
                                                     <img src="<c:url value='http://${comment.storedPic}'/>"
-                                                         class="mask mask-circle w-10 h-10 ml-9"/>
+                                                         class="mask mask-circle w-10 h-10"/>
                                                 </c:if>
                                             </c:if>
                                         </td>
@@ -111,8 +108,8 @@
                                                 ${comment.id}
                                         </td>
                                         <td id="title${comment.appraisalNo}"></td>
-                                        <td class="">
-                                          ${comment.comment}
+                                        <td>
+                                            <textarea rows="1" class="resize-none w-96 bg-white text-center" disabled>${comment.comment}</textarea>
                                         </td>
                                         <td>
 
@@ -134,8 +131,6 @@
                     </div>
 
                 </div>
-
-
             </div>
         </div>
 
@@ -206,7 +201,7 @@
                     let title = msg.documents[0].title;
 
                     if(title.length > 18){
-                        $("#title" + appraisalNo).append('<textarea rows="1" class="resize-x" disabled>' + msg.documents[0].title + '</textarea>');
+                        $("#title" + appraisalNo).append('<textarea rows="1" class="resize-none w-64 bg-white text-center" disabled>' + msg.documents[0].title + '</textarea>');
                     }else {
                         $("#title" + appraisalNo).append(msg.documents[0].title);
                     }

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -88,10 +89,7 @@ public class AdministratorController {
             model.addAttribute("searchUserCount", administratorService.totalCountBySearchValue(searchUser));
 
         }
-
-
         return "admin/search_user";
-
     }
 
     //평점 관리 탭
@@ -374,7 +372,7 @@ public class AdministratorController {
         }
     }
 
-    //회원 강제 탈퇴-회원 삭제
+    //회원 강제 탈퇴
     @ResponseBody
     @PostMapping("/deleteUser")
     public int deleteUser(@RequestBody RequestLogin requestLogin, HttpSession session) {
@@ -384,7 +382,7 @@ public class AdministratorController {
         return 1;
     }
 
-    //회원 강제 탈퇴-평점 및 평가 삭제
+    //평점 및 평가 삭제
     @ResponseBody
     @PostMapping("/deleteAppraisal")
     public int deleteAppraisal(@RequestBody RequestCommentForDetail requestCommentForDetail, HttpSession session) {
@@ -484,15 +482,21 @@ public class AdministratorController {
     }
 
     //공지사항 수정
-    @PostMapping("/modifyNotice")
-    public String modifyNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors, HttpSession session, Model model) throws IOException {
-
-        if (errors.hasErrors()) {
-            return "admin/modifyNotice";
-        }
+    @PostMapping("/modifyNotice_{noticeNo}")
+    public String modifyNotice(@ModelAttribute("requestWriteNotice") @Valid RequestWriteNotice requestWriteNotice, Errors errors, @PathVariable Long noticeNo) throws IOException {
 
         try {
             NoticeDTO updateNotice = new NoticeDTO();
+
+            // 공지사항 수정 시 제목 미수정 시 원래 제목 조회 후 자동 저장
+            if(requestWriteNotice.getTitle().equals("")){
+                List<NoticeDTO> notice = noticeService.selectNoticeDetail(noticeNo);
+
+                for(NoticeDTO detail : notice){
+                    String originTitle = detail.getTitle();
+                    requestWriteNotice.setTitle(originTitle);
+                }
+            }
 
             if (!requestWriteNotice.getNoticeFile().isEmpty()) {
 
@@ -514,9 +518,7 @@ public class AdministratorController {
             }
 
         } catch (RequiredException e) {
-            errors.rejectValue("title", "required");
             errors.rejectValue("content", "required");
-            errors.rejectValue("contentWithFile", "required");
             return "admin/modifyNotice";
         }
         return "redirect:/admin/supervise_notice";

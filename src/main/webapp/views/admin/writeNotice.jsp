@@ -9,8 +9,8 @@
 
 <section class="container mx-auto">
 
-    <div class="flex flex-col justify-center bg-white pt-2 pb-8 pl-8 pr-8">
-        <div class="px-20 py-8 my-4 w-full bg-gray-100 admin_font">
+    <div class="flex flex-col justify-center bg-white p-10">
+        <div class="px-20 py-8 my-4 w-full rounded-2xl shadow-2xl bg-gray-100 admin_font">
 
             <div class="flex flex-col">
 
@@ -39,7 +39,8 @@
 
                         <textarea id="content" name="content" class="textarea textarea-bordered"></textarea>
 
-                        <input type="submit" value="저장" class="btn btn-secondary text-white hover:text-white px-20" onclick="confirm('공지사항을 올리겠습니까?')"></input>
+                        <input type="submit" value="저장" class="btn btn-secondary text-white hover:text-white px-20 mx-[26rem]" onclick="confirm('공지사항을 올리겠습니까?')" />
+
                     </div>
                 </form:form>
 

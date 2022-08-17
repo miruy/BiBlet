@@ -2634,6 +2634,46 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: 1.3rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mx-96 {
+  margin-left: 24rem;
+  margin-right: 24rem;
+}
+
+.mx-\[10rem\] {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+.mx-\[50rem\] {
+  margin-left: 50rem;
+  margin-right: 50rem;
+}
+
+.mx-\[30rem\] {
+  margin-left: 30rem;
+  margin-right: 30rem;
+}
+
+.mx-\[25rem\] {
+  margin-left: 25rem;
+  margin-right: 25rem;
+}
+
+.mx-\[27rem\] {
+  margin-left: 27rem;
+  margin-right: 27rem;
+}
+
+.mx-\[26rem\] {
+  margin-left: 26rem;
+  margin-right: 26rem;
+}
+
 .ml-32 {
   margin-left: 8rem;
 }
@@ -2720,10 +2760,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .ml-\[0\.5rem\] {
   margin-left: 0.5rem;
-}
-
-.ml-9 {
-  margin-left: 2.25rem;
 }
 
 .ml-11 {
@@ -2846,10 +2882,6 @@ body[dir="rtl"] .checkbox:checked,
   height: 1.25rem;
 }
 
-.h-\[50rem\] {
-  height: 50rem;
-}
-
 .h-\[45rem\] {
   height: 45rem;
 }
@@ -2860,6 +2892,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .h-2\/3 {
   height: 66.666667%;
+}
+
+.h-\[50rem\] {
+  height: 50rem;
 }
 
 .h-\[1\.5rem\] {
@@ -3148,11 +3184,6 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-width: 2px;
 }
 
-.border-blue-100 {
-  --tw-border-opacity: 1;
-  border-color: rgb(219 234 254 / var(--tw-border-opacity));
-}
-
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -3171,11 +3202,6 @@ body[dir="rtl"] .checkbox:checked,
 .border-purple-700 {
   --tw-border-opacity: 1;
   border-color: rgb(126 34 206 / var(--tw-border-opacity));
-}
-
-.border-gray-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
 .bg-white {
@@ -3416,6 +3442,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .pl-8 {
   padding-left: 2rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-center {
@@ -3773,10 +3803,20 @@ footer_biblet{
   }
 }
 
+@media (min-width: 768px) {
+  .md\:h-auto {
+    height: auto;
+  }
+}
+
 @media (min-width: 1024px) {
   .lg\:mx-\[30\%\] {
     margin-left: 30%;
     margin-right: 30%;
+  }
+
+  .lg\:h-auto {
+    height: auto;
   }
 
   .lg\:h-80 {

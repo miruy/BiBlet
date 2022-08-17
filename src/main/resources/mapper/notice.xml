@@ -8,14 +8,14 @@
 
     <select id="selectNoticeByPageNo" parameterType="NoticeDTO" resultType="NoticeDTO">
         <if test='page==1'>
-            select * from notice LIMIT 0, 10
+            select * from notice ORDER BY write_date DESC limit 0, 2
         </if>
         <if test='page==2'>
-            select * from notice LIMIT 10, 10
+            select * from notice ORDER BY write_date DESC limit 2, 10
         </if>
-        <if test='page==1'>
-            select * from notice LIMIT 20, 10
-        </if>
+<!--        <if test='page==1'>-->
+<!--            select * from notice LIMIT 20, 10-->
+<!--        </if>-->
     </select>
 
     <update id="updateReadCount" parameterType="Long">

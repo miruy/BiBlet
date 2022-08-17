@@ -7,6 +7,7 @@ import com.yurim.www.exception.AlreadyExistEmailException;
 import com.yurim.www.exception.AlreadyExistIdException;
 import com.yurim.www.exception.RequiredException;
 import com.yurim.www.service.AdministratorService;
+import com.yurim.www.service.MainService;
 import com.yurim.www.service.NoticeService;
 import com.yurim.www.vo.RequestAdmSearch;
 import com.yurim.www.vo.RequestNoticeSearch;
@@ -36,12 +37,15 @@ import java.util.logging.Logger;
 public class NoticeController {
 
     private final NoticeService noticeService;
+    private final MainService mainService;
 
     //공지사항
     @GetMapping("/notice")
     public String notice(Model model) {
         //전체 공지사항 수
         model.addAttribute("noticeCount", noticeService.selectAllNoticeCount());
+
+        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         return "notice";
     }
 
@@ -86,6 +90,7 @@ public class NoticeController {
         //회원 로그인 시
         if (authInfo != null) {
             model.addAttribute("noticeDetail", noticeService.selectNoticeDetail(noticeNo));
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
         } else if (authInfo == null) {
             return "redirect:/login";
         }

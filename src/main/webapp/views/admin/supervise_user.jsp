@@ -9,9 +9,10 @@
 
 <section class="container mx-auto">
 
-    <div class="flex flex-col justify-center bg-white pt-2 pb-8 pl-8 pr-8">
+    <div class="flex flex-col justify-center bg-white p-10">
 
-        <div id="tab_content_group" class="px-10 py-8 my-4 w-full bg-gray-100 admin_font">
+        <div id="tab_content_group" class="px-10 py-8 my-4 w-full rounded-2xl shadow-2xl bg-gray-100 admin_font">
+
             <%--회원 관리--%>
             <div id="userManagement">
 

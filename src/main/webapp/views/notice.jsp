@@ -15,7 +15,6 @@
 
                 <span class="text-xl text-center mb-8">공지사항</span>
 
-
                 <div id="selectMsg" class="text-gray-500 text-center mb-2">검색 조건 미 선택 시 '제목'으로 검색됩니다.</div>
                 <form class="flex flex-row justify-center" name="requestNoticeSearch" method="post" action="/notice_search">
 
@@ -113,7 +112,7 @@
                             html += '<a href="/notice_' + value.noticeNo + '">' + value.title + '</a>';
                             html += '</td>';
                             html += '<td class="justify-center items-center text-center">';
-                            html += value.writeDate;
+                            html += value.writeDate.slice(0,10);
                             html += '</td>';
                             html += '<td class="justify-center items-center text-center">';
                             html +=  value.count;
