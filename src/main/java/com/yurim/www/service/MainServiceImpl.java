@@ -46,7 +46,7 @@ public class MainServiceImpl implements MainService {
     //해당 회원이 등록한 평점 수
     @Override
     public Long userStarCount(Long userNo) {
-        return mainDAO.userCommentCount(userNo);
+        return mainDAO.userStarCount(userNo);
     }
 
     //읽고싶어요 리스트

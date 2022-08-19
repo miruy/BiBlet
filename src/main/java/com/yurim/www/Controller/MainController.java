@@ -48,6 +48,7 @@ public class MainController {
             }else {
                 model.addAttribute("myID", authInfo.getId());
             }
+
             model.addAttribute("myCommentCount", mainService.userCommentCount(userNo));
             model.addAttribute("myStarCount", mainService.userStarCount(userNo));
             model.addAttribute("wantReadList", mainService.wantReadList(userNo));

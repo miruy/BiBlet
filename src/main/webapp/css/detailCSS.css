@@ -44,16 +44,21 @@ textarea::placeholder {
 }
 
 
+
+
+
 figure.snip1368 {
-	font-family: 'Roboto', Arial, sans-serif;
+	/*font-family: 'Roboto', Arial, sans-serif;*/
+	font-family: 'LeferiPoint-BlackObliqueA';
 	position: relative;
 	overflow: hidden;
-	margin: 10px;
-	min-width: 230px;
-	max-width: 315px;
+	/*margin: 10px;*/
+	/*min-width: 230px;*/
+	/*max-width: 315px;*/
 	width: 100%;
 	color: #ffffff;
 	line-height: 1.4em;
+	border-radius: 10px;
 }
 figure.snip1368 * {
 	-webkit-box-sizing: border-box;
@@ -62,7 +67,7 @@ figure.snip1368 * {
 	transition: all 0.4s ease;
 }
 
-figure.snip1368 h3 {
+figure.snip1368 div {
 	position: absolute;
 	top: 0%;
 	width: 100%;
@@ -72,11 +77,11 @@ figure.snip1368 h3 {
 	padding: 15px 25px 0px;
 	margin: 0;
 	font-weight: 300;
-	font-size: 1.3em;
+	font-size: 5em;
 	-webkit-transform: translateY(-200%);
 	transform: translateY(-200%);
 }
-figure.snip1368 h3:before {
+figure.snip1368 div:before {
 	position: absolute;
 	content: '';
 	top: 100%;
@@ -89,8 +94,8 @@ figure.snip1368 h3:before {
 }
 
 
-figure.snip1368:hover h3,
-figure.snip1368.hover h3 {
+figure.snip1368:hover div,
+figure.snip1368.hover div {
 	: translateY(0%);
 	transform: translateY(0%);
 }

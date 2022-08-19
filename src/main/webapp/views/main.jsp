@@ -23,8 +23,10 @@
                 <div class="flex flex-row space-x-2">
                     <c:if test="${!empty myCommentCount}">
                         <span class="text-xl">지금까지</span>
-                        <a href="/mypage_3" class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</a>
-                        <a href="/mypage_4" class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</a>
+                        <a href="/myComment" class="text-2xl hover:text-purple-600">${myCommentCount}개의 코멘트,</a>
+                    </c:if>
+                    <c:if test="${!empty myStarCount}">
+                        <a href="/myEvaluate" class="text-2xl hover:text-pink-600">${myStarCount}개의 평가</a>
                         <span class="text-xl">를 등록하였어요!</span>
                     </c:if>
                 </div>
@@ -37,7 +39,7 @@
 
                     <div class="w-full relative flex items-center justify-center shadow-2xl">
                         <button id="prev3" aria-label="slide backward"
-                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                class="absolute -left-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                             ❮
                         </button>
 
@@ -46,7 +48,7 @@
                         </div>
 
                         <button id="next3" aria-label="slide forward"
-                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                class="absolute -right-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                             ❯
                         </button>
                     </div>
@@ -65,7 +67,7 @@
 
                     <div class="w-full relative flex items-center justify-center shadow-2xl">
                         <button id="prev4" aria-label="slide backward"
-                                class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                class="absolute -left-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                             ❮
                         </button>
 
@@ -74,7 +76,7 @@
                         </div>
 
                         <button id="next4" aria-label="slide forward"
-                                class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                                class="absolute -right-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                             ❯
                         </button>
                     </div>
@@ -89,35 +91,31 @@
 
         </c:if>
 
-        <%--        <figure class="snip1368">--%>
-        <%--            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample30.jpg" alt="sample30"/>--%>
-        <%--            <h3>1위</h3>--%>
-        <%--        </figure>--%>
 
 
-        <div class="flex flex-col mb-20">
-            <span class="text-xl mb-4">인기 도서 TOP10</span>
-            <div class="carousel w-full shadow-2xl">
 
-                <div id="slide1" class="carousel-item relative w-full">
-                    <div id="popularSlide1to5" class="flex"></div>
-                    <div id="slide1Hover" class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
-                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❮</a>
-                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❯</a>
-                    </div>
-                </div>
+<%--        <div class="flex flex-col mb-20">--%>
+<%--            <span class="text-xl mb-4">인기 도서 TOP10</span>--%>
+<%--            <div class="carousel w-full shadow-2xl">--%>
 
-                <div id="slide2" class="carousel-item relative w-full">
-                    <div id="popularSlide6to10" class="flex"></div>
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
-                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❮</a>
-                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❯</a>
-                    </div>
-                </div>
+<%--                <div id="slide1" class="carousel-item relative w-full">--%>
+<%--                    <div id="popularSlide1to5" class="flex"></div>--%>
+<%--                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">--%>
+<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❮</a>--%>
+<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❯</a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-            </div>
-        </div>
+<%--                <div id="slide2" class="carousel-item relative w-full">--%>
+<%--                    <div id="popularSlide6to10" class="flex"></div>--%>
+<%--                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">--%>
+<%--                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❮</a>--%>
+<%--                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❯</a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
+<%--            </div>--%>
+<%--        </div>--%>
 
 
         <div class="flex flex-col mb-20">
@@ -125,7 +123,7 @@
 
             <div class="w-full relative flex items-center justify-center shadow-2xl">
                 <button id="prev" aria-label="slide backward"
-                        class="absolute top-[45%] z-0 -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                        class="absolute -left-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                     ❮
                 </button>
 
@@ -134,25 +132,29 @@
                 </div>
 
                 <button id="next" aria-label="slide forward"
-                        class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                        class="absolute -right-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                     ❯
                 </button>
             </div>
 
             <template id="template__detail__link">
-                <a href='{detail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48 rounded-lg shadow-2xl' src='{book_thumbnail}'/>
+                <a href='{detail__link}' id="detail__link" class="list-none flex flex-shrink-0">
+                    <figure class="snip1368 shadow-2xl">
+                        <img class='h-72 w-48' id="book_thumbnail" src='{book_thumbnail}'/>
+                        <div class="text-5xl" id='popularRank'>{popularRank}</div>
+                    </figure>
                 </a>
             </template>
+
         </div>
 
 
         <div class="flex flex-col mb-20">
-            <span class="text-xl mb-4">이런 책은 어떠세요?</span>
+            <span class="text-xl mb-4">읽고싶은 도서 TOP10</span>
 
             <div class="w-full relative flex items-center justify-center shadow-2xl">
                 <button id="prev2" aria-label="slide backward"
-                        class="absolute top-[45%] -left-4 z-30 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                        class="absolute -left-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                     ❮
                 </button>
 
@@ -161,14 +163,17 @@
                 </div>
 
                 <button id="next2" aria-label="slide forward"
-                        class="absolute top-[45%] -right-4 btn btn-circle bg-gray-200 shadow-2xl border-gray-200 sm:btn-sm hover:bg-purple-600 hover:border-purple-600 text-gray-600 hover:text-base-100">
+                        class="absolute -right-11 z-30 btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">
                     ❯
                 </button>
             </div>
 
             <template id="template__recommendDetail__link">
                 <a href='{recommendDetail__link}' class="list-none flex flex-shrink-0">
-                    <img class='h-72 w-48 rounded-lg shadow-2xl' src='{recommendBook_thumbnail}'/>
+                    <figure class="snip1368 shadow-2xl">
+                        <img class='h-72 w-48 rounded-lg shadow-2xl' src='{recommendBook_thumbnail}'/>
+                        <div class="text-5xl" id='recommendRank'>{recommendRank}</div>
+                    </figure>
                 </a>
             </template>
         </div>
@@ -289,12 +294,11 @@
             }
         );
 
-
         // 인기도서 top10
         let defaultTransform = 0;
 
         function goNext() {
-            defaultTransform = defaultTransform - 398;
+            defaultTransform = defaultTransform - 347;
             var slider = document.getElementById("popularBook__detail");
             if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.7) defaultTransform = 0;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
@@ -305,7 +309,7 @@
         function goPrev() {
             var slider = document.getElementById("popularBook__detail");
             if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
-            else defaultTransform = defaultTransform + 398;
+            else defaultTransform = defaultTransform + 347;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
 
@@ -317,7 +321,7 @@
             const isbns = ${popularList};
             console.log(isbns);
 
-            isbns.map(isbn => {
+            isbns.map((isbn, index) => {
                 $.ajax({	//카카오 검색요청 / [요청]
                     method: "GET",
                     traditional: true,
@@ -327,13 +331,17 @@
                     headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
                 })
                 .done(function (data) {	//검색 결과 담기 / [응답]
+
                     const book = data.documents[0];
                     const isbn = book.isbn.slice(-13);
                     const thumbnailLink = book.thumbnail;
+                    const ranks = index + 1;
+                    console.log("ranks : " + ranks);
 
                     const result = $("#template__detail__link").html()
                         .replace("{detail__link}", "/read/" + isbn)
-                        .replace("{book_thumbnail}", thumbnailLink);
+                        .replace("{book_thumbnail}", thumbnailLink)
+                        .replace("{popularRank}", ranks);
 
                     $("#popularBook__detail").append(result);
                 });
@@ -344,44 +352,34 @@
 
 
 
-        function TESTpopularList() {
+        <%--function TESTpopularList() {--%>
 
-            const isbns = ${popularList};
-            console.log("test : " + isbns[0]);
+        <%--    const isbns = ${popularList};--%>
 
-            isbns.map((isbn, index) => {
-                console.log(index);
-                $.ajax({	//카카오 검색요청 / [요청]
-                    method: "GET",
-                    traditional: true,
-                    async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
-                    url: "https://dapi.kakao.com/v3/search/book?target=isbn",
-                    data: {query: isbn},
-                    headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
-                })
-                .done(function (data) {	//검색 결과 담기 / [응답]
-                    const book = data.documents[0];
-                    const isbn = book.isbn.slice(-13);
-                    const thumbnailLink = book.thumbnail;
+        <%--    isbns.map((isbn, index) => {;--%>
+        <%--        $.ajax({	//카카오 검색요청 / [요청]--%>
+        <%--            method: "GET",--%>
+        <%--            traditional: true,--%>
+        <%--            async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)--%>
+        <%--            url: "https://dapi.kakao.com/v3/search/book?target=isbn",--%>
+        <%--            data: {query: isbn},--%>
+        <%--            headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}--%>
+        <%--        })--%>
+        <%--        .done(function (data) {	//검색 결과 담기 / [응답]--%>
+        <%--            const book = data.documents[0];--%>
+        <%--            const isbn = book.isbn.slice(-13);--%>
+        <%--            const thumbnailLink = book.thumbnail;--%>
 
-                    if(index < 5){
-                        $("#popularSlide1to5").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");
-                    } else {
-                        $("#popularSlide6to10").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");
-                    }
+        <%--            if(index < 5){--%>
+        <%--                $("#popularSlide1to5").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");--%>
+        <%--            } else {--%>
+        <%--                $("#popularSlide6to10").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");--%>
+        <%--            }--%>
+        <%--        });--%>
+        <%--    })--%>
+        <%--}--%>
 
-
-
-
-
-
-
-
-                });
-            })
-        }
-
-        TESTpopularList();
+        <%--TESTpopularList();--%>
 
 
 
@@ -389,7 +387,7 @@
         let defaultTransform2 = 0;
 
         function goNext2() {
-            defaultTransform2 = defaultTransform2 - 398;
+            defaultTransform2 = defaultTransform2 - 347;
             var slider = document.getElementById("recommendBook__detail");
             if (Math.abs(defaultTransform2) >= slider.scrollWidth / 1.7) defaultTransform2 = 0;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
@@ -400,7 +398,7 @@
         function goPrev2() {
             var slider = document.getElementById("recommendBook__detail");
             if (Math.abs(defaultTransform2) === 0) defaultTransform2 = 0;
-            else defaultTransform2 = defaultTransform2 + 398;
+            else defaultTransform2 = defaultTransform2 + 347;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
         }
 
@@ -412,7 +410,7 @@
             const isbns = ${recommendList};
             console.log(isbns);
 
-            isbns.map(isbn => {
+            isbns.map((isbn,index) => {
                 $.ajax({	//카카오 검색요청 / [요청]
                     method: "GET",
                     traditional: true,
@@ -425,12 +423,14 @@
                         const book = data.documents[0];
                         const isbn = book.isbn.slice(-13);
                         const thumbnailLink = book.thumbnail;
+                        const ranks = index + 1;
 
                         console.log("thumbnailLink : " + thumbnailLink);
 
                         const result = $("#template__recommendDetail__link").html()
                             .replace("{recommendDetail__link}", "/read/" + isbn)
-                            .replace("{recommendBook_thumbnail}", thumbnailLink);
+                            .replace("{recommendBook_thumbnail}", thumbnailLink)
+                            .replace("{recommendRank}", ranks);
 
                         $("#recommendBook__detail").append(result);
                     });
@@ -454,7 +454,7 @@
             let defaultTransform3 = 0;
 
             function goNext3() {
-                defaultTransform3 = defaultTransform3 - 398;
+                defaultTransform3 = defaultTransform3 - 347;
                 var slider = document.getElementById("wantReadBook__detail");
                 if (Math.abs(defaultTransform3) >= slider.scrollWidth / 1.7) defaultTransform3 = 0;
                 slider.style.transform = "translateX(" + defaultTransform3 + "px)";
@@ -465,7 +465,7 @@
             function goPrev3() {
                 var slider = document.getElementById("wantReadBook__detail");
                 if (Math.abs(defaultTransform3) === 0) defaultTransform3 = 0;
-                else defaultTransform3 = defaultTransform3 + 398;
+                else defaultTransform3 = defaultTransform3 + 347;
                 slider.style.transform = "translateX(" + defaultTransform3 + "px)";
             }
 
@@ -508,7 +508,7 @@
             let defaultTransform4 = 0;
 
             function goNext4() {
-                defaultTransform4 = defaultTransform4 - 398;
+                defaultTransform4 = defaultTransform4 - 347;
                 var slider = document.getElementById("readingBook__detail");
                 if (Math.abs(defaultTransform4) >= slider.scrollWidth / 1.7) defaultTransform4 = 0;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
@@ -519,7 +519,7 @@
             function goPrev4() {
                 var slider = document.getElementById("readingBook__detail");
                 if (Math.abs(defaultTransform4) === 0) defaultTransform4 = 0;
-                else defaultTransform4 = defaultTransform4 + 398;
+                else defaultTransform4 = defaultTransform4 + 347;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
             }
 
