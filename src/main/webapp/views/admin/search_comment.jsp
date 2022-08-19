@@ -54,7 +54,7 @@
 
                 <div class="my-4">
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto shadow-xl rounded-2xl">
 
                         <div class="flex flex-row space-x-2">
                             <div class="ml-2 mb-2">검색 평가 수 :</div>

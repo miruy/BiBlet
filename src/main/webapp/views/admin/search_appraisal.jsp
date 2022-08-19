@@ -55,7 +55,7 @@
 
                 <div class="my-4">
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto shadow-xl rounded-2xl">
 
                         <div class="flex flex-row space-x-2">
                             <div class="ml-2 mb-2">검색 평가 수 :</div>
@@ -131,7 +131,7 @@
                                         <td>
                                             <label for="forcedDelete${searchStar.appraisalNo}"
                                                    class="modal-button cursor-pointer">
-                                                <svg class="w-8 h-8 ml-3" viewBox="0 0 32 32"
+                                                <svg class="w-8 h-8 mx-auto" viewBox="0 0 32 32"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <defs>
                                                         <style>.cls-1 {

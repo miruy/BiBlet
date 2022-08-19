@@ -49,7 +49,7 @@
 
                 <div class="my-4">
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto shadow-xl rounded-2xl">
 
                         <div class="flex flex-row justify-between">
                             <div class="flex flex-row space-x-2">

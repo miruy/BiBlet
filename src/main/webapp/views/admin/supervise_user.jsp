@@ -48,7 +48,7 @@
 
                 <div class="my-4">
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto shadow-xl rounded-2xl">
 
                         <div class="flex flex-row space-x-2">
                             <div class="ml-2 mb-2">총 회원 수 :</div>
@@ -142,7 +142,7 @@
                                         <td>
                                             <label for="forcedWithdraw${user.userNo}"
                                                    class="modal-button cursor-pointer">
-                                                <svg class="w-8 h-8 ml-4" style="enable-background:new 0 0 50 50;"
+                                                <svg class="w-8 h-8 mx-auto" style="enable-background:new 0 0 50 50;"
                                                      version="1.1" viewBox="0 0 50 50" xml:space="preserve"
                                                      xmlns="http://www.w3.org/2000/svg">
 											<g id="Layer_1">

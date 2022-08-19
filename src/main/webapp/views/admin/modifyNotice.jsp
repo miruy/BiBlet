@@ -9,8 +9,8 @@
 
 <section class="container mx-auto">
 
-    <div class="flex flex-col justify-center bg-white px-32 py-8">
-        <div class="card w-full bg-gray-100 shadow-xl p-10">
+    <div class="flex flex-col justify-center bg-white p-10">
+        <div class="card w-full bg-gray-100 rounded-2xl shadow-2xl p-10 px-20 py-8 my-4">
 
             <div class="flex flex-col">
                 <c:if test="${!empty modifyNoticeDetail}">
@@ -75,7 +75,7 @@
 
                                 <input type="hidden" id="noticeNo" name="noticeNo" value="${modifyNotice.noticeNo}">
                                 <input type="submit" value="저장"
-                                       class="btn btn-secondary text-white hover:text-white px-20"
+                                       class="btn btn-secondary text-white hover:text-white px-20 mx-[26rem]"
                                        onclick="confirm('공지사항을 수정하시겠습니까?')" />
                             </div>
                         </form:form>

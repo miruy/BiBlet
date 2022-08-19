@@ -97,6 +97,31 @@
 
         <div class="flex flex-col mb-20">
             <span class="text-xl mb-4">인기 도서 TOP10</span>
+            <div class="carousel w-full shadow-2xl">
+
+                <div id="slide1" class="carousel-item relative w-full">
+                    <div id="popularSlide1to5" class="flex"></div>
+                    <div id="slide1Hover" class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
+                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❮</a>
+                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❯</a>
+                    </div>
+                </div>
+
+                <div id="slide2" class="carousel-item relative w-full">
+                    <div id="popularSlide6to10" class="flex"></div>
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
+                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❮</a>
+                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❯</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="flex flex-col mb-20">
+            <span class="text-xl mb-4">인기 도서 TOP10</span>
 
             <div class="w-full relative flex items-center justify-center shadow-2xl">
                 <button id="prev" aria-label="slide backward"
@@ -301,23 +326,63 @@
                     data: {query: isbn},
                     headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
                 })
-                    .done(function (data) {	//검색 결과 담기 / [응답]
-                        const book = data.documents[0];
-                        const isbn = book.isbn.slice(-13);
-                        const thumbnailLink = book.thumbnail;
+                .done(function (data) {	//검색 결과 담기 / [응답]
+                    const book = data.documents[0];
+                    const isbn = book.isbn.slice(-13);
+                    const thumbnailLink = book.thumbnail;
 
-                        console.log("isnb : " + isbn);
+                    const result = $("#template__detail__link").html()
+                        .replace("{detail__link}", "/read/" + isbn)
+                        .replace("{book_thumbnail}", thumbnailLink);
 
-                        const result = $("#template__detail__link").html()
-                            .replace("{detail__link}", "/read/" + isbn)
-                            .replace("{book_thumbnail}", thumbnailLink);
-
-                        $("#popularBook__detail").append(result);
-                    });
+                    $("#popularBook__detail").append(result);
+                });
             })
         }
 
         popularList();
+
+
+
+        function TESTpopularList() {
+
+            const isbns = ${popularList};
+            console.log("test : " + isbns[0]);
+
+            isbns.map((isbn, index) => {
+                console.log(index);
+                $.ajax({	//카카오 검색요청 / [요청]
+                    method: "GET",
+                    traditional: true,
+                    async: false,	//앞의 요청의 대한 응답이 올 때 까지 기다리기(false: 순서대로, true: 코드 중에 실행)
+                    url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                    data: {query: isbn},
+                    headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"}
+                })
+                .done(function (data) {	//검색 결과 담기 / [응답]
+                    const book = data.documents[0];
+                    const isbn = book.isbn.slice(-13);
+                    const thumbnailLink = book.thumbnail;
+
+                    if(index < 5){
+                        $("#popularSlide1to5").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");
+                    } else {
+                        $("#popularSlide6to10").append("<a href='/read/" + isbn + "'>" + "<img class='h-72 w-48 rounded-lg shadow-2xl mx-2' src='" + thumbnailLink + "'/></a>");
+                    }
+
+
+
+
+
+
+
+
+                });
+            })
+        }
+
+        TESTpopularList();
+
 
 
         // 추천도서 10(이런 책은 어떠세요?)
@@ -516,7 +581,7 @@
                     if (title.length >= 20) {
                         $("#bookName" + appraisalNo).append("<a href='/read/" + isbn + "'>" + title.slice(0, 20) + "...</a>");
                     } else if (title.length <= 20) {
-                        $("#bookName" + appraisalNo).append("<a href='/read/" + isbn + "'>" + title + "...</a>");
+                        $("#bookName" + appraisalNo).append("<a href='/read/" + isbn + "'>" + title + "</a>");
                     }
                 });
         }

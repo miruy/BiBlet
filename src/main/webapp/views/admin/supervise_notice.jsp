@@ -10,7 +10,6 @@
 <section class="container mx-auto">
 
     <div class="flex flex-col justify-center bg-white p-10">
-
         <div id="tab_content_group" class="px-10 py-8 my-4 w-full rounded-2xl shadow-2xl bg-gray-100 admin_font">
             <%--공지 관리--%>
             <div id="noticeManagement">
@@ -47,7 +46,7 @@
 
                 <div class="my-4">
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto shadow-xl rounded-2xl">
 
                         <div class="flex flex-row justify-between">
                             <div class="flex flex-row space-x-2">
@@ -188,8 +187,8 @@
                     </div>
 
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 

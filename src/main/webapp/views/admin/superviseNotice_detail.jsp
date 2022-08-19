@@ -9,14 +9,14 @@
 
 <section class="container mx-auto">
 
-    <div class="flex flex-col justify-center bg-white px-32 py-8">
+    <div class="flex flex-col justify-center bg-white p-10">
 
-            <div class="card w-full bg-gray-100 shadow-xl p-10">
+            <div class="card w-full bg-gray-100 rounded-2xl shadow-2xl p-10 px-20 py-8 my-4">
 
                 <c:if test="${!empty adminPageNoticeDetail}">
                     <c:forEach var="adminPageNotice" items="${adminPageNoticeDetail}">
 
-                    <table class="table w-full">
+                    <table class="table w-full shadow-xl">
                         <thead>
                         <tr class="text-center">
                             <th class="text-lg">제목</th>
@@ -31,7 +31,7 @@
                         </tbody>
                     </table>
 
-                    <table class="mt-4 table w-full">
+                    <table class="mt-4 table w-full shadow-xl">
                         <thead>
                         <tr class="text-center">
                             <th class="text-sm">공지번호</th>
@@ -69,13 +69,13 @@
                             </form>
                         </div>
 
-                        <div class="rounded-lg bg-white p-2 w-full h-[50rem] overflow-auto">
+                        <div class="rounded-2xl shadow-xl bg-white p-2 w-full md:h-auto lg:h-auto overflow-auto">
                             <div>${adminPageNotice.content}</div>
                         </div>
                     </c:if>
 
                     <c:if test="${empty adminPageNotice.originFile}">
-                        <div class="rounded-lg bg-white p-2 mt-4 w-full h-[50rem] overflow-auto">
+                        <div class="rounded-2xl shadow-xl bg-white p-2 mt-4 w-full md:h-auto lg:h-auto overflow-auto">
                             <div>${adminPageNotice.content}</div>
                         </div>
                     </c:if>
