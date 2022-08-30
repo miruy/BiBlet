@@ -38,12 +38,16 @@ public class MypageController {
     @GetMapping("/mypage")
     public String memberInfo(Model model, HttpSession session) {
 
+
         //회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
+        if(authInfo == null){
+            return "redirect:/";
+        }
         //마이페이지에 보여주기
-        if (authInfo != null) {
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
 
             //나의 코멘트
@@ -70,11 +74,16 @@ public class MypageController {
     //읽고싶어요 조회
     @GetMapping("/wantRead")
     public String wantRead(Model model, HttpSession session) {
+
         // 회원 정보 불러오기
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if (authInfo != null) {
+        if(authInfo == null){
+            return "redirect:/";
+        }
+
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("wantRead", mypageService.wantRead(userNo));
 
@@ -91,7 +100,11 @@ public class MypageController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if (authInfo != null) {
+        if(authInfo == null){
+            return "redirect:/";
+        }
+
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("reading", mypageService.reading(userNo));
 
@@ -108,7 +121,11 @@ public class MypageController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if (authInfo != null) {
+        if(authInfo == null){
+            return "redirect:/";
+        }
+
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("mypage_3", mypageService.myCommentForMypage(userNo));
 
@@ -125,7 +142,11 @@ public class MypageController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if (authInfo != null) {
+        if(authInfo == null){
+            return "redirect:/";
+        }
+
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             model.addAttribute("mypage_4", mypageService.mypage_4(userNo));
 
@@ -143,7 +164,11 @@ public class MypageController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        if (authInfo != null) {
+        if(authInfo == null){
+            return "redirect:/";
+        }
+
+        else if (authInfo != null) {
             Long userNo = authInfo.getUserNo();
             session.setAttribute("authInfo", authInfo);
             model.addAttribute("myInfo2", userService.selectUserInfoByUserNo(userNo));
@@ -178,11 +203,17 @@ public class MypageController {
         UserDTO authInfo = null;
         authInfo = (UserDTO) session.getAttribute("authInfo");
 
-        Long userNo = authInfo.getUserNo();
+        if(authInfo == null){
+            return "redirect:/";
+        }
 
-        UserDTO user = userService.selectUserInfoByUserNo(userNo);
-        model.addAttribute("userInfo", user);
-        model.addAttribute("totalCommentCount", mainService.totalCommentCount());
+        else {
+            Long userNo = authInfo.getUserNo();
+
+            UserDTO user = userService.selectUserInfoByUserNo(userNo);
+            model.addAttribute("userInfo", user);
+            model.addAttribute("totalCommentCount", mainService.totalCommentCount());
+        }
         return "withdraw";
     }
 

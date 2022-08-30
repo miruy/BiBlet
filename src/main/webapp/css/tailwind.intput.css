@@ -69,3 +69,7 @@ footer_biblet{
 #tab_content_group > div {
     display: none;
 }
+
+input[type=file]::file-selector-button {
+    display: none;
+}

@@ -91,25 +91,61 @@
 
         </c:if>
 
+<%--        <div class="carousel w-full">--%>
+<%--            <div id="slide1" class="carousel-item relative w-full">--%>
+<%--                <img src="https://placeimg.com/800/200/arch" class="w-full" />--%>
+<%--                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">--%>
+<%--                    <a href="#slide4" class="btn btn-circle">❮</a>--%>
+<%--                    <a href="#slide2" class="btn btn-circle">❯</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div id="slide2" class="carousel-item relative w-full">--%>
+<%--                <img src="https://placeimg.com/800/200/arch" class="w-full" />--%>
+<%--                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">--%>
+<%--                    <a href="#slide1" class="btn btn-circle">❮</a>--%>
+<%--                    <a href="#slide3" class="btn btn-circle">❯</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div id="slide3" class="carousel-item relative w-full">--%>
+<%--                <img src="https://placeimg.com/800/200/arch" class="w-full" />--%>
+<%--                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">--%>
+<%--                    <a href="#slide2" class="btn btn-circle">❮</a>--%>
+<%--                    <a href="#slide4" class="btn btn-circle">❯</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div id="slide4" class="carousel-item relative w-full">--%>
+<%--                <img src="https://placeimg.com/800/200/arch" class="w-full" />--%>
+<%--                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">--%>
+<%--                    <a href="#slide3" class="btn btn-circle">❮</a>--%>
+<%--                    <a href="#slide1" class="btn btn-circle">❯</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
 
 
 <%--        <div class="flex flex-col mb-20">--%>
 <%--            <span class="text-xl mb-4">인기 도서 TOP10</span>--%>
 <%--            <div class="carousel w-full shadow-2xl">--%>
-
 <%--                <div id="slide1" class="carousel-item relative w-full">--%>
-<%--                    <div id="popularSlide1to5" class="flex"></div>--%>
-<%--                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">--%>
-<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❮</a>--%>
-<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600 hover:text-white">❯</a>--%>
+<%--                    <div class="absolute -left-11 z-30">--%>
+<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❮</a>--%>
 <%--                    </div>--%>
+<%--                    <div class="absolute -right-11 z-30">--%>
+<%--                        <a href="#slide2" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❯</a>--%>
+<%--                    </div>--%>
+<%--                    --%>
+<%--                    <div id="popularSlide1to5" class="flex"></div>--%>
 <%--                </div>--%>
 
 <%--                <div id="slide2" class="carousel-item relative w-full">--%>
-<%--                    <div id="popularSlide6to10" class="flex"></div>--%>
-<%--                    <div class="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">--%>
+<%--                    <div class="absolute -left-5">--%>
 <%--                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❮</a>--%>
+<%--                    </div>--%>
+
+<%--                    <div id="popularSlide6to10" class="flex"></div>--%>
+
+<%--                    <div class="absolute -right-5">--%>
 <%--                        <a href="#slide1" class="btn btn-ghost w-10 h-72 text-4xl text-gray-600  hover:text-white">❯</a>--%>
 <%--                    </div>--%>
 <%--                </div>--%>
@@ -287,7 +323,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        /* Demo purposes only */
+
+        // TOP10 순위 표시
         $(".hover").mouseleave(
             function () {
                 $(this).removeClass("hover");
@@ -298,9 +335,9 @@
         let defaultTransform = 0;
 
         function goNext() {
-            defaultTransform = defaultTransform - 347;
+            defaultTransform = defaultTransform - 395;
             var slider = document.getElementById("popularBook__detail");
-            if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.7) defaultTransform = 0;
+            if (Math.abs(defaultTransform) >= slider.scrollWidth / 2.1) defaultTransform = 0;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
 
@@ -309,7 +346,7 @@
         function goPrev() {
             var slider = document.getElementById("popularBook__detail");
             if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
-            else defaultTransform = defaultTransform + 347;
+            else defaultTransform = defaultTransform + 395;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
 
@@ -387,9 +424,9 @@
         let defaultTransform2 = 0;
 
         function goNext2() {
-            defaultTransform2 = defaultTransform2 - 347;
+            defaultTransform2 = defaultTransform2 - 395;
             var slider = document.getElementById("recommendBook__detail");
-            if (Math.abs(defaultTransform2) >= slider.scrollWidth / 1.7) defaultTransform2 = 0;
+            if (Math.abs(defaultTransform2) >= slider.scrollWidth / 2.1) defaultTransform2 = 0;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
         }
 
@@ -398,7 +435,7 @@
         function goPrev2() {
             var slider = document.getElementById("recommendBook__detail");
             if (Math.abs(defaultTransform2) === 0) defaultTransform2 = 0;
-            else defaultTransform2 = defaultTransform2 + 347;
+            else defaultTransform2 = defaultTransform2 + 395;
             slider.style.transform = "translateX(" + defaultTransform2 + "px)";
         }
 
@@ -454,9 +491,9 @@
             let defaultTransform3 = 0;
 
             function goNext3() {
-                defaultTransform3 = defaultTransform3 - 347;
+                defaultTransform3 = defaultTransform3 - 395;
                 var slider = document.getElementById("wantReadBook__detail");
-                if (Math.abs(defaultTransform3) >= slider.scrollWidth / 1.7) defaultTransform3 = 0;
+                if (Math.abs(defaultTransform3) >= slider.scrollWidth / 2.1) defaultTransform3 = 0;
                 slider.style.transform = "translateX(" + defaultTransform3 + "px)";
             }
 
@@ -465,7 +502,7 @@
             function goPrev3() {
                 var slider = document.getElementById("wantReadBook__detail");
                 if (Math.abs(defaultTransform3) === 0) defaultTransform3 = 0;
-                else defaultTransform3 = defaultTransform3 + 347;
+                else defaultTransform3 = defaultTransform3 + 395;
                 slider.style.transform = "translateX(" + defaultTransform3 + "px)";
             }
 
@@ -508,9 +545,9 @@
             let defaultTransform4 = 0;
 
             function goNext4() {
-                defaultTransform4 = defaultTransform4 - 347;
+                defaultTransform4 = defaultTransform4 - 395;
                 var slider = document.getElementById("readingBook__detail");
-                if (Math.abs(defaultTransform4) >= slider.scrollWidth / 1.7) defaultTransform4 = 0;
+                if (Math.abs(defaultTransform4) >= slider.scrollWidth / 2.1) defaultTransform4 = 0;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
             }
 
@@ -519,7 +556,7 @@
             function goPrev4() {
                 var slider = document.getElementById("readingBook__detail");
                 if (Math.abs(defaultTransform4) === 0) defaultTransform4 = 0;
-                else defaultTransform4 = defaultTransform4 + 347;
+                else defaultTransform4 = defaultTransform4 + 395;
                 slider.style.transform = "translateX(" + defaultTransform4 + "px)";
             }
 
