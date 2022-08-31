@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/biblet?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
-    username: root
-    password: root00
+    url: jdbc:mysql://172.17.0.1:3307/biblet?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
+    username: user
+    password: pass
   messages:
     basename: message/message
     encoding: UTF-8
