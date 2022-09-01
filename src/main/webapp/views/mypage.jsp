@@ -131,7 +131,7 @@
                         <c:if test="${myInfo.storedPic ne null}">
                             <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
                             <c:if test="${idSub ne 'kakao'}">
-                                <img src="<c:url value='/images/${myInfo.storedPic}'/>"
+                                <img src="/data/images/${myInfo.storedPic}"
                                      class="mask mask-circle w-14 h-14"/>
                             </c:if>
                             <c:if test="${idSub eq 'kakao'}">
