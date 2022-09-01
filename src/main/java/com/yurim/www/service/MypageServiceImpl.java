@@ -4,7 +4,6 @@ package com.yurim.www.service;
 import com.yurim.www.dto.AppraisalDTO;
 import com.yurim.www.dto.UserDTO;
 import com.yurim.www.repository.MypageDAO;
-import com.yurim.www.vo.RequestSignup;
 import com.yurim.www.vo.RequestUpdateUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +21,8 @@ import java.util.UUID;
 public class MypageServiceImpl implements MypageService {
     private final MypageDAO mypageDAO;
 
-    @Value("${file.savePath}")
-    private String savePath;
+    @Value("${file.imagePath}")
+    private String imagePath;
 
     //나의 펼가 리스트
     @Override
@@ -84,7 +83,7 @@ public class MypageServiceImpl implements MypageService {
 
 
         //파일이 저장될 경로 + 최종 파일명
-        String uploadFile = savePath + storedimagename;
+        String uploadFile = imagePath + storedimagename;
 
         //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
         File file = new File(uploadFile);

@@ -6,6 +6,7 @@ import com.yurim.www.repository.NoticeDAO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,9 @@ import java.util.UUID;
 public class NoticeServiceImpl implements NoticeService{
     private final NoticeDAO noticeDAO;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${file.filePath}")
+    String filePath;
 
     //모든 공지사항 수
     @Override
@@ -66,10 +70,9 @@ public class NoticeServiceImpl implements NoticeService{
         String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
 
         //첨부파일이 저장될 경로(서버 측)
-        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
         //파일이 저장될 경로 + 최종 파일명
-        String uploadFile = savePath + storedimagename;
+        String uploadFile = filePath + storedimagename;
 
         //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
         File file = new File(uploadFile);
@@ -96,7 +99,6 @@ public class NoticeServiceImpl implements NoticeService{
             String fileName = storedFile;
 
             //다운로드 경로 (내려받을 파일이 있는 경로)
-            String filePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
             //경로와 파일명으로 파일 객체 생성
             File dFile  = new File(filePath, fileName);
@@ -188,10 +190,9 @@ public class NoticeServiceImpl implements NoticeService{
         String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
 
         //첨부파일이 저장될 경로(서버 측)
-        String savePath = "/Users/kim-yurim/Desktop/workspace/www/src/main/webapp/fileUpload/";
 
         //파일이 저장될 경로 + 최종 파일명
-        String uploadFile = savePath + storedimagename;
+        String uploadFile = filePath + storedimagename;
 
         //업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
         File file = new File(uploadFile);
