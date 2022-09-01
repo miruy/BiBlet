@@ -1,9 +1,6 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.17.0.1:3307/biblet?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
-    username: user
-    password: pass
   messages:
     basename: message/message
     encoding: UTF-8
@@ -14,10 +11,8 @@ spring:
   servlet:
     multipart:
       file-size-threshold: 1MB
-      location: C:/Temp
       max-file-size: 100MB
       max-request-size: 100MB
-
 
 mybatis:
     configuration:
@@ -25,17 +20,11 @@ mybatis:
     type-aliases-package: com.yurim.www.dto
     mapper-locations: mapper/**/*.xml
 
-mail:
-  host: smtp.gmail.com
-  port: 587
-  protocol: smtp
-  default-encoding: UTF-8
-  username: dbflarla496695@gmail.com
-  password: dong ewyu gdpc jukl
-  smtp:
-    start-tls-enable: true
-    auth: true
-
-
-
-
+---
+spring:
+  profiles:
+    active: prod
+---
+spring:
+  profiles:
+    active: local

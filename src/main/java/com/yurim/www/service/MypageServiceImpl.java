@@ -7,6 +7,7 @@ import com.yurim.www.repository.MypageDAO;
 import com.yurim.www.vo.RequestSignup;
 import com.yurim.www.vo.RequestUpdateUserInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MypageServiceImpl implements MypageService {
     private final MypageDAO mypageDAO;
+
+    @Value("${file.savePath}")
+    private String savePath;
 
     //나의 펼가 리스트
     @Override
@@ -77,7 +81,7 @@ public class MypageServiceImpl implements MypageService {
         String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
 
         //파일이 저장될 경로(서버 측)
-        String savePath = "/home/dbflarla496695/";
+
 
         //파일이 저장될 경로 + 최종 파일명
         String uploadFile = savePath + storedimagename;
