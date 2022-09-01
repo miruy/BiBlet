@@ -1,0 +1,3 @@
+[submodule "biblet-private"]
+	path = biblet-private
+	url = https://github.com/miruy/biblet-private

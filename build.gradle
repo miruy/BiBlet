@@ -44,3 +44,11 @@ tasks.named('test') {
 war {
 	enabled = false
 }
+
+task copyPrivate(type: Copy) {
+	copy {
+		from './biblet-private'
+		include "*.yml"
+		into 'src/main/resources'
+	}
+}
