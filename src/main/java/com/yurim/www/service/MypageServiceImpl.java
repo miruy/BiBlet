@@ -21,7 +21,8 @@ import java.util.UUID;
 public class MypageServiceImpl implements MypageService {
     private final MypageDAO mypageDAO;
 
-    @Value("${file.imagePath}")
+    //파일이 저장될 경로(서버 측)
+    @Value("${file.savePath}")
     private String imagePath;
 
     //나의 펼가 리스트
@@ -78,9 +79,6 @@ public class MypageServiceImpl implements MypageService {
 
         //프로젝트 내 폴더에 사진 파일을 저장할 때 uuid값에 orgimagenameExtension(확장자)를 붙혀 저장 (= sjf743ifhrht32 + .png)
         String storedimagename = UUID.randomUUID().toString().replaceAll("-", "") + orgimagenameExtension;
-
-        //파일이 저장될 경로(서버 측)
-
 
         //파일이 저장될 경로 + 최종 파일명
         String uploadFile = imagePath + storedimagename;
