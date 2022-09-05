@@ -22,7 +22,7 @@ public class MypageServiceImpl implements MypageService {
     private final MypageDAO mypageDAO;
 
     //파일이 저장될 경로(서버 측)
-    @Value("${file.savePath}")
+    @Value("${file.imagePath}")
     private String imagePath;
 
     //나의 펼가 리스트

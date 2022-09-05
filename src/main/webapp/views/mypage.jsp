@@ -35,7 +35,7 @@
                     <c:if test="${myInfo.storedPic ne null}">
                         <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
                         <c:if test="${idSub ne 'kakao'}">
-                            <img src='${pageContext.request.contextPath}/images/${myInfo.storedPic}'/>
+                            <img src='images/${myInfo.storedPic}'
                                  class="mask mask-circle mx-auto w-[12rem] h-[12rem]"/>
                         </c:if>
                         <c:if test="${idSub eq 'kakao'}">
@@ -131,7 +131,7 @@
                         <c:if test="${myInfo.storedPic ne null}">
                             <c:set var="idSub" value="${fn:substring(myInfo.id,0,5)}"/>
                             <c:if test="${idSub ne 'kakao'}">
-                                <img src="${pageContext.request.contextPath}/images/${myInfo.storedPic}"
+                                <img src="images/${myInfo.storedPic}"
                                      class="mask mask-circle w-14 h-14"/>
                             </c:if>
                             <c:if test="${idSub eq 'kakao'}">

@@ -6,7 +6,7 @@
 
 <section>
 
-    <div class="hero min-h-screen bg-cover" style="background-image: url('/images/signup_email_Check.jpg'); background-size: cover;">
+    <div class="hero min-h-screen bg-cover" style="background-image: url('/mainImages/signup_email_Check.jpg'); background-size: cover;">
         <div class="hero-overlay bg-opacity-40 bg-gray-300"></div>
         <div class="hero-content text-center text-neutral-content mt-48">
             <div class="max-w-md">
