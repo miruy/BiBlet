@@ -17,7 +17,7 @@ import java.util.Random;
 public class MailSendService {
 	private final UserDAO userDAO;
 
-	@Value("${server.port}")
+	@Value("3307")
 	private String port;
 
 	//회뤈가입 인증 이메일 발송
