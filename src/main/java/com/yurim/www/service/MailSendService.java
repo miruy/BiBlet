@@ -17,7 +17,7 @@ import java.util.Random;
 public class MailSendService {
 	private final UserDAO userDAO;
 
-	@Value("3307")
+	@Value("8080")
 	private String port;
 
 	//회뤈가입 인증 이메일 발송
@@ -28,7 +28,7 @@ public class MailSendService {
 			MailUtils sendMail = new MailUtils();
 			sendMail.setSubject("회원가입 이메일 인증");
 			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<h2>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</h2>")
-					.append("<a href='http://localhost:%s/signup/emailCheck?email=".formatted(port)).append(email)
+					.append("<a href='http://www.biblet.site/signup/emailCheck?email=".formatted(port)).append(email)
 					.append("&authKey=").append(authKey).append("' target='_blank'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("dbflarla496695@gmail.com", "관리자");
 			sendMail.setTo(email);
