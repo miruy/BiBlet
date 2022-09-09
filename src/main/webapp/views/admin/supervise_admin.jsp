@@ -57,7 +57,6 @@
 								<th>관리자 번호</th>
 								<th>이름</th>
 								<th>아이디</th>
-								<th>비밀번호</th>
 								<th>이메일</th>
 								<th>가입일자</th>
 								<th>이메일 인증 여부</th>
@@ -75,14 +74,6 @@
 								</td>
 								<td>
 									${admin.admId}
-								</td>
-								<td>
-									<c:if test="${admin.admPass.length() >= 10}">
-										<textarea rows="1" class="w-14 bg-white resize-x" disabled>${admin.admPass}</textarea>
-									</c:if>
-									<c:if test="${admin.admPass.length() < 10}">
-										${admin.admPass}
-									</c:if>
 								</td>
 								<td>
 									<c:if test="${admin.admEmail.length() >= 25}">

@@ -62,7 +62,6 @@
                                 <th>프로필</th>
                                 <th>이름</th>
                                 <th>아이디</th>
-                                <th>비밀번호</th>
                                 <th>이메일</th>
                                 <th>가입일자</th>
                                 <th>이메일 인증 여부</th>
@@ -105,16 +104,6 @@
                                         </td>
                                         <td>
                                                 ${user.id}
-                                        </td>
-                                        <td>
-                                            <c:set var="idSub" value="${fn:substring(user.id,0,5)}"/>
-                                            <c:if test="${idSub ne 'kakao'}">
-                                                ${user.pass}
-                                            </c:if>
-                                            <c:if test="${idSub eq 'kakao'}">
-                                                <textarea rows="1" class="w-14 bg-white resize-x"
-                                                          disabled>${user.pass}</textarea>
-                                            </c:if>
                                         </td>
                                         <td>
                                             <c:set var="idSub" value="${fn:substring(user.id,0,5)}"/>
