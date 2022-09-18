@@ -116,10 +116,9 @@
                                             </c:if>
                                         </td>
                                         <td>
-                                            hello
-<%--                                            <fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"--%>
-<%--                                                           var="parsedDateTime" type="both"/>--%>
-<%--                                            <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${ parsedDateTime }"/>--%>
+                                            <fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"
+                                                           var="parsedDateTime" type="both"/>
+                                            <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${ parsedDateTime }"/>
                                         </td>
                                         <td>
                                             <c:if test="${user.authStatus == 1}">
