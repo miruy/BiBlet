@@ -35,32 +35,32 @@
                         <div class="flex flex-col items-center justify-center">
                             <span id="starMsgUL" class="text-gray-600 mb-2">평가하기</span>
                             <div class="star-group flex text-5xl flex-row-reverse">
-                                <input type="radio" id="star-1" class="hidden" onclick="alert('로그인 후 이용가능합니다.')"
+                                <input type="radio" id="star-1" class="hidden" onclick="location.href='http://www.biblet.site/login';"
                                        onmouseover="mouseOverUL('최고예요!')" onmouseout="mouseOffUL('평가하기')"/>
                                 <label for="star-1"
                                        class="s1 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
-                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseover="mouseOverUL('최고예요!')"
+                                       onclick="location.href='http://www.biblet.site/login';"onmouseover="mouseOverUL('최고예요!')"
                                        onmouseout="mouseOffUL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star-2" class="hidden" onmouseover="mouseOverUL('재미있어요')"
-                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                       onclick="location.href='http://www.biblet.site/login';" onmouseout="mouseOffUL('평가하기')"/>
                                 <label for="star-2"
                                        class="s2 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverUL('재미있어요')"
                                        onmouseout="mouseOffUL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star-3" class="hidden" onmouseover="mouseOverUL('보통이에요')"
-                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                       onclick="location.href='http://www.biblet.site/login';" onmouseout="mouseOffUL('평가하기')"/>
                                 <label for="star-3"
                                        class="s3 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverUL('보통이에요')"
                                        onmouseout="mouseOffUL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star-4" class="hidden" onmouseover="mouseOverUL('재미없어요')"
-                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                       onclick="location.href='http://www.biblet.site/login';" onmouseout="mouseOffUL('평가하기')"/>
                                 <label for="star-4"
                                        class="s4 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverUL('재미없어요')"
                                        onmouseout="mouseOffUL('평가하기')">&#9733;</label>
                                 <input type="radio" id="star-5" class="hidden" onmouseover="mouseOverUL('싫어요')"
-                                       onclick="alert('로그인 후 이용가능합니다.')" onmouseout="mouseOffUL('평가하기')"/>
+                                       onclick="location.href='http://www.biblet.site/login';" onmouseout="mouseOffUL('평가하기')"/>
                                 <label for="star-5"
                                        class="s5 text-gray-200 hover:text-yellow-400 hover:text-opacity-80 cursor-pointer"
                                        onmouseover="mouseOverUL('싫어요')" onmouseout="mouseOffUL('평가하기')">&#9733;</label>
@@ -69,7 +69,7 @@
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽고싶어요</span>
-                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                            <div class="cursor-pointer mt-2" onclick="location.href='http://www.biblet.site/login';">
                                 <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                      version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
@@ -83,7 +83,7 @@
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">코멘트</span>
-                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                            <div class="cursor-pointer mt-2" onclick="location.href='http://www.biblet.site/login';">
                                 <svg class="mx-auto" id="Layer_1" width="30" height="30" style="enable-background:new 0 0 48 48;"
                                      version="1.1" viewBox="0 0 48 48" xml:space="preserve"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g>
@@ -102,7 +102,7 @@
 
                         <div class="flex flex-col">
                             <span class="text-gray-600">읽는중</span>
-                            <div class="cursor-pointer mt-2" onclick="alert('로그인 후 이용가능합니다.')">
+                            <div class="cursor-pointer mt-2" onclick="location.href='http://www.biblet.site/login';">
                                 <svg enable-background="new 0 0 48 48" class="mx-auto" width="30" height="30" version="1.1" viewBox="0 0 48 48"
                                      xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Expanded">

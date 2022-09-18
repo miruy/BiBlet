@@ -34,7 +34,7 @@
 
                 <div class="form-control">
                     <label class="label cursor-pointer">
-                        <span class="label-text">Remember me</span>
+                        <span class="label-text">아이디 기억하기</span>
                         <input type="checkbox" id="rememberId" name="rememberId" class="checkbox checkbox-secondary">
                     </label>
                 </div>
@@ -49,8 +49,8 @@
 
                 <a href="/admin/login" class="text-center text-gray-400">Administrator Login</a>
 
-                <a href="/findId" class="mt-3" >Forgot your id?</a>
-                <a href="/findPass" >Forgot your password?</a>
+                <a href="/findId" class="mt-3" >ID 찾기</a>
+                <a href="/findPass" >비밀번호 찾기</a>
             </form:form>
         </div>
 
