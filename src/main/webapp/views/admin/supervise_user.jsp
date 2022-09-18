@@ -116,9 +116,10 @@
                                             </c:if>
                                         </td>
                                         <td>
-                                            <fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"
-                                                           var="parsedDateTime" type="both"/>
-                                            <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${ parsedDateTime }"/>
+                                            hello
+<%--                                            <fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"--%>
+<%--                                                           var="parsedDateTime" type="both"/>--%>
+<%--                                            <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${ parsedDateTime }"/>--%>
                                         </td>
                                         <td>
                                             <c:if test="${user.authStatus == 1}">
@@ -132,12 +133,10 @@
                                             <label for="forcedWithdraw${user.userNo}"
                                                    class="modal-button cursor-pointer">
                                                 <svg class="w-8 h-8 mx-auto" style="enable-background:new 0 0 50 50;"
-                                                     version="1.1" viewBox="0 0 50 50" xml:space="preserve"
+                                                     viewBox="0 0 50 50" xml:space="preserve"
                                                      xmlns="http://www.w3.org/2000/svg">
-											<g id="Layer_1">
-                                                <path d="M25,49c13.233,0,24-10.767,24-24S38.233,1,25,1S1,11.767,1,25S11.767,49,25,49z M47,25c0,5.706-2.185,10.912-5.761,14.825   L10.175,8.761C14.088,5.185,19.293,3,25,3C37.131,3,47,12.869,47,25z M8.761,10.175l31.064,31.064C35.912,44.815,30.707,47,25,47   C12.869,47,3,37.131,3,25C3,19.294,5.185,14.088,8.761,10.175z"/>
-                                            </g>
-										</svg>
+                                                    <path d="M25,49c13.233,0,24-10.767,24-24S38.233,1,25,1S1,11.767,1,25S11.767,49,25,49z M47,25c0,5.706-2.185,10.912-5.761,14.825   L10.175,8.761C14.088,5.185,19.293,3,25,3C37.131,3,47,12.869,47,25z M8.761,10.175l31.064,31.064C35.912,44.815,30.707,47,25,47   C12.869,47,3,37.131,3,25C3,19.294,5.185,14.088,8.761,10.175z"/>
+										        </svg>
                                             </label>
                                         </td>
 
