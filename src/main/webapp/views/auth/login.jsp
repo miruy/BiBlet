@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Login</button>
+                    <button type="submit" class="btn btn-secondary text-white">Login</button>
                 </div>
 
                 <div class="form-control mt-1">
@@ -49,8 +49,9 @@
 
                 <a href="/admin/login" class="text-center text-gray-400">Administrator Login</a>
 
-                <a href="/findId" class="mt-3" >ID 찾기</a>
-                <a href="/findPass" >비밀번호 찾기</a>
+                <a href="/findId" class="mt-3 text-gray-400">ID를 잊어버리셨나요?</a>
+                <a href="/findPass" class="text-gray-400">비밀번호를 잊어버리셨나요?</a>
+                <a href="/signup" class="text-gray-400">아직 회원이 아니신가요?</a>
             </form:form>
         </div>
 
