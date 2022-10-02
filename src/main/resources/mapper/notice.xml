@@ -8,14 +8,17 @@
 
     <select id="selectNoticeByPageNo" parameterType="NoticeDTO" resultType="NoticeDTO">
         <if test='page==1'>
-            select * from notice ORDER BY write_date DESC limit 0, 2
+            select * from notice WHERE notice_no <![CDATA[<=]]> 10 ORDER BY write_date DESC limit 0, 10;
         </if>
         <if test='page==2'>
-            select * from notice ORDER BY write_date DESC limit 2, 10
+            select * from notice WHERE notice_no > 10 AND notice_no <![CDATA[<=]]> 20 ORDER BY write_date DESC limit 0, 10;
         </if>
-<!--        <if test='page==1'>-->
-<!--            select * from notice LIMIT 20, 10-->
-<!--        </if>-->
+        <if test='page==3'>
+            select * from notice WHERE notice_no > 20 AND notice_no <![CDATA[<=]]> 30 ORDER BY write_date DESC limit 0, 10;
+        </if>
+        <if test='page==4'>
+            select * from notice WHERE notice_no > 30 AND notice_no <![CDATA[<=]]> 40 ORDER BY write_date DESC limit 0, 10;
+        </if>
     </select>
 
     <update id="updateReadCount" parameterType="Long">

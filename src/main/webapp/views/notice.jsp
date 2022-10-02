@@ -58,15 +58,30 @@
                 </div>
 
 
-
                 <form method="post" id="requestPageChange" name="requestPageChange" class="btn-group mx-auto mt-8">
-                    <c:if test="${noticeCount > 10}">
-                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
+
+                    <c:if test="${noticeCount <= 10}">
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" />
+                    </c:if>
+
+                    <c:if test="${noticeCount > 10 and noticeCount <= 20}">
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
+                        <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
+                    </c:if>
+
+                    <c:if test="${noticeCount > 20 and noticeCount <= 30}">
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
                         <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
+                        <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
                     </c:if>
-                    <c:if test="${noticeCount > 20}">
-                        <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
+
+                    <c:if test="${noticeCount > 30 and noticeCount <= 40}">
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
+                        <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
+                        <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
+                        <input type="radio" id="page4_tab" name="page" data-title="4" value=4 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
                     </c:if>
+
                 </form>
 
 
@@ -78,9 +93,29 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
 
+        var noticeCount = ${noticeCount};
+
         $(document).ready(function () {
-            $("#page1_tab").prop("checked", true);
-                submit_page(1);
+            console.log("noticeCount : " + noticeCount);
+            // if ($("#noticeCount") <= 10){
+            //     $("#page1_tab").prop("checked", true);
+            //     submit_page(1);
+            // }else
+            //     if ($("#noticeCount") > 10 && $("#noticeCount") <= 20){
+
+            // if ($("#noticeCount") <= 10) {
+                $("#page1_tab").prop('checked', true);
+                    if ( noticeCount <= 10) {
+                        submit_page(1);
+                    }else if(noticeCount > 10 && noticeCount <= 20){
+                        submit_page(2);
+                    }
+
+            // }
+            // else if ($("#noticeCount") > 10 && $("#noticeCount") <= 20){
+            //     $("#page1_tab").prop("checked", true);
+            //     submit_page(2);
+            // }
         })
 
         function submit_page(page) {

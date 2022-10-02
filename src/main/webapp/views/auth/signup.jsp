@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form-control mt-1">
-                    <button type="submit" class="btn btn-secondary text-gray-600 hover:text-white">Sign Up</button>
+                    <button type="submit" class="btn btn-secondary text-white hover:text-white">Sign Up</button>
                 </div>
 
                 <div class="form-control mt-1">
