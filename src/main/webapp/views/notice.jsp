@@ -97,29 +97,18 @@
 
         $(document).ready(function () {
             console.log("noticeCount : " + noticeCount);
-            // if ($("#noticeCount") <= 10){
-            //     $("#page1_tab").prop("checked", true);
-            //     submit_page(1);
-            // }else
-            //     if ($("#noticeCount") > 10 && $("#noticeCount") <= 20){
 
-            // if ($("#noticeCount") <= 10) {
-                $("#page1_tab").prop('checked', true);
-                    if ( noticeCount <= 10) {
-                        submit_page(1);
-                    }else if(noticeCount > 10 && noticeCount <= 20){
-                        submit_page(2);
-                    }else if(noticeCount > 20 && noticeCount <= 30){
-                        submit_page(3);
-                    }else if(noticeCount > 30 && noticeCount <= 40){
-                        submit_page(4);
-                    }
+            $("#page1_tab").prop('checked', true);
+                if ( noticeCount <= 10) {
+                    submit_page(1);
+                }else if(noticeCount > 10 && noticeCount <= 20){
+                    submit_page(2);
+                }else if(noticeCount > 20 && noticeCount <= 30){
+                    submit_page(3);
+                }else if(noticeCount > 30 && noticeCount <= 40){
+                    submit_page(4);
+                }
 
-            // }
-            // else if ($("#noticeCount") > 10 && $("#noticeCount") <= 20){
-            //     $("#page1_tab").prop("checked", true);
-            //     submit_page(2);
-            // }
         })
 
         function submit_page(page) {
