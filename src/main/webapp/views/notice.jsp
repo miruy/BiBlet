@@ -65,18 +65,18 @@
                     </c:if>
 
                     <c:if test="${noticeCount > 10 and noticeCount <= 20}">
-                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)"/>
                         <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
                     </c:if>
 
                     <c:if test="${noticeCount > 20 and noticeCount <= 30}">
-                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
                         <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
                         <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
                     </c:if>
 
                     <c:if test="${noticeCount > 30 and noticeCount <= 40}">
-                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white"  />
+                        <input type="radio" id="page1_tab" name="page" data-title="1" value=1 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(4)" />
                         <input type="radio" id="page2_tab" name="page" data-title="2" value=2 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(3)" />
                         <input type="radio" id="page3_tab" name="page" data-title="3" value=3 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(2)" />
                         <input type="radio" id="page4_tab" name="page" data-title="4" value=4 class="btn btn-secondary text-white hover:text-white" onclick="submit_page(1)" />
@@ -109,6 +109,10 @@
                         submit_page(1);
                     }else if(noticeCount > 10 && noticeCount <= 20){
                         submit_page(2);
+                    }else if(noticeCount > 20 && noticeCount <= 30){
+                        submit_page(3);
+                    }else if(noticeCount > 30 && noticeCount <= 40){
+                        submit_page(4);
                     }
 
             // }
